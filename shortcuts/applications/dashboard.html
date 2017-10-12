@@ -259,8 +259,9 @@ access to these files.</p>
 Home Directory. More links can be added to this menu, for Scratch space and
 Project space directories.</p>
 <p>Adding more links currently requires adding a custom initializer to the
-Dashboard app. Ruby code is placed in the initialzer to add one or more Ruby
-<code class="docutils literal"><span class="pre">Pathname</span></code> objects to the <code class="docutils literal"><span class="pre">OodFilesApp.candidate_favorite_paths</span></code> array.</p>
+Dashboard app. Ruby code is placed in the initializer to add one or more Ruby
+<code class="docutils literal"><span class="pre">Pathname</span></code> objects to the <code class="docutils literal"><span class="pre">OodFilesApp.candidate_favorite_paths</span></code> array, a
+global attribute that is used in the Dashboard app.</p>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
 <p class="last">We recommend doing this change in the build directory, so that when you
@@ -285,7 +286,7 @@ dashboard and there will be no version conflicts.</p>
 </div>
 <ul class="simple">
 <li>The variable <code class="docutils literal"><span class="pre">paths</span></code> is an array of <code class="docutils literal"><span class="pre">Pathname</span></code> objects that define a list of what
-will appear in the Dashboard dropdown for Files</li>
+will appear in the Dashboard menu for Files</li>
 <li>At OSC, the pattern for project paths follows “/fs/project/${PROJECT_GROUP_NAME}”.
 So above we:<ol class="arabic">
 <li>get an array of all user’s groups by name</li>
@@ -300,7 +301,8 @@ all the possible project directories the user could have.</li>
 </ul>
 <p>On each request, the Dashboard will check for the existence of the directories
 in <code class="docutils literal"><span class="pre">OodFilesApp.candidate_favorite_paths</span></code> array and whichever directories exist
-and the user has access to will appear as links in the Files menu under the Home Directory.</p>
+and the user has access to will appear as links in the Files menu under the
+Home Directory link.</p>
 <div class="figure align-center" id="id3">
 <img alt="../_images/files_menu_shortcuts_osc.png" src="../_images/files_menu_shortcuts_osc.png" />
 <p class="caption"><span class="caption-number">Fig. 3 </span><span class="caption-text">Shortcuts to scratch and project space directories in Files menu in OSC OnDemand.</span></p>

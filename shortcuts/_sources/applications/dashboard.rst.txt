@@ -69,8 +69,9 @@ Home Directory. More links can be added to this menu, for Scratch space and
 Project space directories.
 
 Adding more links currently requires adding a custom initializer to the
-Dashboard app. Ruby code is placed in the initialzer to add one or more Ruby
-``Pathname`` objects to the ``OodFilesApp.candidate_favorite_paths`` array.
+Dashboard app. Ruby code is placed in the initializer to add one or more Ruby
+``Pathname`` objects to the ``OodFilesApp.candidate_favorite_paths`` array, a
+global attribute that is used in the Dashboard app.
 
 .. warning::
 
@@ -98,7 +99,7 @@ Here is an example of OSC OnDemand's initializer:
    end
 
 - The variable ``paths`` is an array of ``Pathname`` objects that define a list of what
-  will appear in the Dashboard dropdown for Files
+  will appear in the Dashboard menu for Files
 - At OSC, the pattern for project paths follows "/fs/project/${PROJECT_GROUP_NAME}".
   So above we:
 
@@ -113,7 +114,8 @@ Here is an example of OSC OnDemand's initializer:
 
 On each request, the Dashboard will check for the existence of the directories
 in ``OodFilesApp.candidate_favorite_paths`` array and whichever directories exist
-and the user has access to will appear as links in the Files menu under the Home Directory.
+and the user has access to will appear as links in the Files menu under the
+Home Directory link.
 
 .. figure:: /images/files_menu_shortcuts_osc.png
    :align: center
