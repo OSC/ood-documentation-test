@@ -120,6 +120,20 @@ and the user has access to will appear as links in the Files menu under the Home
 
    Shortcuts to scratch and project space directories in Files menu in OSC OnDemand.
 
+Remember, when editing ood.rb in the build directory, don't forget to install again i.e.
+
+.. code-block:: sh
+
+   scl enable rh-ruby22 -- rake build:dashboard
+   sudo scl enable rh-ruby22 -- rake install:dashboard
+
+- Changes to the initializer shouldn't require a rebuilding of the dashboard assets or
+  reinstalling dependencies, but to see the change it does require a Dashboard app
+  restart, which can be forced by touching the tmp/restart.txt file. Rebuilding the dashboard
+  will automatically handle this for you.
+
+If you access the Dashboard, and it crashes, then you may have made a mistake in ood.rb file,
+whose code is run during the initialization of the Rails app.
 
 
 .. _ruby on rails: http://rubyonrails.org/

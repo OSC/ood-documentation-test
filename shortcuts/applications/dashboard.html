@@ -305,6 +305,19 @@ and the user has access to will appear as links in the Files menu under the Home
 <img alt="../_images/files_menu_shortcuts_osc.png" src="../_images/files_menu_shortcuts_osc.png" />
 <p class="caption"><span class="caption-number">Fig. 3 </span><span class="caption-text">Shortcuts to scratch and project space directories in Files menu in OSC OnDemand.</span></p>
 </div>
+<p>Remember, when editing ood.rb in the build directory, don’t forget to install again i.e.</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>scl <span class="nb">enable</span> rh-ruby22 -- rake build:dashboard
+sudo scl <span class="nb">enable</span> rh-ruby22 -- rake install:dashboard
+</pre></div>
+</div>
+<ul class="simple">
+<li>Changes to the initializer shouldn’t require a rebuilding of the dashboard assets or
+reinstalling dependencies, but to see the change it does require a Dashboard app
+restart, which can be forced by touching the tmp/restart.txt file. Rebuilding the dashboard
+will automatically handle this for you.</li>
+</ul>
+<p>If you access the Dashboard, and it crashes, then you may have made a mistake in ood.rb file,
+whose code is run during the initialization of the Rails app.</p>
 </div>
 </div>
 
