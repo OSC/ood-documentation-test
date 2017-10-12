@@ -261,9 +261,9 @@ corresponding cluster configuration file under:</p>
 <span class="l l-Scalar l-Scalar-Plain">batch_connect</span>
   <span class="l l-Scalar l-Scalar-Plain">template</span><span class="p p-Indicator">:</span> <span class="s">&quot;basic&quot;</span>
 
-<span class="l l-Scalar l-Scalar-Plain">script</span><span class="p p-Indicator">:</span>
-  <span class="l l-Scalar l-Scalar-Plain">...</span>
-</pre></div>
+<span class="hll"><span class="l l-Scalar l-Scalar-Plain">script</span><span class="p p-Indicator">:</span>
+</span><span class="hll">  <span class="l l-Scalar l-Scalar-Plain">...</span>
+</span></pre></div>
 </div>
 <p>You can read more about all the available <code class="docutils literal"><span class="pre">script</span></code> options here:</p>
 <p><a class="reference external" href="http://www.rubydoc.info/gems/ood_core/OodCore/Job/Script">http://www.rubydoc.info/gems/ood_core/OodCore/Job/Script</a></p>
@@ -287,9 +287,9 @@ git commit submit.yml.erb -m <span class="s1">&#39;updated batch job options&#39
 <span class="l l-Scalar l-Scalar-Plain">batch_connect</span>
   <span class="l l-Scalar l-Scalar-Plain">template</span><span class="p p-Indicator">:</span> <span class="s">&quot;basic&quot;</span>
 
-<span class="l l-Scalar l-Scalar-Plain">script</span><span class="p p-Indicator">:</span>
-  <span class="l l-Scalar l-Scalar-Plain">native</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span> <span class="s">&quot;-N&quot;</span><span class="p p-Indicator">,</span> <span class="s">&quot;&lt;%=</span><span class="nv"> </span><span class="s">bc_num_slots.blank?</span><span class="nv"> </span><span class="s">?</span><span class="nv"> </span><span class="s">1</span><span class="nv"> </span><span class="s">:</span><span class="nv"> </span><span class="s">bc_num_slots.to_i</span><span class="nv"> </span><span class="s">%&gt;&quot;</span><span class="p p-Indicator">,</span> <span class="s">&quot;-C&quot;</span><span class="p p-Indicator">,</span> <span class="s">&quot;c12&quot;</span> <span class="p p-Indicator">]</span>
-</pre></div>
+<span class="hll"><span class="l l-Scalar l-Scalar-Plain">script</span><span class="p p-Indicator">:</span>
+</span><span class="hll">  <span class="l l-Scalar l-Scalar-Plain">native</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span> <span class="s">&quot;-N&quot;</span><span class="p p-Indicator">,</span> <span class="s">&quot;&lt;%=</span><span class="nv"> </span><span class="s">bc_num_slots.blank?</span><span class="nv"> </span><span class="s">?</span><span class="nv"> </span><span class="s">1</span><span class="nv"> </span><span class="s">:</span><span class="nv"> </span><span class="s">bc_num_slots.to_i</span><span class="nv"> </span><span class="s">%&gt;&quot;</span><span class="p p-Indicator">,</span> <span class="s">&quot;-C&quot;</span><span class="p p-Indicator">,</span> <span class="s">&quot;c12&quot;</span> <span class="p p-Indicator">]</span>
+</span></pre></div>
 </div>
 <p>where we define the <strong class="command">sbatch</strong> parameters as an array under <code class="docutils literal"><span class="pre">script</span></code> and
 <code class="docutils literal"><span class="pre">native</span></code>.</p>
@@ -314,11 +314,11 @@ return a valid number (since it wouldn’t make sense to return <code class="doc
 <span class="l l-Scalar l-Scalar-Plain">batch_connect</span>
   <span class="l l-Scalar l-Scalar-Plain">template</span><span class="p p-Indicator">:</span> <span class="s">&quot;basic&quot;</span>
 
-<span class="l l-Scalar l-Scalar-Plain">script</span><span class="p p-Indicator">:</span>
-  <span class="l l-Scalar l-Scalar-Plain">native</span><span class="p p-Indicator">:</span>
-    <span class="l l-Scalar l-Scalar-Plain">resources</span><span class="p p-Indicator">:</span>
-      <span class="l l-Scalar l-Scalar-Plain">nodes</span><span class="p p-Indicator">:</span> <span class="s">&quot;&lt;%=</span><span class="nv"> </span><span class="s">bc_num_slots.blank?</span><span class="nv"> </span><span class="s">?</span><span class="nv"> </span><span class="s">1</span><span class="nv"> </span><span class="s">:</span><span class="nv"> </span><span class="s">bc_num_slots.to_i</span><span class="nv"> </span><span class="s">%&gt;:ppn=28&quot;</span>
-</pre></div>
+<span class="hll"><span class="l l-Scalar l-Scalar-Plain">script</span><span class="p p-Indicator">:</span>
+</span><span class="hll">  <span class="l l-Scalar l-Scalar-Plain">native</span><span class="p p-Indicator">:</span>
+</span><span class="hll">    <span class="l l-Scalar l-Scalar-Plain">resources</span><span class="p p-Indicator">:</span>
+</span><span class="hll">      <span class="l l-Scalar l-Scalar-Plain">nodes</span><span class="p p-Indicator">:</span> <span class="s">&quot;&lt;%=</span><span class="nv"> </span><span class="s">bc_num_slots.blank?</span><span class="nv"> </span><span class="s">?</span><span class="nv"> </span><span class="s">1</span><span class="nv"> </span><span class="s">:</span><span class="nv"> </span><span class="s">bc_num_slots.to_i</span><span class="nv"> </span><span class="s">%&gt;:ppn=28&quot;</span>
+</span></pre></div>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -341,28 +341,36 @@ server.</p>
 <span class="l l-Scalar l-Scalar-Plain">batch_connect</span>
   <span class="l l-Scalar l-Scalar-Plain">template</span><span class="p p-Indicator">:</span> <span class="s">&quot;basic&quot;</span>
 
-<span class="l l-Scalar l-Scalar-Plain">script</span><span class="p p-Indicator">:</span>
-  <span class="l l-Scalar l-Scalar-Plain">native</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span> <span class="s">&quot;-l&quot;</span><span class="p p-Indicator">,</span> <span class="s">&quot;select=1:ncpus=&lt;%=</span><span class="nv"> </span><span class="s">bc_num_slots.blank?</span><span class="nv"> </span><span class="s">?</span><span class="nv"> </span><span class="s">1</span><span class="nv"> </span><span class="s">:</span><span class="nv"> </span><span class="s">bc_num_slots.to_i</span><span class="nv"> </span><span class="s">%&gt;&quot;</span> <span class="p p-Indicator">]</span>
-</pre></div>
+<span class="hll"><span class="l l-Scalar l-Scalar-Plain">script</span><span class="p p-Indicator">:</span>
+</span><span class="hll">  <span class="l l-Scalar l-Scalar-Plain">native</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span> <span class="s">&quot;-l&quot;</span><span class="p p-Indicator">,</span> <span class="s">&quot;select=1:ncpus=&lt;%=</span><span class="nv"> </span><span class="s">bc_num_slots.blank?</span><span class="nv"> </span><span class="s">?</span><span class="nv"> </span><span class="s">1</span><span class="nv"> </span><span class="s">:</span><span class="nv"> </span><span class="s">bc_num_slots.to_i</span><span class="nv"> </span><span class="s">%&gt;&quot;</span> <span class="p p-Indicator">]</span>
+</span></pre></div>
 </div>
 <p>where we define the <strong class="command">qsub</strong> parameters as an array under <code class="docutils literal"><span class="pre">script</span></code> and
 <code class="docutils literal"><span class="pre">native</span></code>.</p>
 <p>If you would like to mimic how Torque handles <code class="docutils literal"><span class="pre">bc_num_slots</span></code> (number of
 <strong>nodes</strong>), then we will first need to change the form label of
 <code class="docutils literal"><span class="pre">bc_num_slots</span></code> that the user sees in the form. This can be done by adding to
-the form configuration file the following option:</p>
+the form configuration file the highlighted lines:</p>
 <div class="highlight-yaml"><div class="highlight"><pre><span></span><span class="c1"># form.yml</span>
 <span class="nn">---</span>
+<span class="l l-Scalar l-Scalar-Plain">cluster</span><span class="p p-Indicator">:</span> <span class="s">&quot;cluster1&quot;</span>
 
-<span class="nn">...</span>
 <span class="l l-Scalar l-Scalar-Plain">attributes</span><span class="p p-Indicator">:</span>
-
-  <span class="l l-Scalar l-Scalar-Plain">...</span>
-
-  <span class="l l-Scalar l-Scalar-Plain">bc_num_slots</span><span class="p p-Indicator">:</span>
-    <span class="l l-Scalar l-Scalar-Plain">label</span><span class="p p-Indicator">:</span> <span class="s">&quot;Number</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">nodes&quot;</span>
-
-<span class="nn">...</span>
+  <span class="l l-Scalar l-Scalar-Plain">modules</span><span class="p p-Indicator">:</span> <span class="s">&quot;python&quot;</span>
+  <span class="l l-Scalar l-Scalar-Plain">conda_extensions</span><span class="p p-Indicator">:</span> <span class="s">&quot;1&quot;</span>
+  <span class="l l-Scalar l-Scalar-Plain">extra_jupyter_args</span><span class="p p-Indicator">:</span> <span class="s">&quot;&quot;</span>
+<span class="hll">  <span class="l l-Scalar l-Scalar-Plain">bc_num_slots</span><span class="p p-Indicator">:</span>
+</span><span class="hll">    <span class="l l-Scalar l-Scalar-Plain">label</span><span class="p p-Indicator">:</span> <span class="s">&quot;Number</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">nodes&quot;</span>
+</span>
+<span class="l l-Scalar l-Scalar-Plain">form</span><span class="p p-Indicator">:</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">modules</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">conda_extensions</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">extra_jupyter_args</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">bc_num_hours</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">bc_num_slots</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">bc_account</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">bc_queue</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">bc_email_on_started</span>
 </pre></div>
 </div>
 <p>Now when we go to the Jupyter app form in our browser it will have the new
@@ -376,9 +384,9 @@ such:</p>
 <span class="l l-Scalar l-Scalar-Plain">batch_connect</span>
   <span class="l l-Scalar l-Scalar-Plain">template</span><span class="p p-Indicator">:</span> <span class="s">&quot;basic&quot;</span>
 
-<span class="l l-Scalar l-Scalar-Plain">script</span><span class="p p-Indicator">:</span>
-  <span class="l l-Scalar l-Scalar-Plain">native</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span> <span class="s">&quot;-l&quot;</span><span class="p p-Indicator">,</span> <span class="s">&quot;select=&lt;%=</span><span class="nv"> </span><span class="s">bc_num_slots.blank?</span><span class="nv"> </span><span class="s">?</span><span class="nv"> </span><span class="s">1</span><span class="nv"> </span><span class="s">:</span><span class="nv"> </span><span class="s">bc_num_slots.to_i</span><span class="nv"> </span><span class="s">%&gt;:ncpus=28&quot;</span> <span class="p p-Indicator">]</span>
-</pre></div>
+<span class="hll"><span class="l l-Scalar l-Scalar-Plain">script</span><span class="p p-Indicator">:</span>
+</span><span class="hll">  <span class="l l-Scalar l-Scalar-Plain">native</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span> <span class="s">&quot;-l&quot;</span><span class="p p-Indicator">,</span> <span class="s">&quot;select=&lt;%=</span><span class="nv"> </span><span class="s">bc_num_slots.blank?</span><span class="nv"> </span><span class="s">?</span><span class="nv"> </span><span class="s">1</span><span class="nv"> </span><span class="s">:</span><span class="nv"> </span><span class="s">bc_num_slots.to_i</span><span class="nv"> </span><span class="s">%&gt;:ncpus=28&quot;</span> <span class="p p-Indicator">]</span>
+</span></pre></div>
 </div>
 <p>where you replace <code class="docutils literal"><span class="pre">ncpus=28</span></code> with the correct number for your cluster.</p>
 <p>You can also append <code class="docutils literal"><span class="pre">mem=...gb</span></code> to the <code class="docutils literal"><span class="pre">select=...</span></code> statement if you’d
