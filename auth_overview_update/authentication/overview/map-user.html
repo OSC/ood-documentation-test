@@ -105,7 +105,11 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../../authentication.html">Authentication</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="../overview.html">Overview</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="configure-authentication.html">1. Configure Apache to use desired authentication method</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">2. Configure Apache to map authenticated user to system user</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">2. Configure Apache to map authenticated user to system user</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#default-mapping-works-for-most-use-cases">2.1. Default mapping works for most use cases</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#customizing-mapping">2.2. Customizing mapping</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../tutorial-oidc-keycloak-rhel7.html">OpenID Connect via KeyCloak on RHEL7</a></li>
@@ -199,7 +203,9 @@
             
   <div class="section" id="configure-apache-to-map-authenticated-user-to-system-user">
 <span id="authentication-overview-map-user"></span><h1>2. Configure Apache to map authenticated user to system user<a class="headerlink" href="#configure-apache-to-map-authenticated-user-to-system-user" title="Permalink to this headline">¶</a></h1>
-<p>In OnDemand Apache is configured to use a mapping <a class="reference internal" href="../../infrastructure/ood-auth-map.html#ood-auth-map"><span class="std std-ref">ood_auth_map</span></a> that is
+<div class="section" id="default-mapping-works-for-most-use-cases">
+<h2>2.1. Default mapping works for most use cases<a class="headerlink" href="#default-mapping-works-for-most-use-cases" title="Permalink to this headline">¶</a></h2>
+<p>In OnDemand, Apache is configured to use a mapping <a class="reference internal" href="../../infrastructure/ood-auth-map.html#ood-auth-map"><span class="std std-ref">ood_auth_map</span></a> that is
 executed on each request to determine which system user the authenticated user
 is associated with, so that the request will be proxied to the correct system
 user’s processes.</p>
@@ -207,13 +213,16 @@ user’s processes.</p>
 <ol class="arabic simple">
 <li>Apache is configured to specify command to execute the mapping script by
 setting this to the environment variable <code class="docutils literal"><span class="pre">OOD_USER_MAP_CMD</span></code></li>
-<li>The mod_ood_proxy Apache module executes this, passing the env var
-<code class="docutils literal"><span class="pre">REMOTE_USER</span></code> as an argument. Since most Apache authentication modules set
-the authenticated user to <code class="docutils literal"><span class="pre">REMOTE_USER</span></code> the mapping can occur.</li>
+<li>The mod_ood_proxy Apache module executes this command on each request, passing the env var
+<code class="docutils literal"><span class="pre">REMOTE_USER</span></code> as an argument. The executed command outputs the mapped system user.</li>
+<li>The request is then proxied to the system user’s per user NGINX process.</li>
 </ol>
 <p>Since most Apache authentication modules set <code class="docutils literal"><span class="pre">REMOTE_USER</span></code> with the
 authenticated user, and often this user is the system user, the default mapping
 functionality between authenticated user and system user should be sufficient.</p>
+</div>
+<div class="section" id="customizing-mapping">
+<h2>2.2. Customizing mapping<a class="headerlink" href="#customizing-mapping" title="Permalink to this headline">¶</a></h2>
 <p>See <a class="reference internal" href="../../infrastructure/ood-auth-map.html#ood-auth-map"><span class="std std-ref">ood_auth_map</span></a> for an overview on how these mapping scripts work. The
 default mapping script just echo’s back the <code class="docutils literal"><span class="pre">REMOTE_USER</span></code> so that is used
 as the system user.</p>
@@ -224,6 +233,7 @@ configuration options for the <a class="reference internal" href="../../infrastr
 the <code class="docutils literal"><span class="pre">user_map_cmd</span></code> and <code class="docutils literal"><span class="pre">user_env</span></code> configuration options, which result in the
 generated Apache config setting <code class="docutils literal"><span class="pre">OOD_USER_MAP_CMD</span></code> and <code class="docutils literal"><span class="pre">OOD_USER_ENV</span></code> vars
 that the mod_ood_proxy module uses.</p>
+</div>
 </div>
 
 
