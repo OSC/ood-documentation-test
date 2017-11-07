@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>2. Configure Apache to map authenticated user to system user &mdash; Open OnDemand 1.2.0 documentation</title>
+  <title>2. Setup User Mapping &mdash; Open OnDemand 1.2.0 documentation</title>
   
 
   
@@ -40,7 +40,7 @@
     <link rel="top" title="Open OnDemand 1.2.0 documentation" href="../../index.html"/>
         <link rel="up" title="Overview" href="../overview.html"/>
         <link rel="next" title="OpenID Connect via KeyCloak on RHEL7" href="../tutorial-oidc-keycloak-rhel7.html"/>
-        <link rel="prev" title="1. Configure Apache to use desired authentication method" href="configure-authentication.html"/> 
+        <link rel="prev" title="1. Configure Apache Authentication" href="configure-authentication.html"/> 
 
   
   <script src="../../_static/js/modernizr.min.js"></script>
@@ -104,10 +104,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../../install-ihpc-apps.html">Install Other Interactive Apps</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../authentication.html">Authentication</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="../overview.html">Overview</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="configure-authentication.html">1. Configure Apache to use desired authentication method</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">2. Configure Apache to map authenticated user to system user</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#default-mapping-works-for-most-use-cases">2.1. Default mapping works for most use cases</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#customizing-mapping">2.2. Customizing mapping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configure-authentication.html">1. Configure Apache Authentication</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">2. Setup User Mapping</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#custom-mapping">2.1. Custom Mapping</a></li>
 </ul>
 </li>
 </ul>
@@ -180,7 +179,7 @@
         
           <li><a href="../overview.html">Overview</a> &raquo;</li>
         
-      <li>2. Configure Apache to map authenticated user to system user</li>
+      <li>2. Setup User Mapping</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -201,38 +200,65 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="configure-apache-to-map-authenticated-user-to-system-user">
-<span id="authentication-overview-map-user"></span><h1>2. Configure Apache to map authenticated user to system user<a class="headerlink" href="#configure-apache-to-map-authenticated-user-to-system-user" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="default-mapping-works-for-most-use-cases">
-<h2>2.1. Default mapping works for most use cases<a class="headerlink" href="#default-mapping-works-for-most-use-cases" title="Permalink to this headline">¶</a></h2>
-<p>In OnDemand, Apache is configured to use a mapping <a class="reference internal" href="../../infrastructure/ood-auth-map.html#ood-auth-map"><span class="std std-ref">ood_auth_map</span></a> that is
-executed on each request to determine which system user the authenticated user
-is associated with, so that the request will be proxied to the correct system
-user’s processes.</p>
-<p>The way this typically works:</p>
-<ol class="arabic simple">
-<li>Apache is configured to specify command to execute the mapping script by
-setting this to the environment variable <code class="docutils literal"><span class="pre">OOD_USER_MAP_CMD</span></code></li>
-<li>The mod_ood_proxy Apache module executes this command on each request, passing the env var
-<code class="docutils literal"><span class="pre">REMOTE_USER</span></code> as an argument. The executed command outputs the mapped system user.</li>
-<li>The request is then proxied to the system user’s per user NGINX process.</li>
-</ol>
-<p>Since most Apache authentication modules set <code class="docutils literal"><span class="pre">REMOTE_USER</span></code> with the
-authenticated user, and often this user is the system user, the default mapping
-functionality between authenticated user and system user should be sufficient.</p>
+  <div class="section" id="setup-user-mapping">
+<span id="authentication-overview-map-user"></span><h1>2. Setup User Mapping<a class="headerlink" href="#setup-user-mapping" title="Permalink to this headline">¶</a></h1>
+<p>Every HTTP request sent to the OnDemand portal triggers a call to the
+<a class="reference internal" href="../../infrastructure/ood-auth-map.html#ood-auth-map"><span class="std std-ref">ood_auth_map</span></a> script to map the remote authenticated user name to the
+local system user name. Mapping to the local system user not only restricts
+access of OnDemand to local users but it is also required by the OnDemand proxy
+to traffic the HTTP data to the user’s corresponding per-user NGINX (PUN)
+server.</p>
+<p>The <a class="reference internal" href="../../infrastructure/ood-portal-generator.html#ood-portal-generator"><span class="std std-ref">ood-portal-generator</span></a> and its corresponding <code class="docutils literal"><span class="pre">config.yml</span></code> are used
+to configure both the system command that performs the mapping
+(<a class="reference internal" href="../../infrastructure/ood-portal-generator/configuration.html#ood-portal-generator-user-map-cmd"><span class="std std-ref">user_map_cmd</span></a>) and the argument fed
+to the system command (<a class="reference internal" href="../../infrastructure/ood-portal-generator/configuration.html#ood-portal-generator-user-env"><span class="std std-ref">user_env</span></a>). By
+default these configuration options are defined as:</p>
+<div class="highlight-yaml"><div class="highlight"><pre><span></span><span class="c1"># /path/to/ood-portal-generator/config.yml</span>
+<span class="nn">---</span>
+
+<span class="l l-Scalar l-Scalar-Plain">user_map_cmd</span><span class="p p-Indicator">:</span> <span class="s">&#39;/opt/ood/ood_auth_map/bin/ood_auth_map.regex&#39;</span>
+<span class="l l-Scalar l-Scalar-Plain">user_env</span><span class="p p-Indicator">:</span> <span class="s">&#39;REMOTE_USER&#39;</span>
+</pre></div>
 </div>
-<div class="section" id="customizing-mapping">
-<h2>2.2. Customizing mapping<a class="headerlink" href="#customizing-mapping" title="Permalink to this headline">¶</a></h2>
-<p>See <a class="reference internal" href="../../infrastructure/ood-auth-map.html#ood-auth-map"><span class="std std-ref">ood_auth_map</span></a> for an overview on how these mapping scripts work. The
-default mapping script just echo’s back the <code class="docutils literal"><span class="pre">REMOTE_USER</span></code> so that is used
-as the system user.</p>
-<p>If you need to configure the mapping script to use a regex on the <code class="docutils literal"><span class="pre">REMOTE_USER</span></code>,
-or have the mapping script inspect a different env var
-besides <code class="docutils literal"><span class="pre">REMOTE_USER</span></code>, or need to use a custom mapping script, look at
-configuration options for the <a class="reference internal" href="../../infrastructure/ood-portal-generator.html#ood-portal-generator"><span class="std std-ref">ood-portal-generator</span></a>, including customizing
-the <code class="docutils literal"><span class="pre">user_map_cmd</span></code> and <code class="docutils literal"><span class="pre">user_env</span></code> configuration options, which result in the
-generated Apache config setting <code class="docutils literal"><span class="pre">OOD_USER_MAP_CMD</span></code> and <code class="docutils literal"><span class="pre">OOD_USER_ENV</span></code> vars
-that the mod_ood_proxy module uses.</p>
+<p>which uses <a class="reference internal" href="../../infrastructure/ood-auth-map.html#ood-auth-map"><span class="std std-ref">ood_auth_map</span></a> for the mapping command and <code class="docutils literal"><span class="pre">REMOTE_USER</span></code>
+(this variable holds the name of the authenticated user by the web server) as
+its command line argument.</p>
+<p>This is equivalent to calling from the command line:</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> /opt/ood/ood_auth_map/bin/ood_auth_map.regex <span class="s2">&quot;</span><span class="nv">$REMOTE_USER</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+<p>which just echos back the value of <code class="docutils literal"><span class="pre">REMOTE_USER</span></code>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The default user mapping employed by an OnDemand portal <strong>directly</strong> maps
+the remote authenticated user name to the local user name. So the Apache
+authentication module used is expected to set the correct local user name in
+<code class="docutils literal"><span class="pre">REMOTE_USER</span></code>.</p>
+</div>
+<div class="section" id="custom-mapping">
+<h2>2.1. Custom Mapping<a class="headerlink" href="#custom-mapping" title="Permalink to this headline">¶</a></h2>
+<p>As mentioned previously the <a class="reference internal" href="../../infrastructure/ood-portal-generator.html#ood-portal-generator"><span class="std std-ref">ood-portal-generator</span></a> configuration options
+of interest are:</p>
+<ul class="simple">
+<li><a class="reference internal" href="../../infrastructure/ood-portal-generator/configuration.html#ood-portal-generator-user-map-cmd"><span class="std std-ref">user_map_cmd</span></a></li>
+<li><a class="reference internal" href="../../infrastructure/ood-portal-generator/configuration.html#ood-portal-generator-user-env"><span class="std std-ref">user_env</span></a></li>
+</ul>
+<p>It is recommended you read the discussion on <a class="reference internal" href="../../infrastructure/ood-auth-map.html#ood-auth-map"><span class="std std-ref">ood_auth_map</span></a> before
+modifying these values.</p>
+<p>After modifying the <code class="docutils literal"><span class="pre">config.yml</span></code> with the mapping you want you would then
+build the new <code class="docutils literal"><span class="pre">ood-portal.conf</span></code> from this configuration file with:</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> scl <span class="nb">enable</span> rh-ruby22 -- rake
+<span class="go">Rendering templates/ood-portal.conf.erb =&gt; build/ood-portal.conf</span>
+</pre></div>
+</div>
+<p>This will build <code class="docutils literal"><span class="pre">ood-portal.conf</span></code> in the <code class="docutils literal"><span class="pre">build/</span></code> directory. Open that file
+and confirm everything is accurate, then install it in the global location:</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo scl <span class="nb">enable</span> rh-ruby22 -- rake install
+<span class="go">cp build/ood-portal.conf /opt/rh/httpd24/root/etc/httpd/conf.d/ood-portal.conf</span>
+</pre></div>
+</div>
+<p>Finally you will need to restart your Apache HTTP Server for the changes to
+take effect.</p>
 </div>
 </div>
 
@@ -249,7 +275,7 @@ that the mod_ood_proxy module uses.</p>
         <a href="../tutorial-oidc-keycloak-rhel7.html" class="btn btn-neutral float-right" title="OpenID Connect via KeyCloak on RHEL7" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="configure-authentication.html" class="btn btn-neutral" title="1. Configure Apache to use desired authentication method" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="configure-authentication.html" class="btn btn-neutral" title="1. Configure Apache Authentication" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

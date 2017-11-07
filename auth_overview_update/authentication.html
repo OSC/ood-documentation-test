@@ -190,19 +190,24 @@
             
   <div class="section" id="authentication">
 <span id="id1"></span><h1>Authentication<a class="headerlink" href="#authentication" title="Permalink to this headline">¶</a></h1>
-<p>Open OnDemand supports most authentication mechanisms that works with an Apache
-HTTP Server. The Overview below explains the basic steps to take when setting up
-Authentication. We also provide a tutorial installing Keycloak as an OpenID
-Connect provider and then using that for authentication with OnDemand.</p>
-<p>If you are using an authentication module that is not represented here,
-please consider letting us know how you set it up so we can add walkthrough here.
-Or fork this documentation repo and create a pull request off of the develop
-branch with your walkthrough.</p>
+<p>Open OnDemand supports most authentication modules that work with Apache HTTP
+Server version 2.4. The following <a class="reference internal" href="authentication/overview.html#authentication-overview"><span class="std std-ref">Overview</span></a> section
+provides an introduction to setting up these generic authentication modules
+with an Open OnDemand installation. Tutorials will also be provided with the
+focus on setting up some of the more common authentication modules (e.g.,
+OpenID Connect with KeyCloak).</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If you managed to install an Apache authentication module at your center
+that currently does not have a tutorial listed below we would greatly
+appreciate it if you could take the time to contribute a detailed
+walkthrough.</p>
+</div>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="authentication/overview.html">Overview</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="authentication/overview/configure-authentication.html">1. Configure Apache to use desired authentication method</a></li>
-<li class="toctree-l2"><a class="reference internal" href="authentication/overview/map-user.html">2. Configure Apache to map authenticated user to system user</a></li>
+<li class="toctree-l2"><a class="reference internal" href="authentication/overview/configure-authentication.html">1. Configure Apache Authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="authentication/overview/map-user.html">2. Setup User Mapping</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="authentication/tutorial-oidc-keycloak-rhel7.html">OpenID Connect via KeyCloak on RHEL7</a><ul>
