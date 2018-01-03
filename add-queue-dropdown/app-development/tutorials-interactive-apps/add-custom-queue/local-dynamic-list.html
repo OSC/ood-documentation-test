@@ -277,7 +277,7 @@ the “Queue” form element anymore.</p>
 list of queues/partitions (using Slurm as the example):</p>
 <div class="highlight-yaml"><div class="highlight"><pre><span></span><span class="c1"># ~/ondemand/dev/jupyter/form.yml.erb</span>
 <span class="hll"><span class="l l-Scalar l-Scalar-Plain">&lt;%-</span>
-</span><span class="hll">  <span class="l l-Scalar l-Scalar-Plain">cmd = &quot;/path/to/sacctmgr -nP list QOS format=name&quot;</span>
+</span><span class="hll">  <span class="l l-Scalar l-Scalar-Plain">cmd = &quot;/path/to/sinfo -ho %R&quot;</span>
 </span><span class="hll">  <span class="l l-Scalar l-Scalar-Plain">begin</span>
 </span><span class="hll">    <span class="l l-Scalar l-Scalar-Plain">output, status = Open3.capture2e(cmd)</span>
 </span><span class="hll">    <span class="l l-Scalar l-Scalar-Plain">if status.success?</span>
