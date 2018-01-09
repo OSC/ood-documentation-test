@@ -254,7 +254,8 @@ App:</p>
 </pre></div>
 </div>
 </li>
-<li><p class="first">We remove the following line from this file:</p>
+<li><p class="first">Next we remove the <code class="docutils literal"><span class="pre">bc_queue</span></code> field from our <code class="docutils literal"><span class="pre">form.yml</span></code> for the Jupyter
+Interactive App by removing the following line from this file:</p>
 <div class="highlight-yaml"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">bc_account</span>
 <span class="hll"><span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">bc_queue</span>
 </span><span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">bc_num_hours</span>
@@ -277,8 +278,8 @@ queues/partitions:</p>
 </span><span class="hll">    <span class="l l-Scalar l-Scalar-Plain">help</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Please select a queue from the drop-down.</span>
 </span><span class="hll">    <span class="l l-Scalar l-Scalar-Plain">widget</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">select</span>
 </span><span class="hll">    <span class="l l-Scalar l-Scalar-Plain">options</span><span class="p p-Indicator">:</span>
-</span><span class="hll">      <span class="p p-Indicator">-</span> <span class="p p-Indicator">[</span> <span class="s">&quot;queue1&quot;</span><span class="p p-Indicator">,</span> <span class="s">&quot;queue1&quot;</span> <span class="p p-Indicator">]</span>
-</span><span class="hll">      <span class="p p-Indicator">-</span> <span class="p p-Indicator">[</span> <span class="s">&quot;queue2&quot;</span><span class="p p-Indicator">,</span> <span class="s">&quot;queue2&quot;</span> <span class="p p-Indicator">]</span>
+</span><span class="hll">      <span class="p p-Indicator">-</span> <span class="p p-Indicator">[</span> <span class="s">&quot;Queue</span><span class="nv"> </span><span class="s">1&quot;</span><span class="p p-Indicator">,</span> <span class="s">&quot;queue1&quot;</span> <span class="p p-Indicator">]</span>
+</span><span class="hll">      <span class="p p-Indicator">-</span> <span class="p p-Indicator">[</span> <span class="s">&quot;Queue</span><span class="nv"> </span><span class="s">2&quot;</span><span class="p p-Indicator">,</span> <span class="s">&quot;queue2&quot;</span> <span class="p p-Indicator">]</span>
 </span><span class="l l-Scalar l-Scalar-Plain">form</span><span class="p p-Indicator">:</span>
   <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">modules</span>
   <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">conda_extensions</span>
@@ -345,16 +346,15 @@ the value of the <code class="docutils literal"><span class="pre">custom_queue</
 </span><span class="hll">  <span class="l l-Scalar l-Scalar-Plain">queue_name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">&lt;%= custom_queue %&gt;</span>
 </span></pre></div>
 </div>
-<p>Where we take advantage of the generic <a class="reference external" href="queue_name">OodCore::Job::Script#queue_name</a>
-method to supply a queue/partition that is resource manager (e.g., Slurm,
-Torque, …) agnostic.</p>
+<p>Where we take advantage of the generic <a class="reference external" href="http://www.rubydoc.info/gems/ood_core/OodCore/Job/Script#queue_name-instance_method">OodCore::Job::Script#queue_name</a> method to supply a queue/partition that is resource manager
+(e.g., Slurm, Torque, …) agnostic.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p>For the queue/partition we do not need to use the <code class="docutils literal"><span class="pre">native:</span></code> field which
 <strong>must be</strong> customized for the specific resource manager you are
 leveraging.</p>
 <p class="last">You can find a list of generic fields that are resource manager agnostic
-under the <a class="reference external" href="script">OodCore::Job::Script</a> documentation.</p>
+under the <a class="reference external" href="http://www.rubydoc.info/gems/ood_core/OodCore/Job/Script">OodCore::Job::Script</a> documentation.</p>
 </div>
 </li>
 </ol>

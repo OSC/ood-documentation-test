@@ -244,7 +244,8 @@ Interactive Apps under the
 Ruby)</a> templating system, which allows us to embed <a class="reference external" href="https://www.ruby-lang.org/en/">Ruby</a> code into the YAML
 configuration file for flow control, variable substitution, and more.</p>
 </li>
-<li><p class="first">Next we start with the default <code class="docutils literal"><span class="pre">form.yml</span></code> for the Jupyter Interactive App:</p>
+<li><p class="first">Next we remove the <code class="docutils literal"><span class="pre">bc_queue</span></code> field from our <code class="docutils literal"><span class="pre">form.yml</span></code> for the Jupyter
+Interactive App by removing the following line from this file:</p>
 <div class="highlight-yaml"><div class="highlight"><pre><span></span><span class="c1"># ~/ondemand/dev/jupyter/form.yml.erb</span>
 <span class="nn">---</span>
 <span class="l l-Scalar l-Scalar-Plain">cluster</span><span class="p p-Indicator">:</span> <span class="s">&quot;my_cluster&quot;</span>
@@ -338,7 +339,7 @@ empty lines before saving this into the local variable <code class="docutils lit
 <li>if calling <code class="docutils literal"><span class="pre">cmd</span></code> causes an error we store an empty <code class="docutils literal"><span class="pre">queues</span></code> list and
 record the error message</li>
 </ul>
-<p>Later in the YAML file we have a couple more <em>expression tags</em> that:</p>
+<p>Later in the YAML file we have a few more <em>execution tags</em> that:</p>
 <ul class="simple">
 <li>appends to the help text an error message if one exists (we have to indent
 the error message if it has newlines to follow YAML formatting)</li>
@@ -413,7 +414,7 @@ for all users if you prefer)</li>
 <li>otherwise we set the queue to the user defined string with leading and
 trailing whitespace removed</li>
 </ul>
-<p>We also take advantage of the generic <a class="reference external" href="queue_name">OodCore::Job::Script#queue_name</a> method to supply a queue/partition that is resource manager
+<p>We also take advantage of the generic <a class="reference external" href="http://www.rubydoc.info/gems/ood_core/OodCore/Job/Script#queue_name-instance_method">OodCore::Job::Script#queue_name</a> method to supply a queue/partition that is resource manager
 (e.g., Slurm, Torque, …) agnostic.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -421,7 +422,7 @@ trailing whitespace removed</li>
 <strong>must be</strong> customized for the specific resource manager you are
 leveraging.</p>
 <p class="last">You can find a list of generic fields that are resource manager agnostic
-under the <a class="reference external" href="script">OodCore::Job::Script</a> documentation.</p>
+under the <a class="reference external" href="http://www.rubydoc.info/gems/ood_core/OodCore/Job/Script">OodCore::Job::Script</a> documentation.</p>
 </div>
 </li>
 </ol>
