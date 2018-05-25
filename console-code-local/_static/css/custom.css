@@ -1,0 +1,26 @@
+.wy-side-nav-search {
+  background-color: #C8102E;
+}
+
+.wy-side-nav-search > div.version {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.wy-side-nav-search > a:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.wy-nav-side {
+  background: #2D2926;
+}
+
+.wy-nav-top {
+  background: #C8102E;
+}
+
+span.gp {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
