@@ -270,43 +270,46 @@ the Apache configuration file under
 haven’t been doing this before then now is a good time to start. Feel
 free to contact us if you have trouble with this.</p>
 </div>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">#</span> Copy over our app configuration <span class="o">(</span><span class="k">if</span> they exist<span class="o">)</span>
-<span class="gp">$</span> mkdir -p /etc/ood/config/apps
-<span class="go">[[ -e &quot;/var/www/ood/apps/sys.bak/dashboard/.env.local&quot; ]] \</span>
-<span class="go">  &amp;&amp; sudo mkdir -p /etc/ood/config/apps/dashboard \</span>
-<span class="go">  &amp;&amp; sudo cp /var/www/ood/apps/sys.bak/dashboard/.env.local /etc/ood/config/apps/dashboard/env</span>
-<span class="go">[[ -e &quot;/var/www/ood/apps/sys.bak/activejobs/.env.local&quot; ]] \</span>
-<span class="go">  &amp;&amp; sudo mkdir -p /etc/ood/config/apps/activejobs \</span>
-<span class="go">  &amp;&amp; sudo cp /var/www/ood/apps/sys.bak/activejobs/.env.local /etc/ood/config/apps/activejobs/env</span>
-<span class="go">[[ -e &quot;/var/www/ood/apps/sys.bak/myjobs/.env.local&quot; ]] \</span>
-<span class="go">  &amp;&amp; sudo mkdir -p /etc/ood/config/apps/myjobs \</span>
-<span class="go">  &amp;&amp; sudo cp /var/www/ood/apps/sys.bak/myjobs/.env.local /etc/ood/config/apps/myjobs/env</span>
-<span class="go">[[ -e &quot;/var/www/ood/apps/sys.bak/file-editor/.env.local&quot; ]] \</span>
-<span class="go">  &amp;&amp; sudo mkdir -p /etc/ood/config/apps/file-editor \</span>
-<span class="go">  &amp;&amp; sudo cp /var/www/ood/apps/sys.bak/file-editor/.env.local /etc/ood/config/apps/file-editor/env</span>
-<span class="go">[[ -e &quot;/var/www/ood/apps/sys.bak/shell/.env.local&quot; ]] \</span>
-<span class="go">  &amp;&amp; sudo mkdir -p /etc/ood/config/apps/shell \</span>
-<span class="go">  &amp;&amp; sudo cp /var/www/ood/apps/sys.bak/shell/.env /etc/ood/config/apps/shell/env</span>
-<span class="go">[[ -e &quot;/var/www/ood/apps/sys.bak/files/.env.local&quot; ]] \</span>
-<span class="go">  &amp;&amp; sudo mkdir -p /etc/ood/config/apps/files \</span>
-<span class="go">  &amp;&amp; sudo cp /var/www/ood/apps/sys.bak/files/.env /etc/ood/config/apps/files/env</span>
-
-<span class="gp">#</span> Copy over any custom initializers you may have created <span class="o">(</span><span class="k">if</span> they exist<span class="o">)</span>
-<span class="go">[[ -e &quot;/var/www/ood/apps/sys.bak/dashboard/config/initializers/ood.rb&quot; ]] \</span>
-<span class="go">  &amp;&amp; sudo mkdir -p /etc/ood/config/apps/dashboard/initializers \</span>
-<span class="go">  &amp;&amp; sudo cp /var/www/ood/apps/sys.bak/dashboard/config/initializers/ood.rb /etc/ood/config/apps/dashboard/initializers/ood.rb</span>
-<span class="go">[[ -e &quot;/var/www/ood/apps/sys.bak/activejobs/config/initializers/filter.rb&quot; ]] \</span>
-<span class="go">  &amp;&amp; sudo mkdir -p /etc/ood/config/apps/activejobs/initializers \</span>
-<span class="go">  &amp;&amp; sudo cp /var/www/ood/apps/sys.bak/activejobs/config/initializers/filter.rb /etc/ood/config/apps/activejobs/initializers/filter.rb</span>
-
-<span class="gp">#</span> Copy over your Job Composer templates <span class="o">(</span><span class="k">if</span> they exist<span class="o">)</span>
-<span class="go">[[ -e &quot;/var/www/ood/apps/sys.bak/myjobs/templates&quot; ]] \</span>
-<span class="go">  &amp;&amp; sudo mkdir -p /etc/ood/config/apps/myjobs \</span>
-<span class="go">  &amp;&amp; sudo cp -r /var/www/ood/apps/sys.bak/myjobs/templates /etc/ood/config/apps/myjobs/.</span>
-
-<span class="gp">#</span> Copy over your <span class="nb">local</span> Interactive Desktop apps <span class="o">(</span><span class="k">if</span> they exist<span class="o">)</span>
-<span class="go">[[ -e &quot;/var/www/ood/apps/sys.bak/bc_desktop/local&quot; ]] \</span>
-<span class="go">    &amp;&amp; sudo cp -r /var/www/ood/apps/sys.bak/bc_desktop/local /etc/ood/config/apps/bc_desktop</span>
+<p>Copy over our app configuration (if they exist):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> mkdir -p /etc/ood/config/apps
+<span class="gp">$</span> <span class="o">[[</span> -e <span class="s2">&quot;/var/www/ood/apps/sys.bak/dashboard/.env.local&quot;</span> <span class="o">]]</span> <span class="se">\</span>
+    <span class="o">&amp;&amp;</span> sudo mkdir -p /etc/ood/config/apps/dashboard <span class="se">\</span>
+    <span class="o">&amp;&amp;</span> sudo cp /var/www/ood/apps/sys.bak/dashboard/.env.local /etc/ood/config/apps/dashboard/env
+<span class="gp">$</span> <span class="o">[[</span> -e <span class="s2">&quot;/var/www/ood/apps/sys.bak/activejobs/.env.local&quot;</span> <span class="o">]]</span> <span class="se">\</span>
+    <span class="o">&amp;&amp;</span> sudo mkdir -p /etc/ood/config/apps/activejobs <span class="se">\</span>
+    <span class="o">&amp;&amp;</span> sudo cp /var/www/ood/apps/sys.bak/activejobs/.env.local /etc/ood/config/apps/activejobs/env
+<span class="gp">$</span> <span class="o">[[</span> -e <span class="s2">&quot;/var/www/ood/apps/sys.bak/myjobs/.env.local&quot;</span> <span class="o">]]</span> <span class="se">\</span>
+    <span class="o">&amp;&amp;</span> sudo mkdir -p /etc/ood/config/apps/myjobs <span class="se">\</span>
+    <span class="o">&amp;&amp;</span> sudo cp /var/www/ood/apps/sys.bak/myjobs/.env.local /etc/ood/config/apps/myjobs/env
+<span class="gp">$</span> <span class="o">[[</span> -e <span class="s2">&quot;/var/www/ood/apps/sys.bak/file-editor/.env.local&quot;</span> <span class="o">]]</span> <span class="se">\</span>
+    <span class="o">&amp;&amp;</span> sudo mkdir -p /etc/ood/config/apps/file-editor <span class="se">\</span>
+    <span class="o">&amp;&amp;</span> sudo cp /var/www/ood/apps/sys.bak/file-editor/.env.local /etc/ood/config/apps/file-editor/env
+<span class="gp">$</span> <span class="o">[[</span> -e <span class="s2">&quot;/var/www/ood/apps/sys.bak/shell/.env.local&quot;</span> <span class="o">]]</span> <span class="se">\</span>
+    <span class="o">&amp;&amp;</span> sudo mkdir -p /etc/ood/config/apps/shell <span class="se">\</span>
+    <span class="o">&amp;&amp;</span> sudo cp /var/www/ood/apps/sys.bak/shell/.env /etc/ood/config/apps/shell/env
+<span class="gp">$</span> <span class="o">[[</span> -e <span class="s2">&quot;/var/www/ood/apps/sys.bak/files/.env.local&quot;</span> <span class="o">]]</span> <span class="se">\</span>
+    <span class="o">&amp;&amp;</span> sudo mkdir -p /etc/ood/config/apps/files <span class="se">\</span>
+    <span class="o">&amp;&amp;</span> sudo cp /var/www/ood/apps/sys.bak/files/.env /etc/ood/config/apps/files/env
+</pre></div>
+</div>
+<p>Copy over any custom initializers you may have created (if they exist):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="o">[[</span> -e <span class="s2">&quot;/var/www/ood/apps/sys.bak/dashboard/config/initializers/ood.rb&quot;</span> <span class="o">]]</span> <span class="se">\</span>
+    <span class="o">&amp;&amp;</span> sudo mkdir -p /etc/ood/config/apps/dashboard/initializers <span class="se">\</span>
+    <span class="o">&amp;&amp;</span> sudo cp /var/www/ood/apps/sys.bak/dashboard/config/initializers/ood.rb /etc/ood/config/apps/dashboard/initializers/ood.rb
+<span class="gp">$</span> <span class="o">[[</span> -e <span class="s2">&quot;/var/www/ood/apps/sys.bak/activejobs/config/initializers/filter.rb&quot;</span> <span class="o">]]</span> <span class="se">\</span>
+    <span class="o">&amp;&amp;</span> sudo mkdir -p /etc/ood/config/apps/activejobs/initializers <span class="se">\</span>
+    <span class="o">&amp;&amp;</span> sudo cp /var/www/ood/apps/sys.bak/activejobs/config/initializers/filter.rb /etc/ood/config/apps/activejobs/initializers/filter.rb
+</pre></div>
+</div>
+<p>Copy over your Job Composer templates (if they exist):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="o">[[</span> -e <span class="s2">&quot;/var/www/ood/apps/sys.bak/myjobs/templates&quot;</span> <span class="o">]]</span> <span class="se">\</span>
+    <span class="o">&amp;&amp;</span> sudo mkdir -p /etc/ood/config/apps/myjobs <span class="se">\</span>
+    <span class="o">&amp;&amp;</span> sudo cp -r /var/www/ood/apps/sys.bak/myjobs/templates /etc/ood/config/apps/myjobs/.
+</pre></div>
+</div>
+<p>Copy over your local Interactive Desktop apps (if they exist):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="o">[[</span> -e <span class="s2">&quot;/var/www/ood/apps/sys.bak/bc_desktop/local&quot;</span> <span class="o">]]</span> <span class="se">\</span>
+    <span class="o">&amp;&amp;</span> sudo cp -r /var/www/ood/apps/sys.bak/bc_desktop/local /etc/ood/config/apps/bc_desktop
 </pre></div>
 </div>
 <p>If all went well, you should have a directory structure that looks <em>similar</em>

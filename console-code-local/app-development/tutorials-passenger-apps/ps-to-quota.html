@@ -435,27 +435,28 @@ EOF
 <div class="section" id="update-command-rb">
 <h3>Update command.rb<a class="headerlink" href="#update-command-rb" title="Permalink to this headline">¶</a></h3>
 <p>Run test by running <cite>rake</cite> command and you will see it fail:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ rake
-Run options: --seed <span class="m">58990</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> rake
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-irb notranslate"><div class="highlight"><pre><span></span><span class="go">Run options: --seed 58990</span>
 
-<span class="c1"># Running:</span>
+<span class="go"># Running:</span>
 
-F
+<span class="go">Finished in 0.000943s, 1060.4569 runs/s, 1060.4569 assertions/s.</span>
 
-Finished in <span class="m">0</span>.000943s, <span class="m">1060</span>.4569 runs/s, <span class="m">1060</span>.4569 assertions/s.
+<span class="go">  1) Failure:</span>
+<span class="go">TestCommand#test_command_output_parsing [/users/PZS0562/efranz/ondemand/dev/quota/test/test_command.rb:14]:</span>
+<span class="go">number of structs parsed should equal 1.</span>
+<span class="go">Expected: 1</span>
+<span class="go">  Actual: 3</span>
 
-  <span class="m">1</span><span class="o">)</span> Failure:
-TestCommand#test_command_output_parsing <span class="o">[</span>/users/PZS0562/efranz/ondemand/dev/quota/test/test_command.rb:14<span class="o">]</span>:
-number of structs parsed should equal <span class="m">1</span>.
-Expected: <span class="m">1</span>
-  Actual: <span class="m">3</span>
+<span class="go">1 runs, 1 assertions, 1 failures, 0 errors, 0 skips</span>
+<span class="go">rake aborted!</span>
+<span class="go">Command failed with status (1)</span>
 
-<span class="m">1</span> runs, <span class="m">1</span> assertions, <span class="m">1</span> failures, <span class="m">0</span> errors, <span class="m">0</span> skips
-rake aborted!
-Command failed with status <span class="o">(</span><span class="m">1</span><span class="o">)</span>
-
-Tasks: <span class="nv">TOP</span> <span class="o">=</span>&gt; <span class="nv">default</span> <span class="o">=</span>&gt; <span class="nb">test</span>
-<span class="o">(</span>See full trace by running task with --trace<span class="o">)</span>
+<span class="go">Tasks: TOP =&gt; default =&gt; test</span>
+<span class="go">(See full trace by running task with --trace)</span>
 </pre></div>
 </div>
 <div class="admonition warning">
@@ -520,16 +521,19 @@ of your development node.</p>
 </pre></div>
 </div>
 <p>Now when we run the test they pass:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ rake
-Run options: --seed <span class="m">60317</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> rake
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-irb notranslate"><div class="highlight"><pre><span></span><span class="go">Run options: --seed 60317</span>
 
-<span class="c1"># Running:</span>
+<span class="go"># Running:</span>
 
-.
+<span class="go">.</span>
 
-Finished in <span class="m">0</span>.000966s, <span class="m">1035</span>.1494 runs/s, <span class="m">6210</span>.8963 assertions/s.
+<span class="go">Finished in 0.000966s, 1035.1494 runs/s, 6210.8963 assertions/s.</span>
 
-<span class="m">1</span> runs, <span class="m">6</span> assertions, <span class="m">0</span> failures, <span class="m">0</span> errors, <span class="m">0</span> skips
+<span class="go">1 runs, 6 assertions, 0 failures, 0 errors, 0 skips</span>
 </pre></div>
 </div>
 </div>
@@ -626,17 +630,18 @@ icon: fa://hdd-o
 <blockquote>
 <div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> git add .
 <span class="gp">$</span> git commit -m <span class="s2">&quot;update manifest for production&quot;</span>
-
-<span class="gp">#</span> <span class="k">if</span> there is an external remote associated with this, push to that
-<span class="gp">$</span> git push origin master
+</pre></div>
+</div>
+<p>If there is an external remote associated with this, push to that:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> git push origin master
 </pre></div>
 </div>
 </div></blockquote>
 </li>
 <li><p class="first">As the admin, sudo copy or clone this repo to production</p>
 <blockquote>
-<div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">#</span> as sudo on OnDemand host:
-<span class="gp">$</span> <span class="nb">cd</span> /var/www/ood/apps/sys
+<div><p>As sudo on OnDemand host:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">cd</span> /var/www/ood/apps/sys
 <span class="gp">$</span> git clone /users/PZS0562/efranz/ondemand/dev/quota
 </pre></div>
 </div>
