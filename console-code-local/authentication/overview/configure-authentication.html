@@ -254,12 +254,6 @@ cause future upgrades of OnDemand to break.</p>
 under <code class="file docutils literal notranslate"><span class="pre">/etc/ood/config/ood_portal.yml</span></code>. For example, to add support for
 an authentication module with <code class="docutils literal notranslate"><span class="pre">AuthType</span></code> of <code class="docutils literal notranslate"><span class="pre">my-auth</span></code>, you would modify the
 <code class="file docutils literal notranslate"><span class="pre">/etc/ood/config/ood_portal.yml</span></code> file as such:</p>
-<blockquote>
-<div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> scl <span class="nb">enable</span> rh-ruby22 -- rake
-<span class="gp">$</span> scl <span class="nb">enable</span> rh-ruby22 -- rake install
-</pre></div>
-</div>
-</div></blockquote>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># /etc/ood/config/ood_portal.yml</span>
 <span class="nn">---</span>
 <span class="c1"># ...</span>

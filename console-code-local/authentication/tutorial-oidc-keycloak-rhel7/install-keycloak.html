@@ -236,11 +236,12 @@ installing Keycloak on the same host as OnDemand, which is webdev07.hpc.osc.edu.
 <span class="gp">$</span> sudo useradd -m -d /var/lib/keycloak -s /sbin/nologin -r -g keycloak keycloak
 </pre></div>
 </div>
-<p>If -m doesn’t work, do this:</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">-m</span></code> doesn’t work, do this:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo install -d -o keycloak -g keycloak /var/lib/keycloak
 </pre></div>
 </div>
-<p>This makes a home directory, which is needed when running API calls as keycloak user</p>
+<p>This makes a home directory, which is needed when running API calls as keycloak user.</p>
+<p>Finally, set the proper permissions:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo chown keycloak: -R keycloak-3.1.0.Final
 </pre></div>
 </div>

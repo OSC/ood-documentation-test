@@ -268,7 +268,7 @@ our batch job to get a Jupyter Notebook Server running:</p>
 <p>where we replace <code class="docutils literal notranslate"><span class="pre">python</span></code> with a list of required modules for our given
 cluster.</p>
 <p>This will be called within the batch script as:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> module load &lt;modules&gt;
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>module load &lt;modules&gt;
 </pre></div>
 </div>
 </li>
@@ -312,8 +312,7 @@ then dies abruptly)</p>
 <p>Continue to the next section to learn about job submission parameters.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p>It is recommended you commit any changes you made to <code class="docutils literal notranslate"><span class="pre">form.yml</span></code> to <a class="reference external" href="https://git-scm.com/">git</a>:</p>
-<p>Stage the modified file and commit your changes:</p>
+<p>It is recommended to commit any changes made to <code class="docutils literal notranslate"><span class="pre">form.yml</span></code> to <a class="reference external" href="https://git-scm.com/">git</a>:</p>
 <div class="last highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> git commit form.yml -m <span class="s1">&#39;updated form with cluster attributes&#39;</span>
 </pre></div>
 </div>
