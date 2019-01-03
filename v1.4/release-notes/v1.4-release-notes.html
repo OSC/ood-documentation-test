@@ -128,7 +128,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#application-version-changes">Application Version Changes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#details">Details</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#upgrade-to-ruby-2-4-nodejs-6-passenger-5">Upgrade to Ruby 2.4, NodeJS 6, Passenger 5</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#security-enhancement-enable-whitelisting-directories-users-can-navigate-to-in-files-app">Security Enhancement: Enable whitelisting directories users can navigate to in files app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#security-enhancement-enable-whitelisting-of-directories-in-several-core-apps">Security Enhancement: Enable whitelisting of directories in several core apps</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#security-enhancement-app-development-mode-is-disabled-by-default">Security Enhancement: App development mode is disabled by default</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#security-enhancement-require-ssh-for-all-hosts-in-shell-app">Security Enhancement: Require SSH for all hosts in Shell app</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#fixed-copy-paste-issues-in-the-shell-app">Fixed copy paste issues in the Shell app</a></li>
@@ -214,7 +214,7 @@
 <p>Highlights in 1.4:</p>
 <ul class="simple">
 <li><a class="reference internal" href="#upgrade-to-ruby-2-4-nodejs-6-passenger-5">Upgrade to Ruby 2.4, NodeJS 6, Passenger 5</a></li>
-<li><a class="reference internal" href="#security-enhancement-enable-whitelisting-directories-users-can-navigate-to-in-files-app">Security Enhancement: Enable whitelisting directories users can navigate to in files app</a></li>
+<li><a class="reference internal" href="#security-enhancement-enable-whitelisting-of-directories-in-several-core-apps">Security Enhancement: Enable whitelisting of directories in several core apps</a></li>
 <li><a class="reference internal" href="#security-enhancement-app-development-mode-is-disabled-by-default">Security Enhancement: App development mode is disabled by default</a></li>
 <li><a class="reference internal" href="#security-enhancement-require-ssh-for-all-hosts-in-shell-app">Security Enhancement: Require SSH for all hosts in Shell app</a></li>
 <li><a class="reference internal" href="#fixed-copy-paste-issues-in-the-shell-app">Fixed copy paste issues in the Shell app</a></li>
@@ -299,9 +299,9 @@ it was updated from for each of the system web applications in this release.</p>
 <p class="last">The Per User NGINX temporary directory has been moved from <cite>/var/lib/nginx/</cite> to <cite>/var/tmp/nginx</cite> due to an issue with more restrictive permissions with NGINX 1.14.</p>
 </div>
 </div>
-<div class="section" id="security-enhancement-enable-whitelisting-directories-users-can-navigate-to-in-files-app">
-<h3>Security Enhancement: Enable whitelisting directories users can navigate to in files app<a class="headerlink" href="#security-enhancement-enable-whitelisting-directories-users-can-navigate-to-in-files-app" title="Permalink to this headline">¶</a></h3>
-<p>The file editor, file browser and job composer now support a whitelist of browseable/editable directories. Directories and files not in the whitelist will never be forbidden to users. The whitelist is controlled by the environment variable <code class="docutils literal notranslate"><span class="pre">WHITELIST_PATH</span></code>, which is best be defined by editing <code class="docutils literal notranslate"><span class="pre">/etc/ood/config/nginx_stage.yml</span></code> under the <code class="docutils literal notranslate"><span class="pre">custom_env</span></code> map. If no whitelist is provided the feature is disabled.</p>
+<div class="section" id="security-enhancement-enable-whitelisting-of-directories-in-several-core-apps">
+<h3>Security Enhancement: Enable whitelisting of directories in several core apps<a class="headerlink" href="#security-enhancement-enable-whitelisting-of-directories-in-several-core-apps" title="Permalink to this headline">¶</a></h3>
+<p>The file editor, file browser and job composer now support an optional whitelist of browseable/editable directories. Directories and files not in the whitelist will never be forbidden to users. The whitelist is controlled by the environment variable <code class="docutils literal notranslate"><span class="pre">WHITELIST_PATH</span></code>, which is best be defined by editing <code class="docutils literal notranslate"><span class="pre">/etc/ood/config/nginx_stage.yml</span></code> under the <code class="docutils literal notranslate"><span class="pre">custom_env</span></code> map.</p>
 </div>
 <div class="section" id="security-enhancement-app-development-mode-is-disabled-by-default">
 <h3>Security Enhancement: App development mode is disabled by default<a class="headerlink" href="#security-enhancement-app-development-mode-is-disabled-by-default" title="Permalink to this headline">¶</a></h3>
