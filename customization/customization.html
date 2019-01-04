@@ -103,7 +103,8 @@
 <li class="toctree-l1"><a class="reference internal" href="authentication.html">Authentication</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation/add-cluster-config.html">Add Cluster Configuration Files</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Customization</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#announcements">Announcements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#setting-the-pun-environment-with-nginx-stage-yml">Setting the PUN Environment With <code class="docutils literal notranslate"><span class="pre">nginx_stage.yml</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#announcements-and-message-of-the-day-motd">Announcements and Message of the Day (MOTD)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#branding">Branding</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#title">Title</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#logos">Logos</a></li>
@@ -204,11 +205,24 @@
             
   <div class="section" id="customization">
 <span id="id1"></span><h1>Customization<a class="headerlink" href="#customization" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="announcements">
-<h2>Announcements<a class="headerlink" href="#announcements" title="Permalink to this headline">¶</a></h2>
-<div class="admonition attention">
-<p class="first admonition-title">Attention</p>
-<p class="last">TODO</p>
+<p>Or the many OOD environment variables:</p>
+<div class="section" id="setting-the-pun-environment-with-nginx-stage-yml">
+<h2>Setting the PUN Environment With <code class="docutils literal notranslate"><span class="pre">nginx_stage.yml</span></code><a class="headerlink" href="#setting-the-pun-environment-with-nginx-stage-yml" title="Permalink to this headline">¶</a></h2>
+<p>The configuration file <code class="docutils literal notranslate"><span class="pre">nginx_stage.yml</span></code> is the best way to set the environment which the PUN will use. Defining the mapping <code class="docutils literal notranslate"><span class="pre">pun_custom_env</span></code> allows setting Open OnDemand specific variables and is used for branding, message of the day setting, quota warnings, whitelists and other uses. For environment variables that OOD applications may need, are already in the environment and should be exposed to OOD (<code class="docutils literal notranslate"><span class="pre">$PATH</span></code>, <code class="docutils literal notranslate"><span class="pre">LD_LIBRARY_PATH</span></code>, etc…) define the sequence <code class="docutils literal notranslate"><span class="pre">pun_custom_env_declarations</span></code>.</p>
+<p>An example of both of these uses may be found in <a class="reference external" href="https://github.com/OSC/ondemand/blob/d85a3982d69746144d12bb808d2419b42ccc97a1/nginx_stage/share/nginx_stage_example.yml#L26-L43">nginx_stage_example.yml</a></p>
+</div>
+<div class="section" id="announcements-and-message-of-the-day-motd">
+<h2>Announcements and Message of the Day (MOTD)<a class="headerlink" href="#announcements-and-message-of-the-day-motd" title="Permalink to this headline">¶</a></h2>
+<p>Two hooks for customizing the Dashboard are Announcements and MOTD. Announcements get the classes <code class="docutils literal notranslate"><span class="pre">alert</span> <span class="pre">alert-warning</span></code> and appear above the <code class="docutils literal notranslate"><span class="pre">OOD_DASHBOARD_LOGO</span></code> . Announcement files are expected to be found at: <code class="docutils literal notranslate"><span class="pre">/etc/ood/config/announcement.(md|yml)</span></code> or <code class="docutils literal notranslate"><span class="pre">/etc/ood/config/announcements.d/any_file_name.(md|yml)</span></code>. To display a MOTD file on the Dashboard ensure that the environment variables  <code class="docutils literal notranslate"><span class="pre">MOTD_PATH</span></code> and <code class="docutils literal notranslate"><span class="pre">MOTD_FORMAT</span></code> are set like so:</p>
+<blockquote>
+<div><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nv">MOTD_PATH</span><span class="o">=</span><span class="s2">&quot;/path/to/your/motd&quot;</span> <span class="c1"># this supports both file and RSS feed URIs</span>
+<span class="nv">MOTD_FORMAT</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$MOTD_FORMAT_HERE</span><span class="s2">&quot;</span> <span class="c1"># markdown, txt, rss</span>
+</pre></div>
+</div>
+</div></blockquote>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Warnings about the announcement file being missing may be present in users’ nginx logs. Despite the warning the Dashboard will still function normally without those files being present.</p>
 </div>
 </div>
 <div class="section" id="branding">
