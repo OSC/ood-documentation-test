@@ -118,6 +118,12 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#custom-error-page-for-missing-home-directory-on-launch">Custom Error Page for Missing Home Directory on Launch</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#control-which-apps-appear-in-the-dashboard-navbar">Control which apps appear in the Dashboard Navbar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#disable-safari-warning-on-dashboard">Disable Safari Warning on Dashboard</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#disk-quota-warnings-on-dashboard">Disk Quota Warnings on Dashboard</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#individual-user-quota">Individual User Quota</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#individual-fileset-quota">Individual Fileset Quota</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -434,10 +440,24 @@ app.</p>
 </div>
 <div class="section" id="whitelist-directories">
 <h2>Whitelist directories<a class="headerlink" href="#whitelist-directories" title="Permalink to this headline">¶</a></h2>
-<p>Best place for this is nginx_stage</p>
+<p>By setting a colon delimited WHITELIST_PATH environment variable, the Job Composer, File Editor, and Files app respect the whitelist in the following manner:</p>
+<ol class="arabic simple">
+<li>Users will be prevented from navigating to, uploading or downloading, viewing, editing files that is not an eventual child of the whitelisted paths</li>
+<li>Users will be prevented from copying a template directory from an arbitrary path in the Job Composer if the arbitary path that is not an eventual child of the whitelisted paths</li>
+<li>Users should not be able to get around this using symlinks</li>
+</ol>
+<p>We recommend setting this environment variable in <code class="docutils literal notranslate"><span class="pre">/etc/ood/config/nginx_stage.yml</span></code> as a YAML mapping (key value pairs) in the mapping (hash/dictionary) <code class="docutils literal notranslate"><span class="pre">pun_custom_env</span></code> i.e. below would whitelist home directories, project space, and scratch space at OSC:</p>
+<div class="code yaml highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pun_custom_env</span><span class="p">:</span>
+  <span class="n">WHITELIST_PATH</span><span class="p">:</span> <span class="s2">&quot;/users:/fs/project:/fs/scratch&quot;</span>
+</pre></div>
+</div>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p class="last">TODO</p>
+<p class="last">This is not yet used in production at OSC, so we consider this feature “experimental” for now.</p>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">This whitelist is not enforced across every action a user can take in an app (including the developer views in the Dashboard). Also, it is enforced via the apps themselves, which is not as reliably as using cgroups on the PUN.</p>
 </div>
 </div>
 <div class="section" id="set-default-ssh-host">
@@ -554,6 +574,92 @@ can be customized by adding a custom one to <code class="docutils literal notran
 </tr>
 </tbody>
 </table>
+</div>
+<div class="section" id="disable-safari-warning-on-dashboard">
+<h2>Disable Safari Warning on Dashboard<a class="headerlink" href="#disable-safari-warning-on-dashboard" title="Permalink to this headline">¶</a></h2>
+<p>We currently display an alert message at the top of the Dashboard mentioning
+that we don’t currently support the Safari browser. This is because of an issue
+in Safari where it fails to connect to websockets if the Apache proxy uses
+Basic Auth for user authentication (on by default for new OOD installations).</p>
+<p>If you ever change the authentication mechanism to a cookie-based mechanism
+(e.g., Shibboleth or OpenID Connect), then it is recommended you disable this
+alert message in the dashboard.</p>
+<p>You can do this by modifying the <code class="docutils literal notranslate"><span class="pre">/etc/ood/config/apps/dashboard/env</span></code> file as such:</p>
+<div class="code sh highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DISABLE_SAFARI_BASIC_AUTH_WARNING</span><span class="o">=</span><span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="disk-quota-warnings-on-dashboard">
+<h2>Disk Quota Warnings on Dashboard<a class="headerlink" href="#disk-quota-warnings-on-dashboard" title="Permalink to this headline">¶</a></h2>
+<p>You can display warnings to users on the Dashboard if their
+disk quota is nearing its limit. This requires an auto-updated (it is
+recommended to update this file every <strong>5 minutes</strong> with a cronjob) JSON file
+that lists all user quotas. The JSON schema for version <cite>1</cite> is given as:</p>
+<div class="code json highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;version&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="s2">&quot;timestamp&quot;</span><span class="p">:</span> <span class="mi">1525361263</span><span class="p">,</span>
+  <span class="s2">&quot;quotas&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="o">...</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="o">...</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Where <code class="docutils literal notranslate"><span class="pre">version</span></code> defines the version of the JSON schema used, <code class="docutils literal notranslate"><span class="pre">timestamp</span></code>
+defines when this file was generated, and <code class="docutils literal notranslate"><span class="pre">quotas</span></code> is a list of quota objects
+(see below).</p>
+<p>You can configure the Dashboard to use this JSON file (or files) by setting the
+environment variable <code class="docutils literal notranslate"><span class="pre">OOD_QUOTA_PATH</span></code> as a colon-delimited list of all JSON
+file paths in the <code class="docutils literal notranslate"><span class="pre">/etc/ood/config/apps/dashboard/env</span></code> file.</p>
+<p>The default threshold for displaying the warning is at 95% (<cite>0.95</cite>), but this
+can be changed with the environment variable <code class="docutils literal notranslate"><span class="pre">OOD_QUOTA_THRESHOLD</span></code>.</p>
+<p>An example is given as:</p>
+<div class="code sh highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># /etc/ood/config/apps/dashboard/env</span>
+
+<span class="n">OOD_QUOTA_PATH</span><span class="o">=</span><span class="s2">&quot;/path/to/quota1.json:/path/to/quota2.json&quot;</span>
+<span class="n">OOD_QUOTA_THRESHOLD</span><span class="o">=</span><span class="s2">&quot;0.80&quot;</span>
+</pre></div>
+</div>
+<div class="section" id="individual-user-quota">
+<h3>Individual User Quota<a class="headerlink" href="#individual-user-quota" title="Permalink to this headline">¶</a></h3>
+<p>If the quota is defined as a <code class="docutils literal notranslate"><span class="pre">user</span></code> quota, then it applies to only disk
+resources used by the user alone. This is the default type of quota object and
+is given in the following format:</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">A block must be equal to 1 KB for proper conversions.</p>
+</div>
+</div>
+<div class="section" id="individual-fileset-quota">
+<h3>Individual Fileset Quota<a class="headerlink" href="#individual-fileset-quota" title="Permalink to this headline">¶</a></h3>
+<p>If the quota is defined as a <code class="docutils literal notranslate"><span class="pre">fileset</span></code> quota, then it applies to all disk
+resources used underneath a given volume. This requires the object to be
+repeated for <strong>each user</strong> that uses disk resources under this given volume.
+The format is given as:</p>
+<div class="code json highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;fileset&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;user&quot;</span><span class="p">:</span> <span class="s2">&quot;user1&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;path&quot;</span><span class="p">:</span> <span class="s2">&quot;/path/to/volume2&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;block_usage&quot;</span><span class="p">:</span> <span class="mi">500</span><span class="p">,</span>
+  <span class="s2">&quot;total_block_usage&quot;</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span>
+  <span class="s2">&quot;block_limit&quot;</span><span class="p">:</span> <span class="mi">2000</span><span class="p">,</span>
+  <span class="s2">&quot;file_usage&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="s2">&quot;total_file_usage&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+  <span class="s2">&quot;file_limit&quot;</span><span class="p">:</span> <span class="mi">10</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Where <code class="docutils literal notranslate"><span class="pre">block_usage</span></code> and <code class="docutils literal notranslate"><span class="pre">file_usage</span></code> are the disk resource usages attributed to
+the specified user only.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For each user with resources under this fileset, the above object will be repeated with just <code class="docutils literal notranslate"><span class="pre">user</span></code>, <code class="docutils literal notranslate"><span class="pre">block_usage</span></code>, and <code class="docutils literal notranslate"><span class="pre">file_usage</span></code> changing.</p>
+</div>
+</div>
 </div>
 </div>
 
