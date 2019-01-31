@@ -251,8 +251,8 @@ module load R/3.5.2
 </pre></div>
 </div>
 </div></blockquote>
-<p>Where <cite>Singularity</cite> is the file that defines the image. The image is basic, installing only the command <cite>which</cite> over the base CentOS 7 packages. This simplicity is because most of the actual executables and libraries must be bound and mounted into the container/guest at runtime from the host.</p>
-<p>Likewise the runscript defined in the image uses the host <cite>$PATH</cite> which is propagated into the guest’s environment as <cite>$USER_PATH</cite>.</p>
+<p>Where <code class="docutils literal notranslate"><span class="pre">Singularity</span></code> is the file that defines the image. The image is basic, installing only the command <code class="docutils literal notranslate"><span class="pre">which</span></code> over the base CentOS 7 packages. This simplicity is because most of the actual executables and libraries must be bound and mounted into the container/guest at runtime from the host.</p>
+<p>Likewise the runscript defined in the image uses the host <code class="docutils literal notranslate"><span class="pre">$PATH</span></code> which is propagated into the guest’s environment as <code class="docutils literal notranslate"><span class="pre">$USER_PATH</span></code>.</p>
 <blockquote>
 <div><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$USER_PATH</span><span class="s2">&quot;</span>
 <span class="nb">exec</span> rserver <span class="s2">&quot;</span><span class="si">${</span><span class="p">@</span><span class="si">}</span><span class="s2">&quot;</span>
@@ -263,7 +263,7 @@ module load R/3.5.2
 <div class="section" id="offering-users-a-choice-of-software-versions">
 <h2>Offering Users A Choice Of Software Versions<a class="headerlink" href="#offering-users-a-choice-of-software-versions" title="Permalink to this headline">¶</a></h2>
 <p>It is possible to offer users a choice of which versions of R they may run. By offering the choice you enable early adopters a chance to use newer versions of R, without causing potentially breaking changes in existing code.</p>
-<p>To begin add a select control in <cite>form.yml</cite> for the versions of R that are available on your system.</p>
+<p>To begin add a select control in <code class="docutils literal notranslate"><span class="pre">form.yml</span></code> for the versions of R that are available on your system.</p>
 <blockquote>
 <div><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">version</span><span class="p p-Indicator">:</span>
   <span class="l l-Scalar l-Scalar-Plain">widget</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">select</span>
@@ -276,7 +276,7 @@ module load R/3.5.2
 </pre></div>
 </div>
 </div></blockquote>
-<p>After users have submitted the form, its values are used as context when expanding the template files; in particular we will have set the modules to load. Next, to set the version of R and RStudio next edit <cite>template/script.sh.erb</cite>.</p>
+<p>After users have submitted the form, its values are used as context when expanding the template files; in particular we will have set the modules to load. Next, to set the version of R and RStudio next edit <code class="docutils literal notranslate"><span class="pre">template/script.sh.erb</span></code>.</p>
 <blockquote>
 <div><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load the version of R and RStudio that the user has selected</span>
 module load &lt;%<span class="o">=</span> context.version %&gt;
@@ -288,7 +288,7 @@ module load &lt;%<span class="o">=</span> context.version %&gt;
 <h2>Running RStudio<a class="headerlink" href="#running-rstudio" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="authentication">
 <h3>Authentication<a class="headerlink" href="#authentication" title="Permalink to this headline">¶</a></h3>
-<p>In <cite>template/before.sh.erb</cite> the variable <cite>password</cite> is set and its value is exported as <cite>RSTUDIO_PASSWORD</cite>.</p>
+<p>In <code class="docutils literal notranslate"><span class="pre">template/before.sh.erb</span></code> the variable <code class="docutils literal notranslate"><span class="pre">password</span></code> is set and its value is exported as <code class="docutils literal notranslate"><span class="pre">RSTUDIO_PASSWORD</span></code>.</p>
 <blockquote>
 <div><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a password and export it for RStudio authentication</span>
 <span class="nv">password</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span>create_passwd <span class="m">16</span><span class="k">)</span><span class="s2">&quot;</span>
@@ -296,37 +296,17 @@ module load &lt;%<span class="o">=</span> context.version %&gt;
 </pre></div>
 </div>
 </div></blockquote>
-<p>In <cite>template/script.sh.erb</cite> export the path to PAM helper executable <cite>RSTUDIO_AUTH</cite>.</p>
+<p>In <code class="docutils literal notranslate"><span class="pre">template/script.sh.erb</span></code> export the path to PAM helper executable <code class="docutils literal notranslate"><span class="pre">RSTUDIO_AUTH</span></code>.</p>
 <blockquote>
 <div><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># PAM auth helper used by RStudio</span>
 <span class="nb">export</span> <span class="nv">RSTUDIO_AUTH</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">PWD</span><span class="si">}</span><span class="s2">/bin/auth&quot;</span>
-
-<span class="c1"># Generate an `rsession` wrapper script</span>
-<span class="nb">export</span> <span class="nv">RSESSION_WRAPPER_FILE</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">PWD</span><span class="si">}</span><span class="s2">/rsession.sh&quot;</span>
-<span class="o">(</span>
-<span class="nb">umask</span> <span class="m">077</span>
-sed <span class="s1">&#39;s/^ \{2\}//&#39;</span> &gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">RSESSION_WRAPPER_FILE</span><span class="si">}</span><span class="s2">&quot;</span> <span class="s">&lt;&lt; EOL</span>
-<span class="s">  #!/usr/bin/env bash</span>
-
-<span class="s">  # Log all output from this script</span>
-<span class="s">  export RSESSION_LOG_FILE=&quot;${RSTUDIO_SINGULARITY_HOST_MNT}${PWD}/rsession.log&quot;</span>
-
-<span class="s">  exec &amp;&gt;&gt;&quot;\${RSESSION_LOG_FILE}&quot;</span>
-
-<span class="s">  # Launch the original command</span>
-<span class="s">  echo &quot;Launching rsession...&quot;</span>
-<span class="s">  set -x</span>
-<span class="s">  exec rsession --r-libs-user &quot;${R_LIBS_USER}&quot; &quot;\${@}&quot;</span>
-<span class="s">EOL</span>
-<span class="o">)</span>
-chmod <span class="m">700</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">RSESSION_WRAPPER_FILE</span><span class="si">}</span><span class="s2">&quot;</span>
 </pre></div>
 </div>
 </div></blockquote>
 </div>
 <div class="section" id="use-a-custom-rsession-wrapper">
 <h3>Use A Custom RSession Wrapper<a class="headerlink" href="#use-a-custom-rsession-wrapper" title="Permalink to this headline">¶</a></h3>
-<p>Using a custom RSession wrapper enables us to get diagnostic logging and ensure that user space libraries are available. We write this file from inside <cite>template/script.sh.erb</cite>.</p>
+<p>Using a custom RSession wrapper enables us to get diagnostic logging and ensure that user space libraries are available. We write this file from inside <code class="docutils literal notranslate"><span class="pre">template/script.sh.erb</span></code>.</p>
 <blockquote>
 <div><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate an `rsession` wrapper script</span>
 <span class="nb">export</span> <span class="nv">RSESSION_WRAPPER_FILE</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">PWD</span><span class="si">}</span><span class="s2">/rsession.sh&quot;</span>
@@ -353,7 +333,7 @@ chmod <span class="m">700</span> <span class="s2">&quot;</span><span class="si">
 </div>
 <div class="section" id="launching-rstudio-using-singularity">
 <h3>Launching RStudio Using Singularity<a class="headerlink" href="#launching-rstudio-using-singularity" title="Permalink to this headline">¶</a></h3>
-<p>Ensure that R, RStudio and their dependencies are available inside the guest by binding their paths on the host into the container. Likewise ensure that each instance of RStudio gets its own private <cite>/tmp</cite> by binding <cite>$TMPDIR</cite> on the host to <cite>/tmp</cite> in the guest.</p>
+<p>Ensure that R, RStudio and their dependencies are available inside the guest by binding their paths on the host into the container. Likewise ensure that each instance of RStudio gets its own private <code class="docutils literal notranslate"><span class="pre">/tmp</span></code> by binding <code class="docutils literal notranslate"><span class="pre">$TMPDIR</span></code> on the host to <code class="docutils literal notranslate"><span class="pre">/tmp</span></code> in the guest.</p>
 <blockquote>
 <div><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">SINGULARITY_BINDPATH</span><span class="o">=</span><span class="s2">&quot;/usr/local,/etc/profile.d/lmod.sh,/usr/share/lmod,/opt/intel,/opt/mvapich2,/usr/lib64,</span><span class="nv">$TMPDIR</span><span class="s2">:/tmp&quot;</span>
 
@@ -367,7 +347,7 @@ singularity run /users/PZS0002/mrodgers/singularity/centos7.simg <span class="se
 </div>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p class="last">If <cite>$TMPDIR</cite> is not guaranteed to be unique then consider appending the results of a <cite>mktemp -d</cite> to it.</p>
+<p class="last">If <code class="docutils literal notranslate"><span class="pre">$TMPDIR</span></code> is not guaranteed to be unique then consider appending the results of a <code class="docutils literal notranslate"><span class="pre">mktemp</span> <span class="pre">-d</span></code> to it.</p>
 </div>
 </div></blockquote>
 </div>
