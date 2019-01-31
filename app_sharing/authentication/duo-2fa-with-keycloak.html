@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Overview &mdash; Open OnDemand 1.4.9 documentation</title>
+  <title>Two Factor Auth using Duo with Keycloak &mdash; Open OnDemand 1.4.9 documentation</title>
   
 
   
@@ -41,8 +41,8 @@
         <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="Open OnDemand 1.4.9 documentation" href="../index.html"/>
         <link rel="up" title="Authentication" href="../authentication.html"/>
-        <link rel="next" title="1. Configure Apache Authentication" href="overview/configure-authentication.html"/>
-        <link rel="prev" title="Authentication" href="../authentication.html"/> 
+        <link rel="next" title="Add Cluster Configuration Files" href="../installation/add-cluster-config.html"/>
+        <link rel="prev" title="4. Add Custom Theme" href="tutorial-oidc-keycloak-rhel7/add-custom-theme.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -102,13 +102,9 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../authentication.html">Authentication</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Overview</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="overview/configure-authentication.html">1. Configure Apache Authentication</a></li>
-<li class="toctree-l3"><a class="reference internal" href="overview/map-user.html">2. Setup User Mapping</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tutorial-oidc-keycloak-rhel7.html">OpenID Connect via KeyCloak on RHEL7</a></li>
-<li class="toctree-l2"><a class="reference internal" href="duo-2fa-with-keycloak.html">Two Factor Auth using Duo with Keycloak</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Two Factor Auth using Duo with Keycloak</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../installation/add-cluster-config.html">Add Cluster Configuration Files</a></li>
@@ -185,14 +181,14 @@
         
           <li><a href="../authentication.html">Authentication</a> &raquo;</li>
         
-      <li>Overview</li>
+      <li>Two Factor Auth using Duo with Keycloak</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
             
-              <a href="https://github.com/OSC/ood-documentation/blob/app_sharing/source/authentication/overview.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/OSC/ood-documentation/blob/app_sharing/source/authentication/duo-2fa-with-keycloak.rst" class="fa fa-github"> Edit on GitHub</a>
             
           
         
@@ -206,30 +202,30 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="overview">
-<span id="authentication-overview"></span><h1>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h1>
-<p>Configuring Open OnDemand to work with an Apache authentication module can be
-broken down into two procedures:</p>
-<ul class="simple">
-<li>Install and configure the Apache authentication module</li>
-<li>Setup the mapping of the remote user to the local user</li>
-</ul>
-<p>These are discussed in more detail in the following sections.</p>
-<div class="toctree-wrapper compound">
-<p class="caption"><span class="caption-text">Setup Authentication Module</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="overview/configure-authentication.html">1. Configure Apache Authentication</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="overview/configure-authentication.html#compile-authentication-module">1.1. Compile Authentication Module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="overview/configure-authentication.html#configure-authentication-module">1.2. Configure Authentication Module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="overview/configure-authentication.html#add-to-ondemand-portal">1.3. Add to OnDemand Portal</a></li>
-<li class="toctree-l2"><a class="reference internal" href="overview/configure-authentication.html#sanitize-session-information">1.4. Sanitize Session Information</a></li>
-</ul>
+  <div class="section" id="two-factor-auth-using-duo-with-keycloak">
+<span id="authentication-duo-2fa-with-keycloak"></span><h1>Two Factor Auth using Duo with Keycloak<a class="headerlink" href="#two-factor-auth-using-duo-with-keycloak" title="Permalink to this headline">¶</a></h1>
+<p>These are the steps to setup two factor authentication with Duo using Keycloak.</p>
+<ol class="arabic">
+<li><p class="first">Have Keycloak perform authentication through SSSD running on the Keycloak server.</p>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="overview/map-user.html">2. Setup User Mapping</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="overview/map-user.html#custom-mapping">2.1. Custom Mapping</a></li>
-</ul>
+<li><p class="first">Follow the <a class="reference external" href="https://www.keycloak.org/docs/latest/server_admin/index.html#sssd-and-d-bus">Keycloak docs for using SSSD</a> except use a modified <code class="docutils literal notranslate"><span class="pre">/etc/pam.d/keycloak</span></code>:</p>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">auth</span>    <span class="n">required</span>   <span class="n">pam_sss</span><span class="o">.</span><span class="n">so</span>
+<span class="n">auth</span>    <span class="n">required</span>   <span class="n">pam_duo</span><span class="o">.</span><span class="n">so</span>
+<span class="n">account</span> <span class="n">required</span>   <span class="n">pam_sss</span><span class="o">.</span><span class="n">so</span>
+</pre></div>
+</div>
 </li>
-</ul>
+<li><p class="first">Setting something like <code class="docutils literal notranslate"><span class="pre">groups=*,!root</span></code> in <code class="docutils literal notranslate"><span class="pre">/etc/duo/pam_duo.conf</span></code> and the PAM config is enough to require Duo</p>
+</li>
+</ol>
+<p>If you want to make Duo optional you could do so via group memberships. This works by changing groups config for pam_duo.</p>
+<p>You could also do clever things with the PAM stack to use pam_duo based on other conditions.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Because Keycloak doesn’t actually know there is a possible challenge
+response using SSSD you have to setup Duo to have autopush=yes and prompts=1
+so that the 2FA automatically sends a push notification to the person’s
+phone.</p>
 </div>
 </div>
 
@@ -243,10 +239,10 @@ broken down into two procedures:</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="overview/configure-authentication.html" class="btn btn-neutral float-right" title="1. Configure Apache Authentication" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../installation/add-cluster-config.html" class="btn btn-neutral float-right" title="Add Cluster Configuration Files" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../authentication.html" class="btn btn-neutral" title="Authentication" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="tutorial-oidc-keycloak-rhel7/add-custom-theme.html" class="btn btn-neutral" title="4. Add Custom Theme" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -278,19 +274,19 @@ broken down into two procedures:</p>
     <dl>
       <dt>Versions</dt>
       
-        <dd><a href="https://OSC.github.io/ood-documentation/master/authentication/overview.html">master</a></dd>
+        <dd><a href="https://OSC.github.io/ood-documentation/master/authentication/duo-2fa-with-keycloak.html">master</a></dd>
       
-        <dd><a href="https://OSC.github.io/ood-documentation/release-1.4/authentication/overview.html">1.4</a></dd>
+        <dd><a href="https://OSC.github.io/ood-documentation/release-1.4/authentication/duo-2fa-with-keycloak.html">1.4</a></dd>
       
-        <dd><a href="https://OSC.github.io/ood-documentation/release-1.3/authentication/overview.html">1.3</a></dd>
+        <dd><a href="https://OSC.github.io/ood-documentation/release-1.3/authentication/duo-2fa-with-keycloak.html">1.3</a></dd>
       
-        <dd><a href="https://OSC.github.io/ood-documentation/release-1.2/authentication/overview.html">1.2</a></dd>
+        <dd><a href="https://OSC.github.io/ood-documentation/release-1.2/authentication/duo-2fa-with-keycloak.html">1.2</a></dd>
       
-        <dd><a href="https://OSC.github.io/ood-documentation/release-1.1/authentication/overview.html">1.1</a></dd>
+        <dd><a href="https://OSC.github.io/ood-documentation/release-1.1/authentication/duo-2fa-with-keycloak.html">1.1</a></dd>
       
-        <dd><a href="https://OSC.github.io/ood-documentation/release-1.0/authentication/overview.html">1.0</a></dd>
+        <dd><a href="https://OSC.github.io/ood-documentation/release-1.0/authentication/duo-2fa-with-keycloak.html">1.0</a></dd>
       
-        <dd><a href="https://OSC.github.io/ood-documentation/develop/authentication/overview.html">develop</a></dd>
+        <dd><a href="https://OSC.github.io/ood-documentation/develop/authentication/duo-2fa-with-keycloak.html">develop</a></dd>
       
     </dl>
     <dl>
