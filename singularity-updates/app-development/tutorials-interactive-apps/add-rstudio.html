@@ -267,14 +267,16 @@ module load R/3.5.2
 <p>It is possible to offer users a choice of which versions of R they may run. By offering the choice you enable early adopters a chance to use newer versions of R, without causing potentially breaking changes in existing code.</p>
 <p>To begin add a select control in <code class="docutils literal notranslate"><span class="pre">form.yml</span></code> for the versions of R that are available on your system.</p>
 <blockquote>
-<div><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">version</span><span class="p p-Indicator">:</span>
-  <span class="l l-Scalar l-Scalar-Plain">widget</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">select</span>
-  <span class="l l-Scalar l-Scalar-Plain">label</span><span class="p p-Indicator">:</span> <span class="s">&quot;R</span><span class="nv"> </span><span class="s">version&quot;</span>
-  <span class="l l-Scalar l-Scalar-Plain">help</span><span class="p p-Indicator">:</span> <span class="s">&quot;This</span><span class="nv"> </span><span class="s">defines</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">version</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">R</span><span class="nv"> </span><span class="s">you</span><span class="nv"> </span><span class="s">want</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">load.&quot;</span>
-  <span class="l l-Scalar l-Scalar-Plain">options</span><span class="p p-Indicator">:</span>
-    <span class="c1"># Each value in the options represents a valid set of modules to load</span>
-    <span class="p p-Indicator">-</span> <span class="p p-Indicator">[</span> <span class="s">&quot;3.4.2&quot;</span><span class="p p-Indicator">,</span> <span class="s">&quot;intel/16.0.3</span><span class="nv"> </span><span class="s">R/3.4.2</span><span class="nv"> </span><span class="s">rstudio/1.1.380_server&quot;</span><span class="p p-Indicator">]</span>
-    <span class="p p-Indicator">-</span> <span class="p p-Indicator">[</span> <span class="s">&quot;3.3.2&quot;</span><span class="p p-Indicator">,</span> <span class="s">&quot;intel/16.0.3</span><span class="nv"> </span><span class="s">R/3.3.2</span><span class="nv"> </span><span class="s">rstudio/1.0.136_server&quot;</span><span class="p p-Indicator">]</span>
+<div><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">attributes</span><span class="p p-Indicator">:</span>
+<span class="c1"># ...</span>
+  <span class="l l-Scalar l-Scalar-Plain">version</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">widget</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">select</span>
+    <span class="l l-Scalar l-Scalar-Plain">label</span><span class="p p-Indicator">:</span> <span class="s">&quot;R</span><span class="nv"> </span><span class="s">version&quot;</span>
+    <span class="l l-Scalar l-Scalar-Plain">help</span><span class="p p-Indicator">:</span> <span class="s">&quot;This</span><span class="nv"> </span><span class="s">defines</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">version</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">R</span><span class="nv"> </span><span class="s">you</span><span class="nv"> </span><span class="s">want</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">load.&quot;</span>
+    <span class="l l-Scalar l-Scalar-Plain">options</span><span class="p p-Indicator">:</span>
+      <span class="c1"># Each value in the options represents a valid set of modules to load</span>
+      <span class="p p-Indicator">-</span> <span class="p p-Indicator">[</span> <span class="s">&quot;3.4.2&quot;</span><span class="p p-Indicator">,</span> <span class="s">&quot;intel/16.0.3</span><span class="nv"> </span><span class="s">R/3.4.2</span><span class="nv"> </span><span class="s">rstudio/1.1.380_server&quot;</span><span class="p p-Indicator">]</span>
+      <span class="p p-Indicator">-</span> <span class="p p-Indicator">[</span> <span class="s">&quot;3.3.2&quot;</span><span class="p p-Indicator">,</span> <span class="s">&quot;intel/16.0.3</span><span class="nv"> </span><span class="s">R/3.3.2</span><span class="nv"> </span><span class="s">rstudio/1.0.136_server&quot;</span><span class="p p-Indicator">]</span>
 </pre></div>
 </div>
 </div></blockquote>
