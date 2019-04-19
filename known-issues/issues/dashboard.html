@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Known Issues and Work Arounds &mdash; Open OnDemand 1.5.5 documentation</title>
+  <title>Dashboard &mdash; Open OnDemand 1.5.5 documentation</title>
   
 
   
@@ -41,7 +41,7 @@
         <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="Open OnDemand 1.5.5 documentation" href="../index.html"/>
         <link rel="next" title="Infrastructure" href="../infrastructure.html"/>
-        <link rel="prev" title="v1.0 Release Notes" href="v1.0-release-notes.html"/> 
+        <link rel="prev" title="Batch Connect" href="batch-connect.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -117,18 +117,20 @@
 <li class="toctree-l1"><a class="reference internal" href="../app-development/tutorials-passenger-apps.html">Tutorials: Passenger Apps</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Release Notes</span></p>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="v1.5-release-notes.html">v1.5 Release Notes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="v1.4-release-notes.html">v1.4 Release Notes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="v1.3-release-notes.html">v1.3 Release Notes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="v1.2-release-notes.html">v1.2 Release Notes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="v1.1-release-notes.html">v1.1 Release Notes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="v1.0-release-notes.html">v1.0 Release Notes</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Known Issues and Work Arounds</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#slurm-18-before-ood-1-4">Slurm 18 before OOD 1.4</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#file-explorer-breaks-with-odd-file-names">File Explorer breaks with odd file names</a></li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../release-notes/v1.5-release-notes.html">v1.5 Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release-notes/v1.4-release-notes.html">v1.4 Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release-notes/v1.3-release-notes.html">v1.3 Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release-notes/v1.2-release-notes.html">v1.2 Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release-notes/v1.1-release-notes.html">v1.1 Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release-notes/v1.0-release-notes.html">v1.0 Release Notes</a></li>
 </ul>
-</li>
+<p class="caption"><span class="caption-text">Known Issues</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="file-explorer.html">File Explorer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="terminal-emulator.html">Terminal Emulator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="batch-connect.html">Batch Connect</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Dashboard</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Legacy Docs</span></p>
 <ul>
@@ -179,14 +181,14 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>Known Issues and Work Arounds</li>
+      <li>Dashboard</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
             
-              <a href="https://github.com/OSC/ood-documentation/blob/known-issues/source/release-notes/known-issues.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/OSC/ood-documentation/blob/known-issues/source/issues/dashboard.rst" class="fa fa-github"> Edit on GitHub</a>
             
           
         
@@ -200,49 +202,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="known-issues-and-work-arounds">
-<span id="known-issues"></span><h1>Known Issues and Work Arounds<a class="headerlink" href="#known-issues-and-work-arounds" title="Permalink to this headline">¶</a></h1>
-<ul class="simple">
-<li><a class="reference internal" href="#slurm-18-before-ood-1-4">Slurm 18 before OOD 1.4</a></li>
-<li><a class="reference internal" href="#file-explorer-breaks-with-odd-file-names">File Explorer breaks with odd file names</a></li>
-</ul>
-<div class="section" id="slurm-18-before-ood-1-4">
-<h2>Slurm 18 before OOD 1.4<a class="headerlink" href="#slurm-18-before-ood-1-4" title="Permalink to this headline">¶</a></h2>
-<p>Slurm 18 introduced a bug in <code class="docutils literal notranslate"><span class="pre">squeue</span></code> when attempting to output the field <code class="docutils literal notranslate"><span class="pre">gres</span></code> or <code class="docutils literal notranslate"><span class="pre">tres</span></code>. OnDemand versions greater than 1.4 are patched for this bug. Prior versions needed the following initializer to be added to Active Jobs, Dashboard and Job composer in order for it to work properly:</p>
-<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="nb">require</span> <span class="s1">&#39;ood_core/job/adapters/slurm&#39;</span>
-<span class="k">class</span> <span class="nc">OodCore</span><span class="o">::</span><span class="no">Job</span><span class="o">::</span><span class="no">Adapters</span><span class="o">::</span><span class="no">Slurm</span><span class="o">::</span><span class="no">Batch</span>
-  <span class="n">alias_method</span> <span class="ss">:orig_fields</span><span class="p">,</span> <span class="ss">:fields</span>
-  <span class="k">def</span> <span class="nf">fields</span>
-    <span class="n">orig_fields</span><span class="o">.</span><span class="n">tap</span> <span class="p">{</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span> <span class="n">f</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="ss">:gres</span><span class="p">)</span> <span class="p">}</span>
-  <span class="k">end</span>
-<span class="k">end</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="file-explorer-breaks-with-odd-file-names">
-<h2>File Explorer breaks with odd file names<a class="headerlink" href="#file-explorer-breaks-with-odd-file-names" title="Permalink to this headline">¶</a></h2>
-<p>To a greater or less degree XML/HTML strings are valid path names, however the File Explorer does not handle them gracefully; they can break the frontend completely.</p>
-<p>Consider the following file paths:</p>
-<ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">&lt;a</span> <span class="pre">href='https://www.google.com'</span> <span class="pre">/&gt;</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">&lt;script&gt;window.alert('hacked');&lt;/script&gt;</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">&lt;script&gt;window.alert(&quot;hacked&quot;);&lt;/script&gt;</span></code></li>
-</ul>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>mkdir -p <span class="s2">&quot;&lt;a href=&#39;https://www.google.com&#39; /&gt;&quot;</span>
-tree
-.
-└── &lt;a <span class="nv">href</span><span class="o">=</span><span class="s1">&#39;https:</span>
-<span class="s1">    └── www.google.com&#39;</span>
-        └── &gt;
-</pre></div>
-</div>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">There is no security vulnerability as a result of this. A user attempting malicious behavior by crafting edge-case file and directory names will only inconvenience themselves.</p>
-</div>
-<p>The naive fix is to simply reject these file names at the frontend. An example of this fix is available on Github at <a class="reference external" href="https://github.com/OSC/ood-fileexplorer/pull/199">https://github.com/OSC/ood-fileexplorer/pull/199</a>.</p>
-<p>A future replacement of the File Explorer will handle these edge cases correctly.</p>
-</div>
+  <div class="section" id="dashboard">
+<span id="dashboard-rst"></span><h1>Dashboard<a class="headerlink" href="#dashboard" title="Permalink to this headline">¶</a></h1>
 </div>
 
 
@@ -258,7 +219,7 @@ tree
         <a href="../infrastructure.html" class="btn btn-neutral float-right" title="Infrastructure" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="v1.0-release-notes.html" class="btn btn-neutral" title="v1.0 Release Notes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="batch-connect.html" class="btn btn-neutral" title="Batch Connect" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -290,21 +251,21 @@ tree
     <dl>
       <dt>Versions</dt>
       
-        <dd><a href="https://OSC.github.io/ood-documentation/master/release-notes/known-issues.html">master</a></dd>
+        <dd><a href="https://OSC.github.io/ood-documentation/master/issues/dashboard.html">master</a></dd>
       
-        <dd><a href="https://OSC.github.io/ood-documentation/release-1.5/release-notes/known-issues.html">1.5</a></dd>
+        <dd><a href="https://OSC.github.io/ood-documentation/release-1.5/issues/dashboard.html">1.5</a></dd>
       
-        <dd><a href="https://OSC.github.io/ood-documentation/release-1.4/release-notes/known-issues.html">1.4</a></dd>
+        <dd><a href="https://OSC.github.io/ood-documentation/release-1.4/issues/dashboard.html">1.4</a></dd>
       
-        <dd><a href="https://OSC.github.io/ood-documentation/release-1.3/release-notes/known-issues.html">1.3</a></dd>
+        <dd><a href="https://OSC.github.io/ood-documentation/release-1.3/issues/dashboard.html">1.3</a></dd>
       
-        <dd><a href="https://OSC.github.io/ood-documentation/release-1.2/release-notes/known-issues.html">1.2</a></dd>
+        <dd><a href="https://OSC.github.io/ood-documentation/release-1.2/issues/dashboard.html">1.2</a></dd>
       
-        <dd><a href="https://OSC.github.io/ood-documentation/release-1.1/release-notes/known-issues.html">1.1</a></dd>
+        <dd><a href="https://OSC.github.io/ood-documentation/release-1.1/issues/dashboard.html">1.1</a></dd>
       
-        <dd><a href="https://OSC.github.io/ood-documentation/release-1.0/release-notes/known-issues.html">1.0</a></dd>
+        <dd><a href="https://OSC.github.io/ood-documentation/release-1.0/issues/dashboard.html">1.0</a></dd>
       
-        <dd><a href="https://OSC.github.io/ood-documentation/develop/release-notes/known-issues.html">develop</a></dd>
+        <dd><a href="https://OSC.github.io/ood-documentation/develop/issues/dashboard.html">develop</a></dd>
       
     </dl>
     <dl>
