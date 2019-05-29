@@ -19,44 +19,37 @@
   
 
   
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  
-  
-    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  
-
-  
-    <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
-  
-
-  
-        <link rel="index" title="Index"
-              href="../genindex.html"/>
-        <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="Open OnDemand 1.5.5 documentation" href="../index.html"/>
-        <link rel="next" title="v1.5 Release Notes" href="v1.5-release-notes.html"/>
-        <link rel="prev" title="Creating a Status App" href="../app-development/tutorials-passenger-apps/ps-to-quota.html"/> 
-
-  
-  <script src="../_static/js/modernizr.min.js"></script>
-
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="v1.5 Release Notes" href="v1.5-release-notes.html" />
+    <link rel="prev" title="Creating a Status App" href="../app-development/tutorials-passenger-apps/ps-to-quota.html" /> 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -65,7 +58,7 @@
 
           
             
-            <img src="../_static/logo.png" class="logo" />
+            <img src="../_static/logo.png" class="logo" alt="Logo"/>
           
           </a>
 
@@ -124,14 +117,14 @@
 <li class="toctree-l3"><a class="reference internal" href="#ondemand-passed-a-security-audit">OnDemand passed a security audit!</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#added-rendering-of-html-or-markdown-in-job-composer-template-manifests">Added rendering of HTML or Markdown in Job Composer template manifests</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#added-l18n-hooks-to-the-dashboard-and-job-composer">Added L18n hooks to the Dashboard and Job Composer</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#updated-ngnix-stage-to-always-remove-stale-pid-files">Updated ngnix_stage to always remove stale PID files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#changed-ngnix-stage-to-always-remove-stale-pid-files">Changed ngnix_stage to always remove stale PID files</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#added-job-array-support-for-lsf-and-pbspro-adapters">Added job array support for LSF and PBSPro adapters</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#disabled-warning-about-eager-loading-gems">Disabled warning about eager loading gems</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#fix-crash-in-nginx-stage">Fix crash in nginx_stage</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#active-jobs-shows-empty-cell-if-account-is-nil">Active Jobs shows empty cell if account is nil</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fixed-warning-about-eager-loading-gems">Fixed warning about eager loading gems</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fixed-crash-in-nginx-stage">Fixed crash in nginx_stage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fixed-active-jobs-to-show-empty-cell-if-account-is-nil">Fixed Active Jobs to show empty cell if account is nil</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#fixed-time-used-format-for-active-jobs">Fixed Time Used format for Active Jobs</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#improved-slurm-adapter">Improved Slurm adapter</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#job-composer-layout-changes">Job Composer layout changes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fixed-job-composer-layout-when-job-name-is-long">Fixed Job Composer layout when job name is long</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#improved-grid-engine-adapter">Improved Grid Engine adapter</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#updated-web-application-dependencies">Updated web-application dependencies</a></li>
 </ul>
@@ -161,7 +154,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">Open OnDemand</a>
@@ -169,9 +162,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -220,17 +214,17 @@
 <p>Highlights in 1.6:</p>
 <ul class="simple">
 <li><a class="reference internal" href="#ondemand-passed-a-security-audit">OnDemand passed a security audit!</a></li>
-<li><a class="reference internal" href="#added-rendering-of-html-or-markdown-in-job-composer-template-manifests">Added rendering of HTML or Markdown in Job Composer template manifests</a></li>
-<li><a class="reference internal" href="#added-l18n-hooks-to-the-dashboard-and-job-composer">Added L18n hooks to the Dashboard and Job Composer</a></li>
-<li><a class="reference internal" href="#updated-ngnix-stage-to-always-remove-stale-pid-files">Updated ngnix_stage to always remove stale PID files</a></li>
 <li><a class="reference internal" href="#added-job-array-support-for-lsf-and-pbspro-adapters">Added job array support for LSF and PBSPro adapters</a></li>
-<li><a class="reference internal" href="#disabled-warning-about-eager-loading-gems">Disabled warning about eager loading gems</a></li>
-<li><a class="reference internal" href="#fix-crash-in-nginx-stage">Fix crash in nginx_stage</a></li>
-<li><a class="reference internal" href="#active-jobs-shows-empty-cell-if-account-is-nil">Active Jobs shows empty cell if account is nil</a></li>
+<li><a class="reference internal" href="#added-l18n-hooks-to-the-dashboard-and-job-composer">Added L18n hooks to the Dashboard and Job Composer</a></li>
+<li><a class="reference internal" href="#added-rendering-of-html-or-markdown-in-job-composer-template-manifests">Added rendering of HTML or Markdown in Job Composer template manifests</a></li>
+<li><a class="reference internal" href="#changed-ngnix-stage-to-always-remove-stale-pid-files">Changed ngnix_stage to always remove stale PID files</a></li>
+<li><a class="reference internal" href="#fixed-active-jobs-to-show-empty-cell-if-account-is-nil">Fixed Active Jobs to show empty cell if account is nil</a></li>
+<li><a class="reference internal" href="#fixed-crash-in-nginx-stage">Fixed crash in nginx_stage</a></li>
+<li><a class="reference internal" href="#fixed-job-composer-layout-when-job-name-is-long">Fixed Job Composer layout when job name is long</a></li>
 <li><a class="reference internal" href="#fixed-time-used-format-for-active-jobs">Fixed Time Used format for Active Jobs</a></li>
-<li><a class="reference internal" href="#improved-slurm-adapter">Improved Slurm adapter</a></li>
-<li><a class="reference internal" href="#job-composer-layout-changes">Job Composer layout changes</a></li>
+<li><a class="reference internal" href="#fixed-warning-about-eager-loading-gems">Fixed warning about eager loading gems</a></li>
 <li><a class="reference internal" href="#improved-grid-engine-adapter">Improved Grid Engine adapter</a></li>
+<li><a class="reference internal" href="#improved-slurm-adapter">Improved Slurm adapter</a></li>
 <li><a class="reference internal" href="#updated-web-application-dependencies">Updated web-application dependencies</a></li>
 </ul>
 <div class="section" id="upgrading-from-v1-5">
@@ -274,7 +268,7 @@ sudo yum update ondemand
 </pre></div>
 </div>
 </div></blockquote>
-<p>The potential security issue was the ability for a user to consume all available resources on a machine using a <a class="reference external" href="https://en.wikipedia.org/wiki/Fork_bomb">fork bomb</a> or similar attack. OnDemand is designed to allow users to do anything that they are permitted to do on a system; to not ‘hide the machine’ as our PI likes to say. The OnDemand team expects that HPC centers are using batch schedulers which are configured to limit user resource utilization with tools like <code class="docutils literal notranslate"><span class="pre">ulimit</span></code> or <code class="docutils literal notranslate"><span class="pre">cgroups</span></code>. After a conversation about the prior two assumptions TrustedCI agreed that the ability of a user to run a fork bomb was not an issue with OnDemand.</p>
+<p>The potential security issue was the ability for a user to consume all available resources on a machine using a <a class="reference external" href="https://en.wikipedia.org/wiki/Fork_bomb">fork bomb</a> or similar attack. OnDemand is designed to allow users to do anything that they are permitted to do on a system; to not ‘hide the machine’ as our PI likes to say. The OnDemand team expects that HPC centers are using batch schedulers which are configured to limit user resource utilization with tools like <code class="docutils literal notranslate"><span class="pre">ulimit</span></code> or <code class="docutils literal notranslate"><span class="pre">cgroups</span></code>. After a conversation about those assumptions TrustedCI agreed that the ability of a user to run a fork bomb was not an issue with OnDemand.</p>
 <blockquote>
 <div><p>To address the bugs that were found three issues were opened on Github.</p>
 <blockquote>
@@ -313,24 +307,24 @@ sudo yum update ondemand
 </div>
 </div></blockquote>
 </div>
-<div class="section" id="updated-ngnix-stage-to-always-remove-stale-pid-files">
-<h3>Updated ngnix_stage to always remove stale PID files<a class="headerlink" href="#updated-ngnix-stage-to-always-remove-stale-pid-files" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="changed-ngnix-stage-to-always-remove-stale-pid-files">
+<h3>Changed ngnix_stage to always remove stale PID files<a class="headerlink" href="#changed-ngnix-stage-to-always-remove-stale-pid-files" title="Permalink to this headline">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">nginx_stage</span> <span class="pre">clean</span></code> will now remove PID and socket files for processes that are not longer running. Whenever a stale PID files is deleted its removal is reported on <code class="docutils literal notranslate"><span class="pre">stderr</span></code>. (<a class="reference external" href="https://github.com/OSC/ondemand/issues/11">ondemand#11</a>)</p>
 </div>
 <div class="section" id="added-job-array-support-for-lsf-and-pbspro-adapters">
 <h3>Added job array support for LSF and PBSPro adapters<a class="headerlink" href="#added-job-array-support-for-lsf-and-pbspro-adapters" title="Permalink to this headline">¶</a></h3>
 <p>Job Composer and Active Jobs now support job arrays for all adapters that OnDemand supports including LSF and PBSPro.</p>
 </div>
-<div class="section" id="disabled-warning-about-eager-loading-gems">
-<h3>Disabled warning about eager loading gems<a class="headerlink" href="#disabled-warning-about-eager-loading-gems" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="fixed-warning-about-eager-loading-gems">
+<h3>Fixed warning about eager loading gems<a class="headerlink" href="#fixed-warning-about-eager-loading-gems" title="Permalink to this headline">¶</a></h3>
 <p>Job Composer logs will no longer contain complaints about gems not being eager loaded. (<a class="reference external" href="https://github.com/OSC/ood-myjobs/issues/285">ood-myjobs#285</a>)</p>
 </div>
-<div class="section" id="fix-crash-in-nginx-stage">
-<h3>Fix crash in nginx_stage<a class="headerlink" href="#fix-crash-in-nginx-stage" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="fixed-crash-in-nginx-stage">
+<h3>Fixed crash in nginx_stage<a class="headerlink" href="#fixed-crash-in-nginx-stage" title="Permalink to this headline">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">nginx_stage</span></code> will no longer crash when one of the <code class="docutils literal notranslate"><span class="pre">pun_custom_env</span></code> values in <code class="docutils literal notranslate"><span class="pre">/etc/ood/config/nginx_stage.yml</span></code> is a number and not a string. (<a class="reference external" href="https://github.com/OSC/ondemand/issues/26">ondemand#26</a>)</p>
 </div>
-<div class="section" id="active-jobs-shows-empty-cell-if-account-is-nil">
-<h3>Active Jobs shows empty cell if account is nil<a class="headerlink" href="#active-jobs-shows-empty-cell-if-account-is-nil" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="fixed-active-jobs-to-show-empty-cell-if-account-is-nil">
+<h3>Fixed Active Jobs to show empty cell if account is nil<a class="headerlink" href="#fixed-active-jobs-to-show-empty-cell-if-account-is-nil" title="Permalink to this headline">¶</a></h3>
 <p>Previously, if a job was submitted without an account Active Jobs would display that job as having an account of <code class="docutils literal notranslate"><span class="pre">(null)</span></code>. Now the field will simply be blank.</p>
 </div>
 <div class="section" id="fixed-time-used-format-for-active-jobs">
@@ -341,8 +335,8 @@ sudo yum update ondemand
 <h3>Improved Slurm adapter<a class="headerlink" href="#improved-slurm-adapter" title="Permalink to this headline">¶</a></h3>
 <p>To improve the reliability of parsing <code class="docutils literal notranslate"><span class="pre">squeue</span></code> output the record delimiter has been changed from newlines to the <a class="reference external" href="https://en.wikipedia.org/wiki/Delimiter#Conventions">ASCII/Unicode record separator</a>.</p>
 </div>
-<div class="section" id="job-composer-layout-changes">
-<h3>Job Composer layout changes<a class="headerlink" href="#job-composer-layout-changes" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="fixed-job-composer-layout-when-job-name-is-long">
+<h3>Fixed Job Composer layout when job name is long<a class="headerlink" href="#fixed-job-composer-layout-when-job-name-is-long" title="Permalink to this headline">¶</a></h3>
 <p>Job names that were exceptionally long and did not contain ‘break-able’ punctuation could break the layout of the Job Composer’s data table. The table has been updated so that job names wrap and will break mid-word if necessary.</p>
 </div>
 <div class="section" id="improved-grid-engine-adapter">
@@ -364,9 +358,7 @@ sudo yum update ondemand
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
@@ -375,7 +367,7 @@ sudo yum update ondemand
         <a href="v1.5-release-notes.html" class="btn btn-neutral float-right" title="v1.5 Release Notes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../app-development/tutorials-passenger-apps/ps-to-quota.html" class="btn btn-neutral" title="Creating a Status App" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../app-development/tutorials-passenger-apps/ps-to-quota.html" class="btn btn-neutral float-left" title="Creating a Status App" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -384,7 +376,7 @@ sudo yum update ondemand
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2017-2018, Ohio Supercomputer Center.
+        &copy; Copyright 2017-2018, Ohio Supercomputer Center
 
     </p>
   </div> 
@@ -438,37 +430,15 @@ sudo yum update ondemand
   </div>
 </div>
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../',
-            VERSION:'1.5.5',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="../_static/jquery.js"></script>
-      <script type="text/javascript" src="../_static/underscore.js"></script>
-      <script type="text/javascript" src="../_static/doctools.js"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-  
-
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
   </script>
+
+  
+  
+    
    
 
 </body>
