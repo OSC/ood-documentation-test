@@ -119,6 +119,7 @@
 <p class="caption"><span class="caption-text">Release Notes</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">v1.6 Release Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#upgrading-from-v1-5">Upgrading from v1.5</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#details">Details</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#ondemand-passed-a-security-audit">OnDemand passed a security audit!</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#added-rendering-of-html-or-markdown-in-job-composer-template-manifests">Added rendering of HTML or Markdown in Job Composer template manifests</a></li>
@@ -232,19 +233,44 @@
 <li><a class="reference internal" href="#improved-grid-engine-adapter">Improved Grid Engine adapter</a></li>
 <li><a class="reference internal" href="#updated-web-application-dependencies">Updated web-application dependencies</a></li>
 </ul>
+<div class="section" id="upgrading-from-v1-5">
+<h2>Upgrading from v1.5<a class="headerlink" href="#upgrading-from-v1-5" title="Permalink to this headline">¶</a></h2>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">As always please update the <em>development</em> or <em>test</em> instances of OnDemand installed at your center first before you modify the <em>production</em> instance.</p>
+</div>
+<ol class="arabic">
+<li><p class="first">Update OnDemand release RPM</p>
+<p>CentOS/RHEL 6</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo yum install -y https://yum.osc.edu/ondemand/1.6/ondemand-release-web-1.6-1.el6.noarch.rpm
+</pre></div>
+</div>
+<p>CentOS/RHEL 7</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo yum install -y https://yum.osc.edu/ondemand/1.6/ondemand-release-web-1.6-1.el7.noarch.rpm
+</pre></div>
+</div>
+</li>
+<li><p class="first">Update OnDemand</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo yum clean all
+sudo yum update ondemand
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
 <div class="section" id="details">
 <h2>Details<a class="headerlink" href="#details" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="ondemand-passed-a-security-audit">
 <h3>OnDemand passed a security audit!<a class="headerlink" href="#ondemand-passed-a-security-audit" title="Permalink to this headline">¶</a></h3>
 <p>At the end of 2018 <a class="reference external" href="https://trustedci.org/">TrustedCI</a> completed a security audit of OnDemand <a class="reference internal" href="#audit-citation" id="id2">[Audit_Citation]</a>. Quoting the major findings of the audit:</p>
 <blockquote>
-<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span> <span class="n">Discovered</span> <span class="n">several</span> <span class="n">implementation</span> <span class="n">issues</span> <span class="p">(</span><span class="n">bugs</span><span class="p">)</span> <span class="n">that</span> <span class="n">could</span> <span class="n">affect</span> <span class="n">the</span>
-  <span class="n">proper</span> <span class="n">operation</span> <span class="n">of</span> <span class="n">Open</span> <span class="n">OnDemand</span><span class="o">.</span>
-<span class="o">-</span> <span class="n">No</span> <span class="n">major</span> <span class="n">issues</span> <span class="n">were</span> <span class="n">found</span> <span class="ow">in</span> <span class="n">a</span> <span class="n">comprehensive</span> <span class="n">evaluation</span> <span class="n">of</span> <span class="n">the</span>
-  <span class="n">architecture</span> <span class="ow">and</span> <span class="n">critical</span> <span class="n">resources</span> <span class="ow">in</span> <span class="n">Open</span> <span class="n">OnDemand</span><span class="p">,</span> <span class="ow">and</span> <span class="n">analysis</span> <span class="n">of</span>
-  <span class="n">potential</span> <span class="n">code</span> <span class="n">weaknesses</span> <span class="ow">in</span> <span class="n">critical</span> <span class="n">components</span><span class="o">.</span>
-<span class="o">-</span> <span class="n">Found</span> <span class="n">a</span> <span class="n">potential</span> <span class="n">vulnerability</span><span class="p">,</span> <span class="n">dormant</span> <span class="n">based</span> <span class="n">on</span> <span class="n">current</span> <span class="n">configuration</span>
-  <span class="ow">and</span> <span class="n">launch</span> <span class="n">settings</span><span class="o">.</span>
+<div><div class="highlight-none notranslate"><div class="highlight"><pre><span></span>- Discovered several implementation issues (bugs) that could affect the
+  proper operation of Open OnDemand.
+- No major issues were found in a comprehensive evaluation of the
+  architecture and critical resources in Open OnDemand, and analysis of
+  potential code weaknesses in critical components.
+- Found a potential vulnerability, dormant based on current configuration
+  and launch settings.
 </pre></div>
 </div>
 </div></blockquote>
