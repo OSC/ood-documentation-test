@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>2. Modify System Security &mdash; Open OnDemand 1.5.5 documentation</title>
+  <title>2. Modify System Security &mdash; Open OnDemand 1.6.3 documentation</title>
   
 
   
@@ -19,45 +19,37 @@
   
 
   
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  
-  
-    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  
-
-  
-    <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
-  
-
-  
-        <link rel="index" title="Index"
-              href="../genindex.html"/>
-        <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="Open OnDemand 1.5.5 documentation" href="../index.html"/>
-        <link rel="up" title="Installation" href="../installation.html"/>
-        <link rel="next" title="3. Start Apache" href="start-apache.html"/>
-        <link rel="prev" title="1. Install Software" href="install-software.html"/> 
-
-  
-  <script src="../_static/js/modernizr.min.js"></script>
-
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3. Start Apache" href="start-apache.html" />
+    <link rel="prev" title="1. Install Software" href="install-software.html" /> 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -66,7 +58,7 @@
 
           
             
-            <img src="../_static/logo.png" class="logo" />
+            <img src="../_static/logo.png" class="logo" alt="Logo"/>
           
           </a>
 
@@ -74,7 +66,7 @@
             
             
               <div class="version">
-                1.5
+                1.6
               </div>
             
           
@@ -149,7 +141,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">Open OnDemand</a>
@@ -157,9 +149,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -218,6 +211,45 @@ need to be disabled on the web server if you want to take advantage of
 certain software in your web applications such as being able to access a
 Lustre file system.</p>
 </div>
+<dl class="docutils">
+<dt>RHEL/CentOS 6/7</dt>
+<dd><div class="first highlight-sh notranslate"><div class="highlight"><pre><span></span>sestatus
+</pre></div>
+</div>
+<div class="last highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1">#Output</span>
+**SELinux status**:             **enabled**
+SELinuxfs mount:                /sys/fs/selinux
+SELinux root directory:         /etc/selinux
+Loaded policy name:             targeted
+Current mode:                   enforcing
+Mode from config file:          enforcing
+Policy MLS status:              enabled
+Policy deny_unknown status:     allowed
+Max kernel policy version:      <span class="m">31</span>
+</pre></div>
+</div>
+</dd>
+<dt>RHEL/CentOS 6/7</dt>
+<dd><div class="first last highlight-sh notranslate"><div class="highlight"><pre><span></span>$ sudo chmod -R <span class="m">757</span> /etc/selinux/config
+</pre></div>
+</div>
+</dd>
+</dl>
+<p>Using your favorite text editor open the /etc/selinux/config file and set the SELINUX mode to disabled</p>
+<blockquote>
+<div><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>This file controls the state of SELinux on the system.
+<span class="c1"># SELINUX= can take one of these three values:</span>
+<span class="c1">#       enforcing - SELinux security policy is enforced.</span>
+<span class="c1">#       permissive - SELinux prints warnings instead of enforcing.</span>
+<span class="c1">#       disabled - No SELinux policy is loaded.</span>
+<span class="nv">SELINUX</span><span class="o">=</span>disabled
+<span class="c1"># SELINUXTYPE= can take one of these two values:</span>
+<span class="c1">#       targeted - Targeted processes are protected,</span>
+<span class="c1">#       mls - Multi Level Security protection.</span>
+<span class="nv">SELINUXTYPE</span><span class="o">=</span>targeted
+</pre></div>
+</div>
+</div></blockquote>
 </li>
 <li><p class="first">Open ports 80 (http) and 443 (https) in the firewall, typically done with
 <a class="reference external" href="https://wiki.centos.org/HowTos/Network/IPTables">iptables</a>.</p>
@@ -227,15 +259,30 @@ Lustre file system.</p>
 daemon and modify the firewall settings or disable it and install
 <a class="reference external" href="https://wiki.centos.org/HowTos/Network/IPTables">iptables</a>.</p>
 </div>
+<dl class="docutils">
+<dt>RHEL/CentOS 7</dt>
+<dd><div class="first last highlight-sh notranslate"><div class="highlight"><pre><span></span>$ systemctl restart firewalld
+$ sudo firewall-cmd --zone<span class="o">=</span>public --add-port<span class="o">=</span><span class="m">80</span>/tcp --permanent
+$ sudo firewall-cmd --zone<span class="o">=</span>public --add-port<span class="o">=</span><span class="m">443</span>/tcp --permanent
+$ sudo firewall-cmd --reload
+</pre></div>
+</div>
+</dd>
+<dt>RHEL/CentOS 6</dt>
+<dd><div class="first last highlight-sh notranslate"><div class="highlight"><pre><span></span>$ sudo iptables -I INPUT -p tcp -m tcp --dport <span class="m">80</span> -j ACCEPT
+$ sudo iptables -I INPUT -p tcp -m tcp --dport <span class="m">443</span> -j ACCEPT
+$ sudo service iptables save
+</pre></div>
+</div>
+</dd>
+</dl>
 </li>
 </ol>
 </div>
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
@@ -244,7 +291,7 @@ daemon and modify the firewall settings or disable it and install
         <a href="start-apache.html" class="btn btn-neutral float-right" title="3. Start Apache" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="install-software.html" class="btn btn-neutral" title="1. Install Software" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="install-software.html" class="btn btn-neutral float-left" title="1. Install Software" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -253,7 +300,7 @@ daemon and modify the firewall settings or disable it and install
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2017-2018, Ohio Supercomputer Center.
+        &copy; Copyright 2017-2019, Ohio Supercomputer Center
 
     </p>
   </div> 
@@ -277,6 +324,8 @@ daemon and modify the firewall settings or disable it and install
       <dt>Versions</dt>
       
         <dd><a href="https://OSC.github.io/ood-documentation/master/installation/modify-system-security.html">master</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-1.6/installation/modify-system-security.html">1.6</a></dd>
       
         <dd><a href="https://OSC.github.io/ood-documentation/release-1.5/installation/modify-system-security.html">1.5</a></dd>
       
@@ -307,37 +356,15 @@ daemon and modify the firewall settings or disable it and install
   </div>
 </div>
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../',
-            VERSION:'1.5.5',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="../_static/jquery.js"></script>
-      <script type="text/javascript" src="../_static/underscore.js"></script>
-      <script type="text/javascript" src="../_static/doctools.js"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-  
-
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
   </script>
+
+  
+  
+    
    
 
 </body>
