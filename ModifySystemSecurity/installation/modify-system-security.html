@@ -201,22 +201,13 @@
   <div class="section" id="modify-system-security">
 <span id="id1"></span><h1>2. Modify System Security<a class="headerlink" href="#modify-system-security" title="Permalink to this headline">¶</a></h1>
 <ol class="arabic">
-<li><p class="first">Disable <a class="reference external" href="https://wiki.centos.org/HowTos/SELinux">SELinux</a> on the Open OnDemand host you intend on running the web
-server on.</p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">If SELinux is not disabled on the web server host machine this can lead
-to permission errors when running the web applications. SELinux may also
-need to be disabled on the web server if you want to take advantage of
-certain software in your web applications such as being able to access a
-Lustre file system.</p>
-</div>
+<li><p class="first">Check <a class="reference external" href="https://wiki.centos.org/HowTos/SELinux">SELinux</a> status, by default SELinux is enabled on CentOS and most other RHEL-based systems.</p>
 <dl class="docutils">
 <dt>RHEL/CentOS 6/7</dt>
-<dd><div class="first highlight-sh notranslate"><div class="highlight"><pre><span></span>sestatus
+<dd><div class="first highlight-sh notranslate"><div class="highlight"><pre><span></span>$ sestatus
 </pre></div>
 </div>
-<div class="last highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1">#Output</span>
+<div class="last highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1">#Output displays the starting status of SELinux</span>
 **SELinux status**:             **enabled**
 SELinuxfs mount:                /sys/fs/selinux
 SELinux root directory:         /etc/selinux
@@ -229,15 +220,39 @@ Max kernel policy version:      <span class="m">31</span>
 </pre></div>
 </div>
 </dd>
+</dl>
+</li>
+<li><p class="first">Disable <a class="reference external" href="https://wiki.centos.org/HowTos/SELinux">SELinux</a> on the Open OnDemand host you intend on running the web
+server on.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If SELinux is not disabled on the web server host machine this can lead
+to permission errors when running the web applications. SELinux may also
+need to be disabled on the web server if you want to take advantage of
+certain software in your web applications such as being able to access a
+Lustre file system.</p>
+</div>
+<p><strong>Option 1: Disable SELinux Temporarily</strong></p>
+<blockquote>
+<div><ol class="arabic">
+<li><p class="first">To temporarily disable SELinux, use the following command:</p>
+<dl class="docutils">
 <dt>RHEL/CentOS 6/7</dt>
-<dd><div class="first last highlight-sh notranslate"><div class="highlight"><pre><span></span>$ sudo chmod -R <span class="m">757</span> /etc/selinux/config
+<dd><div class="first last highlight-sh notranslate"><div class="highlight"><pre><span></span>$ setenforce <span class="m">0</span>
 </pre></div>
 </div>
 </dd>
 </dl>
-<p>Using your favorite text editor open the /etc/selinux/config file and set the SELINUX mode to disabled</p>
+</li>
+</ol>
+</div></blockquote>
+<p><strong>Option 2: Disable SELinux Permanently</strong></p>
 <blockquote>
-<div><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>This file controls the state of SELinux on the system.
+<div><ol class="arabic">
+<li><p class="first">Using your favorite text editor open the /etc/selinux/config file and change the <strong>SELINUX=enforcing</strong> directive to <strong>SELINUX=disabled</strong>.</p>
+<dl class="docutils">
+<dt>RHEL/CentOS 6/7</dt>
+<dd><div class="first last highlight-sh notranslate"><div class="highlight"><pre><span></span>This file controls the state of SELinux on the system.
 <span class="c1"># SELINUX= can take one of these three values:</span>
 <span class="c1">#       enforcing - SELinux security policy is enforced.</span>
 <span class="c1">#       permissive - SELinux prints warnings instead of enforcing.</span>
@@ -249,6 +264,19 @@ Max kernel policy version:      <span class="m">31</span>
 <span class="nv">SELINUXTYPE</span><span class="o">=</span>targeted
 </pre></div>
 </div>
+</dd>
+</dl>
+</li>
+<li><p class="first">Reboot the OS to save the changes</p>
+<dl class="docutils">
+<dt>RHEL/CentOS 6/7</dt>
+<dd><div class="first last highlight-sh notranslate"><div class="highlight"><pre><span></span>$ shutdown -r now
+</pre></div>
+</div>
+</dd>
+</dl>
+</li>
+</ol>
 </div></blockquote>
 </li>
 <li><p class="first">Open ports 80 (http) and 443 (https) in the firewall, typically done with
