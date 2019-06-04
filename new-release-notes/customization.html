@@ -585,7 +585,8 @@ can be customized by adding a custom one to <code class="docutils literal notran
 <div class="section" id="customize-text-in-ondemand">
 <span id="customization-localization"></span><h2>Customize Text in OnDemand<a class="headerlink" href="#customize-text-in-ondemand" title="Permalink to this headline">¶</a></h2>
 <p>Using Rails support for Internationaliation (i18n), we have added localization for some features of the Dashboard and the Job Composer.</p>
-<p>The default locale is “en”. You can use a custom locale. To customize you can copy this file (or create a new file with the same stucture of the keys you want to modify) to <code class="docutils literal notranslate"><span class="pre">/etc/ood/config/locales/en.yml</span></code> and modify that copy. Translations for multiple apps should be merged into a single locale file. Translations that are not provided will be sourced from the app’s default locale file. For example, if you want the locale to be French, you can create a <code class="docutils literal notranslate"><span class="pre">/etc/ood/config/locales/fr.yml</span></code> and then configure the Dashboard to use this locale by setting the environment variable <code class="docutils literal notranslate"><span class="pre">OOD_LOCALE=fr</span></code> where the locale is just the name of the file without the extension. Do this in either the nginx_stage config or in the Dashboard/Job Composer env config file.</p>
+<p>The default locale is “en”. You can use a custom locale. To customize you can copy this file (or create a new file with the same stucture of the keys you want to modify) to <code class="docutils literal notranslate"><span class="pre">/etc/ood/config/locales/en.yml</span></code> and modify that copy. Translations for multiple apps may be merged into a single locale file. Translations that are not provided will be sourced from the app’s default locale file. For example, if you want the locale to be French, you can create a <code class="docutils literal notranslate"><span class="pre">/etc/ood/config/locales/fr.yml</span></code> and then configure the Dashboard to use this locale by setting the environment variable <code class="docutils literal notranslate"><span class="pre">OOD_LOCALE=fr</span></code> where the locale is just the name of the file without the extension. Do this in either the nginx_stage config or in the Dashboard/Job Composer env config file.</p>
+<p>In each translation file the values that are most site-specific appear at the top.</p>
 <table border="1" class="docutils" id="id10">
 <caption><span class="caption-number">Table 5 </span><span class="caption-text">OnDemand Locale Files</span><a class="headerlink" href="#id10" title="Permalink to this table">¶</a></caption>
 <colgroup>
@@ -609,7 +610,7 @@ can be customized by adding a custom one to <code class="docutils literal notran
 <td><code class="docutils literal notranslate"><span class="pre">jobcomposer</span></code></td>
 </tr>
 <tr class="row-even"><th class="stub"><code class="docutils literal notranslate"><span class="pre">/etc/ood/config/locales/en.yml</span></code></th>
-<td>All localizable apps will default to checking this path</td>
+<td>All localizable apps will check this path, unless <code class="docutils literal notranslate"><span class="pre">OOD_LOCALES_ROOT</span></code> is set.</td>
 <td>Any</td>
 </tr>
 </tbody>
@@ -695,13 +696,20 @@ defines when this file was generated, and <code class="docutils literal notransl
 (see below).</p>
 <p>You can configure the Dashboard to use this JSON file (or files) by setting the
 environment variable <code class="docutils literal notranslate"><span class="pre">OOD_QUOTA_PATH</span></code> as a colon-delimited list of all JSON
-file paths in the <code class="docutils literal notranslate"><span class="pre">/etc/ood/config/apps/dashboard/env</span></code> file. Since version 1.6 of OnDemand <code class="docutils literal notranslate"><span class="pre">OOD_QUOTA_PATH</span></code> may also be a URL.</p>
+file paths in the <code class="docutils literal notranslate"><span class="pre">/etc/ood/config/apps/dashboard/env</span></code> file. In addition to
+pointing to files <code class="docutils literal notranslate"><span class="pre">OOD_QUOTA_PATH</span></code> may also contain HTTP(s) or FTP protocol
+URLs. Colons used in URLs are correctly handled and are not treated as delimiters.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Sites using HTTP(s) or FTP for their quota files may see slower dashboard load
+times, depending on the responsiveness of the server providing the quota file(s).</p>
+</div>
 <p>The default threshold for displaying the warning is at 95% (<cite>0.95</cite>), but this
 can be changed with the environment variable <code class="docutils literal notranslate"><span class="pre">OOD_QUOTA_THRESHOLD</span></code>.</p>
 <p>An example is given as:</p>
 <div class="code sh highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># /etc/ood/config/apps/dashboard/env</span>
 
-<span class="n">OOD_QUOTA_PATH</span><span class="o">=</span><span class="s2">&quot;/path/to/quota1.json:/path/to/quota2.json&quot;</span>
+<span class="n">OOD_QUOTA_PATH</span><span class="o">=</span><span class="s2">&quot;/path/to/quota1.json:https://example.com/quota2.json&quot;</span>
 <span class="n">OOD_QUOTA_THRESHOLD</span><span class="o">=</span><span class="s2">&quot;0.80&quot;</span>
 </pre></div>
 </div>
