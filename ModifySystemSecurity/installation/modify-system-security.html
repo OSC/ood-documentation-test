@@ -202,7 +202,8 @@
 <span id="id1"></span><h1>2. Modify System Security<a class="headerlink" href="#modify-system-security" title="Permalink to this headline">¶</a></h1>
 <ol class="arabic">
 <li><p class="first">Check <a class="reference external" href="https://wiki.centos.org/HowTos/SELinux">SELinux</a> status, by default SELinux is enabled on CentOS and most other RHEL-based systems.</p>
-<dl class="docutils">
+<blockquote>
+<div><dl class="docutils">
 <dt>RHEL/CentOS 6/7</dt>
 <dd><div class="first highlight-sh notranslate"><div class="highlight"><pre><span></span>$ sestatus
 </pre></div>
@@ -221,6 +222,7 @@ Max kernel policy version:      <span class="m">31</span>
 </div>
 </dd>
 </dl>
+</div></blockquote>
 </li>
 <li><p class="first">Disable <a class="reference external" href="https://wiki.centos.org/HowTos/SELinux">SELinux</a> on the Open OnDemand host you intend on running the web
 server on.</p>
@@ -232,23 +234,7 @@ need to be disabled on the web server if you want to take advantage of
 certain software in your web applications such as being able to access a
 Lustre file system.</p>
 </div>
-<p><strong>Option 1: Disable SELinux Temporarily</strong></p>
-<blockquote>
-<div><ol class="arabic">
-<li><p class="first">To temporarily disable SELinux, use the following command:</p>
-<dl class="docutils">
-<dt>RHEL/CentOS 6/7</dt>
-<dd><div class="first last highlight-sh notranslate"><div class="highlight"><pre><span></span>$ setenforce <span class="m">0</span>
-</pre></div>
-</div>
-</dd>
-</dl>
-</li>
-</ol>
-</div></blockquote>
-<p><strong>Option 2: Disable SELinux Permanently</strong></p>
-<blockquote>
-<div><ol class="arabic">
+<ol class="arabic">
 <li><p class="first">Using your favorite text editor open the /etc/selinux/config file and change the <strong>SELINUX=enforcing</strong> directive to <strong>SELINUX=disabled</strong>.</p>
 <dl class="docutils">
 <dt>RHEL/CentOS 6/7</dt>
@@ -267,17 +253,16 @@ Lustre file system.</p>
 </dd>
 </dl>
 </li>
-<li><p class="first">Reboot the OS to save the changes</p>
+<li><p class="first">Disable SELinux</p>
 <dl class="docutils">
 <dt>RHEL/CentOS 6/7</dt>
-<dd><div class="first last highlight-sh notranslate"><div class="highlight"><pre><span></span>$ shutdown -r now
+<dd><div class="first last highlight-sh notranslate"><div class="highlight"><pre><span></span>$ setenforce <span class="m">0</span>
 </pre></div>
 </div>
 </dd>
 </dl>
 </li>
 </ol>
-</div></blockquote>
 </li>
 <li><p class="first">Open ports 80 (http) and 443 (https) in the firewall, typically done with
 <a class="reference external" href="https://wiki.centos.org/HowTos/Network/IPTables">iptables</a>.</p>
