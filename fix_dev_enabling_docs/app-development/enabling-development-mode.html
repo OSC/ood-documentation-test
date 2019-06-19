@@ -257,7 +257,19 @@
 <div class="section" id="make-everyone-a-developer-by-default-optional">
 <h2>Make everyone a developer by default (optional)<a class="headerlink" href="#make-everyone-a-developer-by-default-optional" title="Permalink to this headline">¶</a></h2>
 <p>To revert to the way developer enabling worked in OnDemand 1.3, change the nginx_stage app_root configuration for dev apps by modifying /etc/ood/config/nginx_stage.yml and replacing</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">app_root</span><span class="p p-Indicator">:</span>
+<span class="hll">  <span class="l l-Scalar l-Scalar-Plain">dev</span><span class="p p-Indicator">:</span> <span class="s">&#39;/var/www/ood/apps/dev/%{owner}/gateway/%{name}&#39;</span>
+</span>  <span class="l l-Scalar l-Scalar-Plain">usr</span><span class="p p-Indicator">:</span> <span class="s">&#39;/var/www/ood/apps/usr/%{owner}/gateway/%{name}&#39;</span>
+  <span class="l l-Scalar l-Scalar-Plain">sys</span><span class="p p-Indicator">:</span> <span class="s">&#39;/var/www/ood/apps/sys/%{name}&#39;</span>
+</pre></div>
+</div>
 <p>with</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">app_root</span><span class="p p-Indicator">:</span>
+<span class="hll">  <span class="l l-Scalar l-Scalar-Plain">dev</span><span class="p p-Indicator">:</span> <span class="s">&#39;~%{owner}/%{portal}/dev/%{name}&#39;</span>
+</span>  <span class="l l-Scalar l-Scalar-Plain">usr</span><span class="p p-Indicator">:</span> <span class="s">&#39;/var/www/ood/apps/usr/%{owner}/gateway/%{name}&#39;</span>
+  <span class="l l-Scalar l-Scalar-Plain">sys</span><span class="p p-Indicator">:</span> <span class="s">&#39;/var/www/ood/apps/sys/%{name}&#39;</span>
+</pre></div>
+</div>
 <p>Then users can just create the directory <code class="docutils literal notranslate"><span class="pre">~/ondemand/dev</span></code> and the Develop dropdown will appear.</p>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
