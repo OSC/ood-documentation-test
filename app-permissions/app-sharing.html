@@ -111,14 +111,17 @@
 <li class="toctree-l1"><a class="reference internal" href="app-development.html">App Development</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">App Sharing</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#file-system-permissions">File System Permissions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#system-installed-apps">System Installed Apps</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#example-using-file-permissions">Example Using File Permissions</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#code-sharing">Code Sharing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#peer-to-peer-executable-sharing">Peer to Peer Executable Sharing</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#enabling-the-app-sharing-dashboard">Enabling The App Sharing Dashboard</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#controlling-who-can-share-and-access-apps">Controlling Who Can Share and Access Apps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#example-of-executable-sharing">Example of Executable Sharing</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#examples-of-app-sharing">Examples of App Sharing</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="app-development/tutorials-interactive-apps.html">Tutorials: Interactive Apps</a></li>
@@ -228,8 +231,8 @@ home directory that other users can launch. This is similar to adding to your
 PATH the bin directory of another user.</li>
 </ol>
 </div>
-<div class="section" id="file-system-permissions">
-<h2>File System Permissions<a class="headerlink" href="#file-system-permissions" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="system-installed-apps">
+<h2>System Installed Apps<a class="headerlink" href="#system-installed-apps" title="Permalink to this headline">¶</a></h2>
 <p>Admins may install apps to the system by copying the application directory to <code class="docutils literal notranslate"><span class="pre">/var/www/ood/apps/sys</span></code>. Default directory permissions (<code class="docutils literal notranslate"><span class="pre">755</span></code>) will allow all users with access to Ondemand to see and run that app. Apps may have their access restricted by changing the permissions on individual application directories. For example if a site does not wish to show licensed software to un-licensed users they might do the following:</p>
 <blockquote>
 <div><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># Given:</span>
@@ -237,7 +240,7 @@ PATH the bin directory of another user.</li>
 <span class="c1"># - a group named $NEW_APP_GROUP</span>
 <span class="c1"># - and a user named $NEW_APP_USER</span>
 
-sudo cp <span class="s2">&quot;/path/to/</span><span class="nv">$NEW_APP</span><span class="s2">&quot;</span> /var/www/ood/apps/sys
+sudo cp -r <span class="s2">&quot;/path/to/</span><span class="nv">$NEW_APP</span><span class="s2">&quot;</span> /var/www/ood/apps/sys
 sudo chmod <span class="m">750</span> <span class="s2">&quot;/var/www/ood/apps/sys/</span><span class="nv">$NEW_APP</span><span class="s2">&quot;</span>
 sudo chgrp <span class="s2">&quot;</span><span class="nv">$NEW_APP_GROUP</span><span class="s2">&quot;</span> <span class="s2">&quot;/var/www/ood/apps/sys/</span><span class="nv">$NEW_APP</span><span class="s2">&quot;</span>
 
@@ -245,12 +248,60 @@ sudo usermod -a -G <span class="s2">&quot;</span><span class="nv">$NEW_APP_GROUP
 </pre></div>
 </div>
 </div></blockquote>
-<p>Using file access lists (FACLs) app sharing may be as specific as desired; sharing with one or more groups, potentially also including or excluding individual users.</p>
-<p>Another use for app sharing is sharing an in-development application with members of a development team before deploying that app to the system.</p>
+<p>You can utilize file access lists (FACLs) to increase the granularity with whom you share the apps. For example, you could specify multiple groups and individual users to share with, or even exclude specific users or groups.</p>
+<p>This app authorization mechanism (using file permissions) can also be useful for canary deployments (sharing an app under development with a subset of users, or just your development team).</p>
+<div class="section" id="example-using-file-permissions">
+<h3>Example Using File Permissions<a class="headerlink" href="#example-using-file-permissions" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>root@ood sys<span class="o">]</span><span class="c1"># pwd</span>
+/var/www/ood/apps/sys
+<span class="o">[</span>root@ood sys<span class="o">]</span><span class="c1"># ls -l</span>
+total <span class="m">20</span>
+drwxr-xr-x. <span class="m">14</span> root root <span class="m">4096</span> Jul <span class="m">26</span> <span class="m">15</span>:20 activejobs
+drwxr-xr-x.  <span class="m">3</span> root root  <span class="m">169</span> Jul <span class="m">26</span> <span class="m">15</span>:20 bc_desktop
+<span class="hll">drwxr-xr-x.  <span class="m">5</span> root root  <span class="m">157</span> Aug  <span class="m">1</span> <span class="m">18</span>:19 bc_desktop_example_kde
+</span>drwxr-xr-x. <span class="m">13</span> root root <span class="m">4096</span> Jul <span class="m">26</span> <span class="m">15</span>:20 dashboard
+drwxr-xr-x. <span class="m">14</span> root root <span class="m">4096</span> Jul <span class="m">26</span> <span class="m">15</span>:20 file-editor
+drwxr-xr-x.  <span class="m">7</span> root root <span class="m">4096</span> Jul <span class="m">26</span> <span class="m">15</span>:20 files
+drwxr-xr-x. <span class="m">14</span> root root <span class="m">4096</span> Jul <span class="m">26</span> <span class="m">15</span>:20 myjobs
+drwxr-xr-x.  <span class="m">7</span> root root  <span class="m">245</span> Jul <span class="m">26</span> <span class="m">15</span>:20 shell
+</pre></div>
+</div>
+<div class="figure align-center">
+<img alt="_images/app-sharing-permissions-before.png" src="_images/app-sharing-permissions-before.png" />
+</div>
+</div></blockquote>
+<p>To restrict usage to only members of the <code class="docutils literal notranslate"><span class="pre">desktopers</span></code> group:</p>
+<blockquote>
+<div><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>root@ood sys<span class="o">]</span><span class="c1"># pwd</span>
+/var/www/ood/apps/sys
+<span class="o">[</span>root@ood sys<span class="o">]</span><span class="c1"># chmod 750 bc_desktop_example_kde/</span>
+<span class="o">[</span>root@ood sys<span class="o">]</span><span class="c1"># chgrp desktopers bc_desktop_example_kde</span>
+<span class="o">[</span>root@ood sys<span class="o">]</span><span class="c1"># ls -l</span>
+total <span class="m">20</span>
+drwxr-xr-x. <span class="m">14</span> root root       <span class="m">4096</span> Jul <span class="m">26</span> <span class="m">15</span>:20 activejobs
+drwxr-xr-x.  <span class="m">3</span> root root        <span class="m">169</span> Jul <span class="m">26</span> <span class="m">15</span>:20 bc_desktop
+<span class="hll">drwxr-x---.  <span class="m">5</span> root desktopers  <span class="m">157</span> Aug  <span class="m">1</span> <span class="m">18</span>:19 bc_desktop_example_kde
+</span>drwxr-xr-x. <span class="m">13</span> root root       <span class="m">4096</span> Jul <span class="m">26</span> <span class="m">15</span>:20 dashboard
+drwxr-xr-x. <span class="m">14</span> root root       <span class="m">4096</span> Jul <span class="m">26</span> <span class="m">15</span>:20 file-editor
+drwxr-xr-x.  <span class="m">7</span> root root       <span class="m">4096</span> Jul <span class="m">26</span> <span class="m">15</span>:20 files
+drwxr-xr-x. <span class="m">14</span> root root       <span class="m">4096</span> Jul <span class="m">26</span> <span class="m">15</span>:20 myjobs
+drwxr-xr-x.  <span class="m">7</span> root root        <span class="m">245</span> Jul <span class="m">26</span> <span class="m">15</span>:20 shell
+</pre></div>
+</div>
+</div></blockquote>
+<p>Note that user <code class="docutils literal notranslate"><span class="pre">ood</span></code> is not a member of the <code class="docutils literal notranslate"><span class="pre">desktopers</span></code> supplemental group.</p>
+<blockquote>
+<div><div class="figure align-center">
+<img alt="_images/app-sharing-permissions-after.png" src="_images/app-sharing-permissions-after.png" />
+</div>
+</div></blockquote>
+<p>These changes take effect immediately, although when a user is added or removed from a group their PUN will need to be restarted for the change to take effect.</p>
+</div>
 </div>
 <div class="section" id="code-sharing">
 <h2>Code Sharing<a class="headerlink" href="#code-sharing" title="Permalink to this headline">¶</a></h2>
-<p>Code sharing is when an application’s source code is shared between two or more users who run it as a personal development application. Models for this sharing can include using a web-based file repository such as Github, emailing Zip’d app directories, or a group readable directory symlinked to a user’s <code class="docutils literal notranslate"><span class="pre">~/ondemand/dev/</span></code> directory.</p>
+<p>Code sharing is when an application’s source code is shared between two or more users who run it as a personal development application. Models for this sharing can include using a web-based file repository such as Github, emailing Zip’d app directories, or a group readable directory symlinked to each user’s <code class="docutils literal notranslate"><span class="pre">~/ondemand/dev/</span></code> directory.</p>
 <p>For an example of the later consider:</p>
 <blockquote>
 <div><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># As user mrodgers</span>
@@ -272,9 +323,9 @@ owens-login01:johrstrom johrstrom$ ln -s /fs/project/PZS0714/mrodgers/blender-ba
 </div>
 <div class="section" id="peer-to-peer-executable-sharing">
 <h2>Peer to Peer Executable Sharing<a class="headerlink" href="#peer-to-peer-executable-sharing" title="Permalink to this headline">¶</a></h2>
-<p>By setting a few environment variables it is possible to enable a more polished peer to peer app sharing experience. There are two reasons why this mode is not always enabled: the first is that app permissions are the only thing that prevents all a site’s Ondemand users from seeing a shared app, so it is important to get the permissions correct, and only to deploy apps that are production ready. The other reason to be careful with app sharing is that is expands the amount of trust placed in app developers.</p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
+<p>By setting a few environment variables it is possible to enable a more polished peer to peer app sharing experience. There are two reasons why this mode is not always enabled: the first is that app permissions are the only thing that prevents all a site’s Ondemand users from seeing a shared app, so it is important to get the permissions correct, and only to deploy apps that are production ready. The other reason to be careful with app sharing is that requires greater trust placed in app developers.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
 <p class="last">Executable sharing means the app and all its code runs as the user
 executing it, like everything else in OnDemand. User’s might not
 realize this. We currently do not provide an opt in screen warning
@@ -340,9 +391,8 @@ be done through FACLs or using the same chgrp + 755 approach</li>
 </pre></div>
 </div>
 </div>
-</div>
-<div class="section" id="examples-of-app-sharing">
-<h2>Examples of App Sharing<a class="headerlink" href="#examples-of-app-sharing" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="example-of-executable-sharing">
+<h3>Example of Executable Sharing<a class="headerlink" href="#example-of-executable-sharing" title="Permalink to this headline">¶</a></h3>
 <p>This is with two users Eric (efranz) and Bob (an0047).</p>
 <p>Eric has a dev app “Matlab”, and interactive plugin app. Eric can</p>
 <ol class="arabic simple">
@@ -374,6 +424,7 @@ repo to deploy <code class="docutils literal notranslate"><span class="pre">~efr
 launch it:</p>
 <div class="figure align-center">
 <img alt="_images/app-sharing-6.png" src="_images/app-sharing-6.png" />
+</div>
 </div>
 </div>
 </div>
