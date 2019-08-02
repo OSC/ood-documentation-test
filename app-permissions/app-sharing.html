@@ -227,16 +227,6 @@ submit jobs.</li>
 home directory that other users can launch. This is similar to adding to your
 PATH the bin directory of another user.</li>
 </ol>
-<p>The rest of this document addresses OnDemand’s support for Executable Sharing.</p>
-<div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">Executable sharing means the app and all its code runs as the user
-executing it, like everything else in OnDemand. User’s might not
-realize this. We currently do not provide an opt in screen warning
-users that this app “will have permission to do everything on their
-behalf and act as them”. As a result, you should fully trust whoever
-you enable to do share apps using executable sharing.</p>
-</div>
 </div>
 <div class="section" id="file-system-permissions">
 <h2>File System Permissions<a class="headerlink" href="#file-system-permissions" title="Permalink to this headline">¶</a></h2>
@@ -283,7 +273,15 @@ owens-login01:johrstrom johrstrom$ ln -s /fs/project/PZS0714/mrodgers/blender-ba
 <div class="section" id="peer-to-peer-executable-sharing">
 <h2>Peer to Peer Executable Sharing<a class="headerlink" href="#peer-to-peer-executable-sharing" title="Permalink to this headline">¶</a></h2>
 <p>By setting a few environment variables it is possible to enable a more polished peer to peer app sharing experience. There are two reasons why this mode is not always enabled: the first is that app permissions are the only thing that prevents all a site’s Ondemand users from seeing a shared app, so it is important to get the permissions correct, and only to deploy apps that are production ready. The other reason to be careful with app sharing is that is expands the amount of trust placed in app developers.</p>
-<p>Why is app sharing an expansion of trust? To begin with an app developer is able to run code on the webserver. Assuming that the webserver is secured as though it were a login node this is requires a fairly trivial amount of trust in a developer. However, when a developer is permitted to share apps, then they write code that others execute, and so a malicious or careless developer could damage or steal their user’s work.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Executable sharing means the app and all its code runs as the user
+executing it, like everything else in OnDemand. User’s might not
+realize this. We currently do not provide an opt in screen warning
+users that this app “will have permission to do everything on their
+behalf and act as them”. As a result, you should fully trust whoever
+you enable to do share apps using executable sharing.</p>
+</div>
 <div class="section" id="enabling-the-app-sharing-dashboard">
 <h3>Enabling The App Sharing Dashboard<a class="headerlink" href="#enabling-the-app-sharing-dashboard" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic simple">
