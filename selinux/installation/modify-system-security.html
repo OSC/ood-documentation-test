@@ -218,6 +218,10 @@
 <span id="id1"></span><h1>2. Modify System Security<a class="headerlink" href="#modify-system-security" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="selinux">
 <span id="ood-selinux"></span><h2>SELinux<a class="headerlink" href="#selinux" title="Permalink to this headline">¶</a></h2>
+<div class="admonition danger">
+<p class="first admonition-title">Danger</p>
+<p class="last">Support for SELinux on the Open OnDemand host is currently considered an alpha feature.</p>
+</div>
 <ol class="arabic">
 <li><p class="first">If you plan to use <a class="reference external" href="https://wiki.centos.org/HowTos/SELinux">SELinux</a> on the Open OnDemand host you must install the <cite>ondemand-selinux</cite> package.</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo yum install ondemand-selinux
@@ -235,6 +239,12 @@
 <li>Enable several booleans.</li>
 <li>Apply a custom policy to allow some additional actions by processes in the <cite>httpd_t</cite> context.</li>
 </ul>
+<p>If you experience denails when running SELinux with Open OnDemand please provide denial details by generating a <cite>ood.te</cite> file and posting that to <a class="reference external" href="https://discourse.osc.edu/c/open-ondemand">Discourse</a>. It would also help to post the <cite>audit.log</cite> lines that correspond to the OnDemand specific denials.</p>
+<blockquote>
+<div><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>cat /var/log/audit/audit.log <span class="p">|</span> audit2allow -M ood
+</pre></div>
+</div>
+</div></blockquote>
 </div>
 <div class="section" id="firewall">
 <span id="id2"></span><h2>Firewall<a class="headerlink" href="#firewall" title="Permalink to this headline">¶</a></h2>
