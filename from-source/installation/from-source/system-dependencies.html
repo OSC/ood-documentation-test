@@ -99,7 +99,11 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../../installation.html">Installation</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../install-software.html">1. Install Software From RPM</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../from-source.html">2. Install From Source</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Install System Dependencies</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Install System Dependencies</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#non-osc-provided-deps">Non-OSC Provided Deps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#osc-provided-deps">OSC Provided Deps</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="ood-infrastructure.html">Install OnDemand Infrastructure</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core-apps.html">Install OnDemand Core Applications</a></li>
 </ul>
@@ -220,44 +224,44 @@
             
   <div class="section" id="install-system-dependencies">
 <span id="system-dependencies"></span><h1>Install System Dependencies<a class="headerlink" href="#install-system-dependencies" title="Permalink to this headline">¶</a></h1>
-<p>What follows is a list of the various programs and runtimes that are necessary to run OnDemand on the web node.</p>
+<div class="section" id="non-osc-provided-deps">
+<h2>Non-OSC Provided Deps<a class="headerlink" href="#non-osc-provided-deps" title="Permalink to this headline">¶</a></h2>
+<p>Install packages from your regular RPM servers.</p>
 <blockquote>
-<div><div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Although newer versions of Ruby and NodeJS are available OnDemand applications are built against specific versions of their runtimes and are not safe to blindly upgrade.</p>
+<div><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo yum install epel-release centos-release-scl lsof sudo
+</pre></div>
 </div>
 </div></blockquote>
-<ul class="simple">
-<li>Apache - Mod_ldap</li>
-<li>Apache - Mod_ssl</li>
-<li>Apache 2.4</li>
-<li>Apache development libs</li>
-<li>centos-release-scl - CentOS/RHEL specific</li>
-<li>cronie</li>
-<li>curl</li>
-<li>epel-release - CentOS/RHEL specific</li>
-<li>file</li>
-<li>Git 2.9</li>
-<li>lsof</li>
-<li>lua</li>
-<li>make</li>
-<li>Nginx 1.14.0</li>
-<li>NodeJS 6</li>
-<li>NodeJS - NPM</li>
-<li>Passenger 5.3.7</li>
-<li>rsync</li>
-<li>Ruby - Bundler</li>
-<li>Ruby - development libraries</li>
-<li>Ruby - Gem</li>
-<li>Ruby - Rake</li>
-<li>Ruby 2.4</li>
-<li>sqlite3</li>
-<li>sqlite3 - development libraries</li>
-<li>sudo</li>
-<li>timeout</li>
-<li>wget</li>
-<li>xmllint</li>
-</ul>
+</div>
+<div class="section" id="osc-provided-deps">
+<h2>OSC Provided Deps<a class="headerlink" href="#osc-provided-deps" title="Permalink to this headline">¶</a></h2>
+<p>Install system specific versions of system dependencies. This is the most annoying/challenging part to do ‘from source’ and so we are going to use OSC provided RPMs.</p>
+<p>Many of OnDemand’s system level dependencies are available from <code class="docutils literal notranslate"><span class="pre">https://yum.osc.edu/ondemand/$ONDEMAND_RELEASE/web/$ENTERPRISE_LINUX_VERSION/x86_64/</span></code> and need to be installed to the node that will become the OnDemand web server.</p>
+<blockquote>
+<div><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># To install deps for OnDemand 1.6.x on CentOS 7:</span>
+sudo yum install <span class="se">\</span>
+    https://yum.osc.edu/ondemand/1.6/web/el7/x86_64/ondemand-scldevel-1.6-1.el7.x86_64.rpm <span class="se">\</span>
+    https://yum.osc.edu/ondemand/1.6/web/el7/x86_64/ondemand-runtime-1.6-1.el7.x86_64.rpm <span class="se">\</span>
+    https://yum.osc.edu/ondemand/1.6/web/el7/x86_64/ondemand-ruby-1.6-1.el7.x86_64.rpm <span class="se">\</span>
+    https://yum.osc.edu/ondemand/1.6/web/el7/x86_64/ondemand-passenger-devel-5.3.7-2.el7.x86_64.rpm <span class="se">\</span>
+    https://yum.osc.edu/ondemand/1.6/web/el7/x86_64/ondemand-passenger-debuginfo-5.3.7-2.el7.x86_64.rpm <span class="se">\</span>
+    https://yum.osc.edu/ondemand/1.6/web/el7/x86_64/ondemand-passenger-5.3.7-2.el7.x86_64.rpm <span class="se">\</span>
+    https://yum.osc.edu/ondemand/1.6/web/el7/x86_64/ondemand-nodejs-1.6-1.el7.x86_64.rpm <span class="se">\</span>
+    https://yum.osc.edu/ondemand/1.6/web/el7/x86_64/ondemand-nginx-filesystem-1.14.0-2.p5.3.7.el7.noarch.rpm <span class="se">\</span>
+    https://yum.osc.edu/ondemand/1.6/web/el7/x86_64/ondemand-nginx-debuginfo-1.14.0-2.p5.3.7.el7.x86_64.rpm <span class="se">\</span>
+    https://yum.osc.edu/ondemand/1.6/web/el7/x86_64/ondemand-nginx-1.14.0-2.p5.3.7.el7.x86_64.rpm <span class="se">\</span>
+    https://yum.osc.edu/ondemand/1.6/web/el7/x86_64/ondemand-git-1.6-1.el7.x86_64.rpm <span class="se">\</span>
+    https://yum.osc.edu/ondemand/1.6/web/el7/x86_64/ondemand-apache-1.6-1.el7.x86_64.rpm <span class="se">\</span>
+    https://yum.osc.edu/ondemand/1.6/web/el7/x86_64/ondemand-1.6.7-1.el7.x86_64.rpm <span class="se">\</span>
+    https://yum.osc.edu/ondemand/1.6/web/el7/x86_64/httpd24-mod_auth_openidc-debuginfo-2.3.11-1.el7.x86_64.rpm <span class="se">\</span>
+    https://yum.osc.edu/ondemand/1.6/web/el7/x86_64/httpd24-mod_auth_openidc-2.3.11-1.el7.x86_64.rpm <span class="se">\</span>
+    https://yum.osc.edu/ondemand/1.6/web/el7/x86_64/cjose-devel-0.6.1-1.el7.x86_64.rpm <span class="se">\</span>
+    https://yum.osc.edu/ondemand/1.6/web/el7/x86_64/cjose-debuginfo-0.6.1-1.el7.x86_64.rpm <span class="se">\</span>
+    https://yum.osc.edu/ondemand/1.6/web/el7/x86_64/cjose-0.6.1-1.el7.x86_64.rpm
+</pre></div>
+</div>
+</div></blockquote>
+</div>
 </div>
 
 

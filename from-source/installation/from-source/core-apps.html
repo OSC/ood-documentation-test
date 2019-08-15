@@ -226,7 +226,7 @@
 <p class="last">The OnDemand team is in the process of moving core applications to a monolithic repository which will significantly simplify installation.</p>
 </div>
 </div></blockquote>
-<p>OnDemand’s core applications are stored in their own Github repositories and should be cloned to <code class="docutils literal notranslate"><span class="pre">/var/www/ood/apps/sys/$APP</span></code>:</p>
+<p>OnDemand’s core applications are stored in their own Github repositories and should each be cloned to <code class="docutils literal notranslate"><span class="pre">/var/www/ood/apps/sys/$APP</span></code>:</p>
 <blockquote>
 <div><ul class="simple">
 <li><a class="reference external" href="https://github.com/OSC/ood-activejobs/">ood-activejobs</a>: <code class="docutils literal notranslate"><span class="pre">/var/www/ood/apps/sys/activejobs</span></code></li>
@@ -240,13 +240,17 @@
 <p>Each application has its own dependencies which need to be installed (from either NPM or Ruby Gems) by running the following:</p>
 <blockquote>
 <div><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> /var/www/ood/apps/sys/<span class="nv">$APP</span>
-<span class="c1"># We have both Node and Rails applications, let&#39;s just cover both in a single command</span>
-sudo <span class="nv">NODE_ENV</span><span class="o">=</span>production <span class="nv">RAILS_ENV</span><span class="o">=</span>production scl <span class="nb">enable</span> rh-nodejs6 rh-ruby24 rh-git29 -- bin/setup
+<span class="c1"># We have both Node and Rails applications, let&#39;s cover both in a single command</span>
+sudo <span class="nv">NODE_ENV</span><span class="o">=</span>production <span class="nv">RAILS_ENV</span><span class="o">=</span>production scl <span class="nb">enable</span> ondemand -- bin/setup
 </pre></div>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">For systems without Software Collections the <code class="docutils literal notranslate"><span class="pre">scl</span> <span class="pre">enable</span> <span class="pre">...</span> <span class="pre">--</span></code> portion will be unnecessary so long as the correct versions of NodeJS, Ruby and Git are available at build time.</p>
+<p class="last"><code class="docutils literal notranslate"><span class="pre">scl</span> <span class="pre">enable</span> <span class="pre">ondemand</span></code> is equivalent to simultaneously enabling: rh-nodejs6 rh-ruby24 rh-git29.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For operating systems without <a class="reference external" href="https://www.softwarecollections.org/en/">Software Collections</a> the <code class="docutils literal notranslate"><span class="pre">scl</span> <span class="pre">enable</span> <span class="pre">...</span> <span class="pre">--</span></code> portion will be unnecessary so long as the correct versions of NodeJS, Ruby and Git are available at build time.</p>
 </div>
 </div></blockquote>
 </div>

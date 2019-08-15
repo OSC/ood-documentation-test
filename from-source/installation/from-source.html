@@ -224,11 +224,15 @@
 <p class="last">Skip to the <a class="reference external" href="/installation/modify-system-security.html">next section</a> if installing from RPMs</p>
 </div>
 </div></blockquote>
-<p>The alternative to installing OnDemand using RPMs is to install from source. This tutorial will assume installation on a CentOS/RHEL 7 base. Installation on other systems is possible, but installing compatible versions of certain dependencies is left as an exercise for the interested. Use of nested dependencies specific to CentOS/RHEL such as Software Collections will be called out.</p>
+<p>The alternative to installing the core of OnDemand using RPMs is to install from source. This tutorial will assume installation on a CentOS/RHEL 7 base. We will look at how to install the core of OnDemand, while still using some OSC-provided RPMs to ensure a functioning build without having to go into too much detail. Installation on non-RPM-based systems is possible, but installing compatible versions of certain dependencies is left as an exercise for the interested.</p>
 <div class="toctree-wrapper compound">
 <p class="caption"><span class="caption-text">Steps</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="from-source/system-dependencies.html">Install System Dependencies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="from-source/system-dependencies.html">Install System Dependencies</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="from-source/system-dependencies.html#non-osc-provided-deps">Non-OSC Provided Deps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="from-source/system-dependencies.html#osc-provided-deps">OSC Provided Deps</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="from-source/ood-infrastructure.html">Install OnDemand Infrastructure</a></li>
 <li class="toctree-l1"><a class="reference internal" href="from-source/core-apps.html">Install OnDemand Core Applications</a></li>
 </ul>
