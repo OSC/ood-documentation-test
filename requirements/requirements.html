@@ -217,12 +217,25 @@
 <li><a class="reference external" href="https://en.wikipedia.org/wiki/Lsof">lsof</a></li>
 <li><a class="reference external" href="https://www.sudo.ws/">sudo</a></li>
 <li><dl class="first docutils">
-<dt><a class="reference external" href="https://openondemand.org/">ondemand-release-web-latest-1-2.el7.noarch.rpm</a>: the central OnDemand RPM</dt>
+<dt><a class="reference external" href="https://openondemand.org/">ondemand-release-web-latest-1-2.el7.noarch.rpm</a>:</dt>
 <dd><ul class="first last">
-<li><a class="reference external" href="https://www.softwarecollections.org/en/scls/rhscl/httpd24/">Apache HTTP Server 2.4</a></li>
-<li><a class="reference external" href="https://www.softwarecollections.org/en/scls/rhscl/rh-git29/">Git 2.9</a></li>
-<li><a class="reference external" href="https://www.softwarecollections.org/en/scls/rhscl/rh-nodejs6/">Node.js 6</a></li>
-<li><a class="reference external" href="https://www.softwarecollections.org/en/scls/rhscl/rh-ruby24/">Ruby 2.4</a> with <strong class="command">rake</strong>, <strong class="command">bundler</strong>, and development libraries</li>
+<li>cjose-0.6.1-1.el7.x86_64.rpm</li>
+<li>cjose-debuginfo-0.6.1-1.el7.x86_64.rpm</li>
+<li>cjose-devel-0.6.1-1.el7.x86_64.rpm</li>
+<li>httpd24-mod_auth_openidc-2.3.11-1.el7.x86_64.rpm</li>
+<li>httpd24-mod_auth_openidc-debuginfo-2.3.11-1.el7.x86_64.rpm</li>
+<li>ondemand-apache-1.6-1.el7.x86_64.rpm</li>
+<li>ondemand-git-1.6-1.el7.x86_64.rpm</li>
+<li>ondemand-nginx-1.14.0-2.p5.3.7.el7.x86_64.rpm</li>
+<li>ondemand-nginx-debuginfo-1.14.0-2.p5.3.7.el7.x86_64.rpm</li>
+<li>ondemand-nginx-filesystem-1.14.0-2.p5.3.7.el7.noarch.rpm</li>
+<li>ondemand-nodejs-1.6-1.el7.x86_64.rpm</li>
+<li>ondemand-passenger-5.3.7-2.el7.x86_64.rpm</li>
+<li>ondemand-passenger-debuginfo-5.3.7-2.el7.x86_64.rpm</li>
+<li>ondemand-passenger-devel-5.3.7-2.el7.x86_64.rpm</li>
+<li>ondemand-ruby-1.6-1.el7.x86_64.rpm</li>
+<li>ondemand-runtime-1.6-1.el7.x86_64.rpm</li>
+<li>ondemand-scldevel-1.6-1.el7.x86_64.rpm</li>
 </ul>
 </dd>
 </dl>
@@ -237,7 +250,7 @@
 </div>
 <div class="section" id="hardware-requirements">
 <h2>Hardware Requirements<a class="headerlink" href="#hardware-requirements" title="Permalink to this headline">¶</a></h2>
-<p>We have not yet quantified the minimum hardware requirements for OnDemand. At OSC our VMs that we run OnDemand on are over powered for our needs. We have 16 cores and 64GB RAM for OSC OnDemand which is overkill based on Ganglia usage. Our Ganglia graphs show we average 150MB memory per PUN and average CPU percentage per PUN is 4%. Our OnDemand instance serves over 600 unique users each month and at any given time we usually have 60-100 Per User NGINX (PUNs) processes running.</p>
+<p>At <a class="reference external" href="https://osc.edu">OSC</a> we have not quantified the minimum hardware requirements for OnDemand. The VMs that run OnDemand have 16 cores and 64GB RAM. According to our Ganglia metrics that is over powered for our normal utilization. We average 150MB memory per PUN and the average CPU percentage per Per User NGINX (PUN) is 4%. Our OnDemand instance serves over 600 unique users each month and at any given time usually has 60-100 PUN processes running.</p>
 <p>The Passenger apps that make up the core of OnDemand (that NGINX is configured with), are each killed after a short period (5 minutes) of inactivity from the user, and when users are using NoVNC or connecting to Jupyter Notebook or RStudio on a compute node, Apache is proxying these users, bypassing the PUN completely. So it can happen that 60 PUNs are running but twice the number of users are actually being served.</p>
 <p>Another sizing factor that has impacted us in the past is the size of /tmp.  We’ve had in the past occasions where /tmp is exhausted and have had to increase the size from 20GB to 50GB.</p>
 </div>
