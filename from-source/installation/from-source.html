@@ -102,6 +102,7 @@
 <li class="toctree-l3"><a class="reference internal" href="from-source/system-dependencies.html">Install System Dependencies</a></li>
 <li class="toctree-l3"><a class="reference internal" href="from-source/ood-infrastructure.html">Install OnDemand Infrastructure</a></li>
 <li class="toctree-l3"><a class="reference internal" href="from-source/core-apps.html">Install OnDemand Core Applications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="from-source/finalizing.html">Finalizing From Source Installation</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="modify-system-security.html">3. Modify System Security</a></li>
@@ -225,6 +226,10 @@
 </div>
 </div></blockquote>
 <p>The alternative to installing the core of OnDemand using RPMs is to install from source. This tutorial will assume installation on a CentOS/RHEL 7 base. We will look at how to install the core of OnDemand, while still using some OSC-provided RPMs to ensure a functioning build without having to go into too much detail. Installation on non-RPM-based systems is possible, but installing compatible versions of certain dependencies is left as an exercise for the interested.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For those familiar with developing RPM distributed software the following is going to be drawn from the OnDemand RPM specfile which can be found on Github: <a class="reference external" href="https://github.com/OSC/ondemand/blob/5e6623de7e72c17d858dd7f533eb817f6193e7da/packaging/ondemand.spec">https://github.com/OSC/ondemand/blob/5e6623de7e72c17d858dd7f533eb817f6193e7da/packaging/ondemand.spec</a></p>
+</div>
 <div class="toctree-wrapper compound">
 <p class="caption"><span class="caption-text">Steps</span></p>
 <ul>
@@ -235,6 +240,15 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="from-source/ood-infrastructure.html">Install OnDemand Infrastructure</a></li>
 <li class="toctree-l1"><a class="reference internal" href="from-source/core-apps.html">Install OnDemand Core Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="from-source/finalizing.html">Finalizing From Source Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="from-source/finalizing.html#update-the-apache-service-environment">Update the Apache service environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="from-source/finalizing.html#update-the-sudoers-list">Update the sudoers list</a></li>
+<li class="toctree-l2"><a class="reference internal" href="from-source/finalizing.html#add-nginx-configs-for-the-core-web-apps">Add NGINX configs for the core web apps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="from-source/finalizing.html#add-a-cronjob-to-prune-long-running-puns">Add a cronjob to prune long running PUNs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="from-source/finalizing.html#add-apache-config">Add Apache Config</a></li>
+<li class="toctree-l2"><a class="reference internal" href="from-source/finalizing.html#installation-complete">Installation Complete</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
