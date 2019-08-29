@@ -223,7 +223,7 @@
 <span id="ood-infrastructure"></span><h1>Install OnDemand Infrastructure<a class="headerlink" href="#install-ondemand-infrastructure" title="Permalink to this headline">¶</a></h1>
 <p>OnDemand’s core infrastructure is stored in a Github repository located at <a class="reference external" href="https://github.com/osc/ondemand">https://github.com/osc/ondemand</a>, and it is installed to <code class="docutils literal notranslate"><span class="pre">/opt/ood</span></code>.</p>
 <blockquote>
-<div><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> /opt
+<div><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> /opt/ood
 sudo scl <span class="nb">enable</span> rh-git29 -- git init
 sudo scl <span class="nb">enable</span> rh-git29 -- git remote add origin https://github.com/osc/ondemand
 sudo scl <span class="nb">enable</span> rh-git29 -- git pull origin master
@@ -232,7 +232,7 @@ sudo scl <span class="nb">enable</span> rh-git29 -- git pull origin master
 </div></blockquote>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p class="last">We need to perform the <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">init</span></code> and <code class="docutils literal notranslate"><span class="pre">pull</span></code> because <code class="docutils literal notranslate"><span class="pre">/opt/ood</span></code> already exists because it is created by one of the other RPMs that we have installed, and <code class="docutils literal notranslate"><span class="pre">git</span></code> refuses to clone into an existing directory with contents.</p>
+<p class="last">We need to perform the <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">init</span></code> and <code class="docutils literal notranslate"><span class="pre">pull</span></code> instead of a <code class="docutils literal notranslate"><span class="pre">clone</span></code> because <code class="docutils literal notranslate"><span class="pre">/opt/ood</span></code> already exists because it is created by one of the other RPMs that we have installed, and <code class="docutils literal notranslate"><span class="pre">git</span></code> will refuse to clone into an existing directory with contents.</p>
 </div>
 <p>This will install the following components:</p>
 <blockquote>
