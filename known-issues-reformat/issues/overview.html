@@ -129,17 +129,14 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">OnDemand’s Known Issues</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#file-names-with-xml-or-html-break-display">File names with XML or HTML break display</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#uploading-large-files-is-not-reliable">Uploading large files is not reliable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#problems-uploading-files">Problems uploading files</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#downloading-forbidden-directories-fails-silently">Downloading forbidden directories fails silently</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#viewing-large-files-causes-problems">Viewing large files causes problems</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#file-upload-may-leave-an-incomplete-file">File upload may leave an incomplete file</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#incorrect-link-in-tree-root">Incorrect link in tree root</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#rebuild-app-action-in-developer-view-may-fail">Rebuild app action in developer view may fail</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#nomethoderror-when-using-a-custom-translation-file">NoMethodError when using a custom translation file</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dashboard-may-be-slow-due-to-logic-in-erb-templates">Dashboard may be slow due to logic in ERB templates</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#batch-connect-adapter-errors-do-not-contain-stack-trace">Batch Connect adapter errors do not contain stack trace</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#batch-connect-sessions-may-fail-silently">Batch Connect sessions may fail silently</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#novnc-does-not-work-with-safari-and-apache-basicauth">noVNC does not work with Safari and Apache BasicAuth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#batch-connect-sessions-do-not-contain-much-debugging-info">Batch Connect sessions do not contain much debugging info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#novnc-does-not-work-with-safari-and-apache-basic-auth">noVNC does not work with Safari and Apache Basic auth</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#multiline-select-does-not-work-in-ms-edge">Multiline select does not work in MS Edge</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#high-output-programs-may-freeze-the-shell">High output programs may freeze the shell</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#paste-does-not-work-in-older-versions-of-safari">Paste does not work in older versions of Safari</a></li>
@@ -225,19 +222,16 @@
 </div>
 <ul class="simple">
 <li><a class="reference internal" href="#file-names-with-xml-or-html-break-display">File names with XML or HTML break display</a></li>
-<li><a class="reference internal" href="#uploading-large-files-is-not-reliable">Uploading large files is not reliable</a></li>
+<li><a class="reference internal" href="#problems-uploading-files">Problems uploading files</a></li>
 <li><a class="reference internal" href="#downloading-forbidden-directories-fails-silently">Downloading forbidden directories fails silently</a></li>
 <li><a class="reference internal" href="#viewing-large-files-causes-problems">Viewing large files causes problems</a></li>
-<li><a class="reference internal" href="#file-upload-may-leave-an-incomplete-file">File upload may leave an incomplete file</a></li>
 <li><a class="reference internal" href="#incorrect-link-in-tree-root">Incorrect link in tree root</a></li>
 </ul>
 <ul class="simple">
-<li><a class="reference internal" href="#rebuild-app-action-in-developer-view-may-fail">Rebuild app action in developer view may fail</a></li>
 <li><a class="reference internal" href="#nomethoderror-when-using-a-custom-translation-file">NoMethodError when using a custom translation file</a></li>
 <li><a class="reference internal" href="#dashboard-may-be-slow-due-to-logic-in-erb-templates">Dashboard may be slow due to logic in ERB templates</a></li>
-<li><a class="reference internal" href="#batch-connect-adapter-errors-do-not-contain-stack-trace">Batch Connect adapter errors do not contain stack trace</a></li>
-<li><a class="reference internal" href="#batch-connect-sessions-may-fail-silently">Batch Connect sessions may fail silently</a></li>
-<li><a class="reference internal" href="#novnc-does-not-work-with-safari-and-apache-basicauth">noVNC does not work with Safari and Apache BasicAuth</a></li>
+<li><a class="reference internal" href="#batch-connect-sessions-do-not-contain-much-debugging-info">Batch Connect sessions do not contain much debugging info</a></li>
+<li><a class="reference internal" href="#novnc-does-not-work-with-safari-and-apache-basic-auth">noVNC does not work with Safari and Apache Basic auth</a></li>
 </ul>
 <ul class="simple">
 <li><a class="reference internal" href="#multiline-select-does-not-work-in-ms-edge">Multiline select does not work in MS Edge</a></li>
@@ -247,64 +241,89 @@
 <div class="section" id="file-names-with-xml-or-html-break-display">
 <h2>File names with XML or HTML break display<a class="headerlink" href="#file-names-with-xml-or-html-break-display" title="Permalink to this headline">¶</a></h2>
 <p>Files whose names that contain XML or HTML special characters (<code class="docutils literal notranslate"><span class="pre">&lt;,</span> <span class="pre">&gt;,</span> <span class="pre">&amp;</span></code>) break the File Explorer’s display. While this does not introduce corrupt the file system it does render the application unusable.</p>
-<a href='https://github.com/OSC/ood-fileexplorer/issues/198'>OSC/ood-fileexplorer#198</a></div>
-<div class="section" id="uploading-large-files-is-not-reliable">
-<h2>Uploading large files is not reliable<a class="headerlink" href="#uploading-large-files-is-not-reliable" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><a href='https://github.com/OSC/ood-fileexplorer/issues/198'>OSC/ood-fileexplorer#198</a></div></blockquote>
+<p>Work arounds: to be able to manipulate files that break the Files app users can use a graphical SFTP client like <a class="reference external" href="https://cyberduck.io">Cyberduck</a> or <a class="reference external" href="https://filezilla-project.org/">FileZilla</a> or the command line.</p>
+</div>
+<div class="section" id="problems-uploading-files">
+<h2>Problems uploading files<a class="headerlink" href="#problems-uploading-files" title="Permalink to this headline">¶</a></h2>
 <p>The File Explorer uses HTTP PUT and the NGINX temporary directory to upload files. For most usage this arrangement is adequate, but large files (which may exceed the capacity of the temp dir), shakey network connections (which may cause a transfer to stop partway through) can result in an unsatisfactory experience.</p>
+<p>If the NGINX temporary directory is on a small partition it is possible to overload it when attempting an upload. In the case that an upload is too large to fit in the upload temp directory the application may send the partially uploaded file to the destination without reporting an error.</p>
+<blockquote>
+<div><a href='https://github.com/OSC/ood-fileexplorer/issues/187'>OSC/ood-fileexplorer#187</a></div></blockquote>
+<p>Work arounds: to be able to upload larger files that fail with the Files app users can use a graphical SFTP client like <a class="reference external" href="https://cyberduck.io">Cyberduck</a>, <a class="reference external" href="https://www.globus.org/globus-connect-personal">Globus Connect Personal</a>, or the command line. Admins should check to ensure that the partition containing the upload temp dir (<code class="docutils literal notranslate"><span class="pre">/var/run/ondemand-nginx</span></code>) is adequate.</p>
 </div>
 <div class="section" id="downloading-forbidden-directories-fails-silently">
 <h2>Downloading forbidden directories fails silently<a class="headerlink" href="#downloading-forbidden-directories-fails-silently" title="Permalink to this headline">¶</a></h2>
 <p>When a user attempts to download a directory for which they do not have adequate file system permissions the download action will fail without notifying the user of the error.</p>
-<a href='https://github.com/OSC/ood-fileexplorer/issues/185'>OSC/ood-fileexplorer#185</a></div>
+<blockquote>
+<div><a href='https://github.com/OSC/ood-fileexplorer/issues/185'>OSC/ood-fileexplorer#185</a></div></blockquote>
+<p>Workarounds: No work arounds are available.</p>
+</div>
 <div class="section" id="viewing-large-files-causes-problems">
 <h2>Viewing large files causes problems<a class="headerlink" href="#viewing-large-files-causes-problems" title="Permalink to this headline">¶</a></h2>
 <p>When attempting to view large files (multi-megabyte) the File Explorer has been observed to cause right click to stop working in FireFox.</p>
-<a href='https://github.com/OSC/ood-fileexplorer/issues/196'>OSC/ood-fileexplorer#196</a></div>
-<div class="section" id="file-upload-may-leave-an-incomplete-file">
-<h2>File upload may leave an incomplete file<a class="headerlink" href="#file-upload-may-leave-an-incomplete-file" title="Permalink to this headline">¶</a></h2>
-<p>If the NGINX temporary directory is on a small partition it is possible to overload it when attempting an upload. In the case that an upload is too large to fit in the upload temp directory the application may send the partially uploaded file to the destination without reporting an error.</p>
-<a href='https://github.com/OSC/ood-fileexplorer/issues/187'>OSC/ood-fileexplorer#187</a></div>
+<blockquote>
+<div><a href='https://github.com/OSC/ood-fileexplorer/issues/196'>OSC/ood-fileexplorer#196</a></div></blockquote>
+<p>Work arounds: if graphical desktops are installed, then use the recommended file viewer / editor for the desired file type. If the correct viewer is not known to the user, but is installed on the system it may be discoverable using the command line program <code class="docutils literal notranslate"><span class="pre">xdg-open</span> <span class="pre">[file-name]</span></code>.</p>
+</div>
 <div class="section" id="incorrect-link-in-tree-root">
 <h2>Incorrect link in tree root<a class="headerlink" href="#incorrect-link-in-tree-root" title="Permalink to this headline">¶</a></h2>
 <p>In the File Explorer attempting to open the tree menu’s root link in a new tab causes an error.</p>
-<a href='https://github.com/OSC/ood-fileexplorer/issues/173'>OSC/ood-fileexplorer#173</a></div>
-<div class="section" id="rebuild-app-action-in-developer-view-may-fail">
-<h2>Rebuild app action in developer view may fail<a class="headerlink" href="#rebuild-app-action-in-developer-view-may-fail" title="Permalink to this headline">¶</a></h2>
-<p>???</p>
+<blockquote>
+<div><a href='https://github.com/OSC/ood-fileexplorer/issues/173'>OSC/ood-fileexplorer#173</a></div></blockquote>
+<p>Workarounds: No work arounds are available at this time.</p>
 </div>
 <div class="section" id="nomethoderror-when-using-a-custom-translation-file">
 <h2>NoMethodError when using a custom translation file<a class="headerlink" href="#nomethoderror-when-using-a-custom-translation-file" title="Permalink to this headline">¶</a></h2>
 <p>When attempting to use a custom translation file if the directory pointed to by the environment variable <code class="docutils literal notranslate"><span class="pre">OOD_LOCALES_ROOT</span></code> does not exist then attempting to load the application will cause an unhandled <code class="docutils literal notranslate"><span class="pre">NoMethodError</span></code> to be throw in the application controller.</p>
-<a href='https://github.com/OSC/ood-dashboard/issues/465'>OSC/ood-dashboard#465</a></div>
+<blockquote>
+<div><a href='https://github.com/OSC/ood-dashboard/issues/465'>OSC/ood-dashboard#465</a></div></blockquote>
+<p>Workarounds: Admins are encouraged to first test all changes to their OnDemand instances in a test environment before applying changes to production services.</p>
+</div>
 <div class="section" id="dashboard-may-be-slow-due-to-logic-in-erb-templates">
 <h2>Dashboard may be slow due to logic in ERB templates<a class="headerlink" href="#dashboard-may-be-slow-due-to-logic-in-erb-templates" title="Permalink to this headline">¶</a></h2>
 <p>The Dashboard may be slow as a result of how the menu is built if custom Batch Connect applications have complicated logic in their <code class="docutils literal notranslate"><span class="pre">form.yml.erb</span></code>.</p>
 <p>An example where this may occur is if the ERB templates contain commands that query the cluster’s status.</p>
-<a href='https://github.com/OSC/ood-dashboard/issues/417'>OSC/ood-dashboard#417</a></div>
-<div class="section" id="batch-connect-adapter-errors-do-not-contain-stack-trace">
-<h2>Batch Connect adapter errors do not contain stack trace<a class="headerlink" href="#batch-connect-adapter-errors-do-not-contain-stack-trace" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><a href='https://github.com/OSC/ood-dashboard/issues/417'>OSC/ood-dashboard#417</a></div></blockquote>
+<p>Workarounds: Reducing the amount of logic inside ERBs is the near-term solution. In the longer term the OnDemand team will be re-evaluating how the Dashboard menu is constructed so that this will no longer be an issue.</p>
+</div>
+<div class="section" id="batch-connect-sessions-do-not-contain-much-debugging-info">
+<h2>Batch Connect sessions do not contain much debugging info<a class="headerlink" href="#batch-connect-sessions-do-not-contain-much-debugging-info" title="Permalink to this headline">¶</a></h2>
 <p>When troubleshooting a failed Batch Connect job it may be difficult to diagnose certain errors because the adapter error interface is generic and does not contain a stack trace of what has gone wrong.</p>
-<a href='https://github.com/OSC/ood-dashboard/issues/397'>OSC/ood-dashboard#397</a></div>
-<div class="section" id="batch-connect-sessions-may-fail-silently">
-<h2>Batch Connect sessions may fail silently<a class="headerlink" href="#batch-connect-sessions-may-fail-silently" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><a href='https://github.com/OSC/ood-dashboard/issues/397'>OSC/ood-dashboard#397</a></div></blockquote>
+<p>Workarounds: no work around is available to the user; admins may find examples of what went wrong in the NGINX logs for the troubled user.</p>
 <p>When a Batch Connect session fails inside of the <code class="docutils literal notranslate"><span class="pre">script.sh.erb</span></code> section of its execution the session information is removed from the view and no error message is shown to the user.</p>
-<a href='https://github.com/OSC/ood-dashboard/issues/171'>OSC/ood-dashboard#171</a></div>
-<div class="section" id="novnc-does-not-work-with-safari-and-apache-basicauth">
-<h2>noVNC does not work with Safari and Apache BasicAuth<a class="headerlink" href="#novnc-does-not-work-with-safari-and-apache-basicauth" title="Permalink to this headline">¶</a></h2>
-<p>As currently configured, the Cluster and Interactive Apps of Open OnDemand do not work with Safari. This is due to a bug in Safari with using websockets through servers protected using “Basic” auth. Open OnDemand can be installed with another authentication mechanism such as Shibboleth or OpenID Connect. If “Basic” auth is required, Mac users can connect with other browsers like Chrome or Firefox.</p>
+<blockquote>
+<div><a href='https://github.com/OSC/ood-dashboard/issues/171'>OSC/ood-dashboard#171</a></div></blockquote>
+<p>Workarounds: Users or support staff may find logs for failed Batch Connect sessions located in the output directory <code class="docutils literal notranslate"><span class="pre">$HOME/ondemand/data/(sys|dev|usr)/dashboard/batch_connect/(sys|dev|usr)/$APP_NAME/output/$UUID/output.log</span></code>.</p>
+</div>
+<div class="section" id="novnc-does-not-work-with-safari-and-apache-basic-auth">
+<h2>noVNC does not work with Safari and Apache Basic auth<a class="headerlink" href="#novnc-does-not-work-with-safari-and-apache-basic-auth" title="Permalink to this headline">¶</a></h2>
+<p>OnDemand’s Cluster and Interactive Apps do not work with Safari when OnDemand is protected using Basic authentication. This is due to a bug in Safari with using websockets through servers protected using “Basic” auth.</p>
+<p>Workarounds: OnDemand can be installed with another authentication mechanism such as Shibboleth or OpenID Connect. If “Basic” auth is required, Mac users can connect with other browsers like Chrome or Firefox.</p>
 </div>
 <div class="section" id="multiline-select-does-not-work-in-ms-edge">
 <h2>Multiline select does not work in MS Edge<a class="headerlink" href="#multiline-select-does-not-work-in-ms-edge" title="Permalink to this headline">¶</a></h2>
 <p>Multi-line select does not work in Microsoft Edge (pre-Chromium).</p>
-<a href='https://github.com/OSC/ood-shell/issues/57'>OSC/ood-shell#57</a></div>
+<blockquote>
+<div><a href='https://github.com/OSC/ood-shell/issues/57'>OSC/ood-shell#57</a></div></blockquote>
+<p>Workarounds: Using another web browser such as FireFox or Chrome.</p>
+</div>
 <div class="section" id="high-output-programs-may-freeze-the-shell">
 <h2>High output programs may freeze the shell<a class="headerlink" href="#high-output-programs-may-freeze-the-shell" title="Permalink to this headline">¶</a></h2>
-<p>The shell may freeze when attempting to display a large amount of content. This error was initially reported by a user running Python Spark, and has been duplicated by simply running <code class="docutils literal notranslate"><span class="pre">cat</span></code> against hundreds-of-megabyte files.</p>
-<a href='https://github.com/OSC/ood-shell/issues/28'>OSC/ood-shell#28</a></div>
+<p>The Shell may freeze when attempting to display a large amount of content. This error was initially reported by a user running Python Spark from the Shell app, and has been duplicated by simply running <code class="docutils literal notranslate"><span class="pre">cat</span></code> against hundreds-of-megabyte files.</p>
+<blockquote>
+<div><a href='https://github.com/OSC/ood-shell/issues/28'>OSC/ood-shell#28</a></div></blockquote>
+<p>Workarounds: When attempting to view the contents of a file using the commands <code class="docutils literal notranslate"><span class="pre">less</span></code>, <code class="docutils literal notranslate"><span class="pre">head</span></code> or <code class="docutils literal notranslate"><span class="pre">tail</span></code> instead of <code class="docutils literal notranslate"><span class="pre">cat</span></code> will prevent this error. When running a program that may rapidly produce megabytes of output using a native SSH terminal may be preferable, either from the user’s personal machine, or from within a graphical session on the cluster. Alternatively redirecting application output to a file or files (stdout/stderr) and then using <code class="docutils literal notranslate"><span class="pre">less</span></code> or <code class="docutils literal notranslate"><span class="pre">tail</span></code> to view those files can also solve this problem.</p>
+</div>
 <div class="section" id="paste-does-not-work-in-older-versions-of-safari">
 <h2>Paste does not work in older versions of Safari<a class="headerlink" href="#paste-does-not-work-in-older-versions-of-safari" title="Permalink to this headline">¶</a></h2>
 <p>Pasting from the system clipboard is not supported in Safari 8 or 9.</p>
-<a href='https://github.com/OSC/ood-shell/issues/16'>OSC/ood-shell#16</a></div>
+<a href='https://github.com/OSC/ood-shell/issues/16'>OSC/ood-shell#16</a><p>Workarounds: At the time of writing the current version of Safari is version 12. Users experiencing this error are highly recommended to upgrade their web browser.</p>
+</div>
 </div>
 
 
