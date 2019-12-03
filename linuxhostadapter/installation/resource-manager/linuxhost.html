@@ -107,7 +107,11 @@
 <li class="toctree-l2"><a class="reference internal" href="pbspro.html">Configure PBS Professional</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sge.html">Configure Grid Engine</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">LinuxHost Adapter</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#first-setup-cgroups">First Setup cgroups</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#first-setup-cgroups">First Setup cgroups</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#approach-1-systemd-user-slices">Approach #1: Systemd user slices</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#approach-2-libcgroup-cgroups">Approach #2: libcgroup cgroups</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#how-to-configure-the-adapter">How To Configure The Adapter</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#but-why-a-user-story">But, Why? A User Story</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#a-non-traditional-job-launcher">A Non-traditional Job Launcher</a></li>
@@ -228,9 +232,61 @@ future. So always revisit this documentation after upgrading OnDemand.</p>
 </div>
 <div class="section" id="first-setup-cgroups">
 <h2>First Setup cgroups<a class="headerlink" href="#first-setup-cgroups" title="Permalink to this headline">¶</a></h2>
-<div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">TODO</p>
+<p>The following are some examples of ways to implement cgroups for the LinuxHost Adapter.</p>
+<div class="section" id="approach-1-systemd-user-slices">
+<h3>Approach #1: Systemd user slices<a class="headerlink" href="#approach-1-systemd-user-slices" title="Permalink to this headline">¶</a></h3>
+<p>With systemd it’s possible to manage the resource limits of user logins through each user’s “slice”. The limits applied to a user slice are shared by all processes belonging to that user, this is not a per-job or per-node resource limit but a per-user limit. When setting the limits keep in mind the sum of all user limits is the max potential resource consumption on a single host.</p>
+<p>First update the PAM stack to include the following line:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>session     required      pam_exec.so type=open_session /etc/security/limits.sh
+</pre></div>
+</div>
+<p>The following example of <code class="docutils literal notranslate"><span class="pre">/etc/security/limits.sh</span></code> is used by OSC on interactive login nodes. Adjust <code class="docutils literal notranslate"><span class="pre">MemoryLimit</span></code> and <code class="docutils literal notranslate"><span class="pre">CPUQuota</span></code> to meat the needs of your site. See <code class="docutils literal notranslate"><span class="pre">man</span> <span class="pre">systemd.resource-control</span></code></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="nb">set</span> -e
+
+<span class="nv">PAM_UID</span><span class="o">=</span><span class="k">$(</span>id -u <span class="s2">&quot;</span><span class="si">${</span><span class="nv">PAM_USER</span><span class="si">}</span><span class="s2">&quot;</span><span class="k">)</span>
+
+<span class="k">if</span> <span class="o">[</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">PAM_SERVICE</span><span class="si">}</span><span class="s2">&quot;</span> <span class="o">=</span> <span class="s2">&quot;sshd&quot;</span> -a <span class="s2">&quot;</span><span class="si">${</span><span class="nv">PAM_UID</span><span class="si">}</span><span class="s2">&quot;</span> -ge <span class="m">1000</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+        /usr/bin/systemctl set-property <span class="s2">&quot;user-</span><span class="si">${</span><span class="nv">PAM_UID</span><span class="si">}</span><span class="s2">.slice&quot;</span> <span class="se">\</span>
+                <span class="nv">MemoryAccounting</span><span class="o">=</span><span class="nb">true</span> <span class="nv">MemoryLimit</span><span class="o">=</span>64G <span class="se">\</span>
+                <span class="nv">CPUAccounting</span><span class="o">=</span><span class="nb">true</span> <span class="se">\</span>
+                <span class="nv">CPUQuota</span><span class="o">=</span><span class="m">700</span>%
+<span class="k">fi</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="approach-2-libcgroup-cgroups">
+<h3>Approach #2: libcgroup cgroups<a class="headerlink" href="#approach-2-libcgroup-cgroups" title="Permalink to this headline">¶</a></h3>
+<p>The libcgroup cgroups rules and configurations are a per-group resource limit where the group is defined in the examples at <code class="docutils literal notranslate"><span class="pre">/etc/cgconfig.d/limits.conf</span></code>. The following examples limit resources of all tmux processes launched for the LinuxHost Adapter so they all share 700 CPU shares and 64GB of RAM. This requires setting <code class="docutils literal notranslate"><span class="pre">tmux_bin</span></code> to a wrapper script that in this example will be <code class="docutils literal notranslate"><span class="pre">/usr/local/bin/ondemand_tmux</span></code>.</p>
+<p>Example of <code class="docutils literal notranslate"><span class="pre">/usr/local/bin/ondemanx_tmux</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="nb">exec</span> tmux <span class="s2">&quot;</span><span class="nv">$@</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+<p>Setup the cgroup limits at <code class="docutils literal notranslate"><span class="pre">/etc/cgconfig.d/limits.conf</span></code>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>group linuxhostadapter {
+        memory {
+                memory.limit_in_bytes=&quot;64G&quot;;
+                memory.memsw.limit_in_bytes=&quot;64G&quot;;
+        }
+        cpu {
+                cpu.shares=&quot;700&quot;;
+        }
+}
+</pre></div>
+</div>
+<p>Setup the cgroup rules at <code class="docutils literal notranslate"><span class="pre">/etc/cgrules.conf</span></code>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>*:/usr/local/bin/ondemand_tmux memory linuxhostadapter/
+*:/usr/local/bin/ondemand_tmux cpu linuxhostadapter/
+</pre></div>
+</div>
+<p>Start the necessary services:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo systemctl start cgconfig
+sudo systemctl start cgred
+sudo systemctl <span class="nb">enable</span> cgconfig
+sudo systemctl <span class="nb">enable</span> cgred
+</pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="how-to-configure-the-adapter">
