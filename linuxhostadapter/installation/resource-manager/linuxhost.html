@@ -232,15 +232,15 @@ future. So always revisit this documentation after upgrading OnDemand.</p>
 </div>
 <div class="section" id="first-setup-cgroups">
 <h2>First Setup cgroups<a class="headerlink" href="#first-setup-cgroups" title="Permalink to this headline">¶</a></h2>
-<p>The following are some examples of ways to implement cgroups for the LinuxHost Adapter.</p>
+<p>By default the adapter does not limit the user’s CPU or memory utilization, only their “walltime”. The following are two examples of ways to implement resource limits for the LinuxHost Adapter using cgroups.</p>
 <div class="section" id="approach-1-systemd-user-slices">
 <h3>Approach #1: Systemd user slices<a class="headerlink" href="#approach-1-systemd-user-slices" title="Permalink to this headline">¶</a></h3>
-<p>With systemd it’s possible to manage the resource limits of user logins through each user’s “slice”. The limits applied to a user slice are shared by all processes belonging to that user, this is not a per-job or per-node resource limit but a per-user limit. When setting the limits keep in mind the sum of all user limits is the max potential resource consumption on a single host.</p>
+<p>With systemd it is possible to manage the resource limits of user logins through each user’s “<a class="reference external" href="https://www.freedesktop.org/software/systemd/man/systemd.slice.html">slice</a>”. The limits applied to a user slice are shared by all processes belonging to that user, this is not a per-job or per-node resource limit but a per-user limit. When setting the limits keep in mind the sum of all user limits is the max potential resource consumption on a single host.</p>
 <p>First update the PAM stack to include the following line:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>session     required      pam_exec.so type=open_session /etc/security/limits.sh
 </pre></div>
 </div>
-<p>The following example of <code class="docutils literal notranslate"><span class="pre">/etc/security/limits.sh</span></code> is used by OSC on interactive login nodes. Adjust <code class="docutils literal notranslate"><span class="pre">MemoryLimit</span></code> and <code class="docutils literal notranslate"><span class="pre">CPUQuota</span></code> to meat the needs of your site. See <code class="docutils literal notranslate"><span class="pre">man</span> <span class="pre">systemd.resource-control</span></code></p>
+<p>The following example of <code class="docutils literal notranslate"><span class="pre">/etc/security/limits.sh</span></code> is used by OSC on interactive login nodes. Adjust <code class="docutils literal notranslate"><span class="pre">MemoryLimit</span></code> and <code class="docutils literal notranslate"><span class="pre">CPUQuota</span></code> to meet the needs of your site. See <code class="docutils literal notranslate"><span class="pre">man</span> <span class="pre">systemd.resource-control</span></code></p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
 <span class="nb">set</span> -e
 
@@ -258,7 +258,7 @@ future. So always revisit this documentation after upgrading OnDemand.</p>
 <div class="section" id="approach-2-libcgroup-cgroups">
 <h3>Approach #2: libcgroup cgroups<a class="headerlink" href="#approach-2-libcgroup-cgroups" title="Permalink to this headline">¶</a></h3>
 <p>The libcgroup cgroups rules and configurations are a per-group resource limit where the group is defined in the examples at <code class="docutils literal notranslate"><span class="pre">/etc/cgconfig.d/limits.conf</span></code>. The following examples limit resources of all tmux processes launched for the LinuxHost Adapter so they all share 700 CPU shares and 64GB of RAM. This requires setting <code class="docutils literal notranslate"><span class="pre">tmux_bin</span></code> to a wrapper script that in this example will be <code class="docutils literal notranslate"><span class="pre">/usr/local/bin/ondemand_tmux</span></code>.</p>
-<p>Example of <code class="docutils literal notranslate"><span class="pre">/usr/local/bin/ondemanx_tmux</span></code>:</p>
+<p>Example of <code class="docutils literal notranslate"><span class="pre">/usr/local/bin/ondemand_tmux</span></code>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
 <span class="nb">exec</span> tmux <span class="s2">&quot;</span><span class="nv">$@</span><span class="s2">&quot;</span>
 </pre></div>
@@ -375,6 +375,10 @@ sudo systemctl <span class="nb">enable</span> cgred
      <span class="l l-Scalar l-Scalar-Plain">singularity_bindpath</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/etc,/media,/mnt,/opt,/run,/srv,/usr,/var,/fs,/home</span>
      <span class="l l-Scalar l-Scalar-Plain">singularity_container</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/usr/local/modules/netbeans/netbeans_2019.sif</span>
 </pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Subsequent versions of the adapter are expected to use <a class="reference external" href="man7.org/linux/man-pages/man1/unshare.1.html">unshare</a> for PID namespacing as the default method instead of Singularity. Singularity will continue to be supported.</p>
 </div>
 </div>
 </div>
