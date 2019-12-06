@@ -124,13 +124,13 @@
 <li class="toctree-l4"><a class="reference internal" href="window_managers/mate.html">Mate</a></li>
 <li class="toctree-l4"><a class="reference internal" href="window_managers/fluxbox.html">Fluxbox</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#invoking-matlab-itself">Invoking Matlab itself</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#if-you-get-java-errors">If you get Java errors</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#what-if-the-matlab-command-did-not-block">What if the matlab command did not block?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#generalizing-our-approach-what-if-the-matlab-command-did-not-block">Generalizing our approach: What if the matlab command did not block?</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="edit-submit-yml.html">5. Modify Submit Parameters</a></li>
 <li class="toctree-l3"><a class="reference internal" href="edit-form-js.html">6. Edit Form.js</a></li>
 <li class="toctree-l3"><a class="reference internal" href="deploy.html">7. Deploy Matlab App</a></li>
+<li class="toctree-l3"><a class="reference internal" href="known-issues.html">8. Known Issues</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../add-custom-queue.html">Add Custom Queues/Partitions</a></li>
@@ -229,7 +229,7 @@
             
   <div class="section" id="edit-launch-script">
 <span id="app-development-tutorials-interactive-apps-add-matlab-edit-script-sh"></span><h1>4. Edit Launch Script<a class="headerlink" href="#edit-launch-script" title="Permalink to this headline">¶</a></h1>
-<p>Here we will look at the script that actually launches Matlab.</p>
+<p>Here we will look at the script that actually launches Matlab <code class="docutils literal notranslate"><span class="pre">~/ondemand/dev/bc_my_center_matlab/template/script.sh.erb</span></code>.</p>
 <p>By now you should have selected your prefered window manager. Examples of using XFCE, Mate, and Fluxbox:</p>
 <div class="toctree-wrapper compound">
 <p class="caption"><span class="caption-text">Window Manager Options</span></p>
@@ -270,38 +270,9 @@ matlab -desktop  <span class="c1"># Launch Matlab</span>
 </div>
 </div></blockquote>
 </div>
-<div class="section" id="if-you-get-java-errors">
-<h2>If you get Java errors<a class="headerlink" href="#if-you-get-java-errors" title="Permalink to this headline">¶</a></h2>
-<p>Matlab may throw Java errors when the window is resized, moved, or displayed on a seconadary monitor. There does not appear to be an official Matlab fix for this problem, but an interim solution mitigates the bug enough to let work continue. In order to solve the problem: create or edit a file named <code class="docutils literal notranslate"><span class="pre">$MATLAB_ROOT/bin/glnxa64/java.opts</span></code> and add a line: <code class="docutils literal notranslate"><span class="pre">-Dsun.java2d.xrender=false</span></code>. Alternatively the following may be added to the job script prior to Matlab being started:</p>
-<blockquote>
-<div><div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fix the Java errors relating to resizing the window</span>
-cat <span class="s">&lt;&lt; JAVA_OPT &gt; java.opts</span>
-<span class="s">-Dsun.java2d.xrender=false</span>
-<span class="s">JAVA_OPT</span>
-</pre></div>
-</div>
-</div></blockquote>
-<p>Confirm that the option has been set by running the following command within Matlab:</p>
-<blockquote>
-<div><div class="highlight-none notranslate"><div class="highlight"><pre><span></span>java.lang.management.ManagementFactory.getRuntimeMXBean.getInputArguments
-</pre></div>
-</div>
-<div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p><code class="docutils literal notranslate"><span class="pre">xrender</span></code> is a performance optimization, disabling it may adversely impact the user experience.</p>
-<p class="last"><a class="reference external" href="https://docs.oracle.com/javase/8/docs/technotes/guides/2d/flags.html#xrender">https://docs.oracle.com/javase/8/docs/technotes/guides/2d/flags.html#xrender</a></p>
-</div>
-</div></blockquote>
-<p>References:</p>
-<ul class="simple">
-<li><a class="reference external" href="https://www.mathworks.com/matlabcentral/answers/373897-external-monitor-throws-java-exception">https://www.mathworks.com/matlabcentral/answers/373897-external-monitor-throws-java-exception</a></li>
-<li><a class="reference external" href="https://www.mathworks.com/matlabcentral/answers/381324-why-do-i-get-java-exception-on-display-change">https://www.mathworks.com/matlabcentral/answers/381324-why-do-i-get-java-exception-on-display-change</a></li>
-<li><a class="reference external" href="https://www.mathworks.com/matlabcentral/answers/424725-disable-xrender-at-startup">https://www.mathworks.com/matlabcentral/answers/424725-disable-xrender-at-startup</a></li>
-</ul>
-</div>
-<div class="section" id="what-if-the-matlab-command-did-not-block">
-<h2>What if the matlab command did not block?<a class="headerlink" href="#what-if-the-matlab-command-did-not-block" title="Permalink to this headline">¶</a></h2>
-<p>Matlab is convenient in that the command <code class="docutils literal notranslate"><span class="pre">matlab</span></code> blocks instead of backgrounding itself, this prevents our script from ending immediately, which would prevent the user from accomplishing anything useful. Some GUI applications like Stata put themselves into the background. For apps like Stata it is necessary to perform the blocking ourselves:</p>
+<div class="section" id="generalizing-our-approach-what-if-the-matlab-command-did-not-block">
+<h2>Generalizing our approach: What if the matlab command did not block?<a class="headerlink" href="#generalizing-our-approach-what-if-the-matlab-command-did-not-block" title="Permalink to this headline">¶</a></h2>
+<p>Matlab is convenient in that the command <code class="docutils literal notranslate"><span class="pre">matlab</span></code> blocks instead of backgrounding itself, this prevents our script from ending immediately, which would prevent the user from accomplishing anything useful. Some other GUI applications like Stata put themselves into the background. For apps like Stata it is necessary to perform the blocking ourselves:</p>
 <blockquote>
 <div><div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># Launch Stata GUI</span>
 xstata-mp

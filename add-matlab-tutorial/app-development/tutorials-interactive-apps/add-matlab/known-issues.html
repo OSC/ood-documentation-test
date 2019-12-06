@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>6. Edit Form.js &mdash; Open OnDemand 1.6.7 documentation</title>
+  <title>8. Known Issues &mdash; Open OnDemand 1.6.7 documentation</title>
   
 
   
@@ -38,8 +38,8 @@
   <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="7. Deploy Matlab App" href="deploy.html" />
-    <link rel="prev" title="5. Modify Submit Parameters" href="edit-submit-yml.html" /> 
+    <link rel="next" title="Add Custom Queues/Partitions" href="../add-custom-queue.html" />
+    <link rel="prev" title="7. Deploy Matlab App" href="deploy.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -121,9 +121,12 @@
 <li class="toctree-l3"><a class="reference internal" href="edit-form-yml.html">3. Customize Attributes</a></li>
 <li class="toctree-l3"><a class="reference internal" href="edit-script-sh.html">4. Edit Launch Script</a></li>
 <li class="toctree-l3"><a class="reference internal" href="edit-submit-yml.html">5. Modify Submit Parameters</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">6. Edit Form.js</a></li>
+<li class="toctree-l3"><a class="reference internal" href="edit-form-js.html">6. Edit Form.js</a></li>
 <li class="toctree-l3"><a class="reference internal" href="deploy.html">7. Deploy Matlab App</a></li>
-<li class="toctree-l3"><a class="reference internal" href="known-issues.html">8. Known Issues</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">8. Known Issues</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#if-you-get-java-errors">If you get Java errors</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../add-custom-queue.html">Add Custom Queues/Partitions</a></li>
@@ -199,14 +202,14 @@
         
           <li><a href="../add-matlab.html">Add a Matlab App</a> &raquo;</li>
         
-      <li>6. Edit Form.js</li>
+      <li>8. Known Issues</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
             
-              <a href="https://github.com/OSC/ood-documentation/blob/add-matlab-tutorial/source/app-development/tutorials-interactive-apps/add-matlab/edit-form-js.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/OSC/ood-documentation/blob/add-matlab-tutorial/source/app-development/tutorials-interactive-apps/add-matlab/known-issues.rst" class="fa fa-github"> Edit on GitHub</a>
             
           
         
@@ -220,21 +223,49 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="edit-form-js">
-<span id="app-development-tutorials-interactive-apps-add-matlab-edit-form-js"></span><h1>6. Edit Form.js<a class="headerlink" href="#edit-form-js" title="Permalink to this headline">¶</a></h1>
-<p>OnDemand supports dynamic interactive forms using a file named <code class="docutils literal notranslate"><span class="pre">~/ondemand/dev/bc_my_center_matlab/form.js</span></code>. This file is free-form; anything that can be done with client-side JavaScript may be done in this file. OSC has used this file to:</p>
-<ul class="simple">
-<li>Limit the user’s CPU/memory selection options to the type of hardware that they are requesting (<a class="reference external" href="https://github.com/OSC/bc_osc_matlab/blob/master/form.js">OSC Matlab JavaScript</a>)</li>
-<li>Show or hide a license field based on whether the user is permitted to use the OSC academic license or if they are required to use a different license provider (<a class="reference external" href="https://github.com/OSC/bc_osc_ansys_workbench/blob/master/form.js">OSC ANSYS JavaScript</a>)</li>
-<li>Implement a file picker using the File Explorer’s API, <a class="reference external" href="https://webpack.js.org/">Webpack</a>, and <a class="reference external" href="https://vuejs.org/">VueJS</a> (<a class="reference external" href="https://github.com/OSC/bc_js_filepicker">bc_js_filepicker</a>)</li>
-</ul>
+  <div class="section" id="known-issues">
+<span id="app-development-tutorials-interactive-apps-add-matlab-known-issues"></span><h1>8. Known Issues<a class="headerlink" href="#known-issues" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="if-you-get-java-errors">
+<h2>If you get Java errors<a class="headerlink" href="#if-you-get-java-errors" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p>Matlab may throw Java errors when its window is resized, moved, or displayed on a seconadary monitor. There does not appear to be an official Matlab fix for this problem, but an interim solution mitigates the bug enough to let work continue. In order to solve the problem: create or edit a file named <code class="docutils literal notranslate"><span class="pre">$MATLAB_ROOT/bin/glnxa64/java.opts</span></code> and add a line: <code class="docutils literal notranslate"><span class="pre">-Dsun.java2d.xrender=false</span></code>. Alternatively the following may be added to the job script (<code class="docutils literal notranslate"><span class="pre">~/ondemand/dev/bc_my_center_matlab/template/script.sh.erb</span></code>) prior to Matlab being started:</p>
+<blockquote>
+<div><div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fix the Java errors relating to resizing the window</span>
+cat <span class="s">&lt;&lt; JAVA_OPT &gt; java.opts</span>
+<span class="s">-Dsun.java2d.xrender=false</span>
+<span class="s">JAVA_OPT</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>Confirm that the option has been set by running the following command within Matlab:</p>
+<blockquote>
+<div><div class="highlight-none notranslate"><div class="highlight"><pre><span></span>java.lang.management.ManagementFactory.getRuntimeMXBean.getInputArguments
+</pre></div>
+</div>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p class="last">Be aware that client side validation provided by JavaScript is not perfect and any critical values should be validated / sanitized server side in <code class="docutils literal notranslate"><span class="pre">script.sh.erb</span></code> or <code class="docutils literal notranslate"><span class="pre">submit.yml.erb</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">xrender</span></code> is a performance optimization, disabling it may adversely impact the user experience.</p>
+<p class="last"><a class="reference external" href="https://docs.oracle.com/javase/8/docs/technotes/guides/2d/flags.html#xrender">https://docs.oracle.com/javase/8/docs/technotes/guides/2d/flags.html#xrender</a></p>
 </div>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">This file is not required and may be empty or not exist.</p>
+</div></blockquote>
+<p>References:</p>
+<dl class="docutils">
+<dt>Describing the problem:</dt>
+<dd><ul class="first last simple">
+<li><a class="reference external" href="https://www.mathworks.com/matlabcentral/answers/373897-external-monitor-throws-java-exception">https://www.mathworks.com/matlabcentral/answers/373897-external-monitor-throws-java-exception</a></li>
+<li><a class="reference external" href="https://www.mathworks.com/matlabcentral/answers/381324-why-do-i-get-java-exception-on-display-change">https://www.mathworks.com/matlabcentral/answers/381324-why-do-i-get-java-exception-on-display-change</a></li>
+<li><a class="reference external" href="https://www.mathworks.com/matlabcentral/answers/424725-disable-xrender-at-startup">https://www.mathworks.com/matlabcentral/answers/424725-disable-xrender-at-startup</a></li>
+</ul>
+</dd>
+</dl>
+<p>Describing parts of the solution:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Setting Java options: <a class="reference external" href="https://www.mathworks.com/help/matlab/matlab_env/java-opts-file.html">https://www.mathworks.com/help/matlab/matlab_env/java-opts-file.html</a></li>
+<li>The startup folder: <a class="reference external" href="https://www.mathworks.com/help/matlab/matlab_env/matlab-startup-folder.html">https://www.mathworks.com/help/matlab/matlab_env/matlab-startup-folder.html</a></li>
+</ul>
+</div></blockquote>
+</div></blockquote>
 </div>
 </div>
 
@@ -246,10 +277,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="deploy.html" class="btn btn-neutral float-right" title="7. Deploy Matlab App" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../add-custom-queue.html" class="btn btn-neutral float-right" title="Add Custom Queues/Partitions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="edit-submit-yml.html" class="btn btn-neutral float-left" title="5. Modify Submit Parameters" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="deploy.html" class="btn btn-neutral float-left" title="7. Deploy Matlab App" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -281,23 +312,23 @@
     <dl>
       <dt>Versions</dt>
       
-        <dd><a href="https://OSC.github.io/ood-documentation/master/app-development/tutorials-interactive-apps/add-matlab/edit-form-js.html">master</a></dd>
+        <dd><a href="https://OSC.github.io/ood-documentation/master/app-development/tutorials-interactive-apps/add-matlab/known-issues.html">master</a></dd>
       
-        <dd><a href="https://OSC.github.io/ood-documentation/release-1.6/app-development/tutorials-interactive-apps/add-matlab/edit-form-js.html">1.6</a></dd>
+        <dd><a href="https://OSC.github.io/ood-documentation/release-1.6/app-development/tutorials-interactive-apps/add-matlab/known-issues.html">1.6</a></dd>
       
-        <dd><a href="https://OSC.github.io/ood-documentation/release-1.5/app-development/tutorials-interactive-apps/add-matlab/edit-form-js.html">1.5</a></dd>
+        <dd><a href="https://OSC.github.io/ood-documentation/release-1.5/app-development/tutorials-interactive-apps/add-matlab/known-issues.html">1.5</a></dd>
       
-        <dd><a href="https://OSC.github.io/ood-documentation/release-1.4/app-development/tutorials-interactive-apps/add-matlab/edit-form-js.html">1.4</a></dd>
+        <dd><a href="https://OSC.github.io/ood-documentation/release-1.4/app-development/tutorials-interactive-apps/add-matlab/known-issues.html">1.4</a></dd>
       
-        <dd><a href="https://OSC.github.io/ood-documentation/release-1.3/app-development/tutorials-interactive-apps/add-matlab/edit-form-js.html">1.3</a></dd>
+        <dd><a href="https://OSC.github.io/ood-documentation/release-1.3/app-development/tutorials-interactive-apps/add-matlab/known-issues.html">1.3</a></dd>
       
-        <dd><a href="https://OSC.github.io/ood-documentation/release-1.2/app-development/tutorials-interactive-apps/add-matlab/edit-form-js.html">1.2</a></dd>
+        <dd><a href="https://OSC.github.io/ood-documentation/release-1.2/app-development/tutorials-interactive-apps/add-matlab/known-issues.html">1.2</a></dd>
       
-        <dd><a href="https://OSC.github.io/ood-documentation/release-1.1/app-development/tutorials-interactive-apps/add-matlab/edit-form-js.html">1.1</a></dd>
+        <dd><a href="https://OSC.github.io/ood-documentation/release-1.1/app-development/tutorials-interactive-apps/add-matlab/known-issues.html">1.1</a></dd>
       
-        <dd><a href="https://OSC.github.io/ood-documentation/release-1.0/app-development/tutorials-interactive-apps/add-matlab/edit-form-js.html">1.0</a></dd>
+        <dd><a href="https://OSC.github.io/ood-documentation/release-1.0/app-development/tutorials-interactive-apps/add-matlab/known-issues.html">1.0</a></dd>
       
-        <dd><a href="https://OSC.github.io/ood-documentation/develop/app-development/tutorials-interactive-apps/add-matlab/edit-form-js.html">develop</a></dd>
+        <dd><a href="https://OSC.github.io/ood-documentation/develop/app-development/tutorials-interactive-apps/add-matlab/known-issues.html">develop</a></dd>
       
     </dl>
     <dl>
