@@ -10,14 +10,12 @@
   <ul>
   </ul>
 
-  If your browser doesn't automatically redirect you to the documentation page,
-  then please access the  <a href="master/">Documentation</a> directly.
 <script>
 var xhr = new XMLHttpRequest();
 
 xhr.onreadystatechange = function(){
   if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-    var jsonResponse = JSON.parse(xhr.responseText());
+    var jsonResponse = JSON.parse(xhr.responseText);
     
     jsonResponse.forEach(f => {
       if(f.type === "dir"){
