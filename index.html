@@ -7,30 +7,37 @@
 </head>
 
 <body>
+  Generated docs for branches of <a href="https://github.com/osc/ood-documentation/pulls">open PRs</a> excluding forks.
   <ul>
   </ul>
 
 <script>
-var xhr = new XMLHttpRequest();
-
-xhr.onreadystatechange = function(){
-  if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-    var jsonResponse = JSON.parse(xhr.responseText);
-    
-    jsonResponse.forEach(f => {
-      if(f.type === "dir"){
-        var url = "https://osc.github.io/ood-documentation-test/" + f.name + "/";
-
-        var li = document.createElement("li");
-        li.innerHTML = '<a href="' + url +'">'+f.name+'</a>';
-        document.querySelector('ul').append(li);
+function getjson(url, callback){
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function(){
+      if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+        var jsonResponse = JSON.parse(xhr.responseText);
+        callback(jsonResponse);
       }
-    });
-  }
-};
+    };
   
-xhr.open('GET', 'https://api.github.com/repos/osc/ood-documentation-test/contents?ref=gh-pages', true)
-xhr.send();
+    xhr.open('GET', url, true)
+    xhr.send();
+}
+
+getjson('https://api.github.com/repos/osc/ood-documentation-test/contents?ref=gh-pages', function(docs){
+    getjson('https://api.github.com/repos/osc/ood-documentation/pulls', function(pulls){
+       // doc.name is in pulls.map()head.ref doc.type == "dir" 
+        let branches = pulls.map(pull => pull.head.ref);
+        docs.filter(doc => doc.type === "dir" && branches.includes(doc.name)).forEach(doc => {
+            var url = "https://osc.github.io/ood-documentation-test/" + doc.name + "/";
+
+            var li = document.createElement("li");
+            li.innerHTML = '<a href="' + url +'">'+doc.name+'</a>';
+            document.querySelector('ul').append(li);
+        });
+    });
+});
 </script>
 </body>
 </html>
