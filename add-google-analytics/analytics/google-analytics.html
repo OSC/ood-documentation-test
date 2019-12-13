@@ -350,7 +350,7 @@ metric set above. Let’s go through each of these things.</p>
 <span class="sx">  ga:hostname==</span><span class="si">#{</span><span class="no">HOST</span><span class="si">}</span><span class="sx">;ga:dimension6==200;ga:pagePath!=/pun/sys/file-editor/edit</span>
 <span class="sx">)</span>
 
-<span class="c1"># now we can create our analitycs object and make the query</span>
+<span class="c1"># now we can create our analytics object and make the query</span>
 <span class="n">analytics</span> <span class="o">=</span> <span class="no">Google</span><span class="o">::</span><span class="no">Apis</span><span class="o">::</span><span class="no">AnalyticsV3</span><span class="o">::</span><span class="no">AnalyticsService</span><span class="o">.</span><span class="n">new</span>
 
 <span class="c1"># Here we query for the data that we want. A lot of things are omitted in this example</span>
@@ -385,6 +385,8 @@ metric set above. Let’s go through each of these things.</p>
 </div>
 <div class="section" id="more-info">
 <h2>More Info<a class="headerlink" href="#more-info" title="Permalink to this headline">¶</a></h2>
+<p>For reference, here’s more detailed information about implementations and protocols described
+in this document.</p>
 <p>See our <a class="reference external" href="https://github.com/OSC/ondemand/blob/master/mod_ood_proxy/lib/analytics.lua">analytics lua code</a> for the implementation of how we’re extracting this information,
 parsing it and sending it to Google.</p>
 <p>See the <a class="reference external" href="https://developers.google.com/analytics/devguides/collection/protocol/v1/reference">GA measurement protocol</a> for more details on the format we’re sending this data in.</p>
