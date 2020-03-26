@@ -484,19 +484,16 @@ we call owens_login.  You’ll notice a lot of entries are null because they don
 really have any meaning in the LinuxHost Adapter.</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># /etc/ood/config/apps/bc_desktop/owens_login_desktop.yml</span>
 <span class="nn">---</span>
-<span class="l l-Scalar l-Scalar-Plain">title</span><span class="p p-Indicator">:</span> <span class="s">&quot;Owens</span><span class="nv"> </span><span class="s">Login</span><span class="nv"> </span><span class="s">XFCE</span><span class="nv"> </span><span class="s">desktop&quot;</span>
-<span class="l l-Scalar l-Scalar-Plain">description</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">|</span>
-<span class="hll">   <span class="no">This launches a XFCE desktop on an Owens login nodes.</span>
-</span><span class="hll"><span class="l l-Scalar l-Scalar-Plain">cluster</span><span class="p p-Indicator">:</span> <span class="s">&quot;owens_login&quot;</span>
+<span class="l l-Scalar l-Scalar-Plain">title</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Owens Login XFCE desktop</span>
+<span class="l l-Scalar l-Scalar-Plain">description</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">This launches a XFCE desktop on an Owens login nodes.</span>
+<span class="hll"><span class="l l-Scalar l-Scalar-Plain">cluster</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">owens_login</span>
+</span><span class="hll"><span class="l l-Scalar l-Scalar-Plain">form</span><span class="p p-Indicator">:</span>
+</span><span class="hll">  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">desktop</span>
+</span><span class="hll">  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">bc_num_hours</span>
 </span><span class="hll"><span class="l l-Scalar l-Scalar-Plain">attributes</span><span class="p p-Indicator">:</span>
-</span><span class="hll"><span class="l l-Scalar l-Scalar-Plain">desktop</span><span class="p p-Indicator">:</span> <span class="s">&quot;xfce&quot;</span>
-</span><span class="hll"><span class="l l-Scalar l-Scalar-Plain">bc_num_hours</span><span class="p p-Indicator">:</span>
-</span><span class="hll">   <span class="l l-Scalar l-Scalar-Plain">value</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
-</span><span class="hll"><span class="l l-Scalar l-Scalar-Plain">bc_num_slots</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">null</span>
-</span><span class="hll"><span class="l l-Scalar l-Scalar-Plain">bc_queue</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">null</span>
-</span><span class="hll"><span class="l l-Scalar l-Scalar-Plain">bc_account</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">null</span>
-</span><span class="hll"><span class="l l-Scalar l-Scalar-Plain">node_type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">null</span>
-</span><span class="hll"><span class="l l-Scalar l-Scalar-Plain">bc_email_on_started</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">null</span>
+</span><span class="hll">  <span class="l l-Scalar l-Scalar-Plain">bc_num_hours</span><span class="p p-Indicator">:</span>
+</span><span class="hll">    <span class="l l-Scalar l-Scalar-Plain">value</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
+</span><span class="hll">  <span class="l l-Scalar l-Scalar-Plain">desktop</span><span class="p p-Indicator">:</span> <span class="s">&quot;xfce&quot;</span>
 </span></pre></div>
 </div>
 </div>
