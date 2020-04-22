@@ -149,7 +149,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#maintenance-mode">Maintenance Mode</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#grafana-support">Grafana support</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#disable-host-link-in-batch-connect-card">Disable Host Link in Batch Connect Card</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#disable-host-link-in-batch-connect-session-card">Disable Host Link in Batch Connect Session Card</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#set-illegal-job-name-characters">Set Illegal Job Name Characters</a></li>
 </ul>
 </li>
@@ -442,8 +442,11 @@ Home Directory. More links can be added to this menu, for Scratch space and
 Project space directories.</p>
 <p>Adding more links currently requires adding a custom initializer to the
 Dashboard app. Ruby code is placed in the initializer to add one or more Ruby
-<code class="docutils literal notranslate"><span class="pre">FavoritePath</span></code> objects to the <code class="docutils literal notranslate"><span class="pre">OodFilesApp.candidate_favorite_paths</span></code> array, a
+<code class="docutils literal notranslate"><span class="pre">FavoritePath</span></code> (or <code class="docutils literal notranslate"><span class="pre">Pathname</span></code> for backwards compatibility)  objects to the <code class="docutils literal notranslate"><span class="pre">OodFilesApp.candidate_favorite_paths</span></code> array, a
 global attribute that is used in the Dashboard app.</p>
+<p><code class="docutils literal notranslate"><span class="pre">FavoritePath</span></code> is instantiated with a single <code class="docutils literal notranslate"><span class="pre">String</span></code> or <code class="docutils literal notranslate"><span class="pre">Pathname</span></code> argument, the
+directory path, and with an optional keyword argument <code class="docutils literal notranslate"><span class="pre">title</span></code> specifying a
+human readable title for that path.</p>
 <p>Start by creating the file
 <code class="file docutils literal notranslate"><span class="pre">/etc/ood/config/apps/dashboard/initializers/ood.rb</span></code> as such:</p>
 <div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="c1"># /etc/ood/config/apps/dashboard/initializers/ood.rb</span>
@@ -451,13 +454,13 @@ global attribute that is used in the Dashboard app.</p>
 <span class="no">OodFilesApp</span><span class="o">.</span><span class="n">candidate_favorite_paths</span><span class="o">.</span><span class="n">tap</span> <span class="k">do</span> <span class="o">|</span><span class="n">paths</span><span class="o">|</span>
   <span class="c1"># add project space directories</span>
   <span class="n">projects</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">new</span><span class="o">.</span><span class="n">groups</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:name</span><span class="p">)</span><span class="o">.</span><span class="n">grep</span><span class="p">(</span><span class="sr">/^P./</span><span class="p">)</span>
-  <span class="n">paths</span><span class="o">.</span><span class="n">concat</span> <span class="n">projects</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span> <span class="o">|</span><span class="nb">p</span><span class="o">|</span> <span class="no">FavoritePath</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="no">Pathname</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;/fs/project/</span><span class="si">#{</span><span class="nb">p</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">))</span>  <span class="p">}</span>
+  <span class="n">paths</span><span class="o">.</span><span class="n">concat</span> <span class="n">projects</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span> <span class="o">|</span><span class="nb">p</span><span class="o">|</span> <span class="no">FavoritePath</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;/fs/project/</span><span class="si">#{</span><span class="nb">p</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>  <span class="p">}</span>
 
-  <span class="c1"># add scratch space directories</span>
-  <span class="n">paths</span> <span class="o">&lt;&lt;</span> <span class="no">FavoritePath</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="no">Pathname</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;/fs/scratch/</span><span class="si">#{</span><span class="no">User</span><span class="o">.</span><span class="n">new</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">))</span>
+  <span class="c1"># add User scratch space directory</span>
+  <span class="n">paths</span> <span class="o">&lt;&lt;</span> <span class="no">FavoritePath</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;/fs/scratch/</span><span class="si">#{</span><span class="no">User</span><span class="o">.</span><span class="n">new</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
-  <span class="c1"># Project scratch has an optional title field.</span>
-  <span class="n">paths</span><span class="o">.</span><span class="n">concat</span> <span class="n">projects</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span> <span class="o">|</span><span class="nb">p</span><span class="o">|</span> <span class="no">FavoritePath</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="no">Pathname</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;/fs/scratch/</span><span class="si">#{</span><span class="nb">p</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">),</span> <span class="ss">title</span><span class="p">:</span> <span class="s2">&quot;Scratch&quot;</span><span class="p">)</span>  <span class="p">}</span>
+  <span class="c1"># Project scratch is given an optional title field</span>
+  <span class="n">paths</span><span class="o">.</span><span class="n">concat</span> <span class="n">projects</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span> <span class="o">|</span><span class="nb">p</span><span class="o">|</span> <span class="no">FavoritePath</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;/fs/scratch/</span><span class="si">#{</span><span class="nb">p</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="ss">title</span><span class="p">:</span> <span class="s2">&quot;Scratch&quot;</span><span class="p">)</span>  <span class="p">}</span>
 <span class="k">end</span>
 </pre></div>
 </div>
@@ -991,9 +994,9 @@ The time ranges and values for labels (eg: <cite>var-cluster=</cite>) will be au
 <li>The values for <code class="docutils literal notranslate"><span class="pre">labels</span></code> are how OnDemand maps labels in Grafana to values expected in OnDemand. The <code class="docutils literal notranslate"><span class="pre">jobid</span></code> key is optional, the others are required.</li>
 </ul>
 </div>
-<div class="section" id="disable-host-link-in-batch-connect-card">
-<h2>Disable Host Link in Batch Connect Card<a class="headerlink" href="#disable-host-link-in-batch-connect-card" title="Permalink to this headline">¶</a></h2>
-<p>Batch connect cards like this have links to the compute node on which the job is currently running (highlighted).</p>
+<div class="section" id="disable-host-link-in-batch-connect-session-card">
+<h2>Disable Host Link in Batch Connect Session Card<a class="headerlink" href="#disable-host-link-in-batch-connect-session-card" title="Permalink to this headline">¶</a></h2>
+<p>Batch connect session cards like this have links to the compute node on which the job is currently running (highlighted).</p>
 <div class="figure align-center">
 <img alt="_images/bc-card-w-hostlink.png" src="_images/bc-card-w-hostlink.png" />
 </div>
