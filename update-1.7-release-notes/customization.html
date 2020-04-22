@@ -120,13 +120,14 @@
 <li class="toctree-l2"><a class="reference internal" href="#add-shortcuts-to-files-menu">Add Shortcuts to Files Menu</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#whitelist-directories">Whitelist Directories</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#set-default-ssh-host">Set Default SSH Host</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#ssh-wrapper">SSH Wrapper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#shell-app-ssh-command-wrapper">Shell App SSH Command Wrapper</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#fix-unauthorized-websocket-connection-in-shell-app">Fix Unauthorized WebSocket Connection in Shell App</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#custom-job-composer-templates">Custom Job Composer Templates</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#job-templates-overview">Job Templates Overview</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#job-template-details">Job Template Details</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#job-composer-script-size-limit">Job Composer Script Size Limit</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#custom-error-page-for-missing-home-directory-on-launch">Custom Error Page for Missing Home Directory on Launch</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#control-which-apps-appear-in-the-dashboard-navbar">Control Which Apps Appear in the Dashboard Navbar</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#customize-text-in-ondemand">Customize Text in OnDemand</a><ul>
@@ -148,6 +149,8 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#maintenance-mode">Maintenance Mode</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#grafana-support">Grafana support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#disable-host-link-in-batch-connect-card">Disable Host Link in Batch Connect Card</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#set-illegal-job-name-characters">Set Illegal Job Name Characters</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="analytics.html">Analytics</a></li>
@@ -443,7 +446,7 @@ Dashboard app. Ruby code is placed in the initializer to add one or more Ruby
 global attribute that is used in the Dashboard app.</p>
 <p>Start by creating the file
 <code class="file docutils literal notranslate"><span class="pre">/etc/ood/config/apps/dashboard/initializers/ood.rb</span></code> as such:</p>
-<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span> <span class="c1"># /etc/ood/config/apps/dashboard/initializers/ood.rb</span>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="c1"># /etc/ood/config/apps/dashboard/initializers/ood.rb</span>
 
 <span class="no">OodFilesApp</span><span class="o">.</span><span class="n">candidate_favorite_paths</span><span class="o">.</span><span class="n">tap</span> <span class="k">do</span> <span class="o">|</span><span class="n">paths</span><span class="o">|</span>
   <span class="c1"># add project space directories</span>
@@ -520,9 +523,9 @@ app.</p>
 <p>In <code class="docutils literal notranslate"><span class="pre">/etc/ood/config/apps/shell/env</span></code> set the env var <code class="docutils literal notranslate"><span class="pre">DEFAULT_SSHHOST</span></code> to change the default ssh host. Otherwise it will default to “localhost” i.e. add the line <code class="docutils literal notranslate"><span class="pre">DEFAULT_SSHHOST=&quot;localhost&quot;</span></code>.</p>
 <p>This will control what host the shell app ssh’s to when the URL accessed is <code class="docutils literal notranslate"><span class="pre">/pun/sys/shell/ssh/default</span></code> which is the URL other apps will use (unless there is context to specify the cluster to ssh to).</p>
 </div>
-<div class="section" id="ssh-wrapper">
-<h2>SSH Wrapper<a class="headerlink" href="#ssh-wrapper" title="Permalink to this headline">¶</a></h2>
-<p id="id4">Since OOD 1.7 you can use an ssh wrapper script instead of just the ssh command.</p>
+<div class="section" id="shell-app-ssh-command-wrapper">
+<h2>Shell App SSH Command Wrapper<a class="headerlink" href="#shell-app-ssh-command-wrapper" title="Permalink to this headline">¶</a></h2>
+<p id="ssh-wrapper">Since OOD 1.7 you can use an ssh wrapper script in the shell application instead of just the ssh command.</p>
 <p>This is helpful when you pass add additional environment variable through ssh (<code class="docutils literal notranslate"><span class="pre">-o</span> <span class="pre">SendEnv=MY_ENV_VAR</span></code>) or ensure some ssh command options be used.</p>
 <p>To use your ssh wrapper configure <code class="docutils literal notranslate"><span class="pre">OOD_SSH_WRAPPER=/usr/bin/changeme</span></code> to point to your script in <code class="docutils literal notranslate"><span class="pre">/etc/ood/config/apps/shell/env</span></code>. Also be sure to make your script executable.</p>
 <p>Here’s a simple example of what a wrapper script could look like.</p>
@@ -600,6 +603,17 @@ app.</p>
 <li><code class="docutils literal notranslate"><span class="pre">script</span></code> The first <code class="docutils literal notranslate"><span class="pre">.sh</span></code> file appearing in the template folder.</li>
 <li><code class="docutils literal notranslate"><span class="pre">notes</span></code> The path to the location where a template manifest should be located.</li>
 </ul>
+</div>
+</div>
+<div class="section" id="job-composer-script-size-limit">
+<h2>Job Composer Script Size Limit<a class="headerlink" href="#job-composer-script-size-limit" title="Permalink to this headline">¶</a></h2>
+<p>Since 1.7 the Job composer shows users ‘Suggested file(s)’ and ‘Other valid file(s)’. Other valid files are
+_any_ files less than <code class="docutils literal notranslate"><span class="pre">OOD_MAX_SCRIPT_SIZE_KB</span></code> which defaults to 65 (meaning 65kb).</p>
+<p>To reconfigure this, simply set the environment variable in the job composers’ env file
+<code class="docutils literal notranslate"><span class="pre">/etc/ood/config/apps/myjobs/env</span></code> like so:</p>
+<div class="code sh highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># show any file less than or equal to 15 kb</span>
+<span class="n">OOD_MAX_SCRIPT_SIZE_KB</span><span class="o">=</span><span class="mi">15</span>
+</pre></div>
 </div>
 </div>
 <div class="section" id="custom-error-page-for-missing-home-directory-on-launch">
@@ -835,7 +849,7 @@ the specified user only.</p>
 </div>
 <div class="section" id="balance-warnings-on-dashboard">
 <h2>Balance Warnings on Dashboard<a class="headerlink" href="#balance-warnings-on-dashboard" title="Permalink to this headline">¶</a></h2>
-<p id="id5">You can display warnings to users on the Dashboard if their
+<p id="id4">You can display warnings to users on the Dashboard if their
 resource balance is nearing its limit. This requires an auto-updated (it is
 recommended to update this file daily with a cronjob) JSON file
 that lists all user balances. The JSON schema for version <cite>1</cite> is given as:</p>
@@ -904,7 +918,7 @@ can be changed with the environment variable <code class="docutils literal notra
 </div>
 <div class="section" id="maintenance-mode">
 <h2>Maintenance Mode<a class="headerlink" href="#maintenance-mode" title="Permalink to this headline">¶</a></h2>
-<p id="id6">As an administrator you may want to have some downtime of the Open OnDemand service for various reasons,
+<p id="id5">As an administrator you may want to have some downtime of the Open OnDemand service for various reasons,
 while still telling your customers that the downtime is expected.</p>
 <p>You can do this by setting Open OnDemand in ‘Maintenance Mode’. Apache will serve
 <code class="docutils literal notranslate"><span class="pre">/var/www/ood/public/maintenance/index.html</span></code> which you can change or brand to be your own. Changes
@@ -932,7 +946,7 @@ take affect.</p>
 </div>
 <div class="section" id="grafana-support">
 <h2>Grafana support<a class="headerlink" href="#grafana-support" title="Permalink to this headline">¶</a></h2>
-<p id="id7">It’s possible to display Grafana graphs within the ActiveJobs app when a user expands a given job.</p>
+<p id="id6">It’s possible to display Grafana graphs within the ActiveJobs app when a user expands a given job.</p>
 <p>Grafana must be configured to support embedded panels and at this time it is also required to have a anonymous organization.  Below are configuration options are needed to support displaying Grafana panels in ActiveJobs. Adjust <cite>org_name</cite> to match whatever organization you wish to be anonymous.</p>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
@@ -976,6 +990,34 @@ The time ranges and values for labels (eg: <cite>var-cluster=</cite>) will be au
 <li>The <code class="docutils literal notranslate"><span class="pre">panelId</span></code> query parameter will be used as the value for either <code class="docutils literal notranslate"><span class="pre">cpu</span></code> or <code class="docutils literal notranslate"><span class="pre">memory</span></code> depending on the panel you have selected</li>
 <li>The values for <code class="docutils literal notranslate"><span class="pre">labels</span></code> are how OnDemand maps labels in Grafana to values expected in OnDemand. The <code class="docutils literal notranslate"><span class="pre">jobid</span></code> key is optional, the others are required.</li>
 </ul>
+</div>
+<div class="section" id="disable-host-link-in-batch-connect-card">
+<h2>Disable Host Link in Batch Connect Card<a class="headerlink" href="#disable-host-link-in-batch-connect-card" title="Permalink to this headline">¶</a></h2>
+<p>Batch connect cards like this have links to the compute node on which the job is currently running (highlighted).</p>
+<div class="figure align-center">
+<img alt="_images/bc-card-w-hostlink.png" src="_images/bc-card-w-hostlink.png" />
+</div>
+<p>However, some sites may want to disable this feature because they do not allow ssh sessions on the compute
+nodes.</p>
+<p>To disable this, simply set the environment variable in the dashboards’ env file
+<code class="docutils literal notranslate"><span class="pre">/etc/ood/config/apps/dashboard/env</span></code> to a falsy value (0, false, off).</p>
+<div class="code sh highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># don&#39;t show ssh link in batch connect card</span>
+<span class="n">OOD_BC_SSH_TO_COMPUTE_NODE</span><span class="o">=</span><span class="n">off</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="set-illegal-job-name-characters">
+<h2>Set Illegal Job Name Characters<a class="headerlink" href="#set-illegal-job-name-characters" title="Permalink to this headline">¶</a></h2>
+<p id="id7">If you encounter an issue in running batch connect applications complaining about invalid
+job names like the error below.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Unable</span> <span class="pre">to</span> <span class="pre">read</span> <span class="pre">script</span> <span class="pre">file</span> <span class="pre">because</span> <span class="pre">of</span> <span class="pre">error:</span> <span class="pre">ERROR!</span> <span class="pre">argument</span> <span class="pre">to</span> <span class="pre">-N</span> <span class="pre">option</span> <span class="pre">must</span> <span class="pre">not</span> <span class="pre">contain</span> <span class="pre">/</span></code></p>
+<p>To resolve this set <code class="docutils literal notranslate"><span class="pre">OOD_JOB_NAME_ILLEGAL_CHARS</span></code> to <code class="docutils literal notranslate"><span class="pre">/</span></code> for all OOD applications in the
+<code class="docutils literal notranslate"><span class="pre">pun_custom_env</span></code> attribute of the <code class="docutils literal notranslate"><span class="pre">/etc/ood/config/nginx_stage.yml</span></code> file.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># /etc/ood/config/nginx_stage.yml</span>
+<span class="l l-Scalar l-Scalar-Plain">pun_custom_env</span><span class="p p-Indicator">:</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">OOD_JOB_NAME_ILLEGAL_CHARS</span><span class="p p-Indicator">:</span> <span class="s">&quot;/&quot;</span>
+</pre></div>
+</div>
 </div>
 </div>
 
