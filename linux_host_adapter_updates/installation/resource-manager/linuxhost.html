@@ -289,7 +289,7 @@
 <h2>Launch any software on target host<a class="headerlink" href="#launch-any-software-on-target-host" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
 <li>Install on the target host a Singularity base OS image matching the OS of the target host. In the cluster configuration example below we use <code class="docutils literal notranslate"><span class="pre">/opt/ood/linuxhost_adapter/centos_7.6.sif</span></code> as the target host is running CentOS7.</li>
-<li>Add the cluster configuration file for the target host</li>
+<li>See <a class="reference internal" href="#resource-manager-linuxhost-cluster-configuration"><span class="std std-ref">Cluster Configuration</span></a> below to add the cluster configuration file for the target host</li>
 </ol>
 <p>This base image is used to provide an unprivileged PID namespace when launching the app. To make the rest of the software installed on the host available to launch within the image, most/all of the host file system is bind-mounted into the running container. For this reason many existing interactive apps will just work when launched by the LinuxHost adapter.</p>
 </div>
@@ -297,7 +297,7 @@
 <h2>Launch specific application containers<a class="headerlink" href="#launch-specific-application-containers" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
 <li>Install the specific application containers on the target host.</li>
-<li>Add the cluster configuration file for the target host. Specify a default application container for <code class="docutils literal notranslate"><span class="pre">singularity_image:</span></code> and <code class="docutils literal notranslate"><span class="pre">singularity_bindpath:</span></code> even if you will override it.</li>
+<li>See <a class="reference internal" href="#resource-manager-linuxhost-cluster-configuration"><span class="std std-ref">Cluster Configuration</span></a> below to add the cluster configuration file for the target host. Specify a default application container for <code class="docutils literal notranslate"><span class="pre">singularity_image:</span></code> and <code class="docutils literal notranslate"><span class="pre">singularity_bindpath:</span></code> even if you will override it.</li>
 <li>In each interactive app plugin, specify the image to launch and host directories to mount by setting the <code class="docutils literal notranslate"><span class="pre">native</span></code> attribute <code class="docutils literal notranslate"><span class="pre">singularity_container</span></code> and <code class="docutils literal notranslate"><span class="pre">singularity_bindpath</span></code>. In interactive app plugins these attributes may be set in the file <code class="docutils literal notranslate"><span class="pre">submit.yml</span></code>. For example:</li>
 </ol>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nn">---</span>
@@ -310,7 +310,7 @@
 </div>
 </div>
 <div class="section" id="cluster-configuration">
-<h2>Cluster Configuration<a class="headerlink" href="#cluster-configuration" title="Permalink to this headline">¶</a></h2>
+<span id="resource-manager-linuxhost-cluster-configuration"></span><h2>Cluster Configuration<a class="headerlink" href="#cluster-configuration" title="Permalink to this headline">¶</a></h2>
 <p>A YAML cluster configuration file for a Linux host looks like:</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># /etc/ood/config/clusters.d/owens_login.yml</span>
 <span class="nn">---</span>
@@ -389,6 +389,22 @@ to its users.</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>session     required      pam_exec.so type=open_session /etc/security/limits.sh
 </pre></div>
 </div>
+<p>This goes into a file used by the <code class="docutils literal notranslate"><span class="pre">sshd</span></code> PAM configs which on CentOS/RHEL default to <code class="docutils literal notranslate"><span class="pre">/etc/pam.d/password-auth-ac</span></code> and needs to be included in the proper position, after <code class="docutils literal notranslate"><span class="pre">pam_systemd.so</span></code>. Also set <code class="docutils literal notranslate"><span class="pre">pam_systemd.so</span></code> to <code class="docutils literal notranslate"><span class="pre">required</span></code>:</p>
+<div class="highlight-none notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span></span>session     optional      pam_keyinit.so revoke
+session     required      pam_limits.so
+<span class="hll">session     required      pam_systemd.so
+</span><span class="hll">session     required      pam_exec.so type=open_session /etc/security/limits.sh
+</span>session     [success=1 default=ignore] pam_succeed_if.so service in crond quiet use_uid
+session     required      pam_unix.so
+session     optional      pam_sss.so
+</pre></div>
+</td></tr></table></div>
 <p>The following example of <code class="docutils literal notranslate"><span class="pre">/etc/security/limits.sh</span></code> is used by OSC on interactive login nodes. Adjust <code class="docutils literal notranslate"><span class="pre">MemoryLimit</span></code> and <code class="docutils literal notranslate"><span class="pre">CPUQuota</span></code> to meet the needs of your site. See <code class="docutils literal notranslate"><span class="pre">man</span> <span class="pre">systemd.resource-control</span></code></p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
 <span class="nb">set</span> -e
