@@ -117,12 +117,9 @@
 <li class="toctree-l2"><a class="reference internal" href="pbspro.html">Configure PBS Professional</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sge.html">Configure Grid Engine</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Configure LinuxHost Adapter (beta)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#how-to-configure-the-adapter">How To Configure The Adapter</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#launch-any-software-on-target-host">Launch any software on target host</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#launch-specific-application-containers">Launch specific application containers</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#cluster-configuration">Cluster Configuration</a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="#launch-any-software-on-target-host">Launch any software on target host</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#launch-specific-application-containers">Launch specific application containers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cluster-configuration">Cluster Configuration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#enforce-resource-limits-on-the-target-host">Enforce resource limits on the target host</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#approach-1-systemd-user-slices">Approach #1: Systemd user slices</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#approach-2-libcgroup-cgroups">Approach #2: libcgroup cgroups</a></li>
@@ -282,8 +279,6 @@
 <p class="first admonition-title">Note</p>
 <p class="last">There are many recipes for managing processes on arbitrary Linux hosts, and we will be exploring others in future development of this adapter.</p>
 </div>
-<div class="section" id="how-to-configure-the-adapter">
-<h2>How To Configure The Adapter<a class="headerlink" href="#how-to-configure-the-adapter" title="Permalink to this headline">¶</a></h2>
 <p>The adapter and target host can be configured to either:</p>
 <ol class="arabic simple">
 <li>Enable launching any software installed on the target host</li>
@@ -291,7 +286,7 @@
 </ol>
 <p>The cluster configuration can be shared between both strategies and each interactive app plugin individually configured to use the appropriate strategy.</p>
 <div class="section" id="launch-any-software-on-target-host">
-<h3>Launch any software on target host<a class="headerlink" href="#launch-any-software-on-target-host" title="Permalink to this headline">¶</a></h3>
+<h2>Launch any software on target host<a class="headerlink" href="#launch-any-software-on-target-host" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
 <li>Install on the target host a Singularity base OS image matching the OS of the target host. In the cluster configuration example below we use <code class="docutils literal notranslate"><span class="pre">/opt/ood/linuxhost_adapter/centos_7.6.sif</span></code> as the target host is running CentOS7.</li>
 <li>Add the cluster configuration file for the target host</li>
@@ -299,7 +294,7 @@
 <p>This base image is used to provide an unprivileged PID namespace when launching the app. To make the rest of the software installed on the host available to launch within the image, most/all of the host file system is bind-mounted into the running container. For this reason many existing interactive apps will just work when launched by the LinuxHost adapter.</p>
 </div>
 <div class="section" id="launch-specific-application-containers">
-<h3>Launch specific application containers<a class="headerlink" href="#launch-specific-application-containers" title="Permalink to this headline">¶</a></h3>
+<h2>Launch specific application containers<a class="headerlink" href="#launch-specific-application-containers" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
 <li>Install the specific application containers on the target host.</li>
 <li>Add the cluster configuration file for the target host. Specify a default application container for <code class="docutils literal notranslate"><span class="pre">singularity_image:</span></code> and <code class="docutils literal notranslate"><span class="pre">singularity_bindpath:</span></code> even if you will override it.</li>
@@ -315,7 +310,7 @@
 </div>
 </div>
 <div class="section" id="cluster-configuration">
-<h3>Cluster Configuration<a class="headerlink" href="#cluster-configuration" title="Permalink to this headline">¶</a></h3>
+<h2>Cluster Configuration<a class="headerlink" href="#cluster-configuration" title="Permalink to this headline">¶</a></h2>
 <p>A YAML cluster configuration file for a Linux host looks like:</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># /etc/ood/config/clusters.d/owens_login.yml</span>
 <span class="nn">---</span>
@@ -382,7 +377,6 @@ if these will be specified in each interactive app plugin.</p>
 is performed by user owned passwordless keys, or host-based authentication;
 however OSC has chosen to provide <a class="reference external" href="https://en.wikibooks.org/wiki/OpenSSH/Cookbook/Host-based_Authentication">host based authentication</a>
 to its users.</p>
-</div>
 </div>
 </div>
 <div class="section" id="enforce-resource-limits-on-the-target-host">
