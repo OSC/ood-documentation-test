@@ -328,7 +328,9 @@ update_ood_portal -c /etc/ood/config/ood_portal.yml -t /opt/ood/ood-portal-gener
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
 <p class="last">The systemd file for Apache will run the update_ood_portal script with defaults
-and will not use a different file, rendering this option obsolete.</p>
+and will not use a different file, rendering this option obsolete unless you also
+modify systemd config (<code class="docutils literal notranslate"><span class="pre">/etc/systemd/system/httpd24-httpd.service.d/ood.conf</span></code> in
+CentOS 7, <code class="docutils literal notranslate"><span class="pre">/etc/systemd/system/httpd.service.d/ood.conf</span></code> in CentOS 8).</p>
 </div>
 </dd></dl>
 
@@ -349,7 +351,9 @@ and will not use a different file, rendering this option obsolete.</p>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
 <p class="last">The systemd file for Apache will run the update_ood_portal script with defaults
-and will not use a different file, rendering this option obsolete.</p>
+and will not use a different file, rendering this option obsolete unless you also
+modify systemd config (<code class="docutils literal notranslate"><span class="pre">/etc/systemd/system/httpd24-httpd.service.d/ood.conf</span></code> in
+CentOS 7, <code class="docutils literal notranslate"><span class="pre">/etc/systemd/system/httpd.service.d/ood.conf</span></code> in CentOS 8).</p>
 </div>
 </dd></dl>
 
