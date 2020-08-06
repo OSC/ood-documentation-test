@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Add Google Analytics &mdash; Open OnDemand 1.7.0 documentation</title>
+  <title>Add OIDC Authentication &mdash; Open OnDemand 1.7.0 documentation</title>
   
 
   
@@ -38,8 +38,8 @@
   <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Add SSL Support" href="add-ssl-support.html" />
-    <link rel="prev" title="Add OIDC Authentication" href="add-oidc-authentication.html" />
+    <link rel="next" title="Add Google Analytics" href="add-google-analytics.html" />
+    <link rel="prev" title="Example Configurations" href="../examples.html" />
  
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-34776817-3"></script>
 <script>
@@ -158,8 +158,8 @@
 <li class="toctree-l3"><a class="reference internal" href="../usage.html">Usage</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../configuration.html">Configuration</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="../examples.html">Example Configurations</a><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="add-oidc-authentication.html">Add OIDC Authentication</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">Add Google Analytics</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Add OIDC Authentication</a></li>
+<li class="toctree-l4"><a class="reference internal" href="add-google-analytics.html">Add Google Analytics</a></li>
 <li class="toctree-l4"><a class="reference internal" href="add-ssl-support.html">Add SSL Support</a></li>
 <li class="toctree-l4"><a class="reference internal" href="default-authentication.html">Default Authentication</a></li>
 <li class="toctree-l4"><a class="reference internal" href="add-ldap-authentication.html">Add LDAP Authentication</a></li>
@@ -227,14 +227,14 @@
         
           <li><a href="../examples.html">Example Configurations</a> &raquo;</li>
         
-      <li>Add Google Analytics</li>
+      <li>Add OIDC Authentication</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
             
-              <a href="https://github.com/OSC/ood-documentation/blob/dex/source/infrastructure/ood-portal-generator/examples/add-google-analytics.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/OSC/ood-documentation/blob/dex/source/infrastructure/ood-portal-generator/examples/add-oidc-authentication.rst" class="fa fa-github"> Edit on GitHub</a>
             
           
         
@@ -248,27 +248,50 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="add-google-analytics">
-<span id="id1"></span><h1>Add Google Analytics<a class="headerlink" href="#add-google-analytics" title="Permalink to this headline">¶</a></h1>
-<p>To support this project we recommend enabling Google Analytics with the
-following options:</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># /etc/ood/config/ood_portal.yml</span>
-<span class="nn">---</span>
-
-<span class="l l-Scalar l-Scalar-Plain">analytics</span><span class="p p-Indicator">:</span>
-  <span class="l l-Scalar l-Scalar-Plain">id</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">UA-79331310-4</span>
-  <span class="l l-Scalar l-Scalar-Plain">url</span><span class="p p-Indicator">:</span> <span class="s">&quot;http://www.google-analytics.com/collect&quot;</span>
-</pre></div>
-</div>
-<p>This will collect various metrics and submit them to OSC’s Google Analytics
-account.</p>
-<p>Build the Apache configuration file and install it.</p>
+  <div class="section" id="add-oidc-authentication">
+<span id="id1"></span><h1>Add OIDC Authentication<a class="headerlink" href="#add-oidc-authentication" title="Permalink to this headline">¶</a></h1>
+<p>The following prerequisites need to be satisfied:</p>
+<ul class="simple">
+<li>A OIDC IdP server deployed, e.g., <code class="docutils literal notranslate"><span class="pre">idp.example.com</span></code> (outside of scope of this document)</li>
+<li>The <a class="reference external" href="https://github.com/zmartzone/mod_auth_openidc">mod_auth_openidc</a> installed on the OnDemand Server.</li>
+</ul>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Please contact us if you’d like access to your center’s Google Analytics
-data. This will require us to generate a new Property ID for your center
-that we can then share with you.</p>
+<p class="last">OnDemand repos provide the <code class="docutils literal notranslate"><span class="pre">https24-mod_auth_openidc</span></code> RPM for RHEL 7 and CentOS 7 as it must be built against SCL Apache</p>
 </div>
+<p>The following is an example <strong class="program">ood-portal-generator</strong> configuration file:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># /etc/ood/config/ood_portal.yml</span>
+<span class="nn">---</span>
+<span class="l l-Scalar l-Scalar-Plain">servername</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">ondemand.example.com</span>
+
+<span class="c1"># Use OIDC authentication</span>
+<span class="l l-Scalar l-Scalar-Plain">auth</span><span class="p p-Indicator">:</span>
+  <span class="p p-Indicator">-</span> <span class="s">&quot;AuthType</span><span class="nv"> </span><span class="s">openid-connect&quot;</span>
+  <span class="p p-Indicator">-</span> <span class="s">&quot;Require</span><span class="nv"> </span><span class="s">valid-user&quot;</span>
+
+<span class="c1"># Use OIDC logout</span>
+<span class="l l-Scalar l-Scalar-Plain">logout_redirect</span><span class="p p-Indicator">:</span> <span class="s">&quot;/oidc?logout=https%3A%2F%ondemand.example.com&quot;</span>
+
+<span class="c1"># Capture system user name from authenticated user name</span>
+<span class="l l-Scalar l-Scalar-Plain">user_map_cmd</span><span class="p p-Indicator">:</span> <span class="s">&quot;/opt/ood/ood_auth_map/bin/ood_auth_map.regex&quot;</span>
+
+<span class="l l-Scalar l-Scalar-Plain">oidc_uri</span><span class="p p-Indicator">:</span> <span class="s">&quot;/oidc&quot;</span>
+<span class="l l-Scalar l-Scalar-Plain">oidc_provider_metadata_url</span><span class="p p-Indicator">:</span> <span class="s">&quot;https://idp.example.com/.well-known/openid-configuration&quot;</span>
+<span class="l l-Scalar l-Scalar-Plain">oidc_client_id</span><span class="p p-Indicator">:</span> <span class="s">&quot;ondemand.example.com&quot;</span>
+<span class="l l-Scalar l-Scalar-Plain">oidc_client_secret</span><span class="p p-Indicator">:</span> <span class="s">&quot;b972c25d-88a4-41fa-87f7-a12ff167dd13&quot;</span>
+<span class="l l-Scalar l-Scalar-Plain">oidc_remote_user_claim</span><span class="p p-Indicator">:</span> <span class="s">&quot;preferred_username&quot;</span>
+<span class="l l-Scalar l-Scalar-Plain">oidc_scope</span><span class="p p-Indicator">:</span> <span class="s">&quot;openid</span><span class="nv"> </span><span class="s">profile</span><span class="nv"> </span><span class="s">email</span><span class="nv"> </span><span class="s">groups&quot;</span>
+<span class="l l-Scalar l-Scalar-Plain">oidc_session_inactivity_timeout</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">28800</span>
+<span class="l l-Scalar l-Scalar-Plain">oidc_session_max_duration</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">28800</span>
+<span class="l l-Scalar l-Scalar-Plain">oidc_state_max_number_of_cookies</span><span class="p p-Indicator">:</span> <span class="s">&quot;10</span><span class="nv"> </span><span class="s">true&quot;</span>
+<span class="l l-Scalar l-Scalar-Plain">oidc_settings</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">OIDCPassIDTokenAs</span><span class="p p-Indicator">:</span> <span class="s">&quot;serialized&quot;</span>
+  <span class="l l-Scalar l-Scalar-Plain">OIDCPassRefreshToken</span><span class="p p-Indicator">:</span> <span class="s">&quot;On&quot;</span>
+  <span class="l l-Scalar l-Scalar-Plain">OIDCPassClaimsAs</span><span class="p p-Indicator">:</span> <span class="s">&quot;environment&quot;</span>
+  <span class="l l-Scalar l-Scalar-Plain">OIDCStripCookies</span><span class="p p-Indicator">:</span> <span class="s">&quot;mod_auth_openidc_session</span><span class="nv"> </span><span class="s">mod_auth_openidc_session_chunks</span><span class="nv"> </span><span class="s">mod_auth_openidc_session_0</span><span class="nv"> </span><span class="s">mod_auth_openidc_session_1&quot;</span>
+</pre></div>
+</div>
+<p>Build the Apache configuration file and install it.</p>
 </div>
 
 
@@ -279,10 +302,10 @@ that we can then share with you.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="add-ssl-support.html" class="btn btn-neutral float-right" title="Add SSL Support" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="add-google-analytics.html" class="btn btn-neutral float-right" title="Add Google Analytics" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="add-oidc-authentication.html" class="btn btn-neutral float-left" title="Add OIDC Authentication" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../examples.html" class="btn btn-neutral float-left" title="Example Configurations" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -314,23 +337,23 @@ that we can then share with you.</p>
     <dl>
       <dt>Versions</dt>
       
-        <dd><a href="https://OSC.github.io/ood-documentation/master/infrastructure/ood-portal-generator/examples/add-google-analytics.html">master</a></dd>
+        <dd><a href="https://OSC.github.io/ood-documentation/master/infrastructure/ood-portal-generator/examples/add-oidc-authentication.html">master</a></dd>
       
-        <dd><a href="https://OSC.github.io/ood-documentation/release-1.6/infrastructure/ood-portal-generator/examples/add-google-analytics.html">1.6</a></dd>
+        <dd><a href="https://OSC.github.io/ood-documentation/release-1.6/infrastructure/ood-portal-generator/examples/add-oidc-authentication.html">1.6</a></dd>
       
-        <dd><a href="https://OSC.github.io/ood-documentation/release-1.5/infrastructure/ood-portal-generator/examples/add-google-analytics.html">1.5</a></dd>
+        <dd><a href="https://OSC.github.io/ood-documentation/release-1.5/infrastructure/ood-portal-generator/examples/add-oidc-authentication.html">1.5</a></dd>
       
-        <dd><a href="https://OSC.github.io/ood-documentation/release-1.4/infrastructure/ood-portal-generator/examples/add-google-analytics.html">1.4</a></dd>
+        <dd><a href="https://OSC.github.io/ood-documentation/release-1.4/infrastructure/ood-portal-generator/examples/add-oidc-authentication.html">1.4</a></dd>
       
-        <dd><a href="https://OSC.github.io/ood-documentation/release-1.3/infrastructure/ood-portal-generator/examples/add-google-analytics.html">1.3</a></dd>
+        <dd><a href="https://OSC.github.io/ood-documentation/release-1.3/infrastructure/ood-portal-generator/examples/add-oidc-authentication.html">1.3</a></dd>
       
-        <dd><a href="https://OSC.github.io/ood-documentation/release-1.2/infrastructure/ood-portal-generator/examples/add-google-analytics.html">1.2</a></dd>
+        <dd><a href="https://OSC.github.io/ood-documentation/release-1.2/infrastructure/ood-portal-generator/examples/add-oidc-authentication.html">1.2</a></dd>
       
-        <dd><a href="https://OSC.github.io/ood-documentation/release-1.1/infrastructure/ood-portal-generator/examples/add-google-analytics.html">1.1</a></dd>
+        <dd><a href="https://OSC.github.io/ood-documentation/release-1.1/infrastructure/ood-portal-generator/examples/add-oidc-authentication.html">1.1</a></dd>
       
-        <dd><a href="https://OSC.github.io/ood-documentation/release-1.0/infrastructure/ood-portal-generator/examples/add-google-analytics.html">1.0</a></dd>
+        <dd><a href="https://OSC.github.io/ood-documentation/release-1.0/infrastructure/ood-portal-generator/examples/add-oidc-authentication.html">1.0</a></dd>
       
-        <dd><a href="https://OSC.github.io/ood-documentation/develop/infrastructure/ood-portal-generator/examples/add-google-analytics.html">develop</a></dd>
+        <dd><a href="https://OSC.github.io/ood-documentation/develop/infrastructure/ood-portal-generator/examples/add-oidc-authentication.html">develop</a></dd>
       
     </dl>
     <dl>
