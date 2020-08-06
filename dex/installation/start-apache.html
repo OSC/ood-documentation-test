@@ -261,7 +261,7 @@ The default user must exist on the system before login is possible.</p>
 </div>
 </li>
 <li><p class="first">(Optional) Start the Dex server</p>
-<p>If using the default OnDemand authentication mechanism, you must start the <cite>ondemand-dex</cite> service.</p>
+<p>If using the default OnDemand authentication mechanism, you must start the <code class="docutils literal notranslate"><span class="pre">ondemand-dex</span></code> service.</p>
 <dl class="docutils">
 <dt>CentOS/RHEL 7 &amp; 8</dt>
 <dd><div class="first last highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo systemctl start ondemand-dex
@@ -272,10 +272,10 @@ sudo systemctl <span class="nb">enable</span> ondemand-dex
 </dl>
 </li>
 <li><p class="first">(Optional) Configure default user</p>
-<p>If you wish to use the default <cite>ood</cite> you must create that user on the OnDemand system.</p>
+<p>If you wish to use the default <code class="docutils literal notranslate"><span class="pre">ood</span></code> you must create that user on the OnDemand system.</p>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p class="last">Using the default <cite>ood</cite> user is not recommended for production and is intended only for
+<p class="last">Using the default <code class="docutils literal notranslate"><span class="pre">ood</span></code> user is not recommended for production and is intended only for
 evaluation and testing of OnDemand. The recommended approach is to configure LDAP, see <a class="reference internal" href="add-ldap.html#add-ldap"><span class="std std-ref">Add LDAP Support</span></a>,
 or some othe authentication mechanism in Apache such as OIDC or Shibboleth.</p>
 </div>
@@ -284,7 +284,7 @@ sudo useradd -d /home/ood -g ood -k /etc/skel -m ood
 </pre></div>
 </div>
 </li>
-<li><p class="first">Browse to your OnDemand server and login the username <cite>ood&#64;localhost</cite> and the password <cite>password</cite>.
+<li><p class="first">Browse to your OnDemand server and login the username <code class="docutils literal notranslate"><span class="pre">ood&#64;localhost</span></code> and the password <code class="docutils literal notranslate"><span class="pre">password</span></code>.
 If everything worked you should be presented with the OnDemand <a class="reference internal" href="../applications/dashboard.html#dashboard"><span class="std std-ref">Dashboard App</span></a>.</p>
 </li>
 </ol>

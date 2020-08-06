@@ -29,7 +29,7 @@ Please see section :ref:`add-ldap` for a more advanced and recommended authentic
 
 #. (Optional) Start the Dex server
 
-   If using the default OnDemand authentication mechanism, you must start the `ondemand-dex` service.
+   If using the default OnDemand authentication mechanism, you must start the ``ondemand-dex`` service.
 
    CentOS/RHEL 7 & 8
      .. code-block:: sh
@@ -39,11 +39,11 @@ Please see section :ref:`add-ldap` for a more advanced and recommended authentic
 
 #. (Optional) Configure default user
 
-   If you wish to use the default `ood` you must create that user on the OnDemand system.
+   If you wish to use the default ``ood`` you must create that user on the OnDemand system.
 
    .. warning::
 
-      Using the default `ood` user is not recommended for production and is intended only for
+      Using the default ``ood`` user is not recommended for production and is intended only for
       evaluation and testing of OnDemand. The recommended approach is to configure LDAP, see :ref:`add-ldap`,
       or some othe authentication mechanism in Apache such as OIDC or Shibboleth.
 
@@ -52,5 +52,5 @@ Please see section :ref:`add-ldap` for a more advanced and recommended authentic
       sudo groupadd ood
       sudo useradd -d /home/ood -g ood -k /etc/skel -m ood
 
-#. Browse to your OnDemand server and login the username `ood@localhost` and the password `password`.
+#. Browse to your OnDemand server and login the username ``ood@localhost`` and the password ``password``.
    If everything worked you should be presented with the OnDemand :ref:`dashboard`.
