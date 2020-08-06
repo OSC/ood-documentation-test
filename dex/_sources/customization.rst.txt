@@ -887,7 +887,6 @@ The default ``ondemand`` theme can also be configured using the following config
    dex:
    # ...
      frontend:
-       theme: "ondemand"
        issuer: "MyCenter OnDemand"
        extra:
          navLogo: "/path/to/custom/nav-logo.png"
