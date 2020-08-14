@@ -229,13 +229,6 @@
 <span id="app-development-tutorials-passenger-apps"></span><h1>Tutorials: Passenger Apps<a class="headerlink" href="#tutorials-passenger-apps" title="Permalink to this headline">¶</a></h1>
 <p>A Passenger App is any Rack-based Ruby app, WSGI-based Python app, or Node.js app that has a “startup file” following <a class="reference external" href="https://www.phusionpassenger.com/library/config/nginx/reference/#passenger_startup_file">the convention</a> that Phusion Passenger Web Application Server instances use to start the process. OnDemand uses the <a class="reference external" href="https://www.phusionpassenger.com/library/walkthroughs/basics/ruby/fundamental_concepts.html#multiple-integration-modes">NGINX Integration mode</a> for Passenger, where NGINX and Passenger and individual web app processes all communicate using UNIX domain sockets.</p>
 <p>At the bottom of the page is a list of tutorials for developing Passenger apps for OnDemand.</p>
-<p>In addition, all pre-installed Ruby gems used by OnDemand are available, which makes it easy for users to develop. These include:</p>
-<ul class="simple">
-<li>sinatra</li>
-<li>sinatra-contrib</li>
-<li>erubi</li>
-</ul>
-<p>On the OnDemand web host, you can execute the command <cite>source scl_source enable ondmeand</cite> and then <cite>gem list</cite> to see all available gems. These gems are provided by a separate <code class="docutils literal notranslate"><span class="pre">ondemand-gems</span></code> rpm that is installed when you do <code class="docutils literal notranslate"><span class="pre">yum</span> <span class="pre">install</span> <span class="pre">ondemand</span></code>. The name of the RPM includes the OnDemand release version, such as <code class="docutils literal notranslate"><span class="pre">ondemand-gems-1.7.12-1.7.12-1.el7.x86_64.rpm</span></code>. This ensures that if you do yum update this gem will not be removed - so apps can depend on the presence of these gems.</p>
 <div class="toctree-wrapper compound">
 <p class="caption"><span class="caption-text">Tutorials</span></p>
 <ul>
