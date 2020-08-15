@@ -273,8 +273,14 @@ form file to <code class="docutils literal notranslate"><span class="pre">form.y
 <h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
 <dl class="describe">
 <dt>
-<code class="descname">cluster (String)</code></dt>
-<dd><p>the cluster id that the Interactive App session is submitted to</p>
+<code class="descname">cluster (Array&lt;String&gt;)</code></dt>
+<dd><p>the cluster ids that the Interactive App session is submitted to.</p>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">Prior to 1.8, this configuration was a single string (a single cluster).
+We now support one application submitting to multiple clusters. See the
+section below on <a class="reference internal" href="#configuring-which-cluster-to-submit-to">configuring which cluster to submit to</a> for more information.</p>
+</div>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
 <p>The cluster id must correspond to a cluster configuration file located
@@ -304,6 +310,11 @@ user in the order they are listed in this configuration option.</p>
 various custom attributes</p>
 </dd></dl>
 
+<div class="section" id="configuring-which-cluster-to-submit-to">
+<h3>Configuring which cluster to submit to<a class="headerlink" href="#configuring-which-cluster-to-submit-to" title="Permalink to this headline">¶</a></h3>
+<p>TODO: fill in with (1) cluster, (2) form &amp; attributes and (3) defining in
+submit.yml.erb.</p>
+</div>
 </div>
 <div class="section" id="attributes">
 <h2>Attributes<a class="headerlink" href="#attributes" title="Permalink to this headline">¶</a></h2>

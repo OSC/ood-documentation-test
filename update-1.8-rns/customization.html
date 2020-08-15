@@ -121,6 +121,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#add-shortcuts-to-files-menu">Add Shortcuts to Files Menu</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#whitelist-directories">Whitelist Directories</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#set-default-ssh-host">Set Default SSH Host</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#set-ssh-allowlist">Set SSH Allowlist</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#shell-app-ssh-command-wrapper">Shell App SSH Command Wrapper</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#fix-unauthorized-websocket-connection-in-shell-app">Fix Unauthorized WebSocket Connection in Shell App</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#custom-job-composer-templates">Custom Job Composer Templates</a><ul>
@@ -360,25 +361,29 @@ OnDemand will be unavailable during this period. For details, please visit
 </tr>
 <tr class="row-odd"><th class="stub">Logo</th>
 <td>OOD_DASHBOARD_LOGO</td>
-<td>The default value for <code class="docutils literal notranslate"><span class="pre">OOD_DASHBOARD_LOGO</span></code> is <code class="docutils literal notranslate"><span class="pre">/public/logo.png</span></code> and this should be the URL to the logo. By default if you place a logo.png at <code class="docutils literal notranslate"><span class="pre">/var/www/ood/public/logo.png</span></code> it will be accessible via the URL <code class="docutils literal notranslate"><span class="pre">https://your.ondemand.institution.edu/public/logo.png</span></code>.</td>
+<td>The default value for <code class="docutils literal notranslate"><span class="pre">OOD_DASHBOARD_LOGO</span></code> is <code class="docutils literal notranslate"><span class="pre">/public/logo.png</span></code> and this should be the URL to the logo. By default if you place a logo.png at <code class="docutils literal notranslate"><span class="pre">/var/www/ood/public/logo.png</span></code> it will be accessible via the URL <code class="docutils literal notranslate"><span class="pre">https://your.ondemand.institution.edu/public/logo.png</span></code>.  SVG logo format is also supported.</td>
 </tr>
-<tr class="row-even"><th class="stub">Favicon</th>
+<tr class="row-even"><th class="stub">Logo height</th>
+<td>OOD_DASHBOARD_LOGO_HEIGHT</td>
+<td>The CSS height of the dashboard logo.</td>
+</tr>
+<tr class="row-odd"><th class="stub">Favicon</th>
 <td>OOD_PUBLIC_URL</td>
 <td>The favicon is expected to exist at the path <code class="docutils literal notranslate"><span class="pre">$OOD_PUBLIC_URL/favicon.ico</span></code>. For a default OOD installation the favicon will be located at <code class="docutils literal notranslate"><span class="pre">/var/www/ood/public/favicon.ico</span></code>.</td>
 </tr>
-<tr class="row-odd"><th class="stub">Brand background color</th>
+<tr class="row-even"><th class="stub">Brand background color</th>
 <td>OOD_BRAND_BG_COLOR</td>
 <td>Controls the background color of the navbar in the dashboard</td>
 </tr>
-<tr class="row-even"><th class="stub">Brand foreground color</th>
+<tr class="row-odd"><th class="stub">Brand foreground color</th>
 <td>OOD_BRAND_LINK_ACTIVE_BG_COLOR</td>
 <td>Controls the background color the active link in the navbar in the dashboard</td>
 </tr>
-<tr class="row-odd"><th class="stub">Replace header title with logo</th>
+<tr class="row-even"><th class="stub">Replace header title with logo</th>
 <td>OOD_DASHBOARD_HEADER_IMG_LOGO</td>
 <td>Value should be url to logo i.e. <code class="docutils literal notranslate"><span class="pre">/public/logo.png</span></code>.  the background color the active link in the navbar in the dashboard</td>
 </tr>
-<tr class="row-even"><th class="stub">Use white text on black background for navbar.</th>
+<tr class="row-odd"><th class="stub">Use white text on black background for navbar.</th>
 <td>OOD_NAVBAR_TYPE</td>
 <td>By default we use <code class="docutils literal notranslate"><span class="pre">inverse</span></code> for this value, which specifies to use <a class="reference external" href="https://getbootstrap.com/docs/3.3/components/#navbar-inverted">Bootstrap 3’s inverted navbar</a> where text is white and background is black (or dark grey). You can set this to <code class="docutils literal notranslate"><span class="pre">default</span></code> to use black text on light grey background if it fits your branding better.</td>
 </tr>
@@ -525,8 +530,36 @@ app.</p>
 </div>
 <div class="section" id="set-default-ssh-host">
 <h2>Set Default SSH Host<a class="headerlink" href="#set-default-ssh-host" title="Permalink to this headline">¶</a></h2>
-<p>In <code class="docutils literal notranslate"><span class="pre">/etc/ood/config/apps/shell/env</span></code> set the env var <code class="docutils literal notranslate"><span class="pre">DEFAULT_SSHHOST</span></code> to change the default ssh host. Otherwise it will default to “localhost” i.e. add the line <code class="docutils literal notranslate"><span class="pre">DEFAULT_SSHHOST=&quot;localhost&quot;</span></code>.</p>
+<p>In <code class="docutils literal notranslate"><span class="pre">/etc/ood/config/apps/shell/env</span></code> set the env var <code class="docutils literal notranslate"><span class="pre">OOD_DEFAULT_SSHHOST</span></code> to change the default ssh host. Otherwise it will default to “localhost” i.e. add the line <code class="docutils literal notranslate"><span class="pre">OOD_DEFAULT_SSHHOST=&quot;localhost&quot;</span></code>.</p>
 <p>This will control what host the shell app ssh’s to when the URL accessed is <code class="docutils literal notranslate"><span class="pre">/pun/sys/shell/ssh/default</span></code> which is the URL other apps will use (unless there is context to specify the cluster to ssh to).</p>
+<p>Since 1.8 you can also set the default ssh host in the cluster configuration as well.</p>
+<p>Simply add default=true attribute to the login section like the example below.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># /etc/ood/config/clusters.d/my_cluster.yml</span>
+<span class="nn">---</span>
+<span class="l l-Scalar l-Scalar-Plain">v2</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">metadata</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">title</span><span class="p p-Indicator">:</span> <span class="s">&quot;My</span><span class="nv"> </span><span class="s">Cluster&quot;</span>
+  <span class="l l-Scalar l-Scalar-Plain">login</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">host</span><span class="p p-Indicator">:</span> <span class="s">&quot;my_cluster.my_center.edu&quot;</span>
+    <span class="l l-Scalar l-Scalar-Plain">default</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="set-ssh-allowlist">
+<h2>Set SSH Allowlist<a class="headerlink" href="#set-ssh-allowlist" title="Permalink to this headline">¶</a></h2>
+<p>In 1.8 and above we stopped allowing ssh access by default.  Now you have explicitly set
+what hosts users will be allowed to connect to in the shell application.</p>
+<p>Every cluster configuration with <code class="docutils literal notranslate"><span class="pre">v2.login.host</span></code> that is not hidden (it has
+<code class="docutils literal notranslate"><span class="pre">v2.metadata.hidden</span></code> attribute set to true) will be added to this allowlist.</p>
+<p>To add other hosts into the allow list (for example compute nodes) add the configuration
+<code class="docutils literal notranslate"><span class="pre">OOD_SSHHOST_ALLOWLIST</span></code> to the <code class="docutils literal notranslate"><span class="pre">/etc/ood/config/apps/shell/env</span></code> file.</p>
+<p>This configuration is expected to be a colon (:) separated list of GLOBs.</p>
+<p>Here’s an example of of this configuration with three such GLOBs that allow for shell
+access into any compute node in our three clusters.</p>
+<div class="code shell highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># /etc/ood/config/apps/shell/env</span>
+<span class="n">OOD_SSHHOST_ALLOWLIST</span><span class="o">=</span><span class="s2">&quot;r[0-1][0-9][0-9][0-9].ten.osc.edu:o[0-1][0-9][0-9][0-9].ten.osc.edu:p[0-1][0-9][0-9][0-9].ten.osc.edu&quot;</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="shell-app-ssh-command-wrapper">
 <h2>Shell App SSH Command Wrapper<a class="headerlink" href="#shell-app-ssh-command-wrapper" title="Permalink to this headline">¶</a></h2>
