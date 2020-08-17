@@ -276,8 +276,8 @@ form file to <code class="docutils literal notranslate"><span class="pre">form.y
 <dt>
 <code class="descname">cluster (Array&lt;String&gt;)</code></dt>
 <dd><p>the cluster ids that the Interactive App session is submitted to.</p>
-<div class="admonition tip">
-<p class="first admonition-title">Tip</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
 <p class="last">Prior to 1.8, this configuration was a single string (a single cluster).
 We now support one application submitting to multiple clusters. See the
 section below on <a class="reference internal" href="#configuring-which-cluster-to-submit-to">configuring which cluster to submit to</a> for more information.</p>
@@ -309,6 +309,12 @@ user in the order they are listed in this configuration option.</p>
 <code class="descname">attributes (Hash)</code></dt>
 <dd><p>the object defining the hard-coded value or HTML form element used for the
 various custom attributes</p>
+</dd></dl>
+
+<dl class="describe">
+<dt>
+<code class="descname">cacheable (Boolean)</code></dt>
+<dd><p>whether or not the application is cacheable or not. Defaults to true.</p>
 </dd></dl>
 
 </div>
@@ -630,6 +636,26 @@ either “volvo”, “ford”, or “toyota” depending on what the user chose
 </div>
 </dd></dl>
 
+<dl class="describe">
+<dt>
+<code class="descname">cacheable (Boolean, true)</code></dt>
+<dd><p>whether the form item is cacheable or not</p>
+<dl class="docutils">
+<dt>Default</dt>
+<dd><p class="first">cacheable</p>
+<div class="last highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">cacheable</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+</pre></div>
+</div>
+</dd>
+<dt>Example</dt>
+<dd><p class="first">The item is not cacheable</p>
+<div class="last highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">cacheable</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
 </div>
 </div>
 <div class="section" id="examples">
@@ -715,6 +741,42 @@ configuration option</li>
 <li>it then describes the HTML form element to use for the <code class="docutils literal notranslate"><span class="pre">my_module_version</span></code>
 attribute</li>
 </ul>
+</div>
+<div class="section" id="caching-form-items">
+<h3>Caching form items<a class="headerlink" href="#caching-form-items" title="Permalink to this headline">¶</a></h3>
+<p>Since 1.8 caching form items is configurable. By default all form items are
+cacheable. As seen above you can enable or disable caching for the entire app
+when using the top level <code class="docutils literal notranslate"><span class="pre">cacheable</span></code> configuration. You can also configure
+on a per item basis through attributes.</p>
+<p>Lastly you can also enable or disable this feature for the entire site, using
+the configuration <code class="docutils literal notranslate"><span class="pre">OOD_BATCH_CONNECT_CACHE_ATTR_VALUES=false</span></code> in the
+dashboard’s environment file <code class="docutils literal notranslate"><span class="pre">/etc/ood/config/apps/dashboard/env</span></code>.</p>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p>Since you can configure caching at different levels the rule of thumb is the
+closer the the configuration is to the form item, the higher the precedence.</p>
+<p class="last">Setting the configuration on the attribute overrides everything and setting it
+on a per app basis overrides the global setting.</p>
+</div>
+<p>Let’s see an example.  Here, we’ve disabled caching for the app and did not
+set OOD_BATCH_CONNECT_CACHE_ATTR_VALUES, so the site-wide configuration is set
+to true by default.  So, <code class="docutils literal notranslate"><span class="pre">bc_num_slots</span></code> and <code class="docutils literal notranslate"><span class="pre">python_version</span></code> are not cacheable,
+meaning the user will have to fill those form entries out every time they submit
+the job. But since <code class="docutils literal notranslate"><span class="pre">bc_queue</span></code>’s attribute is set to true, it is cacheable.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># ${HOME}/ondemand/dev/my_app/form.yml</span>
+<span class="c1"># OOD_BATCH_CONNECT_CACHE_ATTR_VALUES is not set, so defaults to true</span>
+<span class="nn">---</span>
+<span class="l l-Scalar l-Scalar-Plain">cluster</span><span class="p p-Indicator">:</span> <span class="s">&quot;owens&quot;</span>
+<span class="l l-Scalar l-Scalar-Plain">cacheable</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="l l-Scalar l-Scalar-Plain">form</span><span class="p p-Indicator">:</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">bc_num_slots</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">python_version</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">bc_queue</span>
+<span class="l l-Scalar l-Scalar-Plain">attributes</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">bc_queue</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">cacheable</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+</pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="configuring-which-cluster-to-submit-to">
