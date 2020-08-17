@@ -105,7 +105,9 @@ Beta CCQ Scheduler support
 Retain completed jobs panel for debugging
 .........................................
 
-Completed jobs will be retained for a week to assist in debugging. The Session ID hyperlink opens a files app to the output directory of the batch connect job.
+When an interactive job completes, its panel will now remain in the view. This is to
+allow users and administrators to debug failed jobs by keeping the session id links
+in view.
 
 Batch Connect apps now support multiple clusters
 ................................................
