@@ -136,6 +136,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#configuration">Configuration</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#attributes">Attributes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#examples">Examples</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#configuring-which-cluster-to-submit-to">Configuring which cluster to submit to</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="template.html">Render Template</a></li>
@@ -310,11 +311,6 @@ user in the order they are listed in this configuration option.</p>
 various custom attributes</p>
 </dd></dl>
 
-<div class="section" id="configuring-which-cluster-to-submit-to">
-<h3>Configuring which cluster to submit to<a class="headerlink" href="#configuring-which-cluster-to-submit-to" title="Permalink to this headline">¶</a></h3>
-<p>TODO: fill in with (1) cluster, (2) form &amp; attributes and (3) defining in
-submit.yml.erb.</p>
-</div>
 </div>
 <div class="section" id="attributes">
 <h2>Attributes<a class="headerlink" href="#attributes" title="Permalink to this headline">¶</a></h2>
@@ -720,6 +716,51 @@ configuration option</li>
 attribute</li>
 </ul>
 </div>
+</div>
+<div class="section" id="configuring-which-cluster-to-submit-to">
+<span id="configuring-cluster"></span><h2>Configuring which cluster to submit to<a class="headerlink" href="#configuring-which-cluster-to-submit-to" title="Permalink to this headline">¶</a></h2>
+<p>In 1.8 there are now several ways to configure what cluster to submit to.</p>
+<p>The easiest way is to use the the top level <code class="docutils literal notranslate"><span class="pre">cluster</span></code> configuration. If you’ve
+configured just one item, then the form UI does not change for the user. If
+you configure an array of two or more options then a select dropdown will
+automatically be added to the top of the form.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># ${HOME}/ondemand/dev/my_app/form.yml</span>
+<span class="c1"># which will generate a dropdown select automatically</span>
+<span class="nn">---</span>
+<span class="l l-Scalar l-Scalar-Plain">cluster</span><span class="p p-Indicator">:</span>
+  <span class="p p-Indicator">-</span> <span class="s">&quot;cluster1&quot;</span>
+  <span class="p p-Indicator">-</span> <span class="s">&quot;cluster2&quot;</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p>GLOBs are also supported. So in the example above one entry of <code class="docutils literal notranslate"><span class="pre">cluster*</span></code>
+would have been equivalent to explicitly configuring both <code class="docutils literal notranslate"><span class="pre">cluster1</span></code> and
+<code class="docutils literal notranslate"><span class="pre">cluster2</span></code>.</p>
+<p class="last">This means you could configure <code class="docutils literal notranslate"><span class="pre">cluster:</span> <span class="pre">&quot;*&quot;</span></code> to be able to submit to all
+clusters.</p>
+</div>
+<p>If you would prefer to use some other widget, or you wish to change the text being
+shown in the UI you can configure a cluster form item and specify it’s attributes.
+This gives you some flexibility in the form UI instead of the default select
+widget that shows all lowercase cluster names.</p>
+<p>Here’s an example were the user will be shown a select dropdown menu item with
+different text than the default.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># ${HOME}/ondemand/dev/different_select_cluster/form.yml</span>
+<span class="nn">---</span>
+<span class="l l-Scalar l-Scalar-Plain">form</span><span class="p p-Indicator">:</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">cluster</span>
+<span class="l l-Scalar l-Scalar-Plain">attributes</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">cluster</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">widget</span><span class="p p-Indicator">:</span> <span class="s">&quot;select&quot;</span>
+    <span class="l l-Scalar l-Scalar-Plain">options</span><span class="p p-Indicator">:</span>
+      <span class="p p-Indicator">-</span> <span class="p p-Indicator">[</span><span class="s">&quot;cluster1&quot;</span><span class="p p-Indicator">,</span> <span class="s">&quot;The</span><span class="nv"> </span><span class="s">first</span><span class="nv"> </span><span class="s">cluster&quot;</span><span class="p p-Indicator">]</span>
+      <span class="p p-Indicator">-</span> <span class="p p-Indicator">[</span><span class="s">&quot;cluster2&quot;</span><span class="p p-Indicator">,</span> <span class="s">&quot;The</span><span class="nv"> </span><span class="s">second</span><span class="nv"> </span><span class="s">cluster&quot;</span><span class="p p-Indicator">]</span>
+</pre></div>
+</div>
+<p>The last option is to <a class="reference internal" href="submit.html#configuring-cluster-in-submit-yml"><span class="std std-ref">configure the cluster in the submit file</span></a>.
+When using this option, there’s no need to add any cluster configuration to the
+form.yml.</p>
 </div>
 </div>
 
