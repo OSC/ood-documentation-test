@@ -102,7 +102,7 @@
               <p class="caption"><span class="caption-text">General</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecture</a></li>
-<li class="toctree-l1"><a class="reference internal" href="reference.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference.html">Configuration Reference</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Install</span></p>
 <ul>
@@ -137,6 +137,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Release Notes</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="release-notes/v1.8-release-notes.html">v1.8 Release Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="release-notes/v1.7-release-notes.html">v1.7 Release Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="release-notes/v1.6-release-notes.html">v1.6 Release Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="release-notes/v1.5-release-notes.html">v1.5 Release Notes</a></li>
@@ -225,7 +226,7 @@
 
 <div class="genindex-jumpbox">
  <a href="#Symbols"><strong>Symbols</strong></a>
- | <a href="#E"><strong>E</strong></a>
+ | <a href="#C"><strong>C</strong></a>
  | <a href="#N"><strong>N</strong></a>
  | <a href="#O"><strong>O</strong></a>
  
@@ -233,6 +234,13 @@
 <h2 id="Symbols">Symbols</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    --detailed-exitcodes
+
+      <ul>
+        <li><a href="reference/commands/ood-portal-generator.html#cmdoption-ood-portal-generator-detailed-exitcodes">ood-portal-generator command line option</a>
+</li>
+      </ul></li>
       <li>
     -a &lt;app_init_url&gt;, --app-init-url &lt;app_init_url&gt;
 
@@ -251,7 +259,7 @@
     -f &lt;file&gt;, --file &lt;file&gt;
 
       <ul>
-        <li><a href="reference/ood-auth-map/scripts/mapfile.html#cmdoption-ood-auth-map-mapfile-f">ood_auth_map.mapfile command line option</a>
+        <li><a href="authentication/overview/map-user.html#cmdoption-ood-auth-map-mapfile-f">ood_auth_map.mapfile command line option</a>
 </li>
       </ul></li>
       <li>
@@ -259,6 +267,8 @@
 
       <ul>
         <li><a href="reference/commands/nginx-stage/commands/nginx-clean.html#cmdoption-nginx-stage-nginx-clean-f">nginx_stage-nginx_clean command line option</a>
+</li>
+        <li><a href="reference/commands/ood-portal-generator.html#cmdoption-ood-portal-generator-f">ood-portal-generator command line option</a>
 </li>
       </ul></li>
       <li>
@@ -286,17 +296,10 @@
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li>
-    -o &lt;output&gt;, --output &lt;output&gt;
-
-      <ul>
-        <li><a href="reference/commands/ood-portal-generator.html#cmdoption-ood-portal-generator-o">ood-portal-generator command line option</a>
-</li>
-      </ul></li>
-      <li>
     -r &lt;regex&gt;, --regex &lt;regex&gt;
 
       <ul>
-        <li><a href="reference/ood-auth-map/scripts/regex.html#cmdoption-ood-auth-map-regex-r">ood_auth_map.regex command line option</a>
+        <li><a href="authentication/overview/map-user.html#cmdoption-r">command line option</a>
 </li>
       </ul></li>
       <li>
@@ -304,6 +307,13 @@
 
       <ul>
         <li><a href="reference/commands/nginx-stage/commands/app.html#cmdoption-nginx-stage-app-r">nginx_stage-app command line option</a>
+</li>
+      </ul></li>
+      <li>
+    -r, --rpm
+
+      <ul>
+        <li><a href="reference/commands/ood-portal-generator.html#cmdoption-ood-portal-generator-r">ood-portal-generator command line option</a>
 </li>
       </ul></li>
       <li>
@@ -336,38 +346,14 @@
   </ul></td>
 </tr></table>
 
-<h2 id="E">E</h2>
+<h2 id="C">C</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li>
-    environment variable
+    command line option
 
       <ul>
-        <li><a href="reference/mod-ood-proxy/handlers/node-proxy-handler.html#envvar-MATCH_HOST">MATCH_HOST</a>
-</li>
-        <li><a href="reference/mod-ood-proxy/handlers/node-proxy-handler.html#envvar-MATCH_PORT">MATCH_PORT</a>
-</li>
-        <li><a href="reference/mod-ood-proxy/handlers/node-proxy-handler.html#envvar-MATCH_URI">MATCH_URI</a>
-</li>
-        <li><a href="reference/mod-ood-proxy/handlers/analytics-handler.html#envvar-OOD_ANALYTICS_TRACKING_ID">OOD_ANALYTICS_TRACKING_ID</a>
-</li>
-        <li><a href="reference/mod-ood-proxy/handlers/analytics-handler.html#envvar-OOD_ANALYTICS_TRACKING_URL">OOD_ANALYTICS_TRACKING_URL</a>
-</li>
-        <li><a href="reference/mod-ood-proxy/handlers/nginx-handler.html#envvar-OOD_MAP_FAIL_URI">OOD_MAP_FAIL_URI</a>, <a href="reference/mod-ood-proxy/handlers/node-proxy-handler.html#envvar-OOD_MAP_FAIL_URI">[1]</a>, <a href="reference/mod-ood-proxy/handlers/pun-proxy-handler.html#envvar-OOD_MAP_FAIL_URI">[2]</a>
-</li>
-        <li><a href="reference/mod-ood-proxy/handlers/nginx-handler.html#envvar-OOD_NGINX_URI">OOD_NGINX_URI</a>, <a href="reference/mod-ood-proxy/handlers/pun-proxy-handler.html#envvar-OOD_NGINX_URI">[1]</a>
-</li>
-        <li><a href="reference/mod-ood-proxy/handlers/pun-proxy-handler.html#envvar-OOD_PUN_MAX_RETRIES">OOD_PUN_MAX_RETRIES</a>
-</li>
-        <li><a href="reference/mod-ood-proxy/handlers/pun-proxy-handler.html#envvar-OOD_PUN_SOCKET_ROOT">OOD_PUN_SOCKET_ROOT</a>
-</li>
-        <li><a href="reference/mod-ood-proxy/handlers/nginx-handler.html#envvar-OOD_PUN_STAGE_CMD">OOD_PUN_STAGE_CMD</a>, <a href="reference/mod-ood-proxy/handlers/pun-proxy-handler.html#envvar-OOD_PUN_STAGE_CMD">[1]</a>
-</li>
-        <li><a href="reference/mod-ood-proxy/handlers/nginx-handler.html#envvar-OOD_PUN_URI">OOD_PUN_URI</a>
-</li>
-        <li><a href="reference/mod-ood-proxy/handlers/nginx-handler.html#envvar-OOD_USER_ENV">OOD_USER_ENV</a>, <a href="reference/mod-ood-proxy/handlers/node-proxy-handler.html#envvar-OOD_USER_ENV">[1]</a>, <a href="reference/mod-ood-proxy/handlers/pun-proxy-handler.html#envvar-OOD_USER_ENV">[2]</a>
-</li>
-        <li><a href="reference/mod-ood-proxy/handlers/nginx-handler.html#envvar-OOD_USER_MAP_CMD">OOD_USER_MAP_CMD</a>, <a href="reference/mod-ood-proxy/handlers/node-proxy-handler.html#envvar-OOD_USER_MAP_CMD">[1]</a>, <a href="reference/mod-ood-proxy/handlers/pun-proxy-handler.html#envvar-OOD_USER_MAP_CMD">[2]</a>
+        <li><a href="authentication/overview/map-user.html#cmdoption-r">-r &lt;regex&gt;, --regex &lt;regex&gt;</a>
 </li>
       </ul></li>
   </ul></td>
@@ -446,9 +432,13 @@
     ood-portal-generator command line option
 
       <ul>
+        <li><a href="reference/commands/ood-portal-generator.html#cmdoption-ood-portal-generator-detailed-exitcodes">--detailed-exitcodes</a>
+</li>
         <li><a href="reference/commands/ood-portal-generator.html#cmdoption-ood-portal-generator-c">-c &lt;config&gt;, --config &lt;config&gt;</a>
 </li>
-        <li><a href="reference/commands/ood-portal-generator.html#cmdoption-ood-portal-generator-o">-o &lt;output&gt;, --output &lt;output&gt;</a>
+        <li><a href="reference/commands/ood-portal-generator.html#cmdoption-ood-portal-generator-f">-f, --force</a>
+</li>
+        <li><a href="reference/commands/ood-portal-generator.html#cmdoption-ood-portal-generator-r">-r, --rpm</a>
 </li>
         <li><a href="reference/commands/ood-portal-generator.html#cmdoption-ood-portal-generator-t">-t &lt;template&gt;, --template &lt;template&gt;</a>
 </li>
@@ -459,14 +449,7 @@
     ood_auth_map.mapfile command line option
 
       <ul>
-        <li><a href="reference/ood-auth-map/scripts/mapfile.html#cmdoption-ood-auth-map-mapfile-f">-f &lt;file&gt;, --file &lt;file&gt;</a>
-</li>
-      </ul></li>
-      <li>
-    ood_auth_map.regex command line option
-
-      <ul>
-        <li><a href="reference/ood-auth-map/scripts/regex.html#cmdoption-ood-auth-map-regex-r">-r &lt;regex&gt;, --regex &lt;regex&gt;</a>
+        <li><a href="authentication/overview/map-user.html#cmdoption-ood-auth-map-mapfile-f">-f &lt;file&gt;, --file &lt;file&gt;</a>
 </li>
       </ul></li>
   </ul></td>
@@ -484,7 +467,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2017-2019, Ohio Supercomputer Center
+        &copy; Copyright 2017-2020, Ohio Supercomputer Center
 
     </p>
   </div> 

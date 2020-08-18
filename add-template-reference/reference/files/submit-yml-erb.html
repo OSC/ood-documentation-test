@@ -38,7 +38,7 @@
   <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Details on Basic Batch Connect Options" href="submit-yml/basic-bc-yml-detailed.html" />
+    <link rel="next" title="Basic Batch Connect Options" href="submit-yml/basic-bc-options.html" />
     <link rel="prev" title="nginx_stage.yml" href="nginx-stage-yml.html" />
  
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-34776817-3"></script>
@@ -103,24 +103,22 @@
               <p class="caption"><span class="caption-text">General</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../architecture.html">Architecture</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../../reference.html">Reference</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="ood-portal-yml.html">ood-portal.yml</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../reference.html">Configuration Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="ood-portal-yml.html">ood_portal.yml</a></li>
 <li class="toctree-l2"><a class="reference internal" href="nginx-stage-yml.html">nginx_stage.yml</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">submit.yml.erb</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#basic-template">Basic template</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#vnc-template">VNC template</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#option-details">Option Details</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="submit-yml/basic-bc-yml-detailed.html">Details on Basic Batch Connect Options</a></li>
-<li class="toctree-l4"><a class="reference internal" href="submit-yml/vnc-bc-yml-detailed.html">Details on VNC Batch Connect Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#simple-example">Simple Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#details-on-submit-attributes">Details on Submit Attributes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="submit-yml/basic-bc-options.html">Basic Batch Connect Options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="submit-yml/vnc-bc-options.html">VNC Batch Connect Options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="submit-yml/script-options.html">Script Options</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#global">Global</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#setting-batch-connect-options-globally">Setting Batch Connect Options Globally</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../commands/ood-portal-generator.html">ood-portal-generator</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../commands/nginx-stage/usage.html">nginx-stage</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../mod-ood-proxy.html">mod_ood_proxy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ood-auth-map.html">ood_auth_map</a></li>
 </ul>
 </li>
 </ul>
@@ -157,6 +155,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Release Notes</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../release-notes/v1.8-release-notes.html">v1.8 Release Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../release-notes/v1.7-release-notes.html">v1.7 Release Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../release-notes/v1.6-release-notes.html">v1.6 Release Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../release-notes/v1.5-release-notes.html">v1.5 Release Notes</a></li>
@@ -219,7 +218,7 @@
     
       <li><a href="../../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="../../reference.html">Reference</a> &raquo;</li>
+          <li><a href="../../reference.html">Configuration Reference</a> &raquo;</li>
         
       <li>submit.yml.erb</li>
     
@@ -244,77 +243,38 @@
             
   <div class="section" id="submit-yml-erb">
 <span id="id1"></span><h1>submit.yml.erb<a class="headerlink" href="#submit-yml-erb" title="Permalink to this headline">¶</a></h1>
-<p>This is the file that is submitted to a batch connect job. You can use either
-a <code class="docutils literal notranslate"><span class="pre">basic</span></code> template or a <code class="docutils literal notranslate"><span class="pre">vnc</span></code> template. VNC templates have more options to
-configure the VNC related items.</p>
-<div class="section" id="basic-template">
-<h2>Basic template<a class="headerlink" href="#basic-template" title="Permalink to this headline">¶</a></h2>
+<p>This is the file that is submitted to a batch connect job. It is comprised
+of a <code class="docutils literal notranslate"><span class="pre">script</span></code> and a <code class="docutils literal notranslate"><span class="pre">batch_connect</span></code> attribute.  The <code class="docutils literal notranslate"><span class="pre">batch_connect</span></code>
+attribute can either be a <code class="docutils literal notranslate"><span class="pre">basic</span></code> template if your app is already an
+http server or a <code class="docutils literal notranslate"><span class="pre">vnc</span></code> template if you need VNC capabilities.</p>
+<div class="section" id="simple-example">
+<h2>Simple Example<a class="headerlink" href="#simple-example" title="Permalink to this headline">¶</a></h2>
 <blockquote>
-<div><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">batch_connect</span><span class="p p-Indicator">:</span>
+<div><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># a simple script.yml.erb file</span>
+
+<span class="l l-Scalar l-Scalar-Plain">script</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">native</span><span class="p p-Indicator">:</span>
+    <span class="p p-Indicator">-</span> <span class="s">&quot;-n&quot;</span>
+    <span class="p p-Indicator">-</span> <span class="s">&quot;1&quot;</span>
+<span class="l l-Scalar l-Scalar-Plain">batch_connect</span><span class="p p-Indicator">:</span>
   <span class="l l-Scalar l-Scalar-Plain">template</span><span class="p p-Indicator">:</span> <span class="s">&quot;basic&quot;</span>
-  <span class="l l-Scalar l-Scalar-Plain">work_dir</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">nil</span>
-  <span class="l l-Scalar l-Scalar-Plain">conn_file</span><span class="p p-Indicator">:</span> <span class="s">&quot;connection.yml&quot;</span>
-  <span class="l l-Scalar l-Scalar-Plain">conn_params</span><span class="p p-Indicator">:</span>
-    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">host</span>
-    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">port</span>
-    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">password</span>
-  <span class="l l-Scalar l-Scalar-Plain">bash_helpers</span><span class="p p-Indicator">:</span> <span class="s">&quot;...&quot;</span>
-  <span class="l l-Scalar l-Scalar-Plain">min_port</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">2000</span>
-  <span class="l l-Scalar l-Scalar-Plain">max_port</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">65535</span>
-  <span class="l l-Scalar l-Scalar-Plain">password_size</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">8</span>
-  <span class="l l-Scalar l-Scalar-Plain">header</span><span class="p p-Indicator">:</span> <span class="s">&quot;&quot;</span>
-  <span class="l l-Scalar l-Scalar-Plain">footer</span><span class="p p-Indicator">:</span> <span class="s">&quot;&quot;</span>
-  <span class="l l-Scalar l-Scalar-Plain">script_wrapper</span><span class="p p-Indicator">:</span> <span class="s">&quot;%s&quot;</span>
-  <span class="l l-Scalar l-Scalar-Plain">set_host</span><span class="p p-Indicator">:</span> <span class="s">&quot;host=$(hostname)&quot;</span>
-  <span class="l l-Scalar l-Scalar-Plain">before_script</span><span class="p p-Indicator">:</span> <span class="s">&quot;...&quot;</span>
-  <span class="l l-Scalar l-Scalar-Plain">before_file</span><span class="p p-Indicator">:</span> <span class="s">&quot;before.sh&quot;</span>
-  <span class="l l-Scalar l-Scalar-Plain">run_script</span><span class="p p-Indicator">:</span> <span class="s">&quot;...&quot;</span>
-  <span class="l l-Scalar l-Scalar-Plain">script_file</span><span class="p p-Indicator">:</span> <span class="s">&quot;./script.sh&quot;</span>
-  <span class="l l-Scalar l-Scalar-Plain">timeout</span><span class="p p-Indicator">:</span> <span class="s">&quot;&quot;</span>
-  <span class="l l-Scalar l-Scalar-Plain">clean_script</span><span class="p p-Indicator">:</span> <span class="s">&quot;...&quot;</span>
-  <span class="l l-Scalar l-Scalar-Plain">clean_file</span><span class="p p-Indicator">:</span> <span class="s">&quot;clean.sh&quot;</span>
+  <span class="l l-Scalar l-Scalar-Plain">header</span><span class="p p-Indicator">:</span> <span class="s">&quot;#!/bin/bash&quot;</span>
 </pre></div>
 </div>
 </div></blockquote>
 </div>
-<div class="section" id="vnc-template">
-<h2>VNC template<a class="headerlink" href="#vnc-template" title="Permalink to this headline">¶</a></h2>
-<p>All the options above apply along with the options described below.</p>
-<blockquote>
-<div><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">batch_connect</span><span class="p p-Indicator">:</span>
-  <span class="l l-Scalar l-Scalar-Plain">template</span><span class="p p-Indicator">:</span> <span class="s">&quot;vnc&quot;</span>
-  <span class="l l-Scalar l-Scalar-Plain">conn_params</span><span class="p p-Indicator">:</span>
-    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">host</span>
-    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">port</span>
-    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">password</span>
-    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">spassword</span>
-    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">display</span>
-    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">websocket</span>
-  <span class="l l-Scalar l-Scalar-Plain">websockify_cmd</span><span class="p p-Indicator">:</span> <span class="s">&quot;/opt/websockify/run&quot;</span>
-  <span class="l l-Scalar l-Scalar-Plain">vnc_passwd</span><span class="p p-Indicator">:</span> <span class="s">&quot;vnc.passwd&quot;</span>
-  <span class="l l-Scalar l-Scalar-Plain">vnc_args</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">nil</span>
-  <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="s">&quot;&quot;</span>
-  <span class="l l-Scalar l-Scalar-Plain">geometry</span><span class="p p-Indicator">:</span> <span class="s">&quot;&quot;</span>
-  <span class="l l-Scalar l-Scalar-Plain">dpi</span><span class="p p-Indicator">:</span> <span class="s">&quot;&quot;</span>
-  <span class="l l-Scalar l-Scalar-Plain">fonts</span><span class="p p-Indicator">:</span> <span class="s">&quot;&quot;</span>
-  <span class="l l-Scalar l-Scalar-Plain">idle</span><span class="p p-Indicator">:</span> <span class="s">&quot;&quot;</span>
-  <span class="l l-Scalar l-Scalar-Plain">extra_args</span><span class="p p-Indicator">:</span> <span class="s">&quot;&quot;</span>
-  <span class="l l-Scalar l-Scalar-Plain">vnc_clean</span><span class="p p-Indicator">:</span> <span class="s">&quot;...&quot;</span>
-</pre></div>
-</div>
-</div></blockquote>
-</div>
-<div class="section" id="option-details">
-<h2>Option Details<a class="headerlink" href="#option-details" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="details-on-submit-attributes">
+<h2>Details on Submit Attributes<a class="headerlink" href="#details-on-submit-attributes" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="submit-yml/basic-bc-yml-detailed.html">Details on Basic Batch Connect Options</a></li>
-<li class="toctree-l1"><a class="reference internal" href="submit-yml/vnc-bc-yml-detailed.html">Details on VNC Batch Connect Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="submit-yml/basic-bc-options.html">Basic Batch Connect Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="submit-yml/vnc-bc-options.html">VNC Batch Connect Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="submit-yml/script-options.html">Script Options</a></li>
 </ul>
 </div>
 </div>
-<div class="section" id="global">
-<h2>Global<a class="headerlink" href="#global" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="setting-batch-connect-options-globally">
+<h2>Setting Batch Connect Options Globally<a class="headerlink" href="#setting-batch-connect-options-globally" title="Permalink to this headline">¶</a></h2>
 <p>All of these configuration items can also be applied globally to the entire cluster
 in the cluster definition files under <code class="docutils literal notranslate"><span class="pre">/etc/ood/config/clusters.d/</span></code>. If set globally,
 the option is applied to all applications in that cluster.</p>
@@ -341,7 +301,7 @@ templates.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="submit-yml/basic-bc-yml-detailed.html" class="btn btn-neutral float-right" title="Details on Basic Batch Connect Options" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="submit-yml/basic-bc-options.html" class="btn btn-neutral float-right" title="Basic Batch Connect Options" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="nginx-stage-yml.html" class="btn btn-neutral float-left" title="nginx_stage.yml" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -353,7 +313,7 @@ templates.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2017-2019, Ohio Supercomputer Center
+        &copy; Copyright 2017-2020, Ohio Supercomputer Center
 
     </p>
   </div> 

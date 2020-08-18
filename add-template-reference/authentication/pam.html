@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>mod_ood_proxy &mdash; Open OnDemand 1.7.0 documentation</title>
+  <title>Add PAM Authentication &mdash; Open OnDemand 1.7.0 documentation</title>
   
 
   
@@ -38,8 +38,8 @@
   <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Usage" href="mod-ood-proxy/usage.html" />
-    <link rel="prev" title="nginx_stage nginx_clean" href="commands/nginx-stage/commands/nginx-clean.html" />
+    <link rel="next" title="Add Cluster Configuration Files" href="../installation/add-cluster-config.html" />
+    <link rel="prev" title="SAML Authentication with Active Directory Federated Services (ADFS) and mod_auth_mellon" href="adfs-with-auth-mellon.html" />
  
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-34776817-3"></script>
 <script>
@@ -101,27 +101,26 @@
             
             
               <p class="caption"><span class="caption-text">General</span></p>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="../architecture.html">Architecture</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../reference.html">Reference</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="files/ood-portal-yml.html">ood-portal.yml</a></li>
-<li class="toctree-l2"><a class="reference internal" href="files/nginx-stage-yml.html">nginx_stage.yml</a></li>
-<li class="toctree-l2"><a class="reference internal" href="files/submit-yml-erb.html">submit.yml.erb</a></li>
-<li class="toctree-l2"><a class="reference internal" href="commands/ood-portal-generator.html">ood-portal-generator</a></li>
-<li class="toctree-l2"><a class="reference internal" href="commands/nginx-stage/usage.html">nginx-stage</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">mod_ood_proxy</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="mod-ood-proxy/usage.html">Usage</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="ood-auth-map.html">ood_auth_map</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference.html">Configuration Reference</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Install</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../requirements.html">Requirements</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../authentication.html">Authentication</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../authentication.html">Authentication</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oidc.html">OpenID Connect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dex.html">OpenID Connect with Dex</a></li>
+<li class="toctree-l2"><a class="reference internal" href="shibboleth.html">Shibboleth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cas.html">CAS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial-oidc-keycloak-rhel7.html">OpenID Connect with KeyCloak on RHEL7</a></li>
+<li class="toctree-l2"><a class="reference internal" href="duo-2fa-with-keycloak.html">Two Factor Auth using Duo with Keycloak</a></li>
+<li class="toctree-l2"><a class="reference internal" href="adfs-with-auth-mellon.html">SAML Authentication with Active Directory Federated Services (ADFS) and mod_auth_mellon</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Add PAM Authentication</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../installation/add-cluster-config.html">Add Cluster Configuration Files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../installation/resource-manager.html">Resource Manager Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../customization_overview.html">Customization Overview</a></li>
@@ -150,6 +149,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Release Notes</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../release-notes/v1.8-release-notes.html">v1.8 Release Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../release-notes/v1.7-release-notes.html">v1.7 Release Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../release-notes/v1.6-release-notes.html">v1.6 Release Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../release-notes/v1.5-release-notes.html">v1.5 Release Notes</a></li>
@@ -212,16 +212,16 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="../reference.html">Reference</a> &raquo;</li>
+          <li><a href="../authentication.html">Authentication</a> &raquo;</li>
         
-      <li>mod_ood_proxy</li>
+      <li>Add PAM Authentication</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
             
-              <a href="https://github.com/OSC/ood-documentation/blob/add-template-reference/source/reference/mod-ood-proxy.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/OSC/ood-documentation/blob/add-template-reference/source/authentication/pam.rst" class="fa fa-github"> Edit on GitHub</a>
             
           
         
@@ -235,22 +235,59 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="mod-ood-proxy">
-<span id="id1"></span><h1>mod_ood_proxy<a class="headerlink" href="#mod-ood-proxy" title="Permalink to this headline">¶</a></h1>
-<p><a class="reference external" href="https://github.com/OSC/ondemand/tree/master/mod_ood_proxy">View on GitHub</a></p>
-<p>An Apache HTTP Server module implementing the Open OnDemand proxy API.</p>
-<div class="toctree-wrapper compound">
-<p class="caption"><span class="caption-text">Documentation</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="mod-ood-proxy/usage.html">Usage</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="mod-ood-proxy/handlers/nginx-handler.html">nginx_handler</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mod-ood-proxy/handlers/pun-proxy-handler.html">pun_proxy_handler</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mod-ood-proxy/handlers/node-proxy-handler.html">node_proxy_handler</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mod-ood-proxy/handlers/analytics-handler.html">analytics_handler</a></li>
-</ul>
-</li>
-</ul>
+  <div class="section" id="add-pam-authentication">
+<span id="authentication-pam"></span><h1>Add PAM Authentication<a class="headerlink" href="#add-pam-authentication" title="Permalink to this headline">¶</a></h1>
+<p>PAM can be used to authenticate users to OnDemand, for example if users only exist in <cite>/etc/passwd</cite> and <cite>/etc/shadow</cite>.</p>
+<ol class="arabic">
+<li><p class="first">Install the Apache PAM module</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo yum install mod_authnz_pam
+</pre></div>
 </div>
+</li>
+<li><p class="first"><strong>RHEL/CentOS 7 only</strong> Copy PAM module into SCL Apache’s modules directory</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo cp /usr/lib64/httpd/modules/mod_authnz_pam.so /opt/rh/httpd24/root/usr/lib64/httpd/modules/
+</pre></div>
+</div>
+</li>
+<li><p class="first">Enable the PAM Apache module</p>
+<p>RHEL/CentOS 7:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo <span class="nb">echo</span> <span class="s2">&quot;LoadModule authnz_pam_module modules/mod_authnz_pam.so&quot;</span> &gt; /opt/rh/httpd24/root/etc/httpd/conf.modules.d/55-authnz_pam.conf
+</pre></div>
+</div>
+<p>RHEL/CentOS 8:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo <span class="nb">echo</span> <span class="s2">&quot;LoadModule authnz_pam_module modules/mod_authnz_pam.so&quot;</span> &gt; /etc/httpd/conf.modules.d/55-authnz_pam.conf
+</pre></div>
+</div>
+</li>
+<li><p class="first">Set the necessary PAM service. For simplicity you can start by copying SSH PAM service</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo cp /etc/pam.d/sshd /etc/pam.d/ood
+</pre></div>
+</div>
+</li>
+<li><p class="first">Allow the Apache user to read <code class="docutils literal notranslate"><span class="pre">/etc/shadow</span></code>.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo chmod <span class="m">640</span> /etc/shadow
+sudo chgrp apache /etc/shadow
+</pre></div>
+</div>
+</li>
+<li><p class="first">Update <code class="file docutils literal notranslate"><span class="pre">/etc/ood/config/ood_portal.yml</span></code> to use PAM authentication</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">auth</span><span class="p p-Indicator">:</span>
+  <span class="p p-Indicator">-</span> <span class="s">&#39;AuthType</span><span class="nv"> </span><span class="s">Basic&#39;</span>
+  <span class="p p-Indicator">-</span> <span class="s">&#39;AuthName</span><span class="nv"> </span><span class="s">&quot;Open</span><span class="nv"> </span><span class="s">OnDemand&quot;&#39;</span>
+  <span class="p p-Indicator">-</span> <span class="s">&#39;AuthBasicProvider</span><span class="nv"> </span><span class="s">PAM&#39;</span>
+  <span class="p p-Indicator">-</span> <span class="s">&#39;AuthPAMService</span><span class="nv"> </span><span class="s">ood&#39;</span>
+  <span class="p p-Indicator">-</span> <span class="s">&#39;Require</span><span class="nv"> </span><span class="s">valid-user&#39;</span>
+<span class="c1"># Capture system user name from authenticated user name</span>
+<span class="l l-Scalar l-Scalar-Plain">user_map_cmd</span><span class="p p-Indicator">:</span> <span class="s">&quot;/opt/ood/ood_auth_map/bin/ood_auth_map.regex&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Apply modifications to the <code class="file docutils literal notranslate"><span class="pre">/etc/ood/config/ood_portal.yml</span></code></p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo /opt/ood/ood-portal-generator/sbin/update_ood_portal
+</pre></div>
+</div>
+</li>
+</ol>
 </div>
 
 
@@ -261,10 +298,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="mod-ood-proxy/usage.html" class="btn btn-neutral float-right" title="Usage" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../installation/add-cluster-config.html" class="btn btn-neutral float-right" title="Add Cluster Configuration Files" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="commands/nginx-stage/commands/nginx-clean.html" class="btn btn-neutral float-left" title="nginx_stage nginx_clean" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="adfs-with-auth-mellon.html" class="btn btn-neutral float-left" title="SAML Authentication with Active Directory Federated Services (ADFS) and mod_auth_mellon" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -273,7 +310,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2017-2019, Ohio Supercomputer Center
+        &copy; Copyright 2017-2020, Ohio Supercomputer Center
 
     </p>
   </div> 
@@ -296,23 +333,23 @@
     <dl>
       <dt>Versions</dt>
       
-        <dd><a href="https://OSC.github.io/ood-documentation/master/reference/mod-ood-proxy.html">master</a></dd>
+        <dd><a href="https://OSC.github.io/ood-documentation/master/authentication/pam.html">master</a></dd>
       
-        <dd><a href="https://OSC.github.io/ood-documentation/release-1.6/reference/mod-ood-proxy.html">1.6</a></dd>
+        <dd><a href="https://OSC.github.io/ood-documentation/release-1.6/authentication/pam.html">1.6</a></dd>
       
-        <dd><a href="https://OSC.github.io/ood-documentation/release-1.5/reference/mod-ood-proxy.html">1.5</a></dd>
+        <dd><a href="https://OSC.github.io/ood-documentation/release-1.5/authentication/pam.html">1.5</a></dd>
       
-        <dd><a href="https://OSC.github.io/ood-documentation/release-1.4/reference/mod-ood-proxy.html">1.4</a></dd>
+        <dd><a href="https://OSC.github.io/ood-documentation/release-1.4/authentication/pam.html">1.4</a></dd>
       
-        <dd><a href="https://OSC.github.io/ood-documentation/release-1.3/reference/mod-ood-proxy.html">1.3</a></dd>
+        <dd><a href="https://OSC.github.io/ood-documentation/release-1.3/authentication/pam.html">1.3</a></dd>
       
-        <dd><a href="https://OSC.github.io/ood-documentation/release-1.2/reference/mod-ood-proxy.html">1.2</a></dd>
+        <dd><a href="https://OSC.github.io/ood-documentation/release-1.2/authentication/pam.html">1.2</a></dd>
       
-        <dd><a href="https://OSC.github.io/ood-documentation/release-1.1/reference/mod-ood-proxy.html">1.1</a></dd>
+        <dd><a href="https://OSC.github.io/ood-documentation/release-1.1/authentication/pam.html">1.1</a></dd>
       
-        <dd><a href="https://OSC.github.io/ood-documentation/release-1.0/reference/mod-ood-proxy.html">1.0</a></dd>
+        <dd><a href="https://OSC.github.io/ood-documentation/release-1.0/authentication/pam.html">1.0</a></dd>
       
-        <dd><a href="https://OSC.github.io/ood-documentation/develop/reference/mod-ood-proxy.html">develop</a></dd>
+        <dd><a href="https://OSC.github.io/ood-documentation/develop/authentication/pam.html">develop</a></dd>
       
     </dl>
     <dl>

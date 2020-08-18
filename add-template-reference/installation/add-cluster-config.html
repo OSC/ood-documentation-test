@@ -39,7 +39,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Cluster Config Schema v2" href="cluster-config-schema.html" />
-    <link rel="prev" title="Two Factor Auth using Duo with Keycloak" href="../authentication/duo-2fa-with-keycloak.html" />
+    <link rel="prev" title="Add PAM Authentication" href="../authentication/pam.html" />
  
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-34776817-3"></script>
 <script>
@@ -103,7 +103,7 @@
               <p class="caption"><span class="caption-text">General</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../architecture.html">Architecture</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../reference.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference.html">Configuration Reference</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Install</span></p>
 <ul class="current">
@@ -141,6 +141,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Release Notes</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../release-notes/v1.8-release-notes.html">v1.8 Release Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../release-notes/v1.7-release-notes.html">v1.7 Release Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../release-notes/v1.6-release-notes.html">v1.6 Release Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../release-notes/v1.5-release-notes.html">v1.5 Release Notes</a></li>
@@ -226,19 +227,16 @@
             
   <div class="section" id="add-cluster-configuration-files">
 <span id="add-cluster-config"></span><h1>Add Cluster Configuration Files<a class="headerlink" href="#add-cluster-configuration-files" title="Permalink to this headline">¶</a></h1>
-<p><strong>(Optional, but recommended)</strong></p>
-<p>The following apps do not require a cluster configuration file:</p>
-<ul class="simple">
-<li><a class="reference internal" href="../applications/dashboard.html#dashboard"><span class="std std-ref">Dashboard App</span></a></li>
-<li><a class="reference internal" href="../applications/files.html#files"><span class="std std-ref">Files App</span></a></li>
-<li><a class="reference internal" href="../applications/shell.html#shell"><span class="std std-ref">Shell App</span></a> (but only launched from within the Files App)</li>
-</ul>
-<p>The following apps do require a cluster configuration file:</p>
+<p>Cluster configuration files describe each cluster a user may submit jobs to and login hosts the user can ssh to. Without cluster config files, the only
+apps that work are the <a class="reference internal" href="../applications/dashboard.html#dashboard"><span class="std std-ref">Dashboard App</span></a> and <a class="reference internal" href="../applications/files.html#files"><span class="std std-ref">Files App</span></a> apps, and <a class="reference internal" href="../applications/shell.html#shell"><span class="std std-ref">Shell App</span></a> if you only want to support ssh to localhost on the web host.</p>
+<p>Apps that require proper cluster configuration include:</p>
 <ul class="simple">
 <li><a class="reference internal" href="../applications/shell.html#shell"><span class="std std-ref">Shell App</span></a> (connect to a cluster login node from the Dashboard App)</li>
 <li><a class="reference internal" href="../applications/active-jobs.html#active-jobs"><span class="std std-ref">Active Jobs App</span></a> (view a list of active jobs for the various clusters)</li>
 <li><a class="reference internal" href="../applications/job-composer.html#job-composer"><span class="std std-ref">Job Composer App</span></a> (submit jobs to various clusters)</li>
+<li>All interactive apps such as Jupyter and RStudio</li>
 </ul>
+<p>The cluster config files are where the <a class="reference internal" href="resource-manager.html#resource-manager"><span class="std std-ref">Resource Manager Configuration</span></a> configuration goes, which is necessary for enabling apps to submit batch jobs.</p>
 <ol class="arabic">
 <li><p class="first">Create the default directory that the cluster configuration files reside
 under:</p>
@@ -292,7 +290,7 @@ jobs without a defined resource manager.</p>
         <a href="cluster-config-schema.html" class="btn btn-neutral float-right" title="Cluster Config Schema v2" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../authentication/duo-2fa-with-keycloak.html" class="btn btn-neutral float-left" title="Two Factor Auth using Duo with Keycloak" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../authentication/pam.html" class="btn btn-neutral float-left" title="Add PAM Authentication" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -301,7 +299,7 @@ jobs without a defined resource manager.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2017-2019, Ohio Supercomputer Center
+        &copy; Copyright 2017-2020, Ohio Supercomputer Center
 
     </p>
   </div> 

@@ -38,7 +38,7 @@
   <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="4. Start Apache" href="start-apache.html" />
+    <link rel="next" title="4. Start Services" href="start-apache.html" />
     <link rel="prev" title="Finalizing From Source Installation" href="from-source/finalizing.html" />
  
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-34776817-3"></script>
@@ -103,7 +103,7 @@
               <p class="caption"><span class="caption-text">General</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../architecture.html">Architecture</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../reference.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference.html">Configuration Reference</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Install</span></p>
 <ul class="current">
@@ -116,7 +116,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#firewall">Firewall</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="start-apache.html">4. Start Apache</a></li>
+<li class="toctree-l2"><a class="reference internal" href="start-apache.html">4. Start Services</a></li>
 <li class="toctree-l2"><a class="reference internal" href="add-ssl.html">5. Add SSL Support</a></li>
 <li class="toctree-l2"><a class="reference internal" href="add-ldap.html">6. Add LDAP Support</a></li>
 </ul>
@@ -150,6 +150,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Release Notes</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../release-notes/v1.8-release-notes.html">v1.8 Release Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../release-notes/v1.7-release-notes.html">v1.7 Release Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../release-notes/v1.6-release-notes.html">v1.6 Release Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../release-notes/v1.5-release-notes.html">v1.5 Release Notes</a></li>
@@ -239,10 +240,6 @@
 <span id="id1"></span><h1>3. Modify System Security<a class="headerlink" href="#modify-system-security" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="selinux">
 <span id="ood-selinux"></span><h2>SELinux<a class="headerlink" href="#selinux" title="Permalink to this headline">¶</a></h2>
-<div class="admonition danger">
-<p class="first admonition-title">Danger</p>
-<p class="last">Support for SELinux on the Open OnDemand host is currently considered a beta feature.</p>
-</div>
 <ol class="arabic">
 <li><p class="first">If you plan to use <a class="reference external" href="https://wiki.centos.org/HowTos/SELinux">SELinux</a> on the Open OnDemand host you must install the <cite>ondemand-selinux</cite> package.</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo yum install ondemand-selinux
@@ -332,7 +329,7 @@ $ sudo iptables-save &gt; /etc/sysconfig/iptables
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="start-apache.html" class="btn btn-neutral float-right" title="4. Start Apache" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="start-apache.html" class="btn btn-neutral float-right" title="4. Start Services" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="from-source/finalizing.html" class="btn btn-neutral float-left" title="Finalizing From Source Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -344,7 +341,7 @@ $ sudo iptables-save &gt; /etc/sysconfig/iptables
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2017-2019, Ohio Supercomputer Center
+        &copy; Copyright 2017-2020, Ohio Supercomputer Center
 
     </p>
   </div> 

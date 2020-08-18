@@ -1,8 +1,34 @@
-.. _basic-bc-yml-detailed:
+.. _basic-bc-options:
 
 
-Details on Basic Batch Connect Options
-======================================
+Basic Batch Connect Options
+===========================
+
+  .. code-block:: yaml
+
+    batch_connect:
+      template: "basic"
+      work_dir: nil
+      conn_file: "connection.yml"
+      conn_params:
+        - host
+        - port
+        - password
+      bash_helpers: "..."
+      min_port: 2000
+      max_port: 65535
+      password_size: 8
+      header: ""
+      footer: ""
+      script_wrapper: "%s"
+      set_host: "host=$(hostname)"
+      before_script: "..."
+      before_file: "before.sh"
+      run_script: "..."
+      script_file: "./script.sh"
+      timeout: ""
+      clean_script: "..."
+      clean_file: "clean.sh"
 
 .. describe:: min_port (Integer, 2000)
 
@@ -21,7 +47,7 @@ Details on Basic Batch Connect Options
       .. code-block:: yaml
 
         min_port: 3005
-      
+
 .. describe:: max_port (Integer, 65535)
 
     the largest value to use when trying to open a port
@@ -185,7 +211,7 @@ Details on Basic Batch Connect Options
     commands to execute the main file
 
     Default
-      execute the configurable ``script_file`` or optionally run with 
+      execute the configurable ``script_file`` or optionally run with
       the timeout command if there is a timeout given.
 
       .. code-block:: ruby
@@ -326,7 +352,9 @@ Details on Basic Batch Connect Options
 
 .. describe:: conn_params (Array<String>, ['host','port','password'])
 
-    the connection parameters that will be written to the ``conn_file``
+    the connection parameters that will be written to the ``conn_file``.
+    This is useful when you need to generate something in one of the shell scripts
+    and pass it back to the ``view.html.erb`` through the ``connection.yml`` file.
 
     Default
       'host', 'port' and 'password'
@@ -336,7 +364,12 @@ Details on Basic Batch Connect Options
         conn_params: [ 'host', 'port', 'password' ]
 
     Example
-      no example given because users shouldn't set this value
+      The API to connect to can change in the ``script.sh.erb`` based off of
+      something that can only be determined during the job (for example an
+      environment variable in a module).
+
+      conn_params:
+        - the_connect_api
 
 .. describe:: bash_helpers (String, "...")
 

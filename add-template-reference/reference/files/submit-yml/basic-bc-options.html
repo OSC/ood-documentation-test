@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Details on Basic Batch Connect Options &mdash; Open OnDemand 1.7.0 documentation</title>
+  <title>Basic Batch Connect Options &mdash; Open OnDemand 1.7.0 documentation</title>
   
 
   
@@ -38,7 +38,7 @@
   <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Details on VNC Batch Connect Options" href="vnc-bc-yml-detailed.html" />
+    <link rel="next" title="VNC Batch Connect Options" href="vnc-bc-options.html" />
     <link rel="prev" title="submit.yml.erb" href="../submit-yml-erb.html" />
  
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-34776817-3"></script>
@@ -103,24 +103,22 @@
               <p class="caption"><span class="caption-text">General</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../architecture.html">Architecture</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../../../reference.html">Reference</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../ood-portal-yml.html">ood-portal.yml</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../reference.html">Configuration Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../ood-portal-yml.html">ood_portal.yml</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../nginx-stage-yml.html">nginx_stage.yml</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../submit-yml-erb.html">submit.yml.erb</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="../submit-yml-erb.html#basic-template">Basic template</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../submit-yml-erb.html#vnc-template">VNC template</a></li>
-<li class="toctree-l3 current"><a class="reference internal" href="../submit-yml-erb.html#option-details">Option Details</a><ul class="current">
-<li class="toctree-l4 current"><a class="current reference internal" href="#">Details on Basic Batch Connect Options</a></li>
-<li class="toctree-l4"><a class="reference internal" href="vnc-bc-yml-detailed.html">Details on VNC Batch Connect Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../submit-yml-erb.html#simple-example">Simple Example</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../submit-yml-erb.html#details-on-submit-attributes">Details on Submit Attributes</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Basic Batch Connect Options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="vnc-bc-options.html">VNC Batch Connect Options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="script-options.html">Script Options</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../submit-yml-erb.html#global">Global</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../submit-yml-erb.html#setting-batch-connect-options-globally">Setting Batch Connect Options Globally</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../commands/ood-portal-generator.html">ood-portal-generator</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../commands/nginx-stage/usage.html">nginx-stage</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../mod-ood-proxy.html">mod_ood_proxy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../ood-auth-map.html">ood_auth_map</a></li>
 </ul>
 </li>
 </ul>
@@ -157,6 +155,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Release Notes</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../release-notes/v1.8-release-notes.html">v1.8 Release Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../release-notes/v1.7-release-notes.html">v1.7 Release Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../release-notes/v1.6-release-notes.html">v1.6 Release Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../release-notes/v1.5-release-notes.html">v1.5 Release Notes</a></li>
@@ -219,18 +218,18 @@
     
       <li><a href="../../../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="../../../reference.html">Reference</a> &raquo;</li>
+          <li><a href="../../../reference.html">Configuration Reference</a> &raquo;</li>
         
           <li><a href="../submit-yml-erb.html">submit.yml.erb</a> &raquo;</li>
         
-      <li>Details on Basic Batch Connect Options</li>
+      <li>Basic Batch Connect Options</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
             
-              <a href="https://github.com/OSC/ood-documentation/blob/add-template-reference/source/reference/files/submit-yml/basic-bc-yml-detailed.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/OSC/ood-documentation/blob/add-template-reference/source/reference/files/submit-yml/basic-bc-options.rst" class="fa fa-github"> Edit on GitHub</a>
             
           
         
@@ -244,8 +243,35 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="details-on-basic-batch-connect-options">
-<span id="basic-bc-yml-detailed"></span><h1>Details on Basic Batch Connect Options<a class="headerlink" href="#details-on-basic-batch-connect-options" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="basic-batch-connect-options">
+<span id="basic-bc-options"></span><h1>Basic Batch Connect Options<a class="headerlink" href="#basic-batch-connect-options" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">batch_connect</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">template</span><span class="p p-Indicator">:</span> <span class="s">&quot;basic&quot;</span>
+  <span class="l l-Scalar l-Scalar-Plain">work_dir</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">nil</span>
+  <span class="l l-Scalar l-Scalar-Plain">conn_file</span><span class="p p-Indicator">:</span> <span class="s">&quot;connection.yml&quot;</span>
+  <span class="l l-Scalar l-Scalar-Plain">conn_params</span><span class="p p-Indicator">:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">host</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">port</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">password</span>
+  <span class="l l-Scalar l-Scalar-Plain">bash_helpers</span><span class="p p-Indicator">:</span> <span class="s">&quot;...&quot;</span>
+  <span class="l l-Scalar l-Scalar-Plain">min_port</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">2000</span>
+  <span class="l l-Scalar l-Scalar-Plain">max_port</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">65535</span>
+  <span class="l l-Scalar l-Scalar-Plain">password_size</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">8</span>
+  <span class="l l-Scalar l-Scalar-Plain">header</span><span class="p p-Indicator">:</span> <span class="s">&quot;&quot;</span>
+  <span class="l l-Scalar l-Scalar-Plain">footer</span><span class="p p-Indicator">:</span> <span class="s">&quot;&quot;</span>
+  <span class="l l-Scalar l-Scalar-Plain">script_wrapper</span><span class="p p-Indicator">:</span> <span class="s">&quot;%s&quot;</span>
+  <span class="l l-Scalar l-Scalar-Plain">set_host</span><span class="p p-Indicator">:</span> <span class="s">&quot;host=$(hostname)&quot;</span>
+  <span class="l l-Scalar l-Scalar-Plain">before_script</span><span class="p p-Indicator">:</span> <span class="s">&quot;...&quot;</span>
+  <span class="l l-Scalar l-Scalar-Plain">before_file</span><span class="p p-Indicator">:</span> <span class="s">&quot;before.sh&quot;</span>
+  <span class="l l-Scalar l-Scalar-Plain">run_script</span><span class="p p-Indicator">:</span> <span class="s">&quot;...&quot;</span>
+  <span class="l l-Scalar l-Scalar-Plain">script_file</span><span class="p p-Indicator">:</span> <span class="s">&quot;./script.sh&quot;</span>
+  <span class="l l-Scalar l-Scalar-Plain">timeout</span><span class="p p-Indicator">:</span> <span class="s">&quot;&quot;</span>
+  <span class="l l-Scalar l-Scalar-Plain">clean_script</span><span class="p p-Indicator">:</span> <span class="s">&quot;...&quot;</span>
+  <span class="l l-Scalar l-Scalar-Plain">clean_file</span><span class="p p-Indicator">:</span> <span class="s">&quot;clean.sh&quot;</span>
+</pre></div>
+</div>
+</div></blockquote>
 <dl class="describe">
 <dt>
 <code class="descname">min_port (Integer, 2000)</code></dt>
@@ -599,7 +625,9 @@ for batch connect apps and users shouldn’t need to set it.</p>
 <dl class="describe">
 <dt>
 <code class="descname">conn_params (Array&lt;String&gt;, ['host','port','password'])</code></dt>
-<dd><p>the connection parameters that will be written to the <code class="docutils literal notranslate"><span class="pre">conn_file</span></code></p>
+<dd><p>the connection parameters that will be written to the <code class="docutils literal notranslate"><span class="pre">conn_file</span></code>.
+This is useful when you need to generate something in one of the shell scripts
+and pass it back to the <code class="docutils literal notranslate"><span class="pre">view.html.erb</span></code> through the <code class="docutils literal notranslate"><span class="pre">connection.yml</span></code> file.</p>
 <dl class="docutils">
 <dt>Default</dt>
 <dd><p class="first">‘host’, ‘port’ and ‘password’</p>
@@ -608,7 +636,17 @@ for batch connect apps and users shouldn’t need to set it.</p>
 </div>
 </dd>
 <dt>Example</dt>
-<dd>no example given because users shouldn’t set this value</dd>
+<dd><p class="first">The API to connect to can change in the <code class="docutils literal notranslate"><span class="pre">script.sh.erb</span></code> based off of
+something that can only be determined during the job (for example an
+environment variable in a module).</p>
+<dl class="last docutils">
+<dt>conn_params:</dt>
+<dd><ul class="first last simple">
+<li>the_connect_api</li>
+</ul>
+</dd>
+</dl>
+</dd>
 </dl>
 </dd></dl>
 
@@ -634,7 +672,7 @@ for batch connect apps and users shouldn’t need to set it.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="vnc-bc-yml-detailed.html" class="btn btn-neutral float-right" title="Details on VNC Batch Connect Options" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="vnc-bc-options.html" class="btn btn-neutral float-right" title="VNC Batch Connect Options" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="../submit-yml-erb.html" class="btn btn-neutral float-left" title="submit.yml.erb" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -646,7 +684,7 @@ for batch connect apps and users shouldn’t need to set it.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2017-2019, Ohio Supercomputer Center
+        &copy; Copyright 2017-2020, Ohio Supercomputer Center
 
     </p>
   </div> 
@@ -669,23 +707,23 @@ for batch connect apps and users shouldn’t need to set it.</p>
     <dl>
       <dt>Versions</dt>
       
-        <dd><a href="https://OSC.github.io/ood-documentation/master/reference/files/submit-yml/basic-bc-yml-detailed.html">master</a></dd>
+        <dd><a href="https://OSC.github.io/ood-documentation/master/reference/files/submit-yml/basic-bc-options.html">master</a></dd>
       
-        <dd><a href="https://OSC.github.io/ood-documentation/release-1.6/reference/files/submit-yml/basic-bc-yml-detailed.html">1.6</a></dd>
+        <dd><a href="https://OSC.github.io/ood-documentation/release-1.6/reference/files/submit-yml/basic-bc-options.html">1.6</a></dd>
       
-        <dd><a href="https://OSC.github.io/ood-documentation/release-1.5/reference/files/submit-yml/basic-bc-yml-detailed.html">1.5</a></dd>
+        <dd><a href="https://OSC.github.io/ood-documentation/release-1.5/reference/files/submit-yml/basic-bc-options.html">1.5</a></dd>
       
-        <dd><a href="https://OSC.github.io/ood-documentation/release-1.4/reference/files/submit-yml/basic-bc-yml-detailed.html">1.4</a></dd>
+        <dd><a href="https://OSC.github.io/ood-documentation/release-1.4/reference/files/submit-yml/basic-bc-options.html">1.4</a></dd>
       
-        <dd><a href="https://OSC.github.io/ood-documentation/release-1.3/reference/files/submit-yml/basic-bc-yml-detailed.html">1.3</a></dd>
+        <dd><a href="https://OSC.github.io/ood-documentation/release-1.3/reference/files/submit-yml/basic-bc-options.html">1.3</a></dd>
       
-        <dd><a href="https://OSC.github.io/ood-documentation/release-1.2/reference/files/submit-yml/basic-bc-yml-detailed.html">1.2</a></dd>
+        <dd><a href="https://OSC.github.io/ood-documentation/release-1.2/reference/files/submit-yml/basic-bc-options.html">1.2</a></dd>
       
-        <dd><a href="https://OSC.github.io/ood-documentation/release-1.1/reference/files/submit-yml/basic-bc-yml-detailed.html">1.1</a></dd>
+        <dd><a href="https://OSC.github.io/ood-documentation/release-1.1/reference/files/submit-yml/basic-bc-options.html">1.1</a></dd>
       
-        <dd><a href="https://OSC.github.io/ood-documentation/release-1.0/reference/files/submit-yml/basic-bc-yml-detailed.html">1.0</a></dd>
+        <dd><a href="https://OSC.github.io/ood-documentation/release-1.0/reference/files/submit-yml/basic-bc-options.html">1.0</a></dd>
       
-        <dd><a href="https://OSC.github.io/ood-documentation/develop/reference/files/submit-yml/basic-bc-yml-detailed.html">develop</a></dd>
+        <dd><a href="https://OSC.github.io/ood-documentation/develop/reference/files/submit-yml/basic-bc-options.html">develop</a></dd>
       
     </dl>
     <dl>

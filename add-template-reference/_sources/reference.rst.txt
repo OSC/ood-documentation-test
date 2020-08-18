@@ -1,7 +1,7 @@
 .. _reference:
 
-Reference
-=========
+Configuration Reference
+=======================
 
 This is reference documentation for all the configuration files and commands that
 make up the Open OnDemand infrastructure.
@@ -21,10 +21,3 @@ make up the Open OnDemand infrastructure.
 
    reference/commands/ood-portal-generator
    nginx-stage <reference/commands/nginx-stage/usage>
-
-.. toctree::
-   :maxdepth: 1
-   :caption: Legacy
-
-   reference/mod-ood-proxy
-   reference/ood-auth-map

@@ -38,7 +38,7 @@
   <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="LinuxHost Adapter" href="linuxhost.html" />
+    <link rel="next" title="Configure LinuxHost Adapter (beta)" href="linuxhost.html" />
     <link rel="prev" title="Configure PBS Professional" href="pbspro.html" />
  
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-34776817-3"></script>
@@ -103,7 +103,7 @@
               <p class="caption"><span class="caption-text">General</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../architecture.html">Architecture</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../reference.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference.html">Configuration Reference</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Install</span></p>
 <ul class="current">
@@ -119,11 +119,13 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Configure Grid Engine</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#common-issues">Common Issues</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#shell-environments">Shell environments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#invalid-job-name">Invalid Job name</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="linuxhost.html">LinuxHost Adapter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linuxhost.html">Configure LinuxHost Adapter (beta)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ccq.html">Configure Cloudy Cluster (beta)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="bin-override-example.html">A Working Example of a <code class="docutils literal notranslate"><span class="pre">bin_overrides</span></code> Script</a></li>
 <li class="toctree-l2"><a class="reference internal" href="test.html">Test Configuration</a></li>
 </ul>
@@ -154,6 +156,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Release Notes</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../release-notes/v1.8-release-notes.html">v1.8 Release Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../release-notes/v1.7-release-notes.html">v1.7 Release Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../release-notes/v1.6-release-notes.html">v1.6 Release Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../release-notes/v1.5-release-notes.html">v1.5 Release Notes</a></li>
@@ -329,6 +332,14 @@ This sets the sh shell to behave like bash and ensures you’ve sourced your use
 </div>
 </div></blockquote>
 </div>
+<div class="section" id="invalid-job-name">
+<h3>Invalid Job name<a class="headerlink" href="#invalid-job-name" title="Permalink to this headline">¶</a></h3>
+<p>If you encounter an issue in running batch connect applications complaining about invalid
+job names like the error below.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Unable</span> <span class="pre">to</span> <span class="pre">read</span> <span class="pre">script</span> <span class="pre">file</span> <span class="pre">because</span> <span class="pre">of</span> <span class="pre">error:</span> <span class="pre">ERROR!</span> <span class="pre">argument</span> <span class="pre">to</span> <span class="pre">-N</span> <span class="pre">option</span> <span class="pre">must</span> <span class="pre">not</span> <span class="pre">contain</span> <span class="pre">/</span></code></p>
+<p>You’ll need to configure illegal job name characters as described
+<a class="reference internal" href="../../customization.html#set-illegal-job-name-characters"><span class="std std-ref">here</span></a>.</p>
+</div>
 </div>
 </div>
 
@@ -340,7 +351,7 @@ This sets the sh shell to behave like bash and ensures you’ve sourced your use
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="linuxhost.html" class="btn btn-neutral float-right" title="LinuxHost Adapter" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="linuxhost.html" class="btn btn-neutral float-right" title="Configure LinuxHost Adapter (beta)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="pbspro.html" class="btn btn-neutral float-left" title="Configure PBS Professional" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -352,7 +363,7 @@ This sets the sh shell to behave like bash and ensures you’ve sourced your use
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2017-2019, Ohio Supercomputer Center
+        &copy; Copyright 2017-2020, Ohio Supercomputer Center
 
     </p>
   </div> 

@@ -93,3 +93,13 @@ This sets the sh shell to behave like bash and ensures you've sourced your users
             set +o posix
             . ~/.bashrc
             %s
+
+Invalid Job name
+****************
+If you encounter an issue in running batch connect applications complaining about invalid
+job names like the error below.
+
+``Unable to read script file because of error: ERROR! argument to -N option must not contain /``
+
+You'll need to configure illegal job name characters as described
+:ref:`here <set-illegal-job-name-characters>`.
