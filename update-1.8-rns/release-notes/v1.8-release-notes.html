@@ -372,7 +372,9 @@ or on a per item basis.</p>
 </div>
 <div class="section" id="extended-view-support-for-gridengine-clusters">
 <h3>Extended view support for GridEngine clusters<a class="headerlink" href="#extended-view-support-for-gridengine-clusters" title="Permalink to this headline">¶</a></h3>
-<p>GridEngine clusters now have extended view support in the active jobs app.</p>
+<p>In the Active Jobs app, each job will have a dropdown where the user can see various details about their job such as walltime, Total CPUs, etc.
+This functionality was recently implemented for SGE in v1.8 and corresponds to ood_core v0.12.0</p>
+<p>The data seen in extended view is extracted from the command <code class="docutils literal notranslate"><span class="pre">qstat</span> <span class="pre">-j</span> <span class="pre">-r</span> <span class="pre">-xml</span></code>.</p>
 </div>
 <div class="section" id="torque-and-slurm-schedulers-now-support-qos-fields">
 <h3>Torque and Slurm schedulers now support QoS fields<a class="headerlink" href="#torque-and-slurm-schedulers-now-support-qos-fields" title="Permalink to this headline">¶</a></h3>
