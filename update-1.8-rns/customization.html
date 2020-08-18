@@ -280,13 +280,13 @@ OnDemand will be unavailable during this period. For details, please visit
 </div>
 </div></blockquote>
 <p>the user would see this message at the top of the dashboard:</p>
-<div class="figure align-center" id="id10">
+<div class="figure align-center" id="id12">
 <img alt="_images/dashboard-announcement.png" src="_images/dashboard-announcement.png" />
 <p class="caption"><span class="caption-number">Fig. 1 </span><span class="caption-text">Example of the Dashboard announcement.</span></p>
 </div>
 <p>If the announcement file has the extension <code class="docutils literal notranslate"><span class="pre">yml</span></code> and is a yaml file it is first rendered using ERB and then the resulting file is parsed as YAML. The valid keys are:</p>
-<table border="1" class="docutils" id="id11">
-<caption><span class="caption-number">Table 2 </span><span class="caption-text">Config Files</span><a class="headerlink" href="#id11" title="Permalink to this table">¶</a></caption>
+<table border="1" class="docutils" id="id13">
+<caption><span class="caption-number">Table 2 </span><span class="caption-text">Config Files</span><a class="headerlink" href="#id13" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col width="33%" />
 <col width="33%" />
@@ -329,7 +329,7 @@ OnDemand will be unavailable during this period. For details, please visit
 </pre></div>
 </div>
 </div></blockquote>
-<div class="figure align-center" id="id12">
+<div class="figure align-center" id="id14">
 <img alt="_images/dashboard_motd.png" src="_images/dashboard_motd.png" />
 <p class="caption"><span class="caption-number">Fig. 2 </span><span class="caption-text">Message of the Day appears in the body of the index page.</span></p>
 </div>
@@ -342,8 +342,8 @@ OnDemand will be unavailable during this period. For details, please visit
 <img alt="_images/dashboard_branding_logo_and_colors.png" src="_images/dashboard_branding_logo_and_colors.png" />
 </div>
 <p>We recommend setting these environment variables in <code class="docutils literal notranslate"><span class="pre">/etc/ood/config/nginx_stage.yml</span></code> as YAML mappings (key value pairs) in the mapping (hash/dictionary) <code class="docutils literal notranslate"><span class="pre">pun_custom_env</span></code>. Alternatively you can set these in the env files of the dashboard and the apps. Currently only the dashboard uses the colors in the navbar.</p>
-<table border="1" class="docutils" id="id13">
-<caption><span class="caption-number">Table 3 </span><span class="caption-text">Branding</span><a class="headerlink" href="#id13" title="Permalink to this table">¶</a></caption>
+<table border="1" class="docutils" id="id15">
+<caption><span class="caption-number">Table 3 </span><span class="caption-text">Branding</span><a class="headerlink" href="#id15" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col width="33%" />
 <col width="33%" />
@@ -390,7 +390,7 @@ OnDemand will be unavailable during this period. For details, please visit
 </tr>
 </tbody>
 </table>
-<div class="figure align-center" id="id14">
+<div class="figure align-center" id="id16">
 <img alt="_images/dashboard_navbar_branding_bluered.png" src="_images/dashboard_navbar_branding_bluered.png" />
 <p class="caption"><span class="caption-number">Fig. 3 </span><span class="caption-text">Nav bar if I set <code class="docutils literal notranslate"><span class="pre">OOD_BRAND_BG_COLOR</span></code> to <code class="docutils literal notranslate"><span class="pre">#0000ff</span></code> and <code class="docutils literal notranslate"><span class="pre">OOD_BRAND_LINK_ACTIVE_BG_COLOR</span></code> to <code class="docutils literal notranslate"><span class="pre">#ff0000</span></code> and <code class="docutils literal notranslate"><span class="pre">OOD_DASHBOARD_TITLE</span></code> to <code class="docutils literal notranslate"><span class="pre">OSC</span> <span class="pre">OnDemand</span></code></span></p>
 </div>
@@ -402,8 +402,8 @@ OnDemand will be unavailable during this period. For details, please visit
 <div class="section" id="add-urls-to-help-menu">
 <h2>Add URLs to Help Menu<a class="headerlink" href="#add-urls-to-help-menu" title="Permalink to this headline">¶</a></h2>
 <p>These URLs can be specified, which will appear in the Help menu and on other locations of the Dashboard. We recommend setting this in <code class="docutils literal notranslate"><span class="pre">/etc/ood/config/apps/dashboard/env</span></code>.</p>
-<table border="1" class="docutils" id="id15">
-<caption><span class="caption-number">Table 4 </span><span class="caption-text">Dashboard URLs</span><a class="headerlink" href="#id15" title="Permalink to this table">¶</a></caption>
+<table border="1" class="docutils" id="id17">
+<caption><span class="caption-number">Table 4 </span><span class="caption-text">Dashboard URLs</span><a class="headerlink" href="#id17" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col width="33%" />
 <col width="33%" />
@@ -494,7 +494,7 @@ with in the dropdown with both the title and the path.</li>
 in <code class="docutils literal notranslate"><span class="pre">OodFilesApp.candidate_favorite_paths</span></code> array and whichever directories
 exist and the user has access to will appear as links in the Files menu under
 the Home Directory link.</p>
-<div class="figure align-center" id="id16">
+<div class="figure align-center" id="id18">
 <img alt="_images/files_menu_shortcuts_osc.png" src="_images/files_menu_shortcuts_osc.png" />
 <p class="caption"><span class="caption-number">Fig. 4 </span><span class="caption-text">Shortcuts to scratch and project space directories in Files menu in OSC OnDemand.</span></p>
 </div>
@@ -550,11 +550,18 @@ is used).</p>
 </div>
 </div>
 <div class="section" id="set-default-ssh-host">
-<h2>Set Default SSH Host<a class="headerlink" href="#set-default-ssh-host" title="Permalink to this headline">¶</a></h2>
-<p>In <code class="docutils literal notranslate"><span class="pre">/etc/ood/config/apps/shell/env</span></code> set the env var <code class="docutils literal notranslate"><span class="pre">OOD_DEFAULT_SSHHOST</span></code> to change the default ssh host. Otherwise it will default to “localhost” i.e. add the line <code class="docutils literal notranslate"><span class="pre">OOD_DEFAULT_SSHHOST=&quot;localhost&quot;</span></code>.</p>
+<span id="id5"></span><h2>Set Default SSH Host<a class="headerlink" href="#set-default-ssh-host" title="Permalink to this headline">¶</a></h2>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p>The shell app does not work out of the box because all SSH hosts have to be explicitly allowed
+through the allowlist (see the section below).</p>
+<p class="last">Because there are no hosts configured, no hosts are allowed.</p>
+</div>
+<p>In <code class="docutils literal notranslate"><span class="pre">/etc/ood/config/apps/shell/env</span></code> set the env var <code class="docutils literal notranslate"><span class="pre">OOD_DEFAULT_SSHHOST</span></code> to change the default ssh host.
+Since 1.8, there is no out of the box default (in previous versions it was ‘localhost’, but this has been removed).</p>
 <p>This will control what host the shell app ssh’s to when the URL accessed is <code class="docutils literal notranslate"><span class="pre">/pun/sys/shell/ssh/default</span></code> which is the URL other apps will use (unless there is context to specify the cluster to ssh to).</p>
-<p>Since 1.8 you can also set the default ssh host in the cluster configuration as well.</p>
-<p>Simply add default=true attribute to the login section like the example below.</p>
+<p>Since 1.8 you can also set the default ssh host in the cluster configuration as well. Simply add
+default=true attribute to the login section like the example below.</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># /etc/ood/config/clusters.d/my_cluster.yml</span>
 <span class="nn">---</span>
 <span class="l l-Scalar l-Scalar-Plain">v2</span><span class="p p-Indicator">:</span>
@@ -567,7 +574,7 @@ is used).</p>
 </div>
 </div>
 <div class="section" id="set-ssh-allowlist">
-<h2>Set SSH Allowlist<a class="headerlink" href="#set-ssh-allowlist" title="Permalink to this headline">¶</a></h2>
+<span id="id6"></span><h2>Set SSH Allowlist<a class="headerlink" href="#set-ssh-allowlist" title="Permalink to this headline">¶</a></h2>
 <p>In 1.8 and above we stopped allowing ssh access by default.  Now you have explicitly set
 what hosts users will be allowed to connect to in the shell application.</p>
 <p>Every cluster configuration with <code class="docutils literal notranslate"><span class="pre">v2.login.host</span></code> that is not hidden (it has
@@ -708,8 +715,8 @@ can be customized by adding a custom one to <code class="docutils literal notran
 <li>at least one interactive app</li>
 <li>at least one custom app that specifies “Reports” as the category</li>
 </ul>
-<table border="1" class="docutils" id="id17">
-<caption><span class="caption-number">Table 5 </span><span class="caption-text">Navbar Configuration</span><a class="headerlink" href="#id17" title="Permalink to this table">¶</a></caption>
+<table border="1" class="docutils" id="id19">
+<caption><span class="caption-number">Table 5 </span><span class="caption-text">Navbar Configuration</span><a class="headerlink" href="#id19" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col width="33%" />
 <col width="33%" />
@@ -751,8 +758,8 @@ can be customized by adding a custom one to <code class="docutils literal notran
 <li>The default locale is “en”. You can use a custom locale. For example, if you want the locale to be French, you can create a <code class="docutils literal notranslate"><span class="pre">/etc/ood/config/locales/fr.yml</span></code> and then configure the Dashboard to use this locale by setting the environment variable <code class="docutils literal notranslate"><span class="pre">OOD_LOCALE=fr</span></code> where the locale is just the name of the file without the extension. Do this in either the nginx_stage config or in the Dashboard and Job Composer env config file.</li>
 </ol>
 <p>In each default translation dictionary file the values that are most site-specific (and thus relevant for change) appear at the top.</p>
-<table border="1" class="docutils" id="id18">
-<caption><span class="caption-number">Table 6 </span><span class="caption-text">OnDemand Locale Files</span><a class="headerlink" href="#id18" title="Permalink to this table">¶</a></caption>
+<table border="1" class="docutils" id="id20">
+<caption><span class="caption-number">Table 6 </span><span class="caption-text">OnDemand Locale Files</span><a class="headerlink" href="#id20" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col width="33%" />
 <col width="33%" />
@@ -915,7 +922,7 @@ the specified user only.</p>
 </div>
 </div>
 <div class="section" id="balance-warnings-on-dashboard">
-<span id="id5"></span><h2>Balance Warnings on Dashboard<a class="headerlink" href="#balance-warnings-on-dashboard" title="Permalink to this headline">¶</a></h2>
+<span id="id7"></span><h2>Balance Warnings on Dashboard<a class="headerlink" href="#balance-warnings-on-dashboard" title="Permalink to this headline">¶</a></h2>
 <p>You can display warnings to users on the Dashboard if their
 resource balance is nearing its limit. This requires an auto-updated (it is
 recommended to update this file daily with a cronjob) JSON file
@@ -984,7 +991,7 @@ can be changed with the environment variable <code class="docutils literal notra
 </div>
 </div>
 <div class="section" id="maintenance-mode">
-<span id="id6"></span><h2>Maintenance Mode<a class="headerlink" href="#maintenance-mode" title="Permalink to this headline">¶</a></h2>
+<span id="id8"></span><h2>Maintenance Mode<a class="headerlink" href="#maintenance-mode" title="Permalink to this headline">¶</a></h2>
 <p>As an administrator you may want to have some downtime of the Open OnDemand service for various reasons,
 while still telling your customers that the downtime is expected.</p>
 <p>You can do this by setting Open OnDemand in ‘Maintenance Mode’. Apache will serve
@@ -1012,7 +1019,7 @@ mode, not it’s content, so you will not need to restart apache or modify it’
 take affect.</p>
 </div>
 <div class="section" id="grafana-support">
-<span id="id7"></span><h2>Grafana support<a class="headerlink" href="#grafana-support" title="Permalink to this headline">¶</a></h2>
+<span id="id9"></span><h2>Grafana support<a class="headerlink" href="#grafana-support" title="Permalink to this headline">¶</a></h2>
 <p>It’s possible to display Grafana graphs within the ActiveJobs app when a user expands a given job.</p>
 <p>Grafana must be configured to support embedded panels and at this time it is also required to have a anonymous organization.  Below are configuration options are needed to support displaying Grafana panels in ActiveJobs. Adjust <cite>org_name</cite> to match whatever organization you wish to be anonymous.</p>
 <div class="admonition warning">
@@ -1076,7 +1083,7 @@ nodes.</p>
 </div>
 </div>
 <div class="section" id="set-illegal-job-name-characters">
-<span id="id8"></span><h2>Set Illegal Job Name Characters<a class="headerlink" href="#set-illegal-job-name-characters" title="Permalink to this headline">¶</a></h2>
+<span id="id10"></span><h2>Set Illegal Job Name Characters<a class="headerlink" href="#set-illegal-job-name-characters" title="Permalink to this headline">¶</a></h2>
 <p>If you encounter an issue in running batch connect applications complaining about invalid
 job names like the error below.</p>
 <p><code class="docutils literal notranslate"><span class="pre">Unable</span> <span class="pre">to</span> <span class="pre">read</span> <span class="pre">script</span> <span class="pre">file</span> <span class="pre">because</span> <span class="pre">of</span> <span class="pre">error:</span> <span class="pre">ERROR!</span> <span class="pre">argument</span> <span class="pre">to</span> <span class="pre">-N</span> <span class="pre">option</span> <span class="pre">must</span> <span class="pre">not</span> <span class="pre">contain</span> <span class="pre">/</span></code></p>
@@ -1089,7 +1096,7 @@ job names like the error below.</p>
 </div>
 </div>
 <div class="section" id="customize-dex-theme">
-<span id="id9"></span><h2>Customize Dex Theme<a class="headerlink" href="#customize-dex-theme" title="Permalink to this headline">¶</a></h2>
+<span id="id11"></span><h2>Customize Dex Theme<a class="headerlink" href="#customize-dex-theme" title="Permalink to this headline">¶</a></h2>
 <p>It’s possible to use a customized theme when authenticating with Dex when using OnDemand’s default authentication.
 Refer to the upstream <a class="reference external" href="https://github.com/dexidp/dex/blob/master/Documentation/templates.md">Dex template docs</a> for additional information on templating Dex.</p>
 <p>The simplest approach is to copy the OnDemand theme and make changes.  This is idea if you wish to make the following changes:</p>

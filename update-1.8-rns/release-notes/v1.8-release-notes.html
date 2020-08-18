@@ -368,7 +368,7 @@ the two options.</p>
 <h3>Batch Connect apps now support disabling caching on fields<a class="headerlink" href="#batch-connect-apps-now-support-disabling-caching-on-fields" title="Permalink to this headline">¶</a></h3>
 <p>Batch connect apps can now enable or disable caching site wide, on a per app basis
 or on a per item basis.</p>
-<p>TODO: create and link to some other documentation.</p>
+<p><a class="reference internal" href="../app-development/interactive/form.html#caching-from-items"><span class="std std-ref">See the full documentation on this feature here</span></a></p>
 </div>
 <div class="section" id="extended-view-support-for-gridengine-clusters">
 <h3>Extended view support for GridEngine clusters<a class="headerlink" href="#extended-view-support-for-gridengine-clusters" title="Permalink to this headline">¶</a></h3>
@@ -386,6 +386,16 @@ or on a per item basis.</p>
 </div>
 <div class="section" id="shell-hosts-are-now-protected-behind-allowlists">
 <h3>Shell hosts are now protected behind allowlists<a class="headerlink" href="#shell-hosts-are-now-protected-behind-allowlists" title="Permalink to this headline">¶</a></h3>
+<p>Shell hosts are now protected behind allowlists. This means administrators now need
+to explicitly add hosts to an allowlist for users to be able to access them through
+the shell app.</p>
+<p>Any currently configured login host that is not hidden will be automatically allowed.
+However, administrators will need to add a configuration for compute nodes and any
+additional hosts they wish to allow access to.</p>
+<p>Administrators should also configure the default ssh host if they’ve not already done
+so because ‘localhost’ is no longer the out of the box default.</p>
+<p><a class="reference internal" href="../customization.html#set-default-ssh-host"><span class="std std-ref">See the documentation for setting the default ssh host</span></a>
+and <a class="reference internal" href="../customization.html#set-ssh-allowlist"><span class="std std-ref">the documentation for setting the allowlist for more details</span></a>.</p>
 </div>
 <div class="section" id="beta-xdmod-integration-in-the-dashboard">
 <h3>Beta XDMOD integration in the dashboard<a class="headerlink" href="#beta-xdmod-integration-in-the-dashboard" title="Permalink to this headline">¶</a></h3>
