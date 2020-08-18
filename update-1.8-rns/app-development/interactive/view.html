@@ -417,13 +417,13 @@ request.</p>
 <p>It’s possible for you to add additional information to this connection view.</p>
 <p>You can do so by creating a Markdown file <code class="docutils literal notranslate"><span class="pre">info.md.erb</span></code> or an html file
 <code class="docutils literal notranslate"><span class="pre">info.html.erb</span></code> in the applications folder.  Markdown files get generated
-into html with # turning into a h1 and ## turning into an h2 and so on.</p>
+into html with # turning into an &lt;h1&gt; and ## turning into an &lt;h2&gt; and so on.</p>
 <p>Again, they’re <a class="reference external" href="https://en.wikipedia.org/wiki/ERuby">eRuby (Embedded Ruby)</a> files so you can add some dynamic behavior
 to them. Along with any library you may choose to use you can also access these
 variables directly.</p>
 <dl class="docutils">
 <dt>id</dt>
-<dd>The UUID of the job</dd>
+<dd>The session UUID of the job</dd>
 <dt>cluster_id</dt>
 <dd>The cluster the job was submitted to</dd>
 <dt>job_id</dt>
