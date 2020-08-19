@@ -158,6 +158,9 @@
 <li class="toctree-l3"><a class="reference internal" href="#support-for-svg-dashboard-logos">Support for SVG dashboard logos</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#support-for-new-native-vnc-views">Support for new Native VNC views</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#better-max-file-upload-support">Better max file upload support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#drop-ie-11-support">Drop IE 11 support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#added-sinatra-rubygems-into-ondemand-gems-for-other-apps-to-use">Added Sinatra RubyGems into ondemand-gems for other apps to use</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#streamlined-copy-and-paste-in-novnc-for-chrome">Streamlined copy and paste in noVNC for Chrome</a></li>
 </ul>
 </li>
 </ul>
@@ -264,6 +267,9 @@
 <li><a class="reference internal" href="#support-for-svg-dashboard-logos">Support for SVG dashboard logos</a></li>
 <li><a class="reference internal" href="#support-for-new-native-vnc-views">Support for new Native VNC views</a></li>
 <li><a class="reference internal" href="#better-max-file-upload-support">Better max file upload support</a></li>
+<li><a class="reference internal" href="#drop-ie-11-support">Drop IE 11 support</a></li>
+<li><a class="reference internal" href="#added-sinatra-rubygems-into-ondemand-gems-for-other-apps-to-use">Added Sinatra RubyGems into ondemand-gems for other apps to use</a></li>
+<li><a class="reference internal" href="#streamlined-copy-and-paste-in-novnc-for-chrome">Streamlined copy and paste in noVNC for Chrome</a></li>
 </ul>
 <div class="section" id="special-thanks">
 <h2>Special thanks<a class="headerlink" href="#special-thanks" title="Permalink to this headline">¶</a></h2>
@@ -451,6 +457,28 @@ VNC client instead of using NoVNC through the browser.</p>
 <p>While FILE_UPLOAD_MAX configuration has existed for some time, 1.8 adds the corresponding
 nginx configuration so that sites can set the upload max to settings larger than 10 GiB.</p>
 <p><a class="reference internal" href="../customization.html#set-upload-limits"><span class="std std-ref">See the section in the customization page for more details.</span></a></p>
+</div>
+<div class="section" id="drop-ie-11-support">
+<h3>Drop IE 11 support<a class="headerlink" href="#drop-ie-11-support" title="Permalink to this headline">¶</a></h3>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">No IE 11 support. If you are a site that requires IE 11 support and are willing to contribute developer time to the project to support this, please reach out to us.</p>
+</div>
+<p>IE 11 support was officially dropped. See Browser Requirements.</p>
+</div>
+<div class="section" id="added-sinatra-rubygems-into-ondemand-gems-for-other-apps-to-use">
+<h3>Added Sinatra RubyGems into ondemand-gems for other apps to use<a class="headerlink" href="#added-sinatra-rubygems-into-ondemand-gems-for-other-apps-to-use" title="Permalink to this headline">¶</a></h3>
+<p>Sinatra RubyGems were added to the Dashboard application, they are automatically installed with the <code class="docutils literal notranslate"><span class="pre">ondemand-gems</span></code> RPM.
+Other applications can now get started without needing to install RubyGems into the applications directory.</p>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="n">gem</span> <span class="s2">&quot;sinatra&quot;</span><span class="p">,</span> <span class="nb">require</span><span class="p">:</span> <span class="kp">false</span>
+<span class="n">gem</span> <span class="s2">&quot;sinatra-contrib&quot;</span><span class="p">,</span> <span class="nb">require</span><span class="p">:</span> <span class="kp">false</span>
+<span class="n">gem</span> <span class="s2">&quot;erubi&quot;</span><span class="p">,</span> <span class="nb">require</span><span class="p">:</span> <span class="kp">false</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="streamlined-copy-and-paste-in-novnc-for-chrome">
+<h3>Streamlined copy and paste in noVNC for Chrome<a class="headerlink" href="#streamlined-copy-and-paste-in-novnc-for-chrome" title="Permalink to this headline">¶</a></h3>
+<p>Copy and pasting now works out of the box in Chrome. An issue with copy and pasting large clipboard buffers into noVNC applications on Chrome was fixed in version 1.8.</p>
 </div>
 </div>
 </div>
