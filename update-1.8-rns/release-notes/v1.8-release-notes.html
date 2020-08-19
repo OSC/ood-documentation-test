@@ -267,6 +267,8 @@
 </ul>
 <div class="section" id="special-thanks">
 <h2>Special thanks<a class="headerlink" href="#special-thanks" title="Permalink to this headline">¶</a></h2>
+<p>Special thanks to <a class="reference external" href="https://github.com/374365283">https://github.com/374365283</a> and <a class="reference external" href="https://github.com/flybirdkh">https://github.com/flybirdkh</a>
+of Shanghai Jiao Tong University (<a class="reference external" href="https://hpc.sjtu.edu.cn/">https://hpc.sjtu.edu.cn/</a>) for <a class="reference internal" href="#chinese-localization">Chinese localization</a>!</p>
 </div>
 <div class="section" id="upgrading-from-v1-7">
 <h2>Upgrading from v1.7<a class="headerlink" href="#upgrading-from-v1-7" title="Permalink to this headline">¶</a></h2>
@@ -361,19 +363,23 @@ the two options.</p>
   <span class="p p-Indicator">-</span> <span class="s">&quot;my_other_cluster&quot;</span>
 </pre></div>
 </div>
-<p>There are also other ways to configure which cluster to submit to.
-<a class="reference internal" href="../app-development/interactive/form.html#configuring-cluster"><span class="std std-ref">Complete documentation can be found here.</span></a></p>
+<p><a class="reference internal" href="../app-development/interactive/form.html#configuring-cluster"><span class="std std-ref">See the documentation on all the ways to configure which cluster to submit to.</span></a></p>
 </div>
 <div class="section" id="batch-connect-apps-now-support-disabling-caching-on-fields">
 <h3>Batch Connect apps now support disabling caching on fields<a class="headerlink" href="#batch-connect-apps-now-support-disabling-caching-on-fields" title="Permalink to this headline">¶</a></h3>
-<p>Batch connect apps can now enable or disable caching site wide, on a per app basis
-or on a per item basis.</p>
-<p><a class="reference internal" href="../app-development/interactive/form.html#caching-from-items"><span class="std std-ref">See the full documentation on this feature here.</span></a></p>
+<p>When a user submits the web form for an interactive app (batch connect) the form
+values the user set are stored in a cache file that is used to pre-populate the web
+form in the future. In some cases, setting the default value of the form field to a
+previously used value is undesirable. You can now disable this caching feature for
+every app, on a per app basis, or on a per field basis.</p>
+<p><a class="reference internal" href="../app-development/interactive/form.html#caching-form-items"><span class="std std-ref">See the documentation on attribute cache enabling for more details.</span></a></p>
 </div>
 <div class="section" id="extended-view-support-for-gridengine-clusters">
 <h3>Extended view support for GridEngine clusters<a class="headerlink" href="#extended-view-support-for-gridengine-clusters" title="Permalink to this headline">¶</a></h3>
-<p>In the Active Jobs app, each job will have a dropdown where the user can see various details about their job such as walltime, Total CPUs, etc.
-This functionality was recently implemented for SGE in v1.8 and corresponds to ood_core v0.12.0</p>
+<p>In the Active Jobs app, similar to Torque and Slurm jobs, SGE jobs will now have a details
+view available where the user can see various details about their job such as walltime, Total
+CPUs, etc. The view is made visible by clicking on the arrow on the far left of the table row
+corresponding to the job.</p>
 <p>The data seen in extended view is extracted from the command <code class="docutils literal notranslate"><span class="pre">qstat</span> <span class="pre">-j</span> <span class="pre">-r</span> <span class="pre">-xml</span></code>.</p>
 </div>
 <div class="section" id="torque-and-slurm-schedulers-now-support-qos-fields">
@@ -391,7 +397,8 @@ This functionality was recently implemented for SGE in v1.8 and corresponds to o
 <p>Shell hosts are now protected behind allowlists. This means administrators now need
 to explicitly add hosts to an allowlist for users to be able to access them through
 the shell app.</p>
-<p>Any currently configured login host that is not hidden will be automatically allowed.
+<p>Any login host of a cluster config will be allowed, assuming that cluster is not
+configured as “hidden” in the metadata section of the cluster config.
 However, administrators will need to add a configuration for compute nodes and any
 additional hosts they wish to allow access to.</p>
 <p>Administrators should also configure the default ssh host if they’ve not already done
@@ -423,19 +430,20 @@ in <code class="docutils literal notranslate"><span class="pre">/etc/ood/config/
 </div>
 <div class="section" id="ability-to-add-additional-info-to-batch-connect-app">
 <h3>Ability to add additional info to batch connect app<a class="headerlink" href="#ability-to-add-additional-info-to-batch-connect-app" title="Permalink to this headline">¶</a></h3>
-<p>Batch connect app developers may now add files that add information the the batch
-connect panels.  <a class="reference internal" href="../app-development/interactive/view.html#bc-info-html-md-erb"><span class="std std-ref">More information is documented here</span></a>
-on batch connect view panels and this feature specifically.</p>
+<p>You can now add an info.html.erb file to an interactive app (batch connect)
+directory and it will render and display in the job panel. This is useful for
+providing documentation links for an app.q
+<a class="reference internal" href="../app-development/interactive/view.html#bc-info-html-md-erb"><span class="std std-ref">See the documentation on info.html.erb for more details.</span></a></p>
 </div>
 <div class="section" id="support-for-svg-dashboard-logos">
 <h3>Support for SVG dashboard logos<a class="headerlink" href="#support-for-svg-dashboard-logos" title="Permalink to this headline">¶</a></h3>
 <p>Logos can now be SVG images and controlled through the <code class="docutils literal notranslate"><span class="pre">OOD_DASHBOARD_LOGO_HEIGHT</span></code>
-configuration to resize them. <a class="reference internal" href="../customization.html#id2"><span class="std std-ref">See documention on branding for form information.</span></a></p>
+configuration to resize them. <a class="reference internal" href="../customization.html#id2"><span class="std std-ref">See documentation on branding for form information.</span></a></p>
 </div>
 <div class="section" id="support-for-new-native-vnc-views">
 <h3>Support for new Native VNC views<a class="headerlink" href="#support-for-new-native-vnc-views" title="Permalink to this headline">¶</a></h3>
-<p>Sites can now define instructions for connecting to VNC interactive jobs with native tools
-instead of using NoVNC through the browser.</p>
+<p>Sites can now define instructions for connecting to VNC interactive jobs using a native
+VNC client instead of using NoVNC through the browser.</p>
 <p><a class="reference internal" href="../app-development/interactive/view.html#bc-native-vnc-view"><span class="std std-ref">More details on this feature can be found here.</span></a></p>
 </div>
 <div class="section" id="better-max-file-upload-support">
