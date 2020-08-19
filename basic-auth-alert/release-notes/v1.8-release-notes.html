@@ -144,6 +144,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#upgrading-from-v1-6">Upgrading from v1.6</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#details">Details</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#default-authentication-is-now-handled-by-dex">Default authentication is now handled by Dex</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#removed-safari-compatibility-alert-for-basic-auth">Removed Safari compatibility alert for Basic Auth</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#support-mod-auth-openidc-configuration-via-ood-portal-generator">Support mod_auth_openidc configuration via ood-portal-generator</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#beta-ccq-scheduler-support">Beta CCQ Scheduler support</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#retain-completed-jobs-panel-for-debugging">Retain completed jobs panel for debugging</a></li>
@@ -157,7 +158,6 @@
 <li class="toctree-l3"><a class="reference internal" href="#ability-to-add-additional-info-to-batch-connect-app">Ability to add additional info to batch connect app</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#support-for-svg-logos">Support for SVG logos</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#environment-variable-name-changes">Environment variable name changes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#removed-safari-compatibility-alert-for-basic-auth">Removed Safari compatibility alert for Basic Auth</a></li>
 </ul>
 </li>
 </ul>
@@ -250,6 +250,7 @@
 <p>Highlights in 1.8:</p>
 <ul class="simple">
 <li><a class="reference internal" href="#default-authentication-is-now-handled-by-dex">Default authentication is now handled by Dex</a></li>
+<li><a class="reference internal" href="#removed-safari-compatibility-alert-for-basic-auth">Removed Safari compatibility alert for Basic Auth</a></li>
 <li><a class="reference internal" href="#support-mod-auth-openidc-configuration-via-ood-portal-generator">Support mod_auth_openidc configuration via ood-portal-generator</a></li>
 <li><a class="reference internal" href="#beta-ccq-scheduler-support">Beta CCQ Scheduler support</a></li>
 <li><a class="reference internal" href="#retain-completed-jobs-panel-for-debugging">Retain completed jobs panel for debugging</a></li>
@@ -263,7 +264,6 @@
 <li><a class="reference internal" href="#ability-to-add-additional-info-to-batch-connect-app">Ability to add additional info to batch connect app</a></li>
 <li><a class="reference internal" href="#support-for-svg-logos">Support for SVG logos</a></li>
 <li><a class="reference internal" href="#environment-variable-name-changes">Environment variable name changes</a></li>
-<li><a class="reference internal" href="#removed-safari-compatibility-alert-for-basic-auth">Removed Safari compatibility alert for Basic Auth</a></li>
 </ul>
 <div class="section" id="special-thanks">
 <h2>Special thanks<a class="headerlink" href="#special-thanks" title="Permalink to this headline">¶</a></h2>
@@ -330,6 +330,10 @@ if upgrading from v1.6 of OnDemand to v1.8.</p>
 <p>The default authentication mechanism for OnDemand is now using the OIDC provider <a class="reference external" href="https://github.com/dexidp/dex">Dex</a>.  The Dex authentication will replace Apache’s Basic Auth.  Sites wishing to continue using LDAP authentication or other forms of Basic Auth are recommended to configure Dex.
 See <a class="reference internal" href="../authentication/dex.html#authentication-dex"><span class="std std-ref">Dex Authentication</span></a> for details on OnDemand Dex.</p>
 </div>
+<div class="section" id="removed-safari-compatibility-alert-for-basic-auth">
+<h3>Removed Safari compatibility alert for Basic Auth<a class="headerlink" href="#removed-safari-compatibility-alert-for-basic-auth" title="Permalink to this headline">¶</a></h3>
+<p>OnDemand uses Dex for authentication by default in version 1.8, the alert on the Dashboard about Basic Auth and WebSocket issues in Safari users was removed.</p>
+</div>
 <div class="section" id="support-mod-auth-openidc-configuration-via-ood-portal-generator">
 <h3>Support mod_auth_openidc configuration via ood-portal-generator<a class="headerlink" href="#support-mod-auth-openidc-configuration-via-ood-portal-generator" title="Permalink to this headline">¶</a></h3>
 <p>The Open OnDemand Portal <a class="reference internal" href="../reference/files/ood-portal-yml.html#ood-portal-generator-configuration"><span class="std std-ref">ood_portal.yml</span></a> file now supports defining <a class="reference external" href="https://github.com/zmartzone/mod_auth_openidc">mod_auth_openidc</a> configurations directly.</p>
@@ -369,10 +373,6 @@ See <a class="reference internal" href="../authentication/dex.html#authenticatio
 </div>
 <div class="section" id="environment-variable-name-changes">
 <h3>Environment variable name changes<a class="headerlink" href="#environment-variable-name-changes" title="Permalink to this headline">¶</a></h3>
-</div>
-<div class="section" id="removed-safari-compatibility-alert-for-basic-auth">
-<h3>Removed Safari compatibility alert for Basic Auth<a class="headerlink" href="#removed-safari-compatibility-alert-for-basic-auth" title="Permalink to this headline">¶</a></h3>
-<p>OnDemand uses Dex for authentication by default in version 1.8, the alert on the Dashboard about Basic Auth and WebSocket issues in Safari users was removed.</p>
 </div>
 </div>
 </div>
