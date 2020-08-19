@@ -1,0 +1,253 @@
+.. _v1.8-release-notes:
+
+v1.8 Release Notes
+==================
+
+Highlights in 1.8:
+
+- `Default authentication is now handled by Dex`_
+- `Support mod_auth_openidc configuration via ood-portal-generator`_
+- `Beta CCQ Scheduler support`_
+- `Retain completed jobs panel for debugging`_
+- `Batch Connect apps now support multiple clusters`_
+- `Batch Connect apps now support disabling caching on fields`_
+- `Extended view support for GridEngine clusters`_
+- `Torque and Slurm schedulers now support QoS fields`_
+- `Shell hosts are now protected behind allowlists`_
+- `Beta XDMOD integration in the dashboard`_
+- `Chinese localization`_
+- `Ability to add additional info to batch connect app`_
+- `Support for SVG dashboard logos`_
+- `Support for new Native VNC views`_
+- `Better max file upload support`_
+
+Special thanks
+--------------
+
+
+Upgrading from v1.7
+-------------------
+
+Before upgrading to v1.8, please consider the following:
+
+.. warning:: Shell hosts are now protected behind allowlists.  If you have not
+    explicitly set the default SSH host, you must do so after upgrading. You must
+    also update the configuration to allow shell access to any login or compute nodes.
+    `See the entry in the release notes for more information. <#shell-hosts-are-now-protected-behind-allowlists>`_
+
+
+- If upgrading from OnDemand 1.5.x or older **you must upgrade to 1.6.x before upgrading to 1.7**. See directions for upgrading from 1.4 to 1.5 (:ref:`v1.5-release-notes`) and from 1.5 to 1.6 (:ref:`v1.6-release-notes`).
+- As always please update the *development* or *test* instances of OnDemand installed at your center first to test and verify before you modify the *production* instance.
+
+
+#. Update OnDemand release RPM
+
+   .. code-block:: sh
+
+      sudo yum install -y https://yum.osc.edu/ondemand/1.8/ondemand-release-web-1.8-1.noarch.rpm
+
+#. Update OnDemand
+
+   .. code-block:: sh
+
+      sudo yum clean all
+      sudo yum update ondemand
+
+#. (Optional) If previously using Apache's Basic Auth, for example with LDAP, it is recommended to switch to :ref:`Dex Authentication <authentication-dex>` by installing the ``ondemand-dex`` package.
+
+   .. code-block:: sh
+
+      sudo yum install ondemand-dex
+
+   .. warning::
+
+      The configuration for Dex will need to be made to ``/etc/ood/config/ood_portal.yml`` with your needed LDAP configuration and updates to both Dex and Apache configurations.
+      See :ref:`Configuring OnDemand Dex for LDAP <dex-ldap>` for details on configuration of LDAP.
+
+
+#. Update Apache configuration and restart Apache.
+
+   .. code-block:: sh
+
+      sudo /opt/ood/ood-portal-generator/sbin/update_ood_portal
+      sudo systemctl try-restart httpd24-httpd.service httpd24-htcacheclean.service
+
+#. (Optional) If ``ondemand-dex`` was installed, you must enable and start the ``ondemand-dex`` service.
+
+   .. code-block:: sh
+
+      sudo systemctl enable ondemand-dex.service
+      sudo systemctl start ondemand-dex.service
+
+Upgrading from v1.6
+-------------------
+
+Due to changes with ``ood-portal-generator`` it is necessary to run ``update_ood_portal`` with ``--force`` flag
+if upgrading from v1.6 of OnDemand to v1.8.
+
+
+Details
+-------
+
+Default authentication is now handled by Dex
+............................................
+
+The default authentication mechanism for OnDemand is now using the OIDC provider `Dex`_.  The Dex authentication will replace Apache's Basic Auth.  Sites wishing to continue using LDAP authentication or other forms of Basic Auth are recommended to configure Dex.
+See :ref:`Dex Authentication <authentication-dex>` for details on OnDemand Dex.
+
+You no longer need to do ``DISABLE_SAFARI_BASIC_AUTH_WARNING=1`` and you can safely remove this from the configuration as this ENV var will be ignored.
+
+Support mod_auth_openidc configuration via ood-portal-generator
+...............................................................
+
+The Open OnDemand Portal :ref:`ood-portal-generator-configuration` file now supports defining `mod_auth_openidc`_ configurations directly.
+
+Beta CCQ Scheduler support
+..........................
+
+We now have beta `Cloudy Cluster`_ support for their ccq scheduler.  You can find
+:ref:`documentation on how to configure the cluster here <resource-manager-cloudy-cluster>`.
+
+Retain completed jobs panel for debugging
+.........................................
+
+When an interactive job completes, its panel will now remain in the view. This is to
+allow users and administrators to debug failed jobs by keeping the session id links
+in view.
+
+Batch Connect apps now support multiple clusters
+................................................
+
+Batch connect applications now support multiple clusters in their configuration
+instead of just one.
+
+Where previous configuration look like this, with only a single cluster.
+
+.. code-block:: yaml
+
+   cluster: "my_cluster"
+
+Configurations will now accept an array like the example below.  This will create a
+dropdown select menu item at the top of the form where users can choose between
+the two options.
+
+.. code-block:: yaml
+
+   cluster:
+     - "my_cluster"
+     - "my_other_cluster"
+
+
+There are also other ways to configure which cluster to submit to.
+:ref:`Complete documentation can be found here. <configuring-cluster>`
+
+Batch Connect apps now support disabling caching on fields
+..........................................................
+
+Batch connect apps can now enable or disable caching site wide, on a per app basis
+or on a per item basis.
+
+:ref:`See the full documentation on this feature here. <caching-from-items>`
+
+Extended view support for GridEngine clusters
+.............................................
+
+In the Active Jobs app, each job will have a dropdown where the user can see various details about their job such as walltime, Total CPUs, etc. 
+This functionality was recently implemented for SGE in v1.8 and corresponds to ood_core v0.12.0
+
+The data seen in extended view is extracted from the command ``qstat -j -r -xml``.
+
+Torque and Slurm schedulers now support QoS fields
+...................................................
+
+Torque and Slurm schedulers now support the quality of service (QoS) fields.
+
+``qos`` is now an acceptable script attribute like so:
+
+.. code-block:: yaml
+
+   script:
+     qos: 'best'
+
+In Torque this translates to ``-l qos=best`` and in Slurm it is ``--qos best``.
+
+Shell hosts are now protected behind allowlists
+...............................................
+
+Shell hosts are now protected behind allowlists. This means administrators now need
+to explicitly add hosts to an allowlist for users to be able to access them through
+the shell app.
+
+Any currently configured login host that is not hidden will be automatically allowed.
+However, administrators will need to add a configuration for compute nodes and any
+additional hosts they wish to allow access to.
+
+Administrators should also configure the default ssh host if they've not already done
+so because 'localhost' is no longer the out of the box default.
+
+:ref:`See the documentation for setting the default ssh host <set-default-ssh-host>`
+and :ref:`the documentation for setting the allowlist for more details <set-ssh-allowlist>`.
+
+Beta XDMOD integration in the dashboard
+.......................................
+
+If your site also uses `XDMOD`_ for job metric collection, Open OnDemand now
+has beta support to connect to that installation and show XDMOD panels in
+the dashboard.
+
+To enable this functionality simply set the ``OOD_XDMOD_HOST`` to it's full URL
+in ``/etc/ood/config/apps/dashboard/env``.
+
+.. code-block:: shell
+
+  OOD_XDMOD_HOST="https://xdmod.mysite.edu"
+
+Chinese localization
+....................
+
+The Chinese localization ``zh-CN`` is now available in the dashboard and
+job composer applications for sites who wish to use it.
+
+To enable it, simply set the ``OOD_LOCALE`` environment variable globally
+in ``/etc/ood/config/nginx_stage.yml``
+
+.. code-block:: yaml
+
+  pun_custom_env:
+     OOD_LOCALE: "zh-CN"
+
+
+Ability to add additional info to batch connect app
+...................................................
+
+Batch connect app developers may now add files that add information the the batch
+connect panels.  :ref:`More information is documented here <bc_info_html_md_erb>`
+on batch connect view panels and this feature specifically.
+
+Support for SVG dashboard logos
+...............................
+
+Logos can now be SVG images and controlled through the ``OOD_DASHBOARD_LOGO_HEIGHT``
+configuration to resize them. :ref:`See documention on branding for form information. <branding>`
+
+Support for new Native VNC views
+................................
+
+Sites can now define instructions for connecting to VNC interactive jobs with native tools
+instead of using NoVNC through the browser.
+
+:ref:`More details on this feature can be found here. <bc_native_vnc_view>`
+
+Better max file upload support
+..............................
+
+While FILE_UPLOAD_MAX configuration has existed for some time, 1.8 adds the corresponding
+nginx configuration so that sites can set the upload max to settings larger than 10 GiB.
+
+:ref:`See the section in the customization page for more details. <set-upload-limits>`
+
+
+.. _dex: https://github.com/dexidp/dex
+.. _mod_auth_openidc: https://github.com/zmartzone/mod_auth_openidc
+.. _cloudy cluster: http://cloudycluster.com/
+.. _XDMOD: https://open.xdmod.org/
