@@ -10,7 +10,7 @@ Installing OnDemand Dex package
 
 First the OnDemand yum repos must be enabled, see :ref:`install-software`.
 
-** RHEL/CentOS 8 only** The ``mod_auth_openidc`` stream must be enabled with DNF:
+** RHEL/CentOS 8 only** The ``mod_auth_openidc`` module must be enabled with DNF:
 
    .. code-block:: sh
 
