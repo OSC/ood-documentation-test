@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>SAML Authentication with Active Directory Federated Services (ADFS) and mod_auth_mellon &mdash; Open OnDemand 1.7.0 documentation</title>
+  <title>SAML Authentication with Active Directory Federated Services (ADFS) and mod_auth_mellon &mdash; Open OnDemand 1.8.12 documentation</title>
   
 
   
@@ -38,7 +38,7 @@
   <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Add Cluster Configuration Files" href="../installation/add-cluster-config.html" />
+    <link rel="next" title="Add PAM Authentication" href="pam.html" />
     <link rel="prev" title="Two Factor Auth using Duo with Keycloak" href="duo-2fa-with-keycloak.html" />
  
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-34776817-3"></script>
@@ -68,7 +68,7 @@
 
           
             
-            <img src="../_static/logo.png" class="logo" alt="Logo"/>
+            <img src="../_static/logo.svg" class="logo" alt="Logo"/>
           
           </a>
 
@@ -76,7 +76,7 @@
             
             
               <div class="version">
-                1.7
+                1.8
               </div>
             
           
@@ -103,7 +103,7 @@
               <p class="caption"><span class="caption-text">General</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../architecture.html">Architecture</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../reference.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference.html">Configuration Reference</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Install</span></p>
 <ul class="current">
@@ -124,6 +124,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#configure-ood">Configure OOD</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="pam.html">Add PAM Authentication</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../installation/add-cluster-config.html">Add Cluster Configuration Files</a></li>
@@ -137,6 +138,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../app-development/interactive/setup.html">Setup Interactive Apps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../enable-desktops.html">Enable Interactive Desktop</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../install-ihpc-apps.html">Install Other Interactive Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code-snippets.html">Code Snippets</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Deploy</span></p>
 <ul>
@@ -249,7 +251,7 @@
 <ol class="arabic simple">
 <li>The SAML 2.0 service URL (e.g., <a class="reference external" href="https://adfs.organization.com/ADFS/ls">https://adfs.organization.com/ADFS/ls</a>)</li>
 <li>The IdP metadata URL (e.g., <a class="reference external" href="https://adfs.organization.com/ADFS/metadata.xml">https://adfs.organization.com/ADFS/metadata.xml</a>)</li>
-<li>Ensure SSL is properly configured and any organizationl certificate authorities are properly integrated into the host’s trust store, see <a class="reference internal" href="../installation/add-ssl.html#add-ssl"><span class="std std-ref">Add SSL Support</span></a></li>
+<li>Ensure SSL is properly configured and any organizational certificate authorities are properly integrated into the host’s trust store, see <a class="reference internal" href="../installation/add-ssl.html#add-ssl"><span class="std std-ref">Add SSL Support</span></a></li>
 </ol>
 </div>
 <div class="section" id="install-mod-auth-mellon">
@@ -343,7 +345,7 @@ mv *.xml ./mellon_metadata.xml
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../installation/add-cluster-config.html" class="btn btn-neutral float-right" title="Add Cluster Configuration Files" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="pam.html" class="btn btn-neutral float-right" title="Add PAM Authentication" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="duo-2fa-with-keycloak.html" class="btn btn-neutral float-left" title="Two Factor Auth using Duo with Keycloak" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -355,7 +357,7 @@ mv *.xml ./mellon_metadata.xml
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2017-2019, Ohio Supercomputer Center
+        &copy; Copyright 2017-2020, Ohio Supercomputer Center
 
     </p>
   </div> 
@@ -378,7 +380,9 @@ mv *.xml ./mellon_metadata.xml
     <dl>
       <dt>Versions</dt>
       
-        <dd><a href="https://OSC.github.io/ood-documentation/master/authentication/adfs-with-auth-mellon.html">master</a></dd>
+        <dd><a href="https://OSC.github.io/ood-documentation/latest/authentication/adfs-with-auth-mellon.html">latest</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-1.7/authentication/adfs-with-auth-mellon.html">1.7</a></dd>
       
         <dd><a href="https://OSC.github.io/ood-documentation/release-1.6/authentication/adfs-with-auth-mellon.html">1.6</a></dd>
       
