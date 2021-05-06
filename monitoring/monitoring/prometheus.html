@@ -223,7 +223,7 @@
         
             
             
-              <a href="https://github.com/OSC/ood-documentation/blob/monitoring/source/monitoring/prometheus.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/OSC/ood-documentation/blob/develop/source/monitoring/prometheus.rst" class="fa fa-github"> Edit on GitHub</a>
             
           
         
@@ -371,6 +371,9 @@ sudo cat &gt; /etc/systemd/system/ondemand_exporter.service.d/passenger-status.c
   <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">Passenger NodeA</span>
   <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">PassengerAgent</span>
   <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">ruby</span>
+<span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="s">&quot;{{.Comm}}:{{.Username}}&quot;</span>
+  <span class="l l-Scalar l-Scalar-Plain">cmdline</span><span class="p p-Indicator">:</span>
+  <span class="p p-Indicator">-</span> <span class="s">&quot;.+&quot;</span>
 </pre></div>
 </div>
 <p>The above example only makes sense on a host that is only running OnDemand and not other services that might also be using NGINX, Passenger or Ruby.</p>
@@ -397,7 +400,7 @@ sudo cat &gt; /etc/systemd/system/ondemand_exporter.service.d/passenger-status.c
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2017-2020, Ohio Supercomputer Center
+        &copy; Copyright 2017-2021, Ohio Supercomputer Center
 
     </p>
   </div> 
