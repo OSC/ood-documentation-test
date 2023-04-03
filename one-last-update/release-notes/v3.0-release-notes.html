@@ -282,20 +282,22 @@
 <p>We’d like to thank a bunch of folks’ for contributing to this release.
 As we only know the github username, that’s what’s being referenced here.</p>
 <p>We’d like to thank Harvard for many contributions around layouts
-and navitation. Notably, <cite>adaybujeda</cite> and <cite>whorka</cite> to name a few.</p>
+and navitation. Notably, <code class="docutils literal notranslate"><span class="pre">adaybujeda</span></code> and <code class="docutils literal notranslate"><span class="pre">whorka</span></code> to name a few.</p>
 <p>We’d like to thank CSC Finland for contributing remote file browsing.
-Specifically <cite>robinkar</cite> and <cite>CSC-swesters</cite>.</p>
+Specifically <code class="docutils literal notranslate"><span class="pre">robinkar</span></code> and <code class="docutils literal notranslate"><span class="pre">CSC-swesters</span></code>.</p>
 <p>We’d also like to give a big thanks to these folks’ for their first
 time contributing to Open OnDemand.</p>
-<p><cite>Micket</cite> made their first contribution in #1426
-<cite>aebruno</cite> made their first contribution in #1766
-<cite>mayank-agarwal-96</cite> made their first contribution in #1776
-<cite>whorka</cite> made their first contribution in #1854
-<cite>SaumyaBhushan</cite> made their first contribution in #1992
-<cite>davidmonro</cite> made their first contribution in #2091
-<cite>mnakao</cite> made their first contribution in #2194
-<cite>georgiastuart</cite> made their first contribution in #2323
-<cite>covert8</cite> made their first contribution in #2327</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Micket</span></code> made their first contribution in #1426</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">aebruno</span></code> made their first contribution in #1766</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mayank-agarwal-96</span></code> made their first contribution in #1776</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">whorka</span></code> made their first contribution in #1854</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SaumyaBhushan</span></code> made their first contribution in #1992</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">davidmonro</span></code> made their first contribution in #2091</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mnakao</span></code> made their first contribution in #2194</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">georgiastuart</span></code> made their first contribution in #2323</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">covert8</span></code> made their first contribution in #2327</p></li>
+</ul>
 <p>If we’ve missed listing anyone here, please let us know!</p>
 </div>
 <div class="section" id="details-of-administrative-changes">
@@ -352,12 +354,12 @@ this, but sites should use the <code class="docutils literal notranslate"><span 
 <h4>whitelist &amp; blacklist configs are deprecated<a class="headerlink" href="#whitelist-blacklist-configs-are-deprecated" title="Permalink to this headline">¶</a></h4>
 <p>These configurations that have whitelist in the name have been deprecated
 and replaced with allowlist or blocklist.</p>
-<p>The configurations <cite>maintenance_ip_whitelist</cite> for configuring maintenance ips
-has been replaced by <cite>maintenance_ip_allowlist</cite>.</p>
-<p>The <cite>WHITELIST_PATH</cite> for configuring inaccessible paths in the file browser has
-been replaced by <cite>OOD_ALLOWLIST_PATH</cite>.</p>
-<p>ACL configurations in <cite>cluster.d</cite> files now use  <cite>allowlist</cite> and <cite>blocklist</cite>
-instead of <cite>whitelist</cite> and <cite>blacklist</cite>, though sites should just use
+<p>The configurations <code class="docutils literal notranslate"><span class="pre">maintenance_ip_whitelist</span></code> for configuring maintenance ips
+has been replaced by <code class="docutils literal notranslate"><span class="pre">maintenance_ip_allowlist</span></code>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">WHITELIST_PATH</span></code> environment variable for configuring inaccessible paths
+in the file browser has been replaced by <code class="docutils literal notranslate"><span class="pre">OOD_ALLOWLIST_PATH</span></code>.</p>
+<p>ACL configurations in <code class="docutils literal notranslate"><span class="pre">cluster.d</span></code> files now use  <code class="docutils literal notranslate"><span class="pre">allowlist</span></code> and <code class="docutils literal notranslate"><span class="pre">blocklist</span></code>
+instead of <code class="docutils literal notranslate"><span class="pre">whitelist</span></code> and <code class="docutils literal notranslate"><span class="pre">blacklist</span></code>, though sites should just use
 Linux FACLs to control these files instead of these configurations.</p>
 </div>
 </div>
