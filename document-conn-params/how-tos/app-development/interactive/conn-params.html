@@ -239,8 +239,8 @@ is required for operations like logging into RStudio.</p>
 </pre></div>
 </div>
 <p>The primary purpose of this configuration is to utilize the <code class="docutils literal notranslate"><span class="pre">before.sh.erb</span></code> script
-to generate a piece of data. This data is then passed to the <code class="docutils literal notranslate"><span class="pre">submit.sh.erb</span></code> which
-then will hand off to the <code class="docutils literal notranslate"><span class="pre">view.html.erb</span></code> for rendering in the interactive apps page.</p>
+to generate a piece of data. This data is then written to a <code class="docutils literal notranslate"><span class="pre">connection.yml</span></code> file which
+the <code class="docutils literal notranslate"><span class="pre">view.html.erb</span></code> reads for rendering the button to connect to the application.</p>
 </div>
 <div class="section" id="jupyter-notebook-example">
 <h2>Jupyter Notebook Example<a class="headerlink" href="#jupyter-notebook-example" title="Permalink to this headline">¶</a></h2>
