@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Connection Parameters (connections.yml) &mdash; Open OnDemand 3.0.0 documentation</title>
+  <title>Connection Parameters conn_params &mdash; Open OnDemand 3.0.0 documentation</title>
   
 
   
@@ -125,7 +125,7 @@
 <li class="toctree-l3"><a class="reference internal" href="submit.html">Job Submission (submit.yml.erb)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="view.html">Connection View</a></li>
 <li class="toctree-l3"><a class="reference internal" href="sub-apps.html">Sub-Apps and Reconfiguring exsting apps</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Connection Parameters (connections.yml)</a><ul>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Connection Parameters <code class="docutils literal notranslate"><span class="pre">conn_params</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#configuration">Configuration</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#jupyter-notebook-example">Jupyter Notebook Example</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#rstudio-example">Rstudio Example</a></li>
@@ -200,7 +200,7 @@
         
           <li><a href="../interactive.html">Interactive Apps</a> &raquo;</li>
         
-      <li>Connection Parameters (connections.yml)</li>
+      <li>Connection Parameters <code class="docutils literal notranslate"><span class="pre">conn_params</span></code></li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -221,13 +221,17 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="connection-parameters-connections-yml">
-<span id="app-development-interactive-conn-params"></span><h1>Connection Parameters (connections.yml)<a class="headerlink" href="#connection-parameters-connections-yml" title="Permalink to this headline">¶</a></h1>
-<p>The <cite>connections.yml</cite> configuration file facilitates communication between
-the backend server and an app, via the <code class="docutils literal notranslate"><span class="pre">before.sh.erb</span></code>, <code class="docutils literal notranslate"><span class="pre">submit.sh.erb</span></code>,
-and <code class="docutils literal notranslate"><span class="pre">view.html.erb</span></code> files.</p>
-<p>This configuration can be crucial when specific data, such as a <code class="docutils literal notranslate"><span class="pre">csrf_token</span></code>,
-is required for operations like logging into RStudio.</p>
+  <div class="section" id="connection-parameters-conn-params">
+<span id="app-development-interactive-conn-params"></span><h1>Connection Parameters <code class="docutils literal notranslate"><span class="pre">conn_params</span></code><a class="headerlink" href="#connection-parameters-conn-params" title="Permalink to this headline">¶</a></h1>
+<p>App developers can use <code class="docutils literal notranslate"><span class="pre">conn_params</span></code> in the <code class="docutils literal notranslate"><span class="pre">submit.yml.erb</span></code> to pass runtime data generated
+in the <code class="docutils literal notranslate"><span class="pre">before.sh.erb</span></code> back to the <code class="docutils literal notranslate"><span class="pre">view.html.erb</span></code>.</p>
+<p>This is helpful for:</p>
+<ul class="simple">
+<li><p>Data that is only known <strong>after</strong> the job submits and starts running.</p></li>
+<li><p>Data that needs to be used to connect to the application.</p></li>
+</ul>
+<p>This technique will generate a file in the app’s root called <code class="docutils literal notranslate"><span class="pre">connection.yml</span></code> when the app launches
+which will contain the defined variables and their associated values.</p>
 <div class="section" id="configuration">
 <h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
 <p>The files which must be adjusted are:</p>
@@ -238,9 +242,15 @@ is required for operations like logging into RStudio.</p>
 └── view.html.erb
 </pre></div>
 </div>
-<p>The primary purpose of this configuration is to utilize the <code class="docutils literal notranslate"><span class="pre">before.sh.erb</span></code> script
-to generate a piece of data. This data is then written to a <code class="docutils literal notranslate"><span class="pre">connection.yml</span></code> file which
-the <code class="docutils literal notranslate"><span class="pre">view.html.erb</span></code> reads for rendering the button to connect to the application.</p>
+<p>And the <code class="docutils literal notranslate"><span class="pre">submit.yml.erb</span></code> will use <code class="docutils literal notranslate"><span class="pre">conn_params</span></code> to set the custom variable:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">---</span>
+<span class="n">batch_connect</span><span class="p">:</span>
+  <span class="n">template</span><span class="p">:</span> <span class="s2">&quot;basic&quot;</span>
+  <span class="n">conn_params</span><span class="p">:</span>
+    <span class="o">-</span> <span class="n">custom_variable</span>
+<span class="o">...</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="jupyter-notebook-example">
 <h2>Jupyter Notebook Example<a class="headerlink" href="#jupyter-notebook-example" title="Permalink to this headline">¶</a></h2>
@@ -317,8 +327,6 @@ a user to connect to an Rstudio session with a password.</p>
 <span class="o">&lt;/</span><span class="n">form</span><span class="o">&gt;</span>
 </pre></div>
 </div>
-<p>The thing to notice in this example is the <code class="docutils literal notranslate"><span class="pre">RSTUDIO_PASSWORD</span></code> had <code class="docutils literal notranslate"><span class="pre">export</span></code> used and the other
-variables did not, such as <code class="docutils literal notranslate"><span class="pre">port</span></code> or <code class="docutils literal notranslate"><span class="pre">password</span></code>.</p>
 </div>
 </div>
 
