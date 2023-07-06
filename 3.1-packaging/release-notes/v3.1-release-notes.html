@@ -138,7 +138,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#details-of-new-features">Details of new features</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#aarch64-and-ppc64le-packages">aarch64 and ppc64le packages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#aarch64-arm64-and-ppc64le-packages">aarch64/arm64 and ppc64le packages</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#amazon-linux-2023-packages">Amazon Linux 2023 packages</a></li>
 </ul>
 </li>
@@ -241,7 +241,7 @@
 <div class="section" id="new-features">
 <h2>New Features<a class="headerlink" href="#new-features" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><p><a class="reference internal" href="#aarch64-and-ppc64le-packages">aarch64 and ppc64le packages</a></p></li>
+<li><p><a class="reference internal" href="#aarch64-arm64-and-ppc64le-packages">aarch64/arm64 and ppc64le packages</a></p></li>
 <li><p><a class="reference internal" href="#amazon-linux-2023-packages">Amazon Linux 2023 packages</a></p></li>
 </ul>
 </div>
@@ -257,7 +257,19 @@
 <div class="section" id="dependency-updates">
 <h3>Dependency updates<a class="headerlink" href="#dependency-updates" title="Permalink to this headline">¶</a></h3>
 <p>This release updates the following dependencies:</p>
-<ul class="simple">
+<ul>
+<li><p>Ruby 3.1 <strong>(RHEL 8 &amp; 9 only)</strong></p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The change in Ruby version means any Ruby based apps that are not provided by the OnDemand RPM must be rebuilt or supply their own <code class="docutils literal notranslate"><span class="pre">bin/ruby</span></code> to use the older version of ruby.</p>
+</div>
+</li>
+<li><p>NodeJS 18 <strong>(All OSes except RHEL 7)</strong></p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The change in Node version means any Node based apps that are not provided by the OnDemand RPM must be rebuilt.</p>
+</div>
+</li>
 <li><p>Passenger 6.0.17</p></li>
 <li><p>NGINX 1.22.1</p></li>
 <li><p>ondemand-dex 2.36.0</p></li>
@@ -297,6 +309,15 @@ sudo apt update
 </pre></div>
 </div>
 </div></div>
+</li>
+<li><p>Enable dependencies</p>
+<p><strong>RHEL/Rocky/AlmaLinux 8 &amp; 9 only</strong></p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo dnf module reset nodejs
+sudo dnf module <span class="nb">enable</span> nodejs:18
+sudo dnf module reset ruby
+sudo dnf module <span class="nb">enable</span> ruby:3.1
+</pre></div>
+</div>
 </li>
 <li><p>Update OnDemand</p>
 <div class="sphinx-tabs docutils container">
@@ -351,9 +372,9 @@ sudo yum update ondemand
 </div>
 <div class="section" id="details-of-new-features">
 <h2>Details of new features<a class="headerlink" href="#details-of-new-features" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="aarch64-and-ppc64le-packages">
-<h3>aarch64 and ppc64le packages<a class="headerlink" href="#aarch64-and-ppc64le-packages" title="Permalink to this headline">¶</a></h3>
-<p>Added aarch64 and ppc64le packages for some operation systems.
+<div class="section" id="aarch64-arm64-and-ppc64le-packages">
+<h3>aarch64/arm64 and ppc64le packages<a class="headerlink" href="#aarch64-arm64-and-ppc64le-packages" title="Permalink to this headline">¶</a></h3>
+<p>Added aarch64/arm64 and ppc64le packages for some operating systems.
 See <a class="reference internal" href="../requirements.html#os-support"><span class="std std-ref">Supported Operating Systems and Architectures</span></a>
 for a full list of which operating systems support aarch64 and ppc64le.</p>
 </div>
