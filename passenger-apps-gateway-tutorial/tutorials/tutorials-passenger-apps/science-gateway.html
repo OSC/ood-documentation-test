@@ -1,0 +1,440 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Creating a Science Gateway App &mdash; Open OnDemand 3.0.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/tabs.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Architecture" href="../../architecture.html" />
+    <link rel="prev" title="Creating a Status App" href="ps-to-quota.html" />
+ 
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-34776817-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-34776817-3');
+</script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html">
+          
+
+          
+            
+            <img src="../../_static/logo.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../requirements.html">Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation/add-cluster-config.html">Cluster Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../how-tos/app-development/interactive/setup.html">Setup Interactive Apps</a></li>
+</ul>
+<p class="caption"><span class="caption-text">How-Tos</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../customizations.html">Customizations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../how-tos/debug.html">Debugging and Monitoring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../enable-desktops.html">Enable Interactive Desktop</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../how-tos/app-development.html">App Development</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorials</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../install-ihpc-apps.html">Install Other Interactive Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials-interactive-apps.html">Tutorials: Interactive Apps</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../tutorials-passenger-apps.html">Tutorials: Passenger Apps</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="ps-to-quota.html">Creating a Status App</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Creating a Science Gateway App</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#overview-of-app">Overview of App</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#benefits">Benefits</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#the-app-s-packages-and-code">The App’s Packages and Code</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#phusion-passenger-project-structure">Phusion Passenger Project Structure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#files-and-their-purpose">Files and Their Purpose</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#build-from-scratch">Build From Scratch</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#build-from-github">Build From GitHub</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#development">Development</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#brand-app">Brand App</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#publish-app">Publish App</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">More</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference.html">Configuration Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../release-notes.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../version-policy.html">OOD Versioning Policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../issues/overview.html">OnDemand’s Known Issues</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Open OnDemand</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../tutorials-passenger-apps.html">Tutorials: Passenger Apps</a> &raquo;</li>
+        
+      <li>Creating a Science Gateway App</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/OSC/ood-documentation/blob/passenger-apps-gateway-tutorial/source/tutorials/tutorials-passenger-apps/science-gateway.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="creating-a-science-gateway-app">
+<span id="app-development-tutorials-passenger-apps-science-gateway"></span><h1>Creating a Science Gateway App<a class="headerlink" href="#creating-a-science-gateway-app" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="overview-of-app">
+<h2>Overview of App<a class="headerlink" href="#overview-of-app" title="Permalink to this headline">¶</a></h2>
+<p>We will make a science gateway that displays information retrieved,
+processed, and rendered in the browser using phusion passenger and
+the python programming language.</p>
+<p>The app we will be copying is: <a class="reference external" href="https://github.com/OSC/ood-example-science-gateway">https://github.com/OSC/ood-example-science-gateway</a>. Running
+this app at the start you should only see:</p>
+<div class="figure align-center" id="id1">
+<img alt="../../_images/passenger-python-flask-app.png" src="../../_images/passenger-python-flask-app.png" />
+<p class="caption"><span class="caption-number">Fig. 10 </span><span class="caption-text">Initial state of app after launch.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+<p>And by the end of this tutorial the app will look like the following:</p>
+<div class="figure align-center" id="id2">
+<img alt="../../_images/app-sharing-2.png" src="../../_images/app-sharing-2.png" />
+<p class="caption"><span class="caption-number">Fig. 11 </span><span class="caption-text">Final state of app after tutorial.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+<p>This <strong>assumes</strong> you have followed the directions to <a class="reference internal" href="../../how-tos/app-development/enabling-development-mode.html#enabling-development-mode"><span class="std std-ref">Enabling App Development</span></a> in the
+Dashboard.</p>
+<p>Our app will use and have the following:</p>
+<ol class="arabic simple">
+<li><p>Bootstrap 5 for nice views.</p></li>
+<li><p>The navbar in the app will contain a link back to the ood dashboard.</p></li>
+<li><p>The app will make requests for us which are then processed and returned for our view.</p></li>
+<li><p>It is built using <a class="reference external" href="https://github.com/pallets/flask">Python’s Flask</a> which
+is similar to the <a class="reference external" href="https://github.com/sinatra/sinatra">Sinatra framework</a>,
+or <a class="reference external" href="https://github.com/expressjs/express">Node.js’s Express</a> .</p></li>
+</ol>
+<div class="section" id="benefits">
+<h3>Benefits<a class="headerlink" href="#benefits" title="Permalink to this headline">¶</a></h3>
+<p>This will provide users with an example of how to build their own
+science gateway in OnDemand and hosted through OnDemand.</p>
+<p>By doing so, we will se that OnDemand provides great flexibility in
+allowing you to work in either <code class="docutils literal notranslate"><span class="pre">ruby</span></code>, <code class="docutils literal notranslate"><span class="pre">node.js</span></code>, or
+<code class="docutils literal notranslate"><span class="pre">python</span></code> which all integrate easily with Passenger Phusion.</p>
+<p>But <em>any</em> language can now be supported as of <strong>Passenger Phusion 6</strong>, as long
+as your app:</p>
+<ol class="arabic simple">
+<li><p>Speaks <code class="docutils literal notranslate"><span class="pre">http</span></code>.</p></li>
+<li><p>Binds to a <code class="docutils literal notranslate"><span class="pre">port</span></code>.</p></li>
+<li><p>Runs in the foreground.</p></li>
+<li><p><strong>And The language of your choice and its build tools are available on your system.</strong></p></li>
+</ol>
+</div>
+<div class="section" id="the-app-s-packages-and-code">
+<h3>The App’s Packages and Code<a class="headerlink" href="#the-app-s-packages-and-code" title="Permalink to this headline">¶</a></h3>
+<p>For any app we develop, the key thing here will be that we can use our <em>own packages</em> and code
+to build what we are trying to do, <strong>assuming your cluster has the language and tooling in place.</strong></p>
+<p>We will be using <code class="docutils literal notranslate"><span class="pre">python3</span></code> in this example with a combination of <code class="docutils literal notranslate"><span class="pre">venv</span></code> and <code class="docutils literal notranslate"><span class="pre">pip</span></code> to build our project.</p>
+<p>This will enable us to login to OnDemand and then work within our development sandbox to use
+code from <em>our own</em> python modules. This could just as easily be our own <code class="docutils literal notranslate"><span class="pre">gems</span></code> if we used
+<code class="docutils literal notranslate"><span class="pre">ruby</span></code> or packages if we used <code class="docutils literal notranslate"><span class="pre">node</span></code>.</p>
+<p>This means we will have to do some setup to ensure our app uses our own designated packages and
+not OnDemand’s or the system packages. This gives users a great deal of flexibility in how they develop.</p>
+</div>
+<div class="section" id="phusion-passenger-project-structure">
+<h3>Phusion Passenger Project Structure<a class="headerlink" href="#phusion-passenger-project-structure" title="Permalink to this headline">¶</a></h3>
+<p>The project structure is simply following a common pattern used when developing a phusion passenger app.</p>
+<p>This mainly consists of an entrypoint file for passenger phusion, and then various files to be used by our
+webserver to be served or executed by the app.</p>
+<p>You can see this explanation and the various forms of the files and their names in
+the <a class="reference external" href="https://www.phusionpassenger.com/docs/tutorials/fundamental_concepts/python/">Passenger project structure documentation</a></p>
+</div>
+<div class="section" id="files-and-their-purpose">
+<h3>Files and Their Purpose<a class="headerlink" href="#files-and-their-purpose" title="Permalink to this headline">¶</a></h3>
+<table class="docutils align-default" id="id3">
+<caption><span class="caption-number">Table 11 </span><span class="caption-text">Initial Skeleton Files</span><a class="headerlink" href="#id3" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>File</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">passenger_wsgi.py</span></code></p></td>
+<td><p>Entry point of the Phusion Passenger app which expects the file to be named <code class="docutils literal notranslate"><span class="pre">passenger_wsgi.py</span></code>. The contents and file name will depend on the application and the web framework used.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">app.rb</span></code></p></td>
+<td><p>Flask app config and routes.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">templates/index.html</span></code></p></td>
+<td><p>the main section of the html page template using <code class="docutils literal notranslate"><span class="pre">render_template()</span></code> commands from <code class="docutils literal notranslate"><span class="pre">app.py</span></code>.
+which auto-escapes output of ERB tags by default (for security)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">teamplates/layout.html</span></code></p></td>
+<td><p>the rendered HTML from <code class="docutils literal notranslate"><span class="pre">views/index.html</span></code> is inserted into this layout,
+where css and javascript files are included.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">tmp/always_restart.txt</span></code></p></td>
+<td><p>A Phusion Passenger convention to restart our server each request to see our code changes. The file should be empty.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="build-from-scratch">
+<h3>Build From Scratch<a class="headerlink" href="#build-from-scratch" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cd</span></code> into you dev directory, which should have already been setup as per prereqs above.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mkdir</span> <span class="pre">science_gateway_app</span></code> and <code class="docutils literal notranslate"><span class="pre">cd</span></code> into it.</p></li>
+<li><p>Initialize our environment with <code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">-m</span> <span class="pre">venv</span> <span class="pre">.venv</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">touch</span> <span class="pre">passenger_wsgi.py</span></code>. Thise creates a WSGI file in the app’s root directory.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">touch</span> <span class="pre">app.py</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mkdir</span> <span class="pre">-p</span> <span class="pre">tmp/always_restart.txt</span></code>. No content needed as this is a passenger convention to reload our changes each request.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mkdir</span> <span class="pre">-p</span> <span class="pre">templates/index.html</span></code></p></li>
+</ol>
+</div>
+</div>
+<div class="section" id="build-from-github">
+<h2>Build From GitHub<a class="headerlink" href="#build-from-github" title="Permalink to this headline">¶</a></h2>
+<p>There are going to be 2 branches for this repo. The <code class="docutils literal notranslate"><span class="pre">completed</span></code> branch has all the code we are going to write and the
+completed app.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">master</span></code> branch is what will have the initial project skeleton files we need to begin in order to follow the steps below.</p>
+</div>
+<div class="section" id="development">
+<h2>Development<a class="headerlink" href="#development" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="brand-app">
+<h2>Brand App<a class="headerlink" href="#brand-app" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="publish-app">
+<h2>Publish App<a class="headerlink" href="#publish-app" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../architecture.html" class="btn btn-neutral float-right" title="Architecture" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="ps-to-quota.html" class="btn btn-neutral float-left" title="Creating a Status App" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017-2023, Ohio Supercomputer Center
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Documentation Versions</span>
+    v: 
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Versions</dt>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/latest/tutorials/tutorials-passenger-apps/science-gateway.html">latest</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-2.0/tutorials/tutorials-passenger-apps/science-gateway.html">2.0</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-1.8/tutorials/tutorials-passenger-apps/science-gateway.html">1.8</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-1.7/tutorials/tutorials-passenger-apps/science-gateway.html">1.7</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-1.6/tutorials/tutorials-passenger-apps/science-gateway.html">1.6</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-1.5/tutorials/tutorials-passenger-apps/science-gateway.html">1.5</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-1.4/tutorials/tutorials-passenger-apps/science-gateway.html">1.4</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-1.3/tutorials/tutorials-passenger-apps/science-gateway.html">1.3</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-1.2/tutorials/tutorials-passenger-apps/science-gateway.html">1.2</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-1.1/tutorials/tutorials-passenger-apps/science-gateway.html">1.1</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-1.0/tutorials/tutorials-passenger-apps/science-gateway.html">1.0</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/develop/tutorials/tutorials-passenger-apps/science-gateway.html">develop</a></dd>
+      
+    </dl>
+    <dl>
+      <dt>On GitHub</dt>
+        <dd>
+          <a href="http://openondemand.org/">Website</a>
+        </dd>
+        <dd>
+          <a href="https://github.com/OSC/Open-OnDemand">Main Repo</a>
+        </dd>
+    </dl>
+    <hr/>
+    Theme provided by <a href="http://www.readthedocs.org">Read the Docs</a>.
+  </div>
+</div>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
