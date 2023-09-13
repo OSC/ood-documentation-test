@@ -3,7 +3,9 @@
 Customizations
 ==============
 
-.. include:: customizations/profiles.inc
+.. tip::
+  Check out the :ref:`pun-environment` for an overview of how environment variables can be
+  added.
 
 Announcements
 -------------
@@ -51,6 +53,8 @@ Because the announcement is rendered via ERB you can do some interesting things,
         <% end %>
 
 .. note:: Warnings about the announcement file being missing may be present in users' nginx logs. Despite the warning the Dashboard will still function normally without those files being present.
+
+   The file path for the announcement message can be customize using configuration properties, see :ref:`OnDemand configuration documentation <ondemand-d-ymls>`.
 
 .. _motd_customization:
 
@@ -165,9 +169,6 @@ These URLs can be specified, which will appear in the Help menu and on other loc
    * - Support URL
      - OOD_DASHBOARD_SUPPORT_URL
      - https://www.osc.edu/contact/supercomputing_support
-   * - Support Email
-     - OOD_DASHBOARD_SUPPORT_EMAIL
-     - oschelp@osc.edu
    * - User Documentation
      - OOD_DASHBOARD_DOCS_URL
      - https://www.osc.edu/ondemand
@@ -185,7 +186,7 @@ Since OnDemand 2.1, custom links can be added to the Help menu using the configu
 Links will be inserted at the end of the core links already included in the menu by the OnDemand codebase.
 
 ``help_menu`` supports all the link definitions developed for the custom navigation configuration.
-For more information on how to create custom links, see the :ref:`link definition documentation <navbar_links_guide>`.
+For more information on how to create custom links, see for example :ref:`adding urls to menus <menus-for-urls>`.
 
 For information about how to configure properties, see the :ref:`OnDemand configuration documentation <ondemand-d-ymls>`.
 
@@ -194,19 +195,19 @@ For information about how to configure properties, see the :ref:`OnDemand config
   help_menu:
     - group: "Documentation"
     - title: "Jupyter Docs"
-      icon_uri: "fas://book"
+      icon: "fas://book"
       url: "https://mydomain.com/path/jupyter"
     - title: "Support Docs"
-      icon_uri: "fas://book"
+      icon: "fas://book"
       url: "https://mydomain.com/path/support/docs"
     - group: "Custom Pages"
     - page: "rstudio_guide"
       title: "RStudio Guide"
-      icon_uri: "fas://window-restore"
+      icon: "fas://window-restore"
     - group: "Profiles"
     - profile: "team1"
       title: "Team 1"
-      icon_uri: "fas://user"
+      icon: "fas://user"
 
 .. figure:: /images/help_menu_links.png
    :align: center
@@ -286,58 +287,10 @@ If you access the Dashboard, and it crashes, then you may have made a mistake
 in ``ood.rb`` file, whose code is run during the initialization of the Rails
 app.
 
-.. _add-menu-items-to-the-navbar:
-
-Add Menu Items to the Navbar
------------------------------
-
-  Menus/Sub-menus are viewed as apps in Open Ondemand.  For every menu/sub-menu you want to show in the navbar, you will need to do the following for each item.
-
-  * sudo mkdir /var/www/ood/apps/sys/<NEW MENU ITEM>
-  * sudo vi /var/www/ood/apps/sys/<NEW MENU ITEM>/manifest.yml
-  
-  .. code-block:: yaml
-
-    ---
-    name: Add Menu Items to the navbar   # This will show as the menu item.
-    category: Links  # specify the main menu for the item to be under.  If it doesn't exist, it will be created.
-    description: |-
-      A description of what the menu item does.
-    icon: fa://clock-o   # icon for the link.
-    url: 'https://osc.github.io/ood-documentation/develop/customization/customizations.html#add-menu-items-to-the-navbar'
-    new_window: true   # open link in new browser window or same browser window.
-
-.. _dashboard-navbar-config:
+.. include:: customizations/profiles.inc
 
 .. include:: customizations/main-navigation.inc
 .. include:: customizations/interactive-apps-menu.inc
-
-Control Which Apps Appear in the Dashboard Navbar
--------------------------------------------------
-
-Apps contain a manifest.yml file that specify things like the title, icon, category,
-and possibly subcategory. The Dashboard searchs the search paths for all the possible
-apps and uses the manifests of the apps it finds to build the navbar (navigation bar)
-at the top of the page.
-
-Apps are placed in the top level menus based on the category, and then in dropdown menu
-sections based on subcategory.
-
-By default, the Open OnDemand system will generate dropdown menus on the navigation
-bar for certian categories of applications.
-
-If you wish to add or remove which categories create dropdown menu items
-use the :ref:`nav_categories configuration property <nav_categories>`.
-
-.. warning::
-
-  Prior to 2.1, controlling which categories appear in the navigation bar was controlled
-  by a Ruby initializer that you needed to modify. While the 2.x series will still support
-  this scheme, Open OnDemand 3.0 will not.  3.0 will only support the ``nav_categories``
-  property.
-
-  Here is the `2.0 documentation for controling the navbar`_.
-
 
 .. _set-upload-limits:
 
@@ -347,7 +300,7 @@ Set Upload Limits
 By default, the file size upload limit is 10737420000 bytes (~10.7 GB).
 
 If you want set this to a lower value, set the ``FILE_UPLOAD_MAX`` configuration
-in the file apps' configuration file ``/etc/ood/config/apps/shell/env``.
+in the file apps' configuration file ``/etc/ood/config/apps/dashboard/env``.
 
 If you want to set it to a higher value set ``nginx_file_upload_max``
 in ``/etc/ood/config/nginx_stage.yml`` to the desired value. If you have
@@ -365,6 +318,27 @@ upload limit.
 If you want to disable file upload altogether, set ``FILE_UPLOAD_MAX`` to 0 and leave
 the ``nginx_file_upload_max`` configuration alone (or comment it out so the default
 is used).
+
+Set Download Limits
+-------------------
+
+By default, the maximum file download size is 10.7 GB (10737418240 bytes). 
+If you wish to change this, you can set the ``OOD_DOWNLOAD_DIR_MAX`` configuration environment 
+variable in the ``/etc/ood/config/apps/dashboard/env`` file to the desired value in bytes.
+
+For example, to set the limit to 5 GB, you can add the following line to the ``/etc/ood/config/apps/files/env`` file:
+
+.. code-block:: 
+
+  OOD_DOWNLOAD_DIR_MAX=5368709120
+
+Note that this will limit the download size for all users of the Open OnDemand instance.
+
+.. warning::
+   This configuration value is expected to be numbers only (no characters)
+   and in units of bytes. The default value of 10737420000 bytes is ~10.7 GB or ~10.0 Gib.
+
+   Values like ``1000M`` or ``20G`` will not be accepted and may cause errors.
 
 Block or Allow Directory Access
 -------------------------------
@@ -443,6 +417,22 @@ access into any compute node in our three clusters.
 
   # /etc/ood/config/apps/shell/env
   OOD_SSHHOST_ALLOWLIST="r[0-1][0-9][0-9][0-9].ten.osc.edu:o[0-1][0-9][0-9][0-9].ten.osc.edu:p[0-1][0-9][0-9][0-9].ten.osc.edu"
+
+Set OOD SSH Port
+-----------------
+
+As of version 2.1 you are allowed to configure a non-standard ssh port.  
+
+To change the ssh port for submitting jobs in OOD, you need to add the configuration
+``OOD_SSH_PORT`` to the ``/etc/ood/config/apps/dashboard/env`` file.
+
+Here's an example of of this configuration.
+
+.. code:: shell
+
+  # /etc/ood/config/apps/dashboard/env
+  OOD_SSH_PORT="2222"
+
 
 Shell App SSH Command Wrapper
 -----------------------------
@@ -698,7 +688,7 @@ All the values are optional and any set will override the default from the appli
 
   tile:
     title: "Custom Title"
-    icon_uri: fa://desktop
+    icon: fa://desktop
     border_color: "red"
     sub_caption: |
       Custom Text Line 1

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>User Form (form.yml.erb) &mdash; Open OnDemand 2.1.0 documentation</title>
+  <title>User Form (form.yml.erb) &mdash; Open OnDemand 3.0.0 documentation</title>
   
 
   
@@ -77,7 +77,7 @@
             
             
               <div class="version">
-                2.1
+                3.0
               </div>
             
           
@@ -105,7 +105,6 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../requirements.html">Requirements</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../authentication.html">Authentication</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../installation/add-cluster-config.html">Cluster Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="setup.html">Setup Interactive Apps</a></li>
 </ul>
@@ -131,6 +130,7 @@
 <li class="toctree-l3"><a class="reference internal" href="submit.html">Job Submission (submit.yml.erb)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="view.html">Connection View</a></li>
 <li class="toctree-l3"><a class="reference internal" href="sub-apps.html">Sub-Apps and Reconfiguring exsting apps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="conn-params.html">Connection Parameters <code class="docutils literal notranslate"><span class="pre">conn_params</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../app-sharing.html">App Sharing</a></li>
@@ -148,6 +148,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../architecture.html">Architecture</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../reference.html">Configuration Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../release-notes.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../version-policy.html">OOD Versioning Policy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../glossary.html">Glossary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../issues/overview.html">OnDemand’s Known Issues</a></li>
 </ul>
@@ -382,7 +383,7 @@ depending on whether the user checked the box or not.</p>
 <p>Automatic attributes automatically generate lists or values.  For example
 <code class="docutils literal notranslate"><span class="pre">bc_queue</span></code> above will generate a <code class="docutils literal notranslate"><span class="pre">text_field</span></code> where the user has to
 input the queue name themselves.</p>
-<p><code class="docutils literal notranslate"><span class="pre">auto_queue</span></code> on the other hand will automatically build a list of queues
+<p><code class="docutils literal notranslate"><span class="pre">auto_queues</span></code> on the other hand will automatically build a list of queues
 for the user to choose from without intervention from the administrator
 or the user.</p>
 <dl>
@@ -409,11 +410,10 @@ cluster is chosen.</p>
 groups the user is currently in. Administrators can configure <a class="reference internal" href="../../../reference/files/ondemand-d-ymls.html#auto-groups-filter"><span class="std std-ref">filter for autogroups</span></a>
 to limit the groups shown.</p>
 </dd>
-<dt>auto_queue</dt><dd><p>This will generate a <code class="docutils literal notranslate"><span class="pre">select</span></code> widget list of all the queues available to the user.</p>
-<p>By default, we return exactly what the scheduler returns. These accounts may be lowercase
-when you need uppercase accounts. To enable uppercase accounts set the environment variable
-<code class="docutils literal notranslate"><span class="pre">OOD_UPCASE_ACCOUNTS</span></code> to anything.  If the environment variable is set to <em>anything</em> the
-system will uppercase the accounts (set it to <code class="docutils literal notranslate"><span class="pre">yes</span></code> if you don’t know what value to give).</p>
+<dt>auto_queues</dt><dd><p>This will generate a <code class="docutils literal notranslate"><span class="pre">select</span></code> widget list of all the queues available to the user.
+These queues will be cluster if you have <a class="reference internal" href="dynamic-form-widgets.html#dynamic-bc-apps"><span class="std std-ref">dynamic options</span></a>
+enabled. That is, they’ll show or hide relevant lists given the currently selected
+<code class="docutils literal notranslate"><span class="pre">cluster</span></code>.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>We only have support for Slurm queues (partitions) at this time.</p>
@@ -427,12 +427,18 @@ available on all clusters and will not hide any of them.</p>
 <p>If, however, your site has a simpler accounting scheme where all accounts are available on
 all clusters, you can set the <a class="reference internal" href="../../../reference/files/ondemand-d-ymls.html#bc-simple-auto-accounts"><span class="std std-ref">bc_simple_auto_accounts</span></a> setting
 for some optimizations.</p>
+<p>By default, we return exactly what the scheduler returns. These accounts may be lowercase
+when you need uppercase accounts. To enable uppercase accounts set the environment variable
+<code class="docutils literal notranslate"><span class="pre">OOD_UPCASE_ACCOUNTS</span></code> to anything.  If the environment variable is set to <em>anything</em> the
+system will uppercase the accounts (set it to <code class="docutils literal notranslate"><span class="pre">yes</span></code> if you don’t know what value to give).</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>We only have support for Slurm accounts at this time.</p>
 </div>
 </dd>
-<dt>auto_qos</dt><dd><p>Coming soon!</p>
+<dt>auto_qos</dt><dd><p>This will automatically generate a <code class="docutils literal notranslate"><span class="pre">select</span></code> widget populated with a list of all the QoS
+(Quality of Service) values available.  These are cluster aware if you have
+<a class="reference internal" href="dynamic-form-widgets.html#dynamic-bc-apps"><span class="std std-ref">dynamic options</span></a> enabled.</p>
 </dd>
 </dl>
 </div>

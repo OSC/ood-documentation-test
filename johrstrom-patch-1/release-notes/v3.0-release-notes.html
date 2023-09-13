@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>v2.1 Release Notes &mdash; Open OnDemand 2.1.0 documentation</title>
+  <title>v3.0 Release Notes &mdash; Open OnDemand 3.0.0 documentation</title>
   
 
   
@@ -77,7 +77,7 @@
             
             
               <div class="version">
-                2.1
+                3.0
               </div>
             
           
@@ -105,7 +105,6 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../requirements.html">Requirements</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../authentication.html">Authentication</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../installation/add-cluster-config.html">Cluster Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../how-tos/app-development/interactive/setup.html">Setup Interactive Apps</a></li>
 </ul>
@@ -127,16 +126,25 @@
 <li class="toctree-l1"><a class="reference internal" href="../architecture.html">Architecture</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../reference.html">Configuration Reference</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../release-notes.html">Release Notes</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">v2.1 Release Notes</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#upgrading-from-v2-0">Upgrading from v2.0</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">v3.0 Release Notes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#administrative-changes">Administrative changes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#new-features">New Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#thanks">Thanks!</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#details-of-administrative-changes">Details of administrative changes</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#breaking-changes">Breaking Changes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#deprecations">Deprecations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dependency-updates">Dependency updates</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#selinux-changes">SELinux changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dex-behind-apache-reverse-proxy-by-default">Dex behind Apache reverse proxy by default</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#documentation-changes">Documentation changes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#upgrade-directions">Upgrade directions</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#details">Details</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#el9-ubuntu-22-04-and-ubuntu-20-04-packages">EL9, Ubuntu 22.04 and Ubuntu 20.04 packages</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#dex-behind-apache-reverse-proxy-by-default">Dex behind Apache reverse proxy by default</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#details-of-new-features">Details of new features</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#el9-and-ubuntu-22-04-packages">EL9 and Ubuntu 22.04 packages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#significant-changes-to-navbar-configurations">Significant changes to navbar configurations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#support-for-profiles">Support for Profiles</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#support-for-custom-pages">Support for custom pages</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#automatic-form-options">Automatic Form Options</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#support-for-remote-files">Support for remote files</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#quick-launch-apps">Quick Launch Apps</a></li>
@@ -146,8 +154,6 @@
 <li class="toctree-l4"><a class="reference internal" href="#running-sessions-widget">Running Sessions widget</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#displaying-form-options">Displaying Form options</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#submitting-help-tickets">Submitting Help tickets</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#dependency-updates">Dependency updates</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#selinux-changes">SELinux changes</a></li>
 </ul>
 </li>
 </ul>
@@ -164,6 +170,7 @@
 <li class="toctree-l2"><a class="reference internal" href="v1.0-release-notes.html">v1.0 Release Notes</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../version-policy.html">OOD Versioning Policy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../issues/overview.html">OnDemand’s Known Issues</a></li>
 </ul>
@@ -213,14 +220,14 @@
         
           <li><a href="../release-notes.html">Release Notes</a> &raquo;</li>
         
-      <li>v2.1 Release Notes</li>
+      <li>v3.0 Release Notes</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
             
-              <a href="https://github.com/OSC/ood-documentation/blob/johrstrom-patch-1/source/release-notes/v2.1-release-notes.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/OSC/ood-documentation/blob/johrstrom-patch-1/source/release-notes/v3.0-release-notes.rst" class="fa fa-github"> Edit on GitHub</a>
             
           
         
@@ -234,16 +241,31 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="v2-1-release-notes">
-<span id="id1"></span><h1>v2.1 Release Notes<a class="headerlink" href="#v2-1-release-notes" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="v3-0-release-notes">
+<span id="id1"></span><h1>v3.0 Release Notes<a class="headerlink" href="#v3-0-release-notes" title="Permalink to this headline">¶</a></h1>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>There are some breaking changes in 2.1. See the upgrade directions below for details.</p>
+<p>There are some breaking changes in 3.0. See the upgrade directions below for details.</p>
 </div>
-<p>Highlights in 2.1:</p>
+<div class="section" id="administrative-changes">
+<h2>Administrative changes<a class="headerlink" href="#administrative-changes" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><p><a class="reference internal" href="#el9-ubuntu-22-04-and-ubuntu-20-04-packages">EL9, Ubuntu 22.04 and Ubuntu 20.04 packages</a></p></li>
+<li><p><a class="reference internal" href="#breaking-changes">Breaking Changes</a></p></li>
+<li><p><a class="reference internal" href="#deprecations">Deprecations</a></p></li>
+<li><p><a class="reference internal" href="#dependency-updates">Dependency updates</a></p></li>
+<li><p><a class="reference internal" href="#selinux-changes">SELinux changes</a></p></li>
 <li><p><a class="reference internal" href="#dex-behind-apache-reverse-proxy-by-default">Dex behind Apache reverse proxy by default</a></p></li>
+<li><p><a class="reference internal" href="#documentation-changes">Documentation changes</a></p></li>
+<li><p><a class="reference internal" href="#upgrade-directions">Upgrade directions</a></p></li>
+</ul>
+</div>
+<div class="section" id="new-features">
+<h2>New Features<a class="headerlink" href="#new-features" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="#el9-and-ubuntu-22-04-packages">EL9 and Ubuntu 22.04 packages</a></p></li>
+<li><p><a class="reference internal" href="#significant-changes-to-navbar-configurations">Significant changes to navbar configurations</a></p></li>
+<li><p><a class="reference internal" href="#support-for-profiles">Support for Profiles</a></p></li>
+<li><p><a class="reference internal" href="#support-for-custom-pages">Support for custom pages</a></p></li>
 <li><p><a class="reference internal" href="#automatic-form-options">Automatic Form Options</a></p></li>
 <li><p><a class="reference internal" href="#support-for-remote-files">Support for remote files</a></p></li>
 <li><p><a class="reference internal" href="#quick-launch-apps">Quick Launch Apps</a></p></li>
@@ -253,21 +275,49 @@
 <li><p><a class="reference internal" href="#running-sessions-widget">Running Sessions widget</a></p></li>
 <li><p><a class="reference internal" href="#displaying-form-options">Displaying form options</a></p></li>
 <li><p><a class="reference internal" href="#submitting-help-tickets">Submitting help tickets</a></p></li>
-<li><p><a class="reference internal" href="#dependency-updates">Dependency updates</a></p></li>
-<li><p><a class="reference internal" href="#selinux-changes">SELinux changes</a></p></li>
 </ul>
-<div class="section" id="upgrading-from-v2-0">
-<h2>Upgrading from v2.0<a class="headerlink" href="#upgrading-from-v2-0" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="thanks">
+<h2>Thanks!<a class="headerlink" href="#thanks" title="Permalink to this headline">¶</a></h2>
+<p>We’d like to thank a bunch of folks’ for contributing to this release.
+As we only know the github username, that’s what’s being referenced here.</p>
+<p>We’d like to thank Harvard for many contributions around layouts
+and navitation. Notably, <code class="docutils literal notranslate"><span class="pre">adaybujeda</span></code> and <code class="docutils literal notranslate"><span class="pre">whorka</span></code> to name a few.</p>
+<p>We’d like to thank CSC Finland for contributing remote file browsing.
+Specifically <code class="docutils literal notranslate"><span class="pre">robinkar</span></code> and <code class="docutils literal notranslate"><span class="pre">CSC-swesters</span></code>.</p>
+<p>We’d also like to give a big thanks to these folks’ for their first
+time contributing to Open OnDemand.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Micket</span></code> made their first contribution in #1426</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">aebruno</span></code> made their first contribution in #1766</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mayank-agarwal-96</span></code> made their first contribution in #1776</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">whorka</span></code> made their first contribution in #1854</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SaumyaBhushan</span></code> made their first contribution in #1992</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">davidmonro</span></code> made their first contribution in #2091</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mnakao</span></code> made their first contribution in #2194</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">georgiastuart</span></code> made their first contribution in #2323</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">covert8</span></code> made their first contribution in #2327</p></li>
+</ul>
+<p>If we’ve missed listing anyone here, please let us know!</p>
+</div>
+<div class="section" id="details-of-administrative-changes">
+<h2>Details of administrative changes<a class="headerlink" href="#details-of-administrative-changes" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="breaking-changes">
 <h3>Breaking Changes<a class="headerlink" href="#breaking-changes" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="support-for-ubuntu-18-04-has-been-dropped">
+<h4>Support for Ubuntu 18.04 has been dropped.<a class="headerlink" href="#support-for-ubuntu-18-04-has-been-dropped" title="Permalink to this headline">¶</a></h4>
+<p>Support for Ubuntu 18.04 has been dropped because the platform has
+upgraded to Ruby on Rails 6.1. This version  is not compatible with
+Ruby 2.5 which is what Ubuntu 18.04 has.</p>
+</div>
 <div class="section" id="context-json-file-locations-have-changed">
 <h4>context.json file locations have changed<a class="headerlink" href="#context-json-file-locations-have-changed" title="Permalink to this headline">¶</a></h4>
-<p>This is an interal item to Open OnDemand and not likely to really affect you at all.</p>
+<p>This is an internal item to Open OnDemand and not likely to really affect you at all.</p>
 <p>In versions 2.0 and below, batch connect apps wrote a <cite>context.json</cite> file to
-a directory like <code class="docutils literal notranslate"><span class="pre">~/data/sys/dashboard/batch_connect/sys/&lt;APPNAME&gt;/context.json</span></code>.
+a directory like <code class="docutils literal notranslate"><span class="pre">~/ondemand/data/sys/dashboard/batch_connect/sys/&lt;APPNAME&gt;/context.json</span></code>.
 OnDemand uses these files to cache the choices a user makes for the next time they
 use that app.</p>
-<p>Version 2.1 now writes files like <code class="docutils literal notranslate"><span class="pre">~/ondemand/data/sys/dashboard/batch_connect/cache/&lt;APPNAME&gt;.json</span></code></p>
+<p>Version 3.0 now writes files like <code class="docutils literal notranslate"><span class="pre">~/ondemand/data/sys/dashboard/batch_connect/cache/&lt;APPNAME&gt;.json</span></code></p>
 </div>
 </div>
 <div class="section" id="deprecations">
@@ -298,6 +348,83 @@ It affects initializers you may have written, for example to <a class="reference
 </pre></div>
 </div>
 </div>
+<div class="section" id="navconfig-is-deprecated">
+<h4>NavConfig is deprecated<a class="headerlink" href="#navconfig-is-deprecated" title="Permalink to this headline">¶</a></h4>
+<p>The initializers used to modify the navigation bar and the class
+<code class="docutils literal notranslate"><span class="pre">NavConfig</span></code> is deprecated.  The 2.x series will continue to support
+this, but sites should use the <code class="docutils literal notranslate"><span class="pre">nav_categories</span></code> property instead.</p>
+<p>See <a class="reference internal" href="../customizations.html#limit-auto-generated-menu-bars"><span class="std std-ref">Limit auto generated menu bars</span></a> and the
+<a class="reference internal" href="../reference/files/ondemand-d-ymls.html#nav-categories"><span class="std std-ref">nav_categories configuration property</span></a> for more details.</p>
+</div>
+<div class="section" id="whitelist-blacklist-configs-are-deprecated">
+<h4>whitelist &amp; blacklist configs are deprecated<a class="headerlink" href="#whitelist-blacklist-configs-are-deprecated" title="Permalink to this headline">¶</a></h4>
+<p>These configurations that have whitelist in the name have been deprecated
+and replaced with allowlist or blocklist.</p>
+<p>The configurations <code class="docutils literal notranslate"><span class="pre">maintenance_ip_whitelist</span></code> for configuring maintenance ips
+has been replaced by <code class="docutils literal notranslate"><span class="pre">maintenance_ip_allowlist</span></code>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">WHITELIST_PATH</span></code> environment variable for configuring inaccessible paths
+in the file browser has been replaced by <code class="docutils literal notranslate"><span class="pre">OOD_ALLOWLIST_PATH</span></code>.</p>
+<p>ACL configurations in <code class="docutils literal notranslate"><span class="pre">cluster.d</span></code> files now use  <code class="docutils literal notranslate"><span class="pre">allowlist</span></code> and <code class="docutils literal notranslate"><span class="pre">blocklist</span></code>
+instead of <code class="docutils literal notranslate"><span class="pre">whitelist</span></code> and <code class="docutils literal notranslate"><span class="pre">blacklist</span></code>, though sites should just use
+Linux FACLs to control these files instead of these configurations.</p>
+</div>
+</div>
+<div class="section" id="dependency-updates">
+<h3>Dependency updates<a class="headerlink" href="#dependency-updates" title="Permalink to this headline">¶</a></h3>
+<p>This release updates the following dependencies:</p>
+<ul>
+<li><p>Ruby 3.0</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The change in Ruby version means any Ruby based apps that are not provided by the OnDemand RPM must be rebuilt or supply their own <code class="docutils literal notranslate"><span class="pre">bin/ruby</span></code> to use the older version of ruby.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Ruby 2.7 is still supported and used by Ubuntu 20.04.</p>
+</div>
+</li>
+<li><p>NodeJS 14</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The change in Node version means any Node based apps that are not provided by the OnDemand RPM must be rebuilt.</p>
+</div>
+</li>
+<li><p>Passenger 6.0.14</p></li>
+<li><p>NGINX 1.20.2</p></li>
+<li><p>ondemand-dex 2.32.0</p></li>
+<li><p>OnDemand package now depends on Python 3 instead of Python 2</p></li>
+</ul>
+</div>
+<div class="section" id="selinux-changes">
+<h3>SELinux changes<a class="headerlink" href="#selinux-changes" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">ondemand_use_shell_app</span></code> SELinux boolean was removed and replaced with <code class="docutils literal notranslate"><span class="pre">ondemand_use_ssh</span></code>
+that is enabled by default.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">ondemand_use_kubernetes</span></code> SELinux boolean was added and is disabled by default.</p>
+<p>See the <a class="reference internal" href="../installation/modify-system-security.html#ood-selinux"><span class="std std-ref">OnDemand SELinux</span></a> documentation for details</p>
+</div>
+<div class="section" id="dex-behind-apache-reverse-proxy-by-default">
+<h3>Dex behind Apache reverse proxy by default<a class="headerlink" href="#dex-behind-apache-reverse-proxy-by-default" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Dex behind the Apache reverse proxy is a behavior change from OnDemand 2.0 where the reverse proxy configuration was optional.
+This is to improve security as well as allow Apache to provide access logs.
+If you have opened ports for Dex they can be closed as all traffic to Dex will flow through Apache.</p>
+</div>
+</div></blockquote>
+<p>By default Dex now sits behind the Apache reverse proxy.
+If you wish to go back to Dex being directly accessed set the following in <code class="file docutils literal notranslate"><span class="pre">/etc/ood/config/ood_portal.yml</span></code>:</p>
+<blockquote>
+<div><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">dex_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w"></span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="documentation-changes">
+<h3>Documentation changes<a class="headerlink" href="#documentation-changes" title="Permalink to this headline">¶</a></h3>
+<p>As you may have noticed, we have restructured the documentation in an attempt to
+group sections more logically. Please reach out if you have further suggestions on
+improving our documentation in either its content or its organization.</p>
 </div>
 <div class="section" id="upgrade-directions">
 <h3>Upgrade directions<a class="headerlink" href="#upgrade-directions" title="Permalink to this headline">¶</a></h3>
@@ -307,11 +434,11 @@ It affects initializers you may have written, for example to <a class="reference
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>The OnDemand upgrade has only been tested going from 2.0.x to 2.1.x.</p>
+<p>The OnDemand upgrade has only been tested going from 2.0.x to 3.0.x.</p>
 </div>
 <ol class="arabic">
 <li><p>Update OnDemand release RPM</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo yum install -y https://yum.osc.edu/ondemand/2.1/ondemand-release-web-2.1-1.noarch.rpm
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo yum install -y https://yum.osc.edu/ondemand/3.0/ondemand-release-web-3.0-1.noarch.rpm
 </pre></div>
 </div>
 </li>
@@ -372,39 +499,50 @@ sudo yum update ondemand
 </ol>
 </div>
 </div>
-<div class="section" id="details">
-<h2>Details<a class="headerlink" href="#details" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="el9-ubuntu-22-04-and-ubuntu-20-04-packages">
-<h3>EL9, Ubuntu 22.04 and Ubuntu 20.04 packages<a class="headerlink" href="#el9-ubuntu-22-04-and-ubuntu-20-04-packages" title="Permalink to this headline">¶</a></h3>
-<p>See <a class="reference internal" href="../installation/install-software.html#install-software"><span class="std std-ref">Install Software</span></a> for instructions on how to install OnDemand using the new EL9, Ubuntu 22.04 and Ubuntu 20.04 packages.</p>
+<div class="section" id="details-of-new-features">
+<h2>Details of new features<a class="headerlink" href="#details-of-new-features" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="el9-and-ubuntu-22-04-packages">
+<h3>EL9 and Ubuntu 22.04 packages<a class="headerlink" href="#el9-and-ubuntu-22-04-packages" title="Permalink to this headline">¶</a></h3>
+<p>See <a class="reference internal" href="../installation/install-software.html#install-software"><span class="std std-ref">Install Software</span></a> for instructions on how
+to install OnDemand using the new EL9 and Ubuntu 22.04 packages. 3.0
+also has support for EL8, EL7 and Ubuntu 20.04.</p>
 </div>
-<div class="section" id="dex-behind-apache-reverse-proxy-by-default">
-<h3>Dex behind Apache reverse proxy by default<a class="headerlink" href="#dex-behind-apache-reverse-proxy-by-default" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Dex behind the Apache reverse proxy is a behavior change from OnDemand 2.0 where the reverse proxy configuration was optional.
-This is to improve security as well as allow Apache to provide access logs.
-If you have opened ports for Dex they can be closed as all traffic to Dex will flow through Apache.</p>
+<div class="section" id="significant-changes-to-navbar-configurations">
+<h3>Significant changes to navbar configurations<a class="headerlink" href="#significant-changes-to-navbar-configurations" title="Permalink to this headline">¶</a></h3>
+<p>Significant changes have been made to allow for very granular
+modification of the navigation bar. At a high level sites can
+now modify any aspect of the navigation bar.</p>
+<p>See <a class="reference internal" href="../customizations.html#navbar-guide"><span class="std std-ref">Changing the Navigation bar</span></a> and the subsequent sections for more
+details.</p>
 </div>
-</div></blockquote>
-<p>By default Dex now sits behind the Apache reverse proxy.
-If you wish to go back to Dex being directly accessed set the following in <code class="file docutils literal notranslate"><span class="pre">/etc/ood/config/ood_portal.yml</span></code>:</p>
-<blockquote>
-<div><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">dex_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w"></span>
-</pre></div>
+<div class="section" id="support-for-profiles">
+<h3>Support for Profiles<a class="headerlink" href="#support-for-profiles" title="Permalink to this headline">¶</a></h3>
+<p>3.0 adds support for profiles.  Profiles are basically distinct
+sets of configurations. For example you may have one profile that
+only shows applications for the <code class="docutils literal notranslate"><span class="pre">biology</span></code> category and nothing
+else. You may have another profile that shows all applications.
+Users can then toggle between the two different profiles to have
+two different views into the same Open OnDemand installation.</p>
+<p>See <a class="reference internal" href="../customizations.html#profiles-guide"><span class="std std-ref">Configuration Profiles</span></a> for more details.</p>
 </div>
-</div></blockquote>
+<div class="section" id="support-for-custom-pages">
+<h3>Support for custom pages<a class="headerlink" href="#support-for-custom-pages" title="Permalink to this headline">¶</a></h3>
+<p>2.0 allowed sites to modify the layout of the dashboard’s
+landing page.</p>
+<p>3.0 extends this by allowing sites to create brand new pages
+in which sites can modify the layout in the same manner you
+modify the layout of the landing page.</p>
+<p>See <a class="reference internal" href="../customizations.html#custom-pages-guide"><span class="std std-ref">Custom Pages</span></a> for more information.</p>
 </div>
 <div class="section" id="automatic-form-options">
 <h3>Automatic Form Options<a class="headerlink" href="#automatic-form-options" title="Permalink to this headline">¶</a></h3>
-<p>2.1 ships with some <code class="docutils literal notranslate"><span class="pre">form.yml</span></code> options that populate forms automatically. This includes
+<p>3.0 ships with some <code class="docutils literal notranslate"><span class="pre">form.yml</span></code> options that populate forms automatically. This includes
 <code class="docutils literal notranslate"><span class="pre">auto_primary_group</span></code>, <code class="docutils literal notranslate"><span class="pre">auto_groups</span></code>, <code class="docutils literal notranslate"><span class="pre">auto_accounts</span></code> and <code class="docutils literal notranslate"><span class="pre">auto_modules</span></code>.</p>
 <p>See the section on <a class="reference internal" href="../how-tos/app-development/interactive/form.html#auto-bc-form-options"><span class="std std-ref">Automatic Predefined Attributes</span></a> for all available options.</p>
 </div>
 <div class="section" id="support-for-remote-files">
 <h3>Support for remote files<a class="headerlink" href="#support-for-remote-files" title="Permalink to this headline">¶</a></h3>
-<p>2.1 ships with the ability to browse, edit and download remote files from <code class="docutils literal notranslate"><span class="pre">rclone</span></code>.
+<p>3.0 ships with the ability to browse, edit and download remote files from <code class="docutils literal notranslate"><span class="pre">rclone</span></code>.
 Refer to <a class="reference internal" href="../customizations.html#remote-file-systems"><span class="std std-ref">Accessing Remote File Systems</span></a> for how to turn this feature on.</p>
 </div>
 <div class="section" id="quick-launch-apps">
@@ -418,7 +556,7 @@ is never presented with a form to fill out, the app simply launches when clicked
 </div>
 <div class="section" id="deleting-old-interactive-app-directories">
 <h3>Deleting old interactive app directories<a class="headerlink" href="#deleting-old-interactive-app-directories" title="Permalink to this headline">¶</a></h3>
-<p>2.1 provides a mechanism to automatically delete all the directories that interactive
+<p>3.0 provides a mechanism to automatically delete all the directories that interactive
 applications create in <code class="docutils literal notranslate"><span class="pre">~/ondemand/data/sys/dashboard/batch_connect/...</span></code> after some
 time period. The system provides two options for this:  One to enable the feature
 altogether and the other is to specify how old a directory must be to be removed.</p>
@@ -432,7 +570,7 @@ for more details.</p>
 </div>
 <div class="section" id="recently-used-apps-widget">
 <h3>Recently Used Apps widget<a class="headerlink" href="#recently-used-apps-widget" title="Permalink to this headline">¶</a></h3>
-<p>In 2.0 we provided a way to change the dashboard layout.  Now, in 2.1 there
+<p>In 2.0 we provided a way to change the dashboard layout.  Now, in 3.0 there
 are more widgets to choose from, namely the <code class="docutils literal notranslate"><span class="pre">recently_used_apps</span></code> widget.</p>
 <p>This widget will show the last 4 recently used applications. What’s more is,
 they’re <a class="reference internal" href="../how-tos/app-development/interactive/sub-apps.html#quick-launch-apps"><span class="std std-ref">Quick Launch Apps</span></a> so users only need to click on them to submit
@@ -454,41 +592,8 @@ to them through the landing page without having to navigate anywhere else.</p>
 <div class="section" id="submitting-help-tickets">
 <h3>Submitting Help tickets<a class="headerlink" href="#submitting-help-tickets" title="Permalink to this headline">¶</a></h3>
 <p>Sites can enable submitting help tickets from interactive cards.</p>
-<p>see <a class="reference internal" href="../customizations.html#support-ticket-guide"><span class="std std-ref">Support Tickets</span></a> for more information on how this
+<p>See <a class="reference internal" href="../customizations.html#support-ticket-guide"><span class="std std-ref">Support Tickets</span></a> for more information on how this
 behaves and how to enable it.</p>
-</div>
-<div class="section" id="dependency-updates">
-<h3>Dependency updates<a class="headerlink" href="#dependency-updates" title="Permalink to this headline">¶</a></h3>
-<p>This release updates the following dependencies:</p>
-<ul>
-<li><p>Ruby 3.0</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>The change in Ruby version means any Ruby based apps that are not provided by the OnDemand RPM must be rebuilt or supply their own <code class="docutils literal notranslate"><span class="pre">bin/ruby</span></code> to use the older version of ruby.</p>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Ruby 2.7 is still supported and used by Ubuntu 20.04.</p>
-</div>
-</li>
-<li><p>NodeJS 14</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>The change in Node version means any Node based apps that are not provided by the OnDemand RPM must be rebuilt.</p>
-</div>
-</li>
-<li><p>Passenger 6.0.14</p></li>
-<li><p>NGINX 1.20.2</p></li>
-<li><p>ondemand-dex 2.32.0</p></li>
-<li><p>OnDemand package now depends on Python 3 instead of Python 2</p></li>
-</ul>
-</div>
-<div class="section" id="selinux-changes">
-<h3>SELinux changes<a class="headerlink" href="#selinux-changes" title="Permalink to this headline">¶</a></h3>
-<p>The <code class="docutils literal notranslate"><span class="pre">ondemand_use_shell_app</span></code> SELinux boolean was removed and replaced with <code class="docutils literal notranslate"><span class="pre">ondemand_use_ssh</span></code>
-that is enabled by default.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">ondemand_use_kubernetes</span></code> SELinux boolean was added and is disabled by default.</p>
-<p>See the <a class="reference internal" href="../installation/modify-system-security.html#ood-selinux"><span class="std std-ref">OnDemand SELinux</span></a> documentation for details</p>
 </div>
 </div>
 </div>
@@ -536,29 +641,29 @@ that is enabled by default.</p>
     <dl>
       <dt>Versions</dt>
       
-        <dd><a href="https://OSC.github.io/ood-documentation/latest/release-notes/v2.1-release-notes.html">latest</a></dd>
+        <dd><a href="https://OSC.github.io/ood-documentation/latest/release-notes/v3.0-release-notes.html">latest</a></dd>
       
-        <dd><a href="https://OSC.github.io/ood-documentation/release-2.0/release-notes/v2.1-release-notes.html">2.0</a></dd>
+        <dd><a href="https://OSC.github.io/ood-documentation/release-2.0/release-notes/v3.0-release-notes.html">2.0</a></dd>
       
-        <dd><a href="https://OSC.github.io/ood-documentation/release-1.8/release-notes/v2.1-release-notes.html">1.8</a></dd>
+        <dd><a href="https://OSC.github.io/ood-documentation/release-1.8/release-notes/v3.0-release-notes.html">1.8</a></dd>
       
-        <dd><a href="https://OSC.github.io/ood-documentation/release-1.7/release-notes/v2.1-release-notes.html">1.7</a></dd>
+        <dd><a href="https://OSC.github.io/ood-documentation/release-1.7/release-notes/v3.0-release-notes.html">1.7</a></dd>
       
-        <dd><a href="https://OSC.github.io/ood-documentation/release-1.6/release-notes/v2.1-release-notes.html">1.6</a></dd>
+        <dd><a href="https://OSC.github.io/ood-documentation/release-1.6/release-notes/v3.0-release-notes.html">1.6</a></dd>
       
-        <dd><a href="https://OSC.github.io/ood-documentation/release-1.5/release-notes/v2.1-release-notes.html">1.5</a></dd>
+        <dd><a href="https://OSC.github.io/ood-documentation/release-1.5/release-notes/v3.0-release-notes.html">1.5</a></dd>
       
-        <dd><a href="https://OSC.github.io/ood-documentation/release-1.4/release-notes/v2.1-release-notes.html">1.4</a></dd>
+        <dd><a href="https://OSC.github.io/ood-documentation/release-1.4/release-notes/v3.0-release-notes.html">1.4</a></dd>
       
-        <dd><a href="https://OSC.github.io/ood-documentation/release-1.3/release-notes/v2.1-release-notes.html">1.3</a></dd>
+        <dd><a href="https://OSC.github.io/ood-documentation/release-1.3/release-notes/v3.0-release-notes.html">1.3</a></dd>
       
-        <dd><a href="https://OSC.github.io/ood-documentation/release-1.2/release-notes/v2.1-release-notes.html">1.2</a></dd>
+        <dd><a href="https://OSC.github.io/ood-documentation/release-1.2/release-notes/v3.0-release-notes.html">1.2</a></dd>
       
-        <dd><a href="https://OSC.github.io/ood-documentation/release-1.1/release-notes/v2.1-release-notes.html">1.1</a></dd>
+        <dd><a href="https://OSC.github.io/ood-documentation/release-1.1/release-notes/v3.0-release-notes.html">1.1</a></dd>
       
-        <dd><a href="https://OSC.github.io/ood-documentation/release-1.0/release-notes/v2.1-release-notes.html">1.0</a></dd>
+        <dd><a href="https://OSC.github.io/ood-documentation/release-1.0/release-notes/v3.0-release-notes.html">1.0</a></dd>
       
-        <dd><a href="https://OSC.github.io/ood-documentation/develop/release-notes/v2.1-release-notes.html">develop</a></dd>
+        <dd><a href="https://OSC.github.io/ood-documentation/develop/release-notes/v3.0-release-notes.html">develop</a></dd>
       
     </dl>
     <dl>
