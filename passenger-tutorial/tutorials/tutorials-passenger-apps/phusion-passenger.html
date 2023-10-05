@@ -1,0 +1,673 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Creating a Science Gateway App &mdash; Open OnDemand 3.0.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/tabs.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Architecture" href="../../architecture.html" />
+    <link rel="prev" title="Creating a Status App" href="ps-to-quota.html" />
+ 
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-34776817-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-34776817-3');
+</script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html">
+          
+
+          
+            
+            <img src="../../_static/logo.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../requirements.html">Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation/add-cluster-config.html">Cluster Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../how-tos/app-development/interactive/setup.html">Setup Interactive Apps</a></li>
+</ul>
+<p class="caption"><span class="caption-text">How-Tos</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../customizations.html">Customizations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../how-tos/debug.html">Debugging and Monitoring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../enable-desktops.html">Enable Interactive Desktop</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../how-tos/app-development.html">App Development</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorials</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../install-ihpc-apps.html">Install Other Interactive Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials-interactive-apps.html">Tutorials: Interactive Apps</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../tutorials-passenger-apps.html">Tutorials: Passenger Apps</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="ps-to-quota.html">Creating a Status App</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Creating a Science Gateway App</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#overview-of-app">Overview of App</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#benefits">Benefits</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#the-app-s-packages-and-code">The App’s Packages and Code</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#phusion-passenger-project-structure">Phusion Passenger Project Structure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#files-and-their-purpose">Files and Their Purpose</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#build-from-github">Build From GitHub</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#development">Development</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#install-software">Install Software</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#initialize-routes">Initialize Routes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#initialize-our-main-code">Initialize Our Main Code</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#add-initial-views-in-template">Add Initial Views in <code class="docutils literal notranslate"><span class="pre">template/</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#add-more-routes">Add More Routes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#brand-app">Brand App</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#publish-app">Publish App</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">More</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference.html">Configuration Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../release-notes.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../version-policy.html">OOD Versioning Policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../issues/overview.html">OnDemand’s Known Issues</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Open OnDemand</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../tutorials-passenger-apps.html">Tutorials: Passenger Apps</a> &raquo;</li>
+        
+      <li>Creating a Science Gateway App</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/OSC/ood-documentation/blob/passenger-tutorial/source/tutorials/tutorials-passenger-apps/phusion-passenger.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="creating-a-science-gateway-app">
+<span id="app-development-tutorials-passenger-apps-science-gateway"></span><h1>Creating a Science Gateway App<a class="headerlink" href="#creating-a-science-gateway-app" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="overview-of-app">
+<h2>Overview of App<a class="headerlink" href="#overview-of-app" title="Permalink to this headline">¶</a></h2>
+<p>We will make a science gateway that displays information retrieved,
+processed, and rendered in the browser using phusion passenger and
+the python programming language.</p>
+<p>The app we will be copying is: <a class="reference external" href="https://github.com/OSC/ood-example-science-gateway">https://github.com/OSC/ood-example-science-gateway</a>. Running
+this app at the start you should only see:</p>
+<div class="figure align-center" id="id1">
+<img alt="../../_images/passenger-python-flask-app.png" src="../../_images/passenger-python-flask-app.png" />
+<p class="caption"><span class="caption-number">Fig. 10 </span><span class="caption-text">Initial state of app after launch.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+<p>And by the end of this tutorial the app will look like the following:</p>
+<div class="figure align-center" id="id2">
+<img alt="../../_images/completed-python-passenger-app.png" src="../../_images/completed-python-passenger-app.png" />
+<p class="caption"><span class="caption-number">Fig. 11 </span><span class="caption-text">Final state of app’s index after tutorial.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id3">
+<img alt="../../_images/python-passenger-weather-graph.png" src="../../_images/python-passenger-weather-graph.png" />
+<p class="caption"><span class="caption-number">Fig. 12 </span><span class="caption-text">Rendered graph with retrieved data from NWS and graphed with matplotlib.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+<p>This <strong>assumes</strong> you have followed the directions to <a class="reference internal" href="../../how-tos/app-development/enabling-development-mode.html#enabling-development-mode"><span class="std std-ref">Enabling App Development</span></a> in the
+Dashboard.</p>
+<p>Our app will use and have the following:</p>
+<ol class="arabic simple">
+<li><p>Bootstrap 5 for nice views.</p></li>
+<li><p>The navbar in the app will contain a link back to the ood dashboard.</p></li>
+<li><p>The app will make requests for us which are then processed and returned for our view.</p></li>
+<li><p>It is built using <a class="reference external" href="https://github.com/pallets/flask">Python’s Flask</a> which
+is similar to the <a class="reference external" href="https://github.com/sinatra/sinatra">Sinatra framework</a>,
+or <a class="reference external" href="https://github.com/expressjs/express">Node.js’s Express</a> .</p></li>
+</ol>
+<div class="section" id="benefits">
+<h3>Benefits<a class="headerlink" href="#benefits" title="Permalink to this headline">¶</a></h3>
+<p>This will provide users with an example of how to build their own
+science gateway in OnDemand and hosted through OnDemand.</p>
+<p>By doing so, we will se that OnDemand provides great flexibility in
+allowing you to work in either <code class="docutils literal notranslate"><span class="pre">ruby</span></code>, <code class="docutils literal notranslate"><span class="pre">node.js</span></code>, or
+<code class="docutils literal notranslate"><span class="pre">python</span></code> which all integrate easily with Passenger Phusion.</p>
+<p>But <em>any</em> language can now be supported as of <strong>Passenger Phusion 6</strong>, as long
+as your app:</p>
+<ol class="arabic simple">
+<li><p>Speaks <code class="docutils literal notranslate"><span class="pre">http</span></code>.</p></li>
+<li><p>Binds to a <code class="docutils literal notranslate"><span class="pre">port</span></code>.</p></li>
+<li><p>Runs in the foreground.</p></li>
+<li><p><strong>And The language of your choice and its build tools are available on your system.</strong></p></li>
+</ol>
+</div>
+<div class="section" id="the-app-s-packages-and-code">
+<h3>The App’s Packages and Code<a class="headerlink" href="#the-app-s-packages-and-code" title="Permalink to this headline">¶</a></h3>
+<p>For any app we develop, the key thing here will be that we can use our <em>own packages</em> and code
+to build what we are trying to do, <strong>assuming your cluster has the language and tooling in place.</strong></p>
+<p>We will be using <code class="docutils literal notranslate"><span class="pre">python3</span></code> in this example with a combination of <code class="docutils literal notranslate"><span class="pre">venv</span></code> and <code class="docutils literal notranslate"><span class="pre">pip</span></code> to build our project.</p>
+<p>This will enable us to login to OnDemand and then work within our development sandbox to use
+code from <em>our own</em> python modules. This could just as easily be our own <code class="docutils literal notranslate"><span class="pre">gems</span></code> if we used
+<code class="docutils literal notranslate"><span class="pre">ruby</span></code> or packages if we used <code class="docutils literal notranslate"><span class="pre">node</span></code>.</p>
+<p>This means we will have to do some setup to ensure our app uses our own designated packages and
+not OnDemand’s or the system packages. This gives users a great deal of flexibility in how they develop.</p>
+</div>
+<div class="section" id="phusion-passenger-project-structure">
+<h3>Phusion Passenger Project Structure<a class="headerlink" href="#phusion-passenger-project-structure" title="Permalink to this headline">¶</a></h3>
+<p>The project structure is simply following a common pattern used when developing a phusion passenger app.</p>
+<p>This mainly consists of an entrypoint file for passenger phusion, and then various files to be used by our
+webserver to be served or executed by the app.</p>
+<p>You can see this explanation and the various forms of the files and their names in
+the <a class="reference external" href="https://www.phusionpassenger.com/docs/tutorials/fundamental_concepts/python/">Passenger project structure documentation</a></p>
+</div>
+<div class="section" id="files-and-their-purpose">
+<h3>Files and Their Purpose<a class="headerlink" href="#files-and-their-purpose" title="Permalink to this headline">¶</a></h3>
+<table class="docutils align-default" id="id4">
+<caption><span class="caption-number">Table 11 </span><span class="caption-text">Initial Skeleton Files</span><a class="headerlink" href="#id4" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>File</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">passenger_wsgi.py</span></code></p></td>
+<td><p>Entry point of the Phusion Passenger app which expects the file to be named <code class="docutils literal notranslate"><span class="pre">passenger_wsgi.py</span></code>. The contents and file name will depend on the application and the web framework used.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">app.rb</span></code></p></td>
+<td><p>Flask app config and routes.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">templates/index.html</span></code></p></td>
+<td><p>the main section of the html page template using <code class="docutils literal notranslate"><span class="pre">render_template()</span></code> commands from <code class="docutils literal notranslate"><span class="pre">app.py</span></code>.
+which auto-escapes output of ERB tags by default (for security)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">teamplates/layout.html</span></code></p></td>
+<td><p>the rendered HTML from <code class="docutils literal notranslate"><span class="pre">views/index.html</span></code> is inserted into this layout,
+where css and javascript files are included.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">tmp/always_restart.txt</span></code></p></td>
+<td><p>A Phusion Passenger convention to restart our server each request to see our code changes. The file should be empty.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="build-from-github">
+<h2>Build From GitHub<a class="headerlink" href="#build-from-github" title="Permalink to this headline">¶</a></h2>
+<p>There are going to be 2 branches for this repo. The <code class="docutils literal notranslate"><span class="pre">completed</span></code> branch has all the code we are going to write and the
+completed app.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">initial_state</span></code> branch is what will have the initial project skeleton files we need to begin in order to follow the steps below.</p>
+<p>To follow along with the remainder of the tutorial run the following commands from your dev directory:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git clone git@github.com:OSC/ood-example-sciGatewayApp.git
+<span class="nb">cd</span> sciAppGateway
+git checkout initial_state
+</pre></div>
+</div>
+</div>
+<div class="section" id="development">
+<h2>Development<a class="headerlink" href="#development" title="Permalink to this headline">¶</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Ensure you have activated your <code class="docutils literal notranslate"><span class="pre">venv</span></code> enviornment before issuing any <code class="docutils literal notranslate"><span class="pre">pip</span></code> commands.
+If you are returning just <code class="docutils literal notranslate"><span class="pre">cd</span></code> to your app’s root and issue <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">.venv/bin/activate</span></code>.</p>
+</div>
+<div class="section" id="install-software">
+<h3>Install Software<a class="headerlink" href="#install-software" title="Permalink to this headline">¶</a></h3>
+<p>Let’s first install the packages and libraries we need to make some web requests and graph the returned
+data. Python provides a great package for this called <code class="docutils literal notranslate"><span class="pre">requests</span></code> which we can use with <code class="docutils literal notranslate"><span class="pre">flask</span></code>, and
+we want to graph output from our requests so let’s grab <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> too.</p>
+<p>If you already built from git above, please skip the first few steps:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># from the cli</span>
+git clone git@github.com:OSC/ood-example-sciGatewayApp.git
+<span class="nb">cd</span> sciGatewayApp
+git checkout initial_state
+python3 -m venv .venv        <span class="c1"># for first setup only</span>
+<span class="nb">source</span> .venv/bin/activate    <span class="c1"># always when starting work back up</span>
+pip install flask requests matplotlib
+</pre></div>
+</div>
+<p>At any time of development, if another package is needed, we are always free
+to come back and do a <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">&lt;package&gt;</span></code>. Ensure the <code class="docutils literal notranslate"><span class="pre">venv</span></code> environment is
+active when you do.</p>
+</div>
+<div class="section" id="initialize-routes">
+<h3>Initialize Routes<a class="headerlink" href="#initialize-routes" title="Permalink to this headline">¶</a></h3>
+<p>Now go into <code class="docutils literal notranslate"><span class="pre">app.py</span></code> and use these packages like so:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">render_template</span><span class="p">,</span> <span class="n">send_file</span><span class="p">,</span> <span class="n">url_for</span>
+
+<span class="n">MyApp</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="nd">@MyApp</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">hello</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;index.html&#39;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">MyApp</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="initialize-our-main-code">
+<h3>Initialize Our Main Code<a class="headerlink" href="#initialize-our-main-code" title="Permalink to this headline">¶</a></h3>
+<p>We will be writing some code here to run a service, so if it isn’t there already,
+create a directory from the root of the app called <code class="docutils literal notranslate"><span class="pre">services</span></code> to hold our code.</p>
+<p>Now go into the <code class="docutils literal notranslate"><span class="pre">services/weather_service.py</span></code> file and add the following:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">io</span>
+
+<span class="k">def</span> <span class="nf">fetch_weather_data</span><span class="p">(</span><span class="n">lat</span><span class="p">,</span> <span class="n">lon</span><span class="p">):</span>
+    <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;User-Agent&#39;</span><span class="p">:</span> <span class="s1">&#39;MyWeatherApp&#39;</span><span class="p">}</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;https://api.weather.gov/points/</span><span class="si">{</span><span class="n">lat</span><span class="si">}</span><span class="s2">,</span><span class="si">{</span><span class="n">lon</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+        <span class="n">point_data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+        <span class="n">forecast_url</span> <span class="o">=</span> <span class="n">point_data</span><span class="p">[</span><span class="s1">&#39;properties&#39;</span><span class="p">][</span><span class="s1">&#39;forecast&#39;</span><span class="p">]</span>
+        <span class="n">forecast_response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">forecast_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">forecast_response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">forecast_response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span> <span class="k">return</span> <span class="s1">&#39;Forecast response failed&#39;</span>
+
+    <span class="k">return</span> <span class="kc">None</span>
+
+<span class="k">def</span> <span class="nf">generate_temperature_plot</span><span class="p">(</span><span class="n">weather_data</span><span class="p">):</span>
+    <span class="n">time_periods</span> <span class="o">=</span> <span class="p">[</span><span class="n">period</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">period</span> <span class="ow">in</span> <span class="n">weather_data</span><span class="p">[</span><span class="s1">&#39;properties&#39;</span><span class="p">][</span><span class="s1">&#39;periods&#39;</span><span class="p">]]</span>
+    <span class="n">temperatures</span> <span class="o">=</span> <span class="p">[</span><span class="n">period</span><span class="p">[</span><span class="s1">&#39;temperature&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">period</span> <span class="ow">in</span> <span class="n">weather_data</span><span class="p">[</span><span class="s1">&#39;properties&#39;</span><span class="p">][</span><span class="s1">&#39;periods&#39;</span><span class="p">]]</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time_periods</span><span class="p">,</span> <span class="n">temperatures</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Period&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Temperature (F)&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Temperature in Seattle&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+
+    <span class="n">file_path</span> <span class="o">=</span> <span class="s2">&quot;static/temperature_plot.png&quot;</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">close</span>
+
+    <span class="k">return</span> <span class="n">file_path</span>
+</pre></div>
+</div>
+<p>This is going to be the core of our service to start. We first reach out to the National Weather Service’s
+API and grab some location data by the longitude and lattitude, here we use Seattle as an example.</p>
+<p>Then when the response comes back, we are going to grab a bit of data from that payload to use with <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>
+to graph some data and land it in a <code class="docutils literal notranslate"><span class="pre">static</span></code> folder for us.</p>
+<p>We will plan to use the <code class="docutils literal notranslate"><span class="pre">static</span></code> folder going forward for any data like this we wish to generate and serve.</p>
+</div>
+<div class="section" id="add-initial-views-in-template">
+<h3>Add Initial Views in <code class="docutils literal notranslate"><span class="pre">template/</span></code><a class="headerlink" href="#add-initial-views-in-template" title="Permalink to this headline">¶</a></h3>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Because of technical reasons with our version of Sphinx, the below <code class="docutils literal notranslate"><span class="pre">url_for</span></code> calls will be missing a single
+‘{‘ in order to get around Sphinx rendering issues. Make sure to add the extra ‘{‘ before each call to ‘’url_for’’
+in your own code.</p>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">templates</span></code> directory will hold the files we intend to use for our <code class="docutils literal notranslate"><span class="pre">html</span></code> files. First let’s edit the
+<code class="docutils literal notranslate"><span class="pre">index.html</span></code> to look like the following:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;en&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;UTF-8&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Weather App<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">link</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css&quot;</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;container mt-5&quot;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Weather Data App for PNW<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;{ url_for(&#39;seattle_weather&#39;) }&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;btn btn-primary&quot;</span><span class="p">&gt;</span>See Seattle Weather<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>And then we will add a <code class="docutils literal notranslate"><span class="pre">seattle_weather.html</span></code> file with the following:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;en&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;UTF-8&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Seattle Weather<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">link</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css&quot;</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;container mt-5&quot;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Temperature in Seattle<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;mb-3&quot;</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;{ url_for(&#39;index&#39;) }&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;btn btn-primary&quot;</span><span class="p">&gt;</span>Back to Home<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;mt-3&quot;</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;{ url_for(&#39;static&#39;, filename=&#39;temperature_plot.png&#39;) }}&quot;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&quot;Temperature Plot&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;img-fluid&quot;</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="add-more-routes">
+<h3>Add More Routes<a class="headerlink" href="#add-more-routes" title="Permalink to this headline">¶</a></h3>
+<p>So, now we have two pages, but we need to go back into our <code class="docutils literal notranslate"><span class="pre">app.py</span></code> to build the route for our
+<code class="docutils literal notranslate"><span class="pre">seattle_weather</span></code> page:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@MyApp</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/seattle_weather&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">seattle_weather</span><span class="p">():</span>
+    <span class="n">lat</span><span class="p">,</span> <span class="n">lon</span> <span class="o">=</span> <span class="mf">47.6062</span><span class="p">,</span> <span class="o">-</span><span class="mf">122.3321</span>
+    <span class="n">weather_data</span> <span class="o">=</span> <span class="n">weather_service</span><span class="o">.</span><span class="n">fetch_weather_data</span><span class="p">(</span><span class="n">lat</span><span class="p">,</span> <span class="n">lon</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">weather_data</span><span class="p">:</span>
+        <span class="n">img_path</span> <span class="o">=</span> <span class="n">weather_service</span><span class="o">.</span><span class="n">generate_temperature_plot</span><span class="p">(</span><span class="n">weather_data</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;seattle_weather.html&#39;</span><span class="p">,</span> <span class="n">img_url</span><span class="o">=</span><span class="n">img_path</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s1">&#39;Failed to get weather data&#39;</span><span class="p">,</span> <span class="mi">400</span><span class="n">cs</span>
+</pre></div>
+</div>
+<p>Now we have added the route and variables needed to make the pages and their API calls work.</p>
+<p>The index should now appear as:</p>
+<div class="figure align-center">
+<img alt="../../_images/completed-python-passenger-app.png" src="../../_images/completed-python-passenger-app.png" />
+</div>
+<p>And the weather graph should appear as something like the following:</p>
+<div class="figure align-center">
+<img alt="../../_images/python-passenger-weather-graph.png" src="../../_images/python-passenger-weather-graph.png" />
+</div>
+</div>
+</div>
+<div class="section" id="brand-app">
+<h2>Brand App<a class="headerlink" href="#brand-app" title="Permalink to this headline">¶</a></h2>
+<p>The app is looking good, but the details page still shows the app title “Science Gateway”.
+To change this and the icon, edit the <code class="docutils literal notranslate"><span class="pre">manifest.yml</span></code>:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Sci Gateway App</span><span class="w"></span>
+<span class="nt">icon</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fas://torii-gate</span><span class="w"></span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span><span class="w"></span>
+<span class="l l-Scalar l-Scalar-Plain">This is a demo app that uses python flask, the national weather service api, and matplotlib</span><span class="w"></span>
+<span class="l l-Scalar l-Scalar-Plain">to create a simple science gateway.</span><span class="w"></span>
+<span class="nt">icon</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fas://torii-gate</span><span class="w"></span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>The icon follows format of <code class="docutils literal notranslate"><span class="pre">fas://{FONTAWESOMENAME}</span></code> where you replace <code class="docutils literal notranslate"><span class="pre">{FONTAWESOMENAME}</span></code> with an icon from <a class="reference external" href="https://fontawesome.com/icons/">https://fontawesome.com/icons/</a>.
+In this case we are using <code class="docutils literal notranslate"><span class="pre">torii-gate</span></code> which we write in the manifest as <code class="docutils literal notranslate"><span class="pre">fas://torii-gate</span></code>.
+You can see details on this icon at <a class="reference external" href="https://fontawesome.com/icons/hdd?style=regular">https://fontawesome.com/icons/hdd?style=regular</a></p></li>
+</ul>
+</div>
+<div class="section" id="publish-app">
+<h2>Publish App<a class="headerlink" href="#publish-app" title="Permalink to this headline">¶</a></h2>
+<p>Publishing an app requires three steps:</p>
+<ol class="arabic simple">
+<li><p>Remove <code class="docutils literal notranslate"><span class="pre">tmp/always_restart.txt</span></code> since we are done developing.</p></li>
+<li><p>Updating the <code class="docutils literal notranslate"><span class="pre">manifest.yml</span></code> to specify the category and optionally subcategory, which indicates where in the dashboard menu the app appears.</p></li>
+<li><p>Having an administrator checkout a copy of the production version to a directory under <code class="docutils literal notranslate"><span class="pre">/var/www/ood/apps/sys</span></code>.</p></li>
+</ol>
+<p>Steps:</p>
+<ol class="arabic">
+<li><p>Add a category and subcategory to the <code class="docutils literal notranslate"><span class="pre">manifest.yml</span></code> so the app appears in the Interactive Apps menu:</p>
+<blockquote>
+<div><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nn">...</span><span class="w"></span>
+<span class="nt">category</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Interacitive Apps</span><span class="w"></span>
+<span class="nt">subcategory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Science Gateways</span><span class="w"></span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Version these changes. Click <strong>Shell</strong> button on app details view, and then <code class="docutils literal notranslate"><span class="pre">commit</span></code> the changes:</p>
+<blockquote>
+<div><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git add .
+git commit -m <span class="s2">&quot;update manifest for production&quot;</span>
+
+<span class="c1"># if there is an external remote associated with this, push to that</span>
+git push origin &lt;your working branch&gt;
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>If using a remote, go in and merge your request to the <code class="docutils literal notranslate"><span class="pre">main</span></code> or <code class="docutils literal notranslate"><span class="pre">master</span></code> branch.</p></li>
+<li><p>As the admin, <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">copy</span></code> or <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span></code> this repo to production</p>
+<blockquote>
+<div><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># as sudo on OnDemand host:</span>
+<span class="nb">cd</span> /var/www/ood/apps/sys
+git clone git@github.com:OSC/ood-example-sciGatewayApp.git
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p><strong>Reload</strong> the dashboard.</p></li>
+</ol>
+<div class="figure align-center" id="id5">
+<img alt="../../_images/app-dev-tutorial-ps-to-quota-published.png" src="../../_images/app-dev-tutorial-ps-to-quota-published.png" />
+<p class="caption"><span class="caption-number">Fig. 13 </span><span class="caption-text">Every user can now launch the Science Gateway from the Interactive Apps menu.</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Accessing this new app for the first time will cause your NGINX server to restart,
+killing all websocket connections, which means resetting your active web-based OnDemand Shell sessions.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../architecture.html" class="btn btn-neutral float-right" title="Architecture" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="ps-to-quota.html" class="btn btn-neutral float-left" title="Creating a Status App" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017-2023, Ohio Supercomputer Center
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Documentation Versions</span>
+    v: 
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Versions</dt>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/latest/tutorials/tutorials-passenger-apps/phusion-passenger.html">latest</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-2.0/tutorials/tutorials-passenger-apps/phusion-passenger.html">2.0</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-1.8/tutorials/tutorials-passenger-apps/phusion-passenger.html">1.8</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-1.7/tutorials/tutorials-passenger-apps/phusion-passenger.html">1.7</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-1.6/tutorials/tutorials-passenger-apps/phusion-passenger.html">1.6</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-1.5/tutorials/tutorials-passenger-apps/phusion-passenger.html">1.5</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-1.4/tutorials/tutorials-passenger-apps/phusion-passenger.html">1.4</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-1.3/tutorials/tutorials-passenger-apps/phusion-passenger.html">1.3</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-1.2/tutorials/tutorials-passenger-apps/phusion-passenger.html">1.2</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-1.1/tutorials/tutorials-passenger-apps/phusion-passenger.html">1.1</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-1.0/tutorials/tutorials-passenger-apps/phusion-passenger.html">1.0</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/develop/tutorials/tutorials-passenger-apps/phusion-passenger.html">develop</a></dd>
+      
+    </dl>
+    <dl>
+      <dt>On GitHub</dt>
+        <dd>
+          <a href="http://openondemand.org/">Website</a>
+        </dd>
+        <dd>
+          <a href="https://github.com/OSC/Open-OnDemand">Main Repo</a>
+        </dd>
+    </dl>
+    <hr/>
+    Theme provided by <a href="http://www.readthedocs.org">Read the Docs</a>.
+  </div>
+</div>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
