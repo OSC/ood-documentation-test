@@ -27,6 +27,7 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/language_data.js"></script>
+        <script src="../_static/tabs.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -104,24 +105,30 @@
               <p class="caption"><span class="caption-text">Getting Started</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../requirements.html">Requirements</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../authentication.html">Authentication</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="overview.html">Overview</a></li>
-<li class="toctree-l2"><a class="reference internal" href="oidc.html">OpenID Connect</a></li>
-<li class="toctree-l2"><a class="reference internal" href="dex.html">OpenID Connect with Dex</a></li>
-<li class="toctree-l2"><a class="reference internal" href="shibboleth.html">Shibboleth</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cas.html">CAS</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorial-oidc-keycloak-rhel7.html">OpenID Connect with KeyCloak on RHEL7</a></li>
-<li class="toctree-l2"><a class="reference internal" href="duo-2fa-with-keycloak.html">Two Factor Auth using Duo with Keycloak</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">SAML Authentication with Active Directory Federated Services (ADFS) and mod_auth_mellon</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#prepare-the-host">Prepare the Host</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#install-mod-auth-mellon">Install mod_auth_mellon</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#configure-mod-auth-mellon">Configure mod_auth_mellon</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#configure-ood">Configure OOD</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../installation.html">Installation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../installation/install-software.html">1. Install Software</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../authentication.html">2. Authentication</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="oidc.html">OpenID Connect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dex.html">OpenID Connect with Dex</a></li>
+<li class="toctree-l3"><a class="reference internal" href="shibboleth.html">Shibboleth</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cas.html">CAS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial-oidc-keycloak-rhel7.html">OpenID Connect with KeyCloak on RHEL7</a></li>
+<li class="toctree-l3"><a class="reference internal" href="duo-2fa-with-keycloak.html">Two Factor Auth using Duo with Keycloak</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">SAML Authentication with Active Directory Federated Services (ADFS) and mod_auth_mellon</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#prepare-the-host">Prepare the Host</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#install-mod-auth-mellon">Install mod_auth_mellon</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#configure-mod-auth-mellon">Configure mod_auth_mellon</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#configure-ood">Configure OOD</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="nsf-access.html">NSF ACCESS</a></li>
-<li class="toctree-l2"><a class="reference internal" href="insecure.html">Other Insecure Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nsf-access.html">NSF ACCESS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="insecure.html">Other Insecure Options</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/add-ssl.html">3. Secure Apache httpd</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/modify-system-security.html">4. Add SELinux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#building-from-source">Building From Source</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../installation/add-cluster-config.html">Cluster Configuration</a></li>
@@ -193,7 +200,9 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="../authentication.html">Authentication</a> &raquo;</li>
+          <li><a href="../installation.html">Installation</a> &raquo;</li>
+        
+          <li><a href="../authentication.html"><span class="section-number">2. </span>Authentication</a> &raquo;</li>
         
       <li>SAML Authentication with Active Directory Federated Services (ADFS) and mod_auth_mellon</li>
     
@@ -230,14 +239,21 @@
 </div>
 <div class="section" id="install-mod-auth-mellon">
 <h2>Install mod_auth_mellon<a class="headerlink" href="#install-mod-auth-mellon" title="Permalink to this headline">¶</a></h2>
-<ol class="arabic">
+<ol class="arabic simple">
 <li><p>Ensure Software Collections is enabled on the system</p></li>
-<li><p>Install the mod_auth_mellon module:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>yum install httpd24-mod_auth_mellon httpd24-mod_ssl
+<li><p>Install the mod_auth_mellon module:</p></li>
+</ol>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0">EL7</button><button aria-controls="panel-0-0-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-1" name="0-1" role="tab" tabindex="-1">EL8+</button><button aria-controls="panel-0-0-2" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-2" name="0-2" role="tab" tabindex="-1">Ubuntu</button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"><div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>yum install httpd24-mod_auth_mellon httpd24-mod_ssl
 </pre></div>
 </div>
-</li>
-</ol>
+</div><div aria-labelledby="tab-0-0-1" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-1" name="0-1" role="tabpanel" tabindex="0"><div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>yum install mod_auth_mellon mod_ssl
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-0-0-2" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-2" name="0-2" role="tabpanel" tabindex="0"><div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>apt install libapache2-mod-auth-mellon
+</pre></div>
+</div>
+</div></div>
 </div>
 <div class="section" id="configure-mod-auth-mellon">
 <h2>Configure mod_auth_mellon<a class="headerlink" href="#configure-mod-auth-mellon" title="Permalink to this headline">¶</a></h2>

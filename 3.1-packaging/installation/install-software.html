@@ -40,7 +40,7 @@
   <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="2. Add SELinux" href="modify-system-security.html" />
+    <link rel="next" title="2. Authentication" href="../authentication.html" />
     <link rel="prev" title="Installation" href="../installation.html" />
  
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-34776817-3"></script>
@@ -114,12 +114,12 @@
 <li class="toctree-l3"><a class="reference internal" href="#building-from-source">Building From Source</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="modify-system-security.html">2. Add SELinux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../authentication.html">2. Authentication</a></li>
 <li class="toctree-l2"><a class="reference internal" href="add-ssl.html">3. Secure Apache httpd</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modify-system-security.html">4. Add SELinux</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../installation.html#building-from-source">Building From Source</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../authentication.html">Authentication</a></li>
 <li class="toctree-l1"><a class="reference internal" href="add-cluster-config.html">Cluster Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../how-tos/app-development/interactive/setup.html">Setup Interactive Apps</a></li>
 </ul>
@@ -280,7 +280,7 @@ sudo subscription-manager repos --enable codeready-builder-for-rhel-9-x86_64-rpm
 <h2>2. Add repository and install<a class="headerlink" href="#add-repository-and-install" title="Permalink to this headline">¶</a></h2>
 <blockquote>
 <div><div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-1-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-1-1-0" name="1-0" role="tab" tabindex="0">RedHat/CentOS 7</button><button aria-controls="panel-1-1-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-1-1-1" name="1-1" role="tab" tabindex="-1">RedHat/Rocky Linux/AlmaLinux 8</button><button aria-controls="panel-1-1-2" aria-selected="false" class="sphinx-tabs-tab" id="tab-1-1-2" name="1-2" role="tab" tabindex="-1">RedHat/Rocky Linux/AlmaLinux 9</button><button aria-controls="panel-1-1-3" aria-selected="false" class="sphinx-tabs-tab" id="tab-1-1-3" name="1-3" role="tab" tabindex="-1">Ubuntu 20.04</button><button aria-controls="panel-1-1-4" aria-selected="false" class="sphinx-tabs-tab" id="tab-1-1-4" name="1-4" role="tab" tabindex="-1">Ubuntu 22.04</button><button aria-controls="panel-1-1-5" aria-selected="false" class="sphinx-tabs-tab" id="tab-1-1-5" name="1-5" role="tab" tabindex="-1">Amazon Linux 2023</button></div><div aria-labelledby="tab-1-1-0" class="sphinx-tabs-panel" id="panel-1-1-0" name="1-0" role="tabpanel" tabindex="0"><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo yum install https://yum.osc.edu/ondemand/3.1/ondemand-release-web-3.1-1.el7.noarch.rpm
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-1-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-1-1-0" name="1-0" role="tab" tabindex="0">RedHat/CentOS 7</button><button aria-controls="panel-1-1-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-1-1-1" name="1-1" role="tab" tabindex="-1">RedHat/Rocky Linux/AlmaLinux 8</button><button aria-controls="panel-1-1-2" aria-selected="false" class="sphinx-tabs-tab" id="tab-1-1-2" name="1-2" role="tab" tabindex="-1">RedHat/Rocky Linux/AlmaLinux 9</button><button aria-controls="panel-1-1-3" aria-selected="false" class="sphinx-tabs-tab" id="tab-1-1-3" name="1-3" role="tab" tabindex="-1">Ubuntu 20.04</button><button aria-controls="panel-1-1-4" aria-selected="false" class="sphinx-tabs-tab" id="tab-1-1-4" name="1-4" role="tab" tabindex="-1">Ubuntu 22.04</button><button aria-controls="panel-1-1-5" aria-selected="false" class="sphinx-tabs-tab" id="tab-1-1-5" name="1-5" role="tab" tabindex="-1">Debian 12</button><button aria-controls="panel-1-1-6" aria-selected="false" class="sphinx-tabs-tab" id="tab-1-1-6" name="1-6" role="tab" tabindex="-1">Amazon Linux 2023</button></div><div aria-labelledby="tab-1-1-0" class="sphinx-tabs-panel" id="panel-1-1-0" name="1-0" role="tabpanel" tabindex="0"><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo yum install https://yum.osc.edu/ondemand/3.1/ondemand-release-web-3.1-1.el7.noarch.rpm
 
 sudo yum install ondemand
 </pre></div>
@@ -311,7 +311,15 @@ sudo apt update
 sudo apt install ondemand
 </pre></div>
 </div>
-</div><div aria-labelledby="tab-1-1-5" class="sphinx-tabs-panel" hidden="true" id="panel-1-1-5" name="1-5" role="tabpanel" tabindex="0"><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo dnf install https://yum.osc.edu/ondemand/3.1/ondemand-release-web-3.1-1.amzn2023.noarch.rpm
+</div><div aria-labelledby="tab-1-1-5" class="sphinx-tabs-panel" hidden="true" id="panel-1-1-5" name="1-5" role="tabpanel" tabindex="0"><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo apt install apt-transport-https ca-certificates
+wget -O /tmp/ondemand-release-web_3.1.0-bookworm_all.deb https://apt.osc.edu/ondemand/3.1/ondemand-release-web_3.1.0-bookworm_all.deb
+sudo apt install /tmp/ondemand-release-web_3.1.0-bookworm_all.deb
+sudo apt update
+
+sudo apt install ondemand
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-1-1-6" class="sphinx-tabs-panel" hidden="true" id="panel-1-1-6" name="1-6" role="tabpanel" tabindex="0"><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo dnf install https://yum.osc.edu/ondemand/3.1/ondemand-release-web-3.1-1.amzn2023.noarch.rpm
 
 sudo dnf install ondemand
 </pre></div>
@@ -323,7 +331,7 @@ sudo dnf install ondemand
 <h2>3. Start services<a class="headerlink" href="#start-services" title="Permalink to this headline">¶</a></h2>
 <blockquote>
 <div><div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-2-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-2-2-0" name="2-0" role="tab" tabindex="0">RHEL/CentOS 7</button><button aria-controls="panel-2-2-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-2-2-1" name="2-1" role="tab" tabindex="-1">RHEL/Rocky 8 &amp; 9</button><button aria-controls="panel-2-2-2" aria-selected="false" class="sphinx-tabs-tab" id="tab-2-2-2" name="2-2" role="tab" tabindex="-1">Ubuntu</button><button aria-controls="panel-2-2-3" aria-selected="false" class="sphinx-tabs-tab" id="tab-2-2-3" name="2-3" role="tab" tabindex="-1">Amazon Linux 2023</button></div><div aria-labelledby="tab-2-2-0" class="sphinx-tabs-panel" id="panel-2-2-0" name="2-0" role="tabpanel" tabindex="0"><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo systemctl start httpd24-httpd
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-2-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-2-2-0" name="2-0" role="tab" tabindex="0">RHEL/CentOS 7</button><button aria-controls="panel-2-2-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-2-2-1" name="2-1" role="tab" tabindex="-1">RHEL/Rocky 8 &amp; 9</button><button aria-controls="panel-2-2-2" aria-selected="false" class="sphinx-tabs-tab" id="tab-2-2-2" name="2-2" role="tab" tabindex="-1">Ubuntu &amp; Debian</button><button aria-controls="panel-2-2-3" aria-selected="false" class="sphinx-tabs-tab" id="tab-2-2-3" name="2-3" role="tab" tabindex="-1">Amazon Linux 2023</button></div><div aria-labelledby="tab-2-2-0" class="sphinx-tabs-panel" id="panel-2-2-0" name="2-0" role="tabpanel" tabindex="0"><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo systemctl start httpd24-httpd
 sudo systemctl <span class="nb">enable</span> httpd24-httpd
 </pre></div>
 </div>
@@ -345,10 +353,13 @@ sudo systemctl <span class="nb">enable</span> httpd
 <div class="section" id="verify-installation">
 <h2>4. Verify installation<a class="headerlink" href="#verify-installation" title="Permalink to this headline">¶</a></h2>
 <p>Now that Open OnDemand is installed and Apache is running, it should be serving
-a public page telling you to come back here and setup authentication.  If this
-is the case - then you should <a class="reference internal" href="add-ssl.html#add-ssl"><span class="std std-ref">secure your apache</span></a> then <a class="reference internal" href="../authentication.html#authentication"><span class="std std-ref">add authentication</span></a>.
-You may also want to <a class="reference internal" href="modify-system-security.html#modify-system-security"><span class="std std-ref">enable SELinux</span></a>.</p>
-<p>If you’re seeing the default apache page (Ubuntu users will) you will have to <a class="reference internal" href="../how-tos/debug/debug-apache.html#show-virtualhosts"><span class="std std-ref">debug virtualhosts</span></a>
+a public page telling you to come back here and setup authentication.</p>
+<p>If this is the case - then you need to <a class="reference internal" href="../authentication.html#authentication"><span class="std std-ref">add authentication</span></a>.
+The installation will not move forward without adding authentication.</p>
+<p>After adding authentication, but before actually testing that it works, you should
+<a class="reference internal" href="add-ssl.html#add-ssl"><span class="std std-ref">secure your Apache</span></a>. This way you never send credentials over plain HTTP.</p>
+<p>You may also want to <a class="reference internal" href="modify-system-security.html#modify-system-security"><span class="std std-ref">enable SELinux</span></a>.</p>
+<p>If you’re seeing the default Apache page (Ubuntu &amp; Debian users will) you will have to <a class="reference internal" href="../how-tos/debug/debug-apache.html#show-virtualhosts"><span class="std std-ref">debug virtualhosts</span></a>
 and likely <a class="reference internal" href="../reference/files/ood-portal-yml.html#ood-portal-generator-servername"><span class="std std-ref">configure a servername</span></a>.</p>
 </div>
 <div class="section" id="building-from-source">
@@ -375,7 +386,7 @@ review the <code class="docutils literal notranslate"><span class="pre">Dockerfi
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="modify-system-security.html" class="btn btn-neutral float-right" title="2. Add SELinux" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../authentication.html" class="btn btn-neutral float-right" title="2. Authentication" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="../installation.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
