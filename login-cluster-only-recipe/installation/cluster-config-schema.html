@@ -393,7 +393,7 @@ See <a class="reference internal" href="../customizations.html#disable-host-link
 <div class="section" id="login-cluster-only">
 <h2>Login Cluster Only<a class="headerlink" href="#login-cluster-only" title="Permalink to this headline">¶</a></h2>
 <p>Suppose you need want to create a <em>login cluster that does not schedule or run jobs</em>. It is used purely as a login/shell cluster only.</p>
-<p>To accomplish this, you need to simply leave out the <code class="docutils literal notranslate"><span class="pre">v2job</span></code> stanza that associates a scheduler with the cluster.</p>
+<p>To accomplish this, you need to simply leave out the <code class="docutils literal notranslate"><span class="pre">v2.job</span></code> stanza that associates a scheduler with the cluster.</p>
 <p>An example config file in <code class="docutils literal notranslate"><span class="pre">ondemand.d/pitzer_01_login.yml</span></code>:</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nn">---</span><span class="w"></span>
 <span class="nt">v2</span><span class="p">:</span><span class="w"></span>
