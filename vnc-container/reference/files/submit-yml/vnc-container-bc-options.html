@@ -322,6 +322,15 @@
 <h2>Starter def file<a class="headerlink" href="#starter-def-file" title="Permalink to this headline">¶</a></h2>
 <p>This is a <code class="docutils literal notranslate"><span class="pre">.def</span></code> file that we’ve tested this feature with.
 You can use this as an example to start and update as required.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Note that we’re installing turbovnc and websockify <em>inside</em>
+the container. This is important as all processes will run
+inside the contianer and not on the host.</p>
+<p>You can still install these on the host machine, but they will
+need to be mounted inside the container as the processes are
+expected to be ran <em>inside</em> the container.</p>
+</div>
 <div class="highlight-singularity notranslate"><div class="highlight"><pre><span></span><span class="k">Bootstrap</span>:<span class="w"> </span>docker
 
 <span class="k">From</span>:<span class="w"> </span>rockylinux/rockylinux:<span class="m">8</span>
