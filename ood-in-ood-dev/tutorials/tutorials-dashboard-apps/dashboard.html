@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Developing the Dashboard App &mdash; Open OnDemand 3.1.0 documentation</title>
+  <title>Developing the OOD Dashboard App &mdash; Open OnDemand 3.1.0 documentation</title>
   
 
   
@@ -40,7 +40,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Developing the Shell App" href="shell-app.html" />
-    <link rel="prev" title="Tutorials: Dashboard Apps" href="../tutorials-dashboard-apps.html" />
+    <link rel="prev" title="Developing The OOD Dashboard" href="../tutorials-dashboard-apps.html" />
  
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-34776817-3"></script>
 <script>
@@ -120,13 +120,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../../install-ihpc-apps.html">Install Other Interactive Apps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials-interactive-apps.html">Tutorials: Interactive Apps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials-passenger-apps.html">Tutorials: Passenger Apps</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../tutorials-dashboard-apps.html">Tutorials: Dashboard Apps</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Developing the Dashboard App</a><ul>
+<li class="toctree-l1 current"><a class="reference internal" href="../tutorials-dashboard-apps.html">Developing The OOD Dashboard</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Developing the OOD Dashboard App</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#strategy">Strategy</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#create-a-dev-dashboard">Create a Dev Dashboard</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#add-end-local-file">Add <code class="docutils literal notranslate"><span class="pre">.end.local</span></code> File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#add-env-local-file">Add <code class="docutils literal notranslate"><span class="pre">.env.local</span></code> File</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#set-dev-configuration-directory">Set Dev Configuration Directory</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#add-dev-configurations">Add Dev Configurations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#develop-ood-in-ood">Develop OOD in OOD</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="shell-app.html">Developing the Shell App</a></li>
@@ -186,9 +187,9 @@
     
       <li><a href="../../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="../tutorials-dashboard-apps.html">Tutorials: Dashboard Apps</a> &raquo;</li>
+          <li><a href="../tutorials-dashboard-apps.html">Developing The OOD Dashboard</a> &raquo;</li>
         
-      <li>Developing the Dashboard App</li>
+      <li>Developing the OOD Dashboard App</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -209,8 +210,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="developing-the-dashboard-app">
-<span id="app-development-tutorials-dashboard-apps-dashboard"></span><h1>Developing the Dashboard App<a class="headerlink" href="#developing-the-dashboard-app" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="developing-the-ood-dashboard-app">
+<span id="app-development-tutorials-dashboard-apps-dashboard"></span><h1>Developing the OOD Dashboard App<a class="headerlink" href="#developing-the-ood-dashboard-app" title="Permalink to this headline">¶</a></h1>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>You muse have followed <a class="reference internal" href="../../how-tos/app-development/enabling-development-mode.html#enabling-development-mode"><span class="std std-ref">Enabling App Development</span></a> for any part of this tutorial to work.</p>
@@ -218,71 +219,110 @@
 <div class="section" id="strategy">
 <h2>Strategy<a class="headerlink" href="#strategy" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li><p>Ensure <a class="reference internal" href="../../how-tos/app-development/enabling-development-mode.html#enabling-development-mode"><span class="std std-ref">Enabling App Development</span></a> is completed</p></li>
-<li><p>Make a symlink in our <code class="docutils literal notranslate"><span class="pre">dev</span></code> space back to the home directory’s <code class="docutils literal notranslate"><span class="pre">~/ondemand/misc/ondemand/&lt;app&gt;</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">branch</span></code> from that symlinked directory for the app and do your work</p></li>
-<li><p>Create a <code class="docutils literal notranslate"><span class="pre">.env.local</span></code> file in the app root to override system <code class="docutils literal notranslate"><span class="pre">ENV</span></code> variables</p></li>
-<li><p>Rebuild the app with your changes using the <code class="docutils literal notranslate"><span class="pre">bin/setup</span></code> binary</p></li>
-<li><p>Use the Sandbox to launch your app for testing</p></li>
+<li><p>Start by completing the <a class="reference internal" href="../../how-tos/app-development/enabling-development-mode.html#enabling-development-mode"><span class="std std-ref">Enabling App Development</span></a> steps.</p></li>
+<li><p>Create a symlink named <code class="docutils literal notranslate"><span class="pre">dev</span></code> in the <code class="docutils literal notranslate"><span class="pre">~/ondemand/misc/ondemand/&lt;app&gt;</span></code>.</p></li>
+<li><p>In the app’s symlinked directory, use <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">branch</span></code> to start your development work.</p></li>
+<li><p>Create a <code class="docutils literal notranslate"><span class="pre">.env.local</span></code> file in the development dashboard app root to customize environment variables.</p></li>
+<li><p>Rebuild the <code class="docutils literal notranslate"><span class="pre">dashboard</span></code> app using <code class="docutils literal notranslate"><span class="pre">bin/setup</span></code> out of the app’s root.</p></li>
+<li><p>Use the Sandbox to launch and iterate on your work.</p></li>
 </ol>
-<p>This will serve for the template in the following work on both the <code class="docutils literal notranslate"><span class="pre">dashboard</span></code> app and
-the <code class="docutils literal notranslate"><span class="pre">shell</span></code> app.</p>
 </div>
 <div class="section" id="create-a-dev-dashboard">
 <h2>Create a Dev Dashboard<a class="headerlink" href="#create-a-dev-dashboard" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li><p>pull down ondemand in <code class="docutils literal notranslate"><span class="pre">~/ondemand/misc</span></code>: <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">~/ondemand/misc</span></code> then <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">git&#64;github.com:OSC/ondemand.git</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">~/ondemand/dev/</span></code></p></li>
-<li><p>create the symlink for your shell app: <code class="docutils literal notranslate"><span class="pre">ln</span> <span class="pre">-s</span> <span class="pre">../misc/ondemand/apps/dashboard/dashboard/</span> <span class="pre">dev_dashboard</span></code></p></li>
-<li><p>run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">-b</span> <span class="pre">your_branch</span></code></p></li>
-<li><p>now make a branch with your changes and use <code class="docutils literal notranslate"><span class="pre">bin/setup</span></code> to rebuild if needed</p></li>
-<li><p>navigate to the Sandbox and launch your <code class="docutils literal notranslate"><span class="pre">dev_dashboard</span></code> app</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">clone</span></code> the OOD repo into: <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">~/ondemand/misc</span></code> then <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">git&#64;github.com:OSC/ondemand.git</span></code></p></li>
+<li><p>Work out of the <code class="docutils literal notranslate"><span class="pre">dev</span></code> directory/space: <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">~/ondemand/dev/</span></code>.</p></li>
+<li><p>Symlink to the <code class="docutils literal notranslate"><span class="pre">dashboard</span></code> app in the cloned repo: <code class="docutils literal notranslate"><span class="pre">ln</span> <span class="pre">-s</span> <span class="pre">../misc/ondemand/apps/dashboard/dashboard/</span> <span class="pre">dashboard</span></code></p></li>
+<li><p>Make a branch and to begin word on your dev dashboard: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">-b</span> <span class="pre">dev_work</span></code></p></li>
+<li><p>Rebuild the ood dashboard app:  <code class="docutils literal notranslate"><span class="pre">bin/setup</span></code>.</p></li>
+<li><p>Navigate to the Sandbox and launch your <code class="docutils literal notranslate"><span class="pre">dashboard</span></code> app to use the <code class="docutils literal notranslate"><span class="pre">dev_work</span></code>.</p></li>
 </ol>
-<p>Notice the <code class="docutils literal notranslate"><span class="pre">url</span></code> for this app. No longer do you  see <code class="docutils literal notranslate"><span class="pre">*/sys/dashboard/dashboard</span></code> but instead <code class="docutils literal notranslate"><span class="pre">*/dev/dashboard/dashboard</span></code>.</p>
+<p>Notice the <code class="docutils literal notranslate"><span class="pre">url</span></code> for this <code class="docutils literal notranslate"><span class="pre">dev_dashboard</span></code> app. No longer do
+you  see <code class="docutils literal notranslate"><span class="pre">*/sys/dashboard/</span></code> but instead <code class="docutils literal notranslate"><span class="pre">*/dev/dashboard/</span></code>.</p>
 </div>
-<div class="section" id="add-end-local-file">
-<h2>Add <code class="docutils literal notranslate"><span class="pre">.end.local</span></code> File<a class="headerlink" href="#add-end-local-file" title="Permalink to this headline">¶</a></h2>
-<p>Now that we have a our dev dashboard running, a good first step is to next ensure it <em>look different from prod.</em> This
-will ensure you do not end up in the wrong tab issuing commands.</p>
+<div class="section" id="add-env-local-file">
+<h2>Add <code class="docutils literal notranslate"><span class="pre">.env.local</span></code> File<a class="headerlink" href="#add-env-local-file" title="Permalink to this headline">¶</a></h2>
+<p>Now that we have a our dev dashboard running, a good first step is to next ensure it
+looks different from the production dashboard. This will help ensure not ending up in the wrong tab,
+using <code class="docutils literal notranslate"><span class="pre">sys/dashboard</span></code> instead of <code class="docutils literal notranslate"><span class="pre">dev/dashboard</span></code>, and possibly causing confusion.</p>
 <p>Use an editor or IDE and do the following:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> ~/ondemand/dev/dashboard
 touch .env.local
 vim .env.local
 </pre></div>
 </div>
-<p>Now, the idea here is to make sure the dev dashboard <em>looks</em> different so we don’t have to check that <code class="docutils literal notranslate"><span class="pre">url</span></code> in the
+<p>The idea here is to make sure the dev dashboard <em>looks</em> different so we don’t have to check that <code class="docutils literal notranslate"><span class="pre">url</span></code> in the
 browser to know which dashboard we are in.</p>
-<p>So, inside this <code class="docutils literal notranslate"><span class="pre">.env.local</span></code> we can add an environment variable to change the color of the dev dashboard like so:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nv">OOD_BRAND_BG_COLOR</span><span class="o">=</span><span class="s1">&#39;grey&#39;</span>
+<p>Inside the <code class="docutils literal notranslate"><span class="pre">.env.local</span></code> we can add an environment variable to change the color of the dev dashboard like so:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># .env.local file</span>
+<span class="nv">OOD_BRAND_BG_COLOR</span><span class="o">=</span><span class="s1">&#39;grey&#39;</span>
 </pre></div>
 </div>
-<p>Now click the Develop dropdown menu on the upper right corner and click <code class="docutils literal notranslate"><span class="pre">Restart</span> <span class="pre">Web</span> <span class="pre">Server</span></code>. After a few moments
+<p>Now click the <code class="docutils literal notranslate"><span class="pre">Develop</span></code> dropdown menu on the upper right corner and click <code class="docutils literal notranslate"><span class="pre">Restart</span> <span class="pre">Web</span> <span class="pre">Server</span></code>. After a few moments
 you should now see the dashboard with a grey background in the banner. This will help to distinguish your dev
 environment from the production.</p>
+<div class="figure align-center" id="id1">
+<img alt="../../_images/develop_dashboard_grey_background.png" src="../../_images/develop_dashboard_grey_background.png" />
+<p class="caption"><span class="caption-number">Fig. 10 </span><span class="caption-text">Different banner color for the dev dashboard</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
 </div>
 <div class="section" id="set-dev-configuration-directory">
 <h2>Set Dev Configuration Directory<a class="headerlink" href="#set-dev-configuration-directory" title="Permalink to this headline">¶</a></h2>
 <p>Our dev dashboard is still using the same configuration files as the system dashboard, but we can change this.</p>
-<p>If we go back into our <code class="docutils literal notranslate"><span class="pre">.env.local</span></code> file we can set a new path for the dev dashboard to pick up its <em>own
+<p>Go back into <code class="docutils literal notranslate"><span class="pre">.env.local</span></code> and set a new path for <em>the dev dashboard to pick up its own
 configurations</em> using the <code class="docutils literal notranslate"><span class="pre">OOD_CONFIG_D_DIRECTORY</span></code> environment variable like so:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>vim .env.local
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># .env.local file</span>
 <span class="nv">OOD_CONFIG_D_DIRECTORY</span><span class="o">=</span><span class="s2">&quot;~/ondemand/dev/dashboard/config/ondemand.d/&quot;</span>
 </pre></div>
 </div>
-<p>As usual, we need to restart the PUN when we add or change an environment variable.</p>
-<p>Now, we can begin to set our own configurations in our new <code class="docutils literal notranslate"><span class="pre">ondemand.d</span></code> for the dev dashboard and see the changes.</p>
+<p>We need to <em>restart the PUN when we add or change environment variables</em> with <code class="docutils literal notranslate"><span class="pre">bin/setup</span></code>.</p>
 </div>
 <div class="section" id="add-dev-configurations">
 <h2>Add Dev Configurations<a class="headerlink" href="#add-dev-configurations" title="Permalink to this headline">¶</a></h2>
-<p>Let’s add some configs to our dev dashboard to get an idea what can be done and play with the layout.</p>
-<p>We will add <code class="docutils literal notranslate"><span class="pre">pinned_apps</span></code> to our dev dashboard to see how this works.</p>
+<p>Now, we can begin to set our own configurations in our new <code class="docutils literal notranslate"><span class="pre">ondemand.d</span></code> directory for
+the dev dashboard and see the changes. Let’s add some configs to our dev dashboard to get
+an idea what can be done and play with the layout.</p>
+<p>We will add <code class="docutils literal notranslate"><span class="pre">pinned_apps</span></code> to our dev dashboard as an example to see how this works.</p>
 <p>Create a file in the <code class="docutils literal notranslate"><span class="pre">~/ondemand/dev/dashboard/config/ondemand.d/</span></code> directory named <code class="docutils literal notranslate"><span class="pre">ondemand.yml</span></code> then
 open the file and add the following:</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">pinned_apps</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sys/*</span><span class="w">           </span><span class="c1"># pin the sys apps</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sys/*</span><span class="w"></span>
+<span class="nt">pinned_apps_menu_length</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4</span><span class="w"></span>
+<span class="nt">pinned_apps_group_by</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">category</span><span class="w"></span>
 </pre></div>
 </div>
-<p>Now restart the PUN. You should be presented with a view of all the system apps in your home screen, pinned.</p>
+<p>Assuming youre restarted the PUN when you set the new config directory above, you <em>should</em> be able to simply
+refresh the browser and see the new pinned apps layout take effect. If not though, simply restart the PUN
+as usual to force the changes.</p>
+<div class="figure align-center" id="id2">
+<img alt="../../_images/develop_dashboard_pinned_apps.png" src="../../_images/develop_dashboard_pinned_apps.png" />
+<p class="caption"><span class="caption-number">Fig. 11 </span><span class="caption-text">Dev dashboard with its own pinned apps configuration</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+<p>Now, we can begin to add other configurations to this new <code class="docutils literal notranslate"><span class="pre">ondemand.yml</span></code> and keep restarting
+the PUN to see our changes.</p>
+<p>This is a great way to test out new features, or play with any features you may be interested in with OOD before
+making the changes in production or spinning up a whole dev environment with a VM.</p>
+<p>At this point you have all the pieces needed to use the <a class="reference internal" href="../../customizations.html#customizations"><span class="std std-ref">Customizations</span></a> page and play with those changes
+in your dev dashboard.</p>
+<p>But, what if we want to add something to Open OnDemand?</p>
+</div>
+<div class="section" id="develop-ood-in-ood">
+<h2>Develop OOD in OOD<a class="headerlink" href="#develop-ood-in-ood" title="Permalink to this headline">¶</a></h2>
+<p>With all the above in place, you can also begin to add features and functionality to OOD in this development
+setting to then see how this will actually run and work.</p>
+<p>Suppose you see a feature being worked on in the OOD repo on the branch <code class="docutils literal notranslate"><span class="pre">new_feature</span></code>. How could you pull
+this work down and see its current state while also trying to build it out?</p>
+<p>First, launch the <code class="docutils literal notranslate"><span class="pre">shell</span></code> and go into your dev <code class="docutils literal notranslate"><span class="pre">dashboard</span></code> root then:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">new_feature</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bin/setup</span></code></p></li>
+</ol>
+<p>After the build you now have the feature ready to be worked right there in your dev dashboard.</p>
+<p>Go ahead and enter you Sandbox and launch the dev dashboard. What you are in once that is done is the current
+state the feature is in.</p>
+<p>If you are not making any changes to the configurations, as the steps above mostly do, then each change to the code
+simply requires page refreshes to see the feature work.</p>
 </div>
 </div>
 
@@ -297,7 +337,7 @@ open the file and add the following:</p>
         <a href="shell-app.html" class="btn btn-neutral float-right" title="Developing the Shell App" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../tutorials-dashboard-apps.html" class="btn btn-neutral float-left" title="Tutorials: Dashboard Apps" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../tutorials-dashboard-apps.html" class="btn btn-neutral float-left" title="Developing The OOD Dashboard" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Tutorials: Dashboard Apps &mdash; Open OnDemand 3.1.0 documentation</title>
+  <title>Developing The OOD Dashboard &mdash; Open OnDemand 3.1.0 documentation</title>
   
 
   
@@ -39,7 +39,7 @@
   <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Developing the Dashboard App" href="tutorials-dashboard-apps/dashboard.html" />
+    <link rel="next" title="Developing the OOD Dashboard App" href="tutorials-dashboard-apps/dashboard.html" />
     <link rel="prev" title="Creating a Status App" href="tutorials-passenger-apps/ps-to-quota.html" />
  
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-34776817-3"></script>
@@ -120,8 +120,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../install-ihpc-apps.html">Install Other Interactive Apps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorials-interactive-apps.html">Tutorials: Interactive Apps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorials-passenger-apps.html">Tutorials: Passenger Apps</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Tutorials: Dashboard Apps</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="tutorials-dashboard-apps/dashboard.html">Developing the Dashboard App</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Developing The OOD Dashboard</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorials-dashboard-apps/dashboard.html">Developing the OOD Dashboard App</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tutorials-dashboard-apps/shell-app.html">Developing the Shell App</a></li>
 </ul>
 </li>
@@ -179,7 +179,7 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>Tutorials: Dashboard Apps</li>
+      <li>Developing The OOD Dashboard</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -200,25 +200,26 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="tutorials-dashboard-apps">
-<span id="app-development-tutorials-dashboard-apps"></span><h1>Tutorials: Dashboard Apps<a class="headerlink" href="#tutorials-dashboard-apps" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="developing-the-ood-dashboard">
+<span id="app-development-tutorials-dashboard-apps"></span><h1>Developing The OOD Dashboard<a class="headerlink" href="#developing-the-ood-dashboard" title="Permalink to this headline">¶</a></h1>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>You muse have followed <a class="reference internal" href="../how-tos/app-development/enabling-development-mode.html#enabling-development-mode"><span class="std std-ref">Enabling App Development</span></a> for any part of this tutorial to work.</p>
+<p><a class="reference internal" href="../how-tos/app-development/enabling-development-mode.html#enabling-development-mode"><span class="std std-ref">Enabling App Development</span></a> must be completed first for this tutorial to work.</p>
 </div>
-<p>The OOD Dashboard is composed of several apps, one of which is the Dashboard app itself.</p>
-<p>You can see <a class="reference external" href="https://github.com/OSC/ondemand/tree/master/apps">the various apps that make up OOD here.</a></p>
-<p>This tutorial is intended to give you the knowledge and configurations to do your own
-development on these apps from <em>within</em> the production OnDemand instance itself.</p>
+<p>Open OnDemand is composed of several apps, one of which is the <code class="docutils literal notranslate"><span class="pre">dashboard</span></code> app.
+You can see some of the other apps that make up OOD <a class="reference external" href="https://github.com/OSC/ondemand/tree/master/apps">here.</a></p>
+<p>This tutorial aims to equip admins with the knowledge and tools for developing the Open OnDemand
+<code class="docutils literal notranslate"><span class="pre">dashboard</span></code> and <code class="docutils literal notranslate"><span class="pre">shell</span></code> apps directly from <em>within</em> OnDemand itself.</p>
 <div class="toctree-wrapper compound">
 <p class="caption"><span class="caption-text">Tutorials</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="tutorials-dashboard-apps/dashboard.html">Developing the Dashboard App</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorials-dashboard-apps/dashboard.html">Developing the OOD Dashboard App</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="tutorials-dashboard-apps/dashboard.html#strategy">Strategy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tutorials-dashboard-apps/dashboard.html#create-a-dev-dashboard">Create a Dev Dashboard</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorials-dashboard-apps/dashboard.html#add-end-local-file">Add <code class="docutils literal notranslate"><span class="pre">.end.local</span></code> File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials-dashboard-apps/dashboard.html#add-env-local-file">Add <code class="docutils literal notranslate"><span class="pre">.env.local</span></code> File</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tutorials-dashboard-apps/dashboard.html#set-dev-configuration-directory">Set Dev Configuration Directory</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tutorials-dashboard-apps/dashboard.html#add-dev-configurations">Add Dev Configurations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials-dashboard-apps/dashboard.html#develop-ood-in-ood">Develop OOD in OOD</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tutorials-dashboard-apps/shell-app.html">Developing the Shell App</a><ul>
@@ -239,7 +240,7 @@ development on these apps from <em>within</em> the production OnDemand instance 
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="tutorials-dashboard-apps/dashboard.html" class="btn btn-neutral float-right" title="Developing the Dashboard App" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="tutorials-dashboard-apps/dashboard.html" class="btn btn-neutral float-right" title="Developing the OOD Dashboard App" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="tutorials-passenger-apps/ps-to-quota.html" class="btn btn-neutral float-left" title="Creating a Status App" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
