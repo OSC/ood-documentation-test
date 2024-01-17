@@ -245,6 +245,7 @@ Configuration Properties with profile support
 
       custom_css_files: ["/myfolder/navigation.css", "/myfolder/pinned_apps.css"]
 
+.. _custom_javascript_files:
 .. describe:: custom_javascript_files (Array<String>, [])
 
   List of relative URLs to custom javascript files to include in all Dashboard pages.
@@ -736,6 +737,65 @@ Configuration Properties
 
       remote_files_enabled: true
 
+
+.. describe:: remote_files_validation (Boolean, false)
+
+  Enable validating remote files on startup.
+
+  Default
+    Remote file systems will not be validated on startup.
+
+    .. code-block:: yaml
+
+      remote_files_validation: false
+
+  Example
+    Remote file systems will be validated on startup.
+
+    .. code-block:: yaml
+
+      remote_files_validation: true
+
+.. _upload_enabled:
+.. describe:: upload_enabled (Boolean, true)
+
+  Enable uploading files.
+
+  Default
+    File uploads are enabled.
+
+    .. code-block:: yaml
+
+      upload_enabled: true
+
+  Example
+    File uploads are disabled. Users will not be able to upload
+    files through Open OnDemand.
+
+    .. code-block:: yaml
+
+      upload_enabled: false
+
+.. _downlad_enabled:
+.. describe:: download_enabled (Boolean, true)
+
+  Enable downloading files.
+
+  Default
+    File downloads are enabled.
+
+    .. code-block:: yaml
+
+      download_enabled: true
+
+  Example
+    File downloads are disabled. Users will not be able to download
+    files through Open OnDemand.
+
+    .. code-block:: yaml
+
+      download_enabled: false
+
 .. describe:: hide_app_version (Boolean, false)
 
   Hide the interactive application's version.
@@ -754,6 +814,7 @@ Configuration Properties
 
       hide_app_version: true
 
+.. _globus_endpoints:
 .. describe:: globus_endpoints (Array<Object>, null)
 
   Add a Globus button to the file browser that opens the current directory
@@ -826,3 +887,25 @@ Configuration Properties
     .. code-block:: yaml
 
       google_analytics_tag_id: 'abc123'
+
+
+.. _motd_render_html:
+.. describe:: motd_render_html (Boolean, false)
+
+  Render HTML in the Message of the Day (MOTD).  This
+  configuration was added because some MOTD formats like
+  RSS can generate HTML that is potentially unsafe.
+
+  Default
+    The Message of the day will not render HTML.
+
+    .. code-block:: yaml
+
+      motd_render_html: false
+
+  Example
+    The Message of the day will render HTML.
+
+    .. code-block:: yaml
+
+      motd_render_html: true
