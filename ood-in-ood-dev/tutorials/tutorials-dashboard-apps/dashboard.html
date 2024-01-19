@@ -122,7 +122,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../tutorials-passenger-apps.html">Tutorials: Passenger Apps</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../tutorials-dashboard-apps.html">Developing The OOD Dashboard</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Developing the Dashboard App</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#strategy">Strategy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#things-to-know">Things To Know</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#create-a-dev-dashboard">Create a Dev Dashboard</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#add-env-local-file">Add <code class="docutils literal notranslate"><span class="pre">.env.local</span></code> File</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#set-dev-configuration-directory">Set Dev Configuration Directory</a></li>
@@ -216,16 +216,16 @@
 <p class="admonition-title">Warning</p>
 <p>You muse have followed <a class="reference internal" href="../../how-tos/app-development/enabling-development-mode.html#enabling-development-mode"><span class="std std-ref">Enabling App Development</span></a> for any part of this tutorial to work.</p>
 </div>
-<div class="section" id="strategy">
-<h2>Strategy<a class="headerlink" href="#strategy" title="Permalink to this headline">¶</a></h2>
-<ol class="arabic simple">
-<li><p>Start by completing the <a class="reference internal" href="../../how-tos/app-development/enabling-development-mode.html#enabling-development-mode"><span class="std std-ref">Enabling App Development</span></a> steps.</p></li>
-<li><p>Create a symlink named <code class="docutils literal notranslate"><span class="pre">dev</span></code> in the <code class="docutils literal notranslate"><span class="pre">~/ondemand/misc/ondemand/&lt;app&gt;</span></code>.</p></li>
-<li><p>In the app’s symlinked directory, use <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">branch</span></code> to start your development work.</p></li>
-<li><p>Create a <code class="docutils literal notranslate"><span class="pre">.env.local</span></code> file in the development dashboard app root to customize environment variables.</p></li>
-<li><p>Rebuild the <code class="docutils literal notranslate"><span class="pre">dashboard</span></code> app using <code class="docutils literal notranslate"><span class="pre">bin/setup</span></code> out of the app’s root for configuration changes.</p></li>
-<li><p>Use the Sandbox to launch and iterate on your work.</p></li>
-</ol>
+<div class="section" id="things-to-know">
+<h2>Things To Know<a class="headerlink" href="#things-to-know" title="Permalink to this headline">¶</a></h2>
+<p>We are going to be using <code class="docutils literal notranslate"><span class="pre">bundler</span></code> through a script which comes with OOD located in the root of the
+dashboard at <code class="docutils literal notranslate"><span class="pre">bin/setup</span></code>. What this will do for us is essentially run <code class="docutils literal notranslate"><span class="pre">bundler</span></code> and <code class="docutils literal notranslate"><span class="pre">npm</span></code> to ensure
+are environment is correct. This is all being pulled from the dashboard <code class="docutils literal notranslate"><span class="pre">Gemfile</span></code>. You could, in theory,
+add whatever you like to this <code class="docutils literal notranslate"><span class="pre">Gemfile</span></code> and rebuild OOD with that new gem for development work, as an
+example.</p>
+<p>Also, it is recommended to set this to your local app environment so that <code class="docutils literal notranslate"><span class="pre">bundler</span></code> does not try and install
+the gems on the system, as unlike <code class="docutils literal notranslate"><span class="pre">npm</span></code> which starts builds locally by default, <code class="docutils literal notranslate"><span class="pre">bundler</span></code> attempts
+system installs by default.</p>
 </div>
 <div class="section" id="create-a-dev-dashboard">
 <h2>Create a Dev Dashboard<a class="headerlink" href="#create-a-dev-dashboard" title="Permalink to this headline">¶</a></h2>
