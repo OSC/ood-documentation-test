@@ -73,6 +73,12 @@ To display a MOTD file on the Dashboard ensure that the environment variables ``
 .. tip::
     The ``_erb`` formats support ERB rendering to generate more dynamic messages.
 
+.. warning::
+  Some MOTD formats like ``rss``, ``markdown`` and ``markdown_erb`` can contain malicous
+  HTML content. For your safety, by default, the Open OnDemand system will not render
+  HTML.  We provide :ref:`a configuration to enable HTML rendering in MOTD <motd_render_html>`
+  should you need to render HTML.
+
 .. figure:: /images/dashboard_motd.png
    :align: center
 
@@ -153,6 +159,8 @@ This will result in a CSS tag added to all dashboard pages with the path: ``/pub
   custom_css_files: ["/myfolder/custom-branding.css"]
 
 .. _help_menu_guide:
+
+.. include:: customizations/overriding-partials.inc
 
 Add URLs to Help Menu
 ---------------------
@@ -360,9 +368,9 @@ We recommend setting this environment variable in ``/etc/ood/config/nginx_stage.
    pun_custom_env:
     OOD_ALLOWLIST_PATH: "/users:/fs/project:/fs/scratch"
 
-.. warning:: This is not yet used in production at OSC, so we consider this feature "experimental" for now.
-
 .. warning:: This allowlist is not enforced across every action a user can take in an app (including the developer views in the Dashboard). Also, it is enforced via the apps themselves, which is not as robust as using cgroups on the PUN.
+
+.. include:: customizations/disabling-users.inc
 
 .. _set-default-ssh-host:
 
@@ -897,7 +905,7 @@ resources used by the user alone. This is the default type of quota object and
 is given in the following format:
 
 
-.. warning:: A block must be equal to 1 KB for proper conversions.
+.. warning:: A block must be equal to 1 KiB for proper conversions.
 
 
 Individual Fileset Quota
@@ -1157,7 +1165,7 @@ To resolve this set ``OOD_JOB_NAME_ILLEGAL_CHARS`` to ``/`` for all OOD applicat
 
   # /etc/ood/config/nginx_stage.yml
   pun_custom_env:
-    - OOD_JOB_NAME_ILLEGAL_CHARS: "/"
+    OOD_JOB_NAME_ILLEGAL_CHARS: "/"
 
 .. _customize_dex_theme:
 

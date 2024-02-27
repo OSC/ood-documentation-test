@@ -54,6 +54,27 @@ Configure General Options
 
           servername: "www.example.com"
 
+.. describe:: server_aliases (Array<String>, [])
+
+    Aliases for this server. These will result in the apache
+    ``ServerAlias`` configuration allowing one server to respond
+    to multiple hostnames.
+
+     Default
+        There ar no server aliases.
+
+        .. code-block:: yaml
+
+          server_aliases: []
+
+     Example
+        Along with the ``servername`` also respond to
+        the hostname ``class.my-cool-site.example.edu``.
+
+        .. code-block:: yaml
+
+          servername: "class.my-cool-site.example.edu"
+
 .. describe:: proxy_server (String, null)
 
   The proxy server, if one exists. Used when you have a proxy
@@ -105,6 +126,7 @@ Configure General Options
           ssl: null
 
      Example
+      Supply ssl information.
        
        .. code-block:: yaml
 
@@ -113,6 +135,27 @@ Configure General Options
             - SSLCertificateKeyFile /etc/letsencrypt/live/change-me/privkey.pem
             - SSLCertificateChainFile /etc/letsencrypt/live/change-me/chain.pem
 
+
+.. _disable_logs:
+.. describe:: disable_logs (Boolean, false)
+
+  Disable logs in favor of supplying log directives in some other
+  configuration file.
+
+  Default
+    Logs are enabled and defined in this virtual host.
+
+    .. code-block:: yaml
+
+        disable_logs: false
+
+  Example
+    Disable logs in favor of supplying log directives in some other
+    configuration file.
+
+    .. code-block:: yaml
+
+      disable_logs: true
 
 .. describe:: logroot (String)
 
@@ -454,6 +497,48 @@ Configure General Options
             - "AuthType openid-connect"
             - "Require valid-user"
 
+.. _custom_vhost_directives:
+.. describe:: custom_vhost_directives (Array<String>, [])
+
+  Supply custom directives at the virtual host level.
+
+  Default
+    No custom virtual host directives.
+
+    .. code-block:: yaml
+
+        custom_vhost_directives: []
+
+  Example
+    Add a single custom virutal host directive
+    to set an environment variable.
+
+    .. code-block:: yaml
+
+      custom_vhost_directives:
+        - SetEnv FOO BAR
+
+.. _custom_location_directives:
+.. describe:: custom_location_directives (Array<String>, [])
+
+  Supply custom directives for every ``Location`` in the virtual host.
+
+  Default
+    No custom location directives.
+
+    .. code-block:: yaml
+
+        custom_location_directives: []
+
+  Example
+    Add a single custom location directive
+    to set an environment variable.
+
+    .. code-block:: yaml
+
+      custom_location_directives:
+        - SetEnv FOO BAR
+
 .. describe:: root_uri (String)
 
      the URI a user is redirected to when they access the root of the website
@@ -634,8 +719,13 @@ assets and links supplied by the web server are relative and not absolute.
 
 .. describe:: host_regex (String)
 
-     the regular expression used as a allowlist for allowing a user to reverse
-     proxy to a given host.
+    .. warning::
+      Wildcards like ``.`` should be avoided because they cause issues in parsing.
+      ``host_regex`` should always have a domain name that your center owns (for security)
+      and should specify lists of character classes like ``[w.-]`` (for proper functionality).
+
+    The regular expression used as a allowlist for allowing a user to reverse
+    proxy to a given host.
 
      Default
        Allow proxying to all hosts in the world (please change this if you

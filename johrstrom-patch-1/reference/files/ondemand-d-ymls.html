@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ondemand.d/*.yml files &mdash; Open OnDemand 3.0.3 documentation</title>
+  <title>ondemand.d/*.yml files &mdash; Open OnDemand 3.1.0 documentation</title>
   
 
   
@@ -39,7 +39,7 @@
   <link rel="stylesheet" href="../../_static/tabs.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="ood-portal-generator" href="../commands/ood-portal-generator.html" />
+    <link rel="next" title="submit.yml.erb" href="submit-yml-erb.html" />
     <link rel="prev" title="nginx_stage.yml" href="nginx-stage-yml.html" />
  
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-34776817-3"></script>
@@ -77,7 +77,7 @@
             
             
               <div class="version">
-                3.0
+                3.1
               </div>
             
           
@@ -120,8 +120,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../../install-ihpc-apps.html">Install Other Interactive Apps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../tutorials/tutorials-interactive-apps.html">Tutorials: Interactive Apps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../tutorials/tutorials-passenger-apps.html">Tutorials: Passenger Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/tutorials-dashboard-apps.html">Developing The OOD Dashboard</a></li>
 </ul>
-<p class="caption"><span class="caption-text">More</span></p>
+<p class="caption"><span class="caption-text">Reference</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../architecture.html">Architecture</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../reference.html">Configuration Reference</a><ul class="current">
@@ -132,13 +133,14 @@
 <li class="toctree-l3"><a class="reference internal" href="#configuration-properties">Configuration Properties</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="submit-yml-erb.html">submit.yml.erb</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../commands/ood-portal-generator.html">ood-portal-generator</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../commands/nginx-stage/usage.html">nginx-stage</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../pun-environment.html">PUN environment</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../release-notes.html">Release Notes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../version-policy.html">OOD Versioning Policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../version-policy.html">Versioning Policy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../issues/overview.html">OnDemand’s Known Issues</a></li>
 </ul>
@@ -454,6 +456,26 @@ These CSS files can be used to customize the look and feel of the Dashboard.</p>
 </dl>
 </dd></dl>
 
+<span class="target" id="custom-javascript-files"></span><dl class="describe">
+<dt>
+<code class="sig-name descname">custom_javascript_files (Array&lt;String&gt;, [])</code></dt>
+<dd><p>List of relative URLs to custom javascript files to include in all Dashboard pages.
+These javascript files can be used to customize the behavior of the Dashboard.</p>
+<p>The relative path will be prefixed with the value of the <code class="docutils literal notranslate"><span class="pre">public_url</span></code> property.</p>
+<dl>
+<dt>Default</dt><dd><p>Empty list, no custom javascript files will be included.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">custom_javascript_files</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span><span class="w"></span>
+</pre></div>
+</div>
+</dd>
+<dt>Example</dt><dd><p>Add two custom Javascript files: <code class="docutils literal notranslate"><span class="pre">/myfolder/navigation.js</span></code> and <code class="docutils literal notranslate"><span class="pre">/myfolder/pinned_apps.js</span></code> to the Dashboard.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">custom_javascript_files</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;/myfolder/navigation.js&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;/myfolder/pinned_apps.js&quot;</span><span class="p p-Indicator">]</span><span class="w"></span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="describe">
 <dt>
 <code class="sig-name descname">dashboard_title (String, 'Open OnDemand')</code></dt>
@@ -687,7 +709,7 @@ behaviour.</p>
 on what this feature does.</p>
 <dl>
 <dt>Default</dt><dd><p>False. Interactive app forms will not be dynamic.</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">bc_dynamic_js</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">bc_dynamic_js</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w"></span>
 </pre></div>
 </div>
 </dd>
@@ -802,9 +824,12 @@ to <code class="docutils literal notranslate"><span class="pre">/bin/bash</span>
 <span class="target" id="module-file-dir"></span><dl class="describe">
 <dt>
 <code class="sig-name descname">module_file_dir (String, null)</code></dt>
-<dd><p>Specify a directory where module files per cluster exist. This directory
-should have module spider-json output as indicated by the command below.
-Open OnDemand will read these files and potentially show them in a from.</p>
+<dd><p>Specify a directory where <strong>cluster specific module files</strong> exist. It’s important
+that there be a file for each cluster because the system can then tie those
+modules to that specific cluster.</p>
+<p>This directory should have <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">spider-json</span></code> output <strong>for each cluster</strong>
+as indicated by the command below. Open OnDemand will read these files and
+potentially show them in a from for a cluster called <strong>my_cluster</strong>.</p>
 <p><code class="docutils literal notranslate"><span class="pre">$LMOD_DIR/spider</span> <span class="pre">-o</span> <span class="pre">spider-json</span> <span class="pre">$MODULEPATH</span> <span class="pre">&gt;</span> <span class="pre">/some/directory/my_cluster.json</span></code></p>
 <dl>
 <dt>Default</dt><dd><p>Null. No directory given.</p>
@@ -820,20 +845,20 @@ Open OnDemand will read these files and potentially show them in a from.</p>
 </dl>
 </dd></dl>
 
-<dl class="describe">
+<span class="target" id="user-settings-file"></span><dl class="describe">
 <dt>
 <code class="sig-name descname">user_settings_file (String, '.ood')</code></dt>
-<dd><p>The name of the file to store user settings. This file is used to store the selected profile.
-The path to the file is managed by the configuration variable <code class="docutils literal notranslate"><span class="pre">Configuration.dataroot</span></code>.
-This is usually: <code class="docutils literal notranslate"><span class="pre">~/ondemand/data/sys/dashboard</span></code></p>
+<dd><p>The full path of the file to store user settings. This file is used to store
+any user defined settings.</p>
 <dl>
 <dt>Default</dt><dd><p>A file called ‘.ood’.</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">user_settings_file</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;.ood&quot;</span><span class="w"></span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">user_settings_file</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;~/.config/ondemand/settings.yml&quot;</span><span class="w"></span>
 </pre></div>
 </div>
 </dd>
-<dt>Example</dt><dd><p>Use <code class="docutils literal notranslate"><span class="pre">user_settings.txt</span></code> as the file name for user settings.</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">user_settings_file</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;user_settings.txt&quot;</span><span class="w"></span>
+<dt>Example</dt><dd><p>Use <code class="docutils literal notranslate"><span class="pre">user_settings.txt</span></code> as the file name for user settings
+and change the path slightly.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">user_settings_file</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;~/.config/local/open-ondemand/user_settings.txt&quot;</span><span class="w"></span>
 </pre></div>
 </div>
 </dd>
@@ -922,6 +947,62 @@ available on all clusters.</p>
 
 <dl class="describe">
 <dt>
+<code class="sig-name descname">remote_files_validation (Boolean, false)</code></dt>
+<dd><p>Enable validating remote files on startup.</p>
+<dl>
+<dt>Default</dt><dd><p>Remote file systems will not be validated on startup.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">remote_files_validation</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w"></span>
+</pre></div>
+</div>
+</dd>
+<dt>Example</dt><dd><p>Remote file systems will be validated on startup.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">remote_files_validation</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="upload-enabled"></span><dl class="describe">
+<dt>
+<code class="sig-name descname">upload_enabled (Boolean, true)</code></dt>
+<dd><p>Enable uploading files.</p>
+<dl>
+<dt>Default</dt><dd><p>File uploads are enabled.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">upload_enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+</pre></div>
+</div>
+</dd>
+<dt>Example</dt><dd><p>File uploads are disabled. Users will not be able to upload
+files through Open OnDemand.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">upload_enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w"></span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="downlad-enabled"></span><dl class="describe">
+<dt>
+<code class="sig-name descname">download_enabled (Boolean, true)</code></dt>
+<dd><p>Enable downloading files.</p>
+<dl>
+<dt>Default</dt><dd><p>File downloads are enabled.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">download_enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+</pre></div>
+</div>
+</dd>
+<dt>Example</dt><dd><p>File downloads are disabled. Users will not be able to download
+files through Open OnDemand.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">download_enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w"></span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="describe">
+<dt>
 <code class="sig-name descname">hide_app_version (Boolean, false)</code></dt>
 <dd><p>Hide the interactive application’s version.</p>
 <dl>
@@ -932,6 +1013,94 @@ available on all clusters.</p>
 </dd>
 <dt>Example</dt><dd><p>Never show interactive application versions.</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">hide_app_version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="globus-endpoints"></span><dl class="describe">
+<dt>
+<code class="sig-name descname">globus_endpoints (Array&lt;Object&gt;, null)</code></dt>
+<dd><p>Add a Globus button to the file browser that opens the current directory
+in the Globus transfer web app.</p>
+<p>Note that <code class="docutils literal notranslate"><span class="pre">endpoint_path</span></code> is the path that Globus will initialize to
+and is very likely to be <code class="docutils literal notranslate"><span class="pre">/</span></code> regardless of the actual storage path.</p>
+<dl>
+<dt>Default</dt><dd><p>Null, do not enable the Globus button</p>
+</dd>
+<dt>Example</dt><dd><p>Use a single endpoint for the whole filesystem.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">globus_endpoints</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">endpoint</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;716de4ac-xxxx-xxxx-xxxx-xxxxxxxxxxxx&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">endpoint_path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="w"></span>
+</pre></div>
+</div>
+</dd>
+<dt>Example</dt><dd><p>Use multiple endpoints.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">globus_endpoints</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/home&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">endpoint</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;716de4ac-xxxx-xxxx-xxxx-xxxxxxxxxxxx&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">endpoint_path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/home&quot;</span><span class="w"></span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/project&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">endpoint</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;9f1fe759-xxxx-xxxx-xxxx-xxxxxxxxxxxx&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">endpoint_path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/project&quot;</span><span class="w"></span>
+</pre></div>
+</div>
+</dd>
+<dt>Example</dt><dd><p>When pathnames differ between the filesystem and endpoint.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">globus_endpoints</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/project&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">endpoint</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;9f1fe759-xxxx-xxxx-xxxx-xxxxxxxxxxxx&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">endpoint_path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="w"></span>
+</pre></div>
+</div>
+</dd>
+<dt>Example</dt><dd><p>Reference the home directory of the current user.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">globus_endpoints</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&lt;%=</span><span class="nv">  </span><span class="s">Etc.getpwnam(Etc.getlogin).dir</span><span class="nv"> </span><span class="s">%&gt;&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">endpoint</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;9f1fe759-xxxx-xxxx-xxxx-xxxxxxxxxxxx&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">endpoint_path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="w"></span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="google-analytics-tag-id"></span><dl class="describe">
+<dt>
+<code class="sig-name descname">google_analytics_tag_id (String, nil)</code></dt>
+<dd><p>Configure Google Analytics by supplying a tag id.</p>
+<dl>
+<dt>Default</dt><dd><p>Google Analytics is disabled.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">google_analytics_tag_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nil</span><span class="w"></span>
+</pre></div>
+</div>
+</dd>
+<dt>Example</dt><dd><p>Google Analytics is enabled and will upload data to the
+tag id <code class="docutils literal notranslate"><span class="pre">abc123</span></code>.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">google_analytics_tag_id</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;abc123&#39;</span><span class="w"></span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="motd-render-html"></span><dl class="describe">
+<dt>
+<code class="sig-name descname">motd_render_html (Boolean, false)</code></dt>
+<dd><p>Render HTML in the Message of the Day (MOTD).  This
+configuration was added because some MOTD formats like
+RSS can generate HTML that is potentially unsafe.</p>
+<dl>
+<dt>Default</dt><dd><p>The Message of the day will not render HTML.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">motd_render_html</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w"></span>
+</pre></div>
+</div>
+</dd>
+<dt>Example</dt><dd><p>The Message of the day will render HTML.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">motd_render_html</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
 </pre></div>
 </div>
 </dd>
@@ -949,7 +1118,7 @@ available on all clusters.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../commands/ood-portal-generator.html" class="btn btn-neutral float-right" title="ood-portal-generator" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="submit-yml-erb.html" class="btn btn-neutral float-right" title="submit.yml.erb" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="nginx-stage-yml.html" class="btn btn-neutral float-left" title="nginx_stage.yml" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -961,7 +1130,7 @@ available on all clusters.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2017-2023, Ohio Supercomputer Center
+        &copy; Copyright 2017-2024, Ohio Supercomputer Center
 
     </p>
   </div> 
@@ -985,6 +1154,8 @@ available on all clusters.</p>
       <dt>Versions</dt>
       
         <dd><a href="https://OSC.github.io/ood-documentation/latest/reference/files/ondemand-d-ymls.html">latest</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-3.0/reference/files/ondemand-d-ymls.html">3.0</a></dd>
       
         <dd><a href="https://OSC.github.io/ood-documentation/release-2.0/reference/files/ondemand-d-ymls.html">2.0</a></dd>
       

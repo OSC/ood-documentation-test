@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>v3.0 Release Notes &mdash; Open OnDemand 3.0.3 documentation</title>
+  <title>v3.0 Release Notes &mdash; Open OnDemand 3.1.0 documentation</title>
   
 
   
@@ -40,7 +40,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="v2.0 Release Notes" href="v2.0-release-notes.html" />
-    <link rel="prev" title="Release Notes" href="../release-notes.html" />
+    <link rel="prev" title="v3.1 Release Notes" href="v3.1-release-notes.html" />
  
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-34776817-3"></script>
 <script>
@@ -77,7 +77,7 @@
             
             
               <div class="version">
-                3.0
+                3.1
               </div>
             
           
@@ -120,12 +120,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../install-ihpc-apps.html">Install Other Interactive Apps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorials-interactive-apps.html">Tutorials: Interactive Apps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorials-passenger-apps.html">Tutorials: Passenger Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorials-dashboard-apps.html">Developing The OOD Dashboard</a></li>
 </ul>
-<p class="caption"><span class="caption-text">More</span></p>
+<p class="caption"><span class="caption-text">Reference</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../architecture.html">Architecture</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../reference.html">Configuration Reference</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../release-notes.html">Release Notes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="v3.1-release-notes.html">v3.1 Release Notes</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">v3.0 Release Notes</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#administrative-changes">Administrative changes</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#new-features">New Features</a></li>
@@ -171,7 +173,7 @@
 <li class="toctree-l2"><a class="reference internal" href="v1.0-release-notes.html">v1.0 Release Notes</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../version-policy.html">OOD Versioning Policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../version-policy.html">Versioning Policy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../issues/overview.html">OnDemand’s Known Issues</a></li>
 </ul>
@@ -443,9 +445,13 @@ improving our documentation in either its content or its organization.</p>
 </div>
 <div class="section" id="upgrade-directions">
 <h3>Upgrade directions<a class="headerlink" href="#upgrade-directions" title="Permalink to this headline">¶</a></h3>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p>Ensure <code class="docutils literal notranslate"><span class="pre">websockify</span></code> version is <code class="docutils literal notranslate"><span class="pre">&gt;=</span> <span class="pre">0.10.0</span></code> on the compute nodes in order for desktops to launch correctly after upgrade.</p>
+</div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>As always please update the <em>development</em> or <em>test</em> instances of OnDemand installed at your center first to test and verify before you modify the <em>production</em> instance.</p>
+<p><strong>Update</strong> the <strong>development</strong> or <strong>test</strong> instances of OnDemand installed at your center <strong>first</strong> before you modify the <em>production</em> instance.</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -472,7 +478,7 @@ sudo yum update ondemand
 </pre></div>
 </div>
 </li>
-<li><p>(Optional) If using Dex based authentiction, update the <code class="docutils literal notranslate"><span class="pre">ondemand-dex</span></code> package.</p>
+<li><p>(Optional) If using Dex based authentication, update the <code class="docutils literal notranslate"><span class="pre">ondemand-dex</span></code> package.</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo yum update ondemand-dex
 </pre></div>
 </div>
@@ -624,7 +630,7 @@ behaves and how to enable it.</p>
         <a href="v2.0-release-notes.html" class="btn btn-neutral float-right" title="v2.0 Release Notes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../release-notes.html" class="btn btn-neutral float-left" title="Release Notes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="v3.1-release-notes.html" class="btn btn-neutral float-left" title="v3.1 Release Notes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -633,7 +639,7 @@ behaves and how to enable it.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2017-2023, Ohio Supercomputer Center
+        &copy; Copyright 2017-2024, Ohio Supercomputer Center
 
     </p>
   </div> 
@@ -657,6 +663,8 @@ behaves and how to enable it.</p>
       <dt>Versions</dt>
       
         <dd><a href="https://OSC.github.io/ood-documentation/latest/release-notes/v3.0-release-notes.html">latest</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-3.0/release-notes/v3.0-release-notes.html">3.0</a></dd>
       
         <dd><a href="https://OSC.github.io/ood-documentation/release-2.0/release-notes/v3.0-release-notes.html">2.0</a></dd>
       

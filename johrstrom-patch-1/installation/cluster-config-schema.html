@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Cluster Config Schema v2 &mdash; Open OnDemand 3.0.3 documentation</title>
+  <title>Cluster Config Schema v2 &mdash; Open OnDemand 3.1.0 documentation</title>
   
 
   
@@ -77,7 +77,7 @@
             
             
               <div class="version">
-                3.0
+                3.1
               </div>
             
           
@@ -118,6 +118,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#batch-connect">batch_connect:</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="#login-cluster-only">Login Cluster Only</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="resource-manager/torque.html">Torque</a></li>
@@ -131,6 +132,7 @@
 <li class="toctree-l2"><a class="reference internal" href="resource-manager/systemd.html">Systemd</a></li>
 <li class="toctree-l2"><a class="reference internal" href="resource-manager/bin-override-example.html">A Working Example of a <code class="docutils literal notranslate"><span class="pre">bin_overrides</span></code> Script</a></li>
 <li class="toctree-l2"><a class="reference internal" href="resource-manager/test.html">Test Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resource-manager/advanced-configs.html">Advanced Resource Manager Configrations</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../how-tos/app-development/interactive/setup.html">Setup Interactive Apps</a></li>
@@ -147,13 +149,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../install-ihpc-apps.html">Install Other Interactive Apps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorials-interactive-apps.html">Tutorials: Interactive Apps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorials-passenger-apps.html">Tutorials: Passenger Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorials-dashboard-apps.html">Developing The OOD Dashboard</a></li>
 </ul>
-<p class="caption"><span class="caption-text">More</span></p>
+<p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../architecture.html">Architecture</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../reference.html">Configuration Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../release-notes.html">Release Notes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../version-policy.html">OOD Versioning Policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../version-policy.html">Versioning Policy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../issues/overview.html">OnDemand’s Known Issues</a></li>
 </ul>
@@ -389,6 +392,24 @@ See <a class="reference internal" href="../customizations.html#disable-host-link
 </div>
 </div>
 </div>
+<div class="section" id="login-cluster-only">
+<h2>Login Cluster Only<a class="headerlink" href="#login-cluster-only" title="Permalink to this headline">¶</a></h2>
+<p>Suppose you need want to create a <em>login cluster that does not schedule or run jobs</em>. It is used purely as a login/shell cluster only.</p>
+<p>To accomplish this, you need to simply leave out the <code class="docutils literal notranslate"><span class="pre">v2.job</span></code> stanza that associates a scheduler with the cluster.</p>
+<p>An example config file in <code class="docutils literal notranslate"><span class="pre">ondemand.d/pitzer_01_login.yml</span></code>:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nn">---</span><span class="w"></span>
+<span class="nt">v2</span><span class="p">:</span><span class="w"></span>
+<span class="nt">metadata</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Pitzer</span><span class="nv"> </span><span class="s">Login&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://www.osc.edu/supercomputing/computing/pitzer&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">hidden</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w"></span>
+<span class="nt">login</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;pitzer-login01.hpc.osu.edu&quot;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Again, the thing to note here is we’ve left off the <code class="docutils literal notranslate"><span class="pre">v2.job</span></code> which renders the cluster useable only for logins, i.e.
+<em>no jobs will be scheduleable on this cluster.</em></p>
+</div>
 </div>
 
 
@@ -411,7 +432,7 @@ See <a class="reference internal" href="../customizations.html#disable-host-link
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2017-2023, Ohio Supercomputer Center
+        &copy; Copyright 2017-2024, Ohio Supercomputer Center
 
     </p>
   </div> 
@@ -435,6 +456,8 @@ See <a class="reference internal" href="../customizations.html#disable-host-link
       <dt>Versions</dt>
       
         <dd><a href="https://OSC.github.io/ood-documentation/latest/installation/cluster-config-schema.html">latest</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-3.0/installation/cluster-config-schema.html">3.0</a></dd>
       
         <dd><a href="https://OSC.github.io/ood-documentation/release-2.0/installation/cluster-config-schema.html">2.0</a></dd>
       

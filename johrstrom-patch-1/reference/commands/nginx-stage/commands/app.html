@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>nginx_stage app &mdash; Open OnDemand 3.0.3 documentation</title>
+  <title>nginx_stage app &mdash; Open OnDemand 3.1.0 documentation</title>
   
 
   
@@ -77,7 +77,7 @@
             
             
               <div class="version">
-                3.0
+                3.1
               </div>
             
           
@@ -120,14 +120,16 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../install-ihpc-apps.html">Install Other Interactive Apps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/tutorials-interactive-apps.html">Tutorials: Interactive Apps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/tutorials-passenger-apps.html">Tutorials: Passenger Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/tutorials-dashboard-apps.html">Developing The OOD Dashboard</a></li>
 </ul>
-<p class="caption"><span class="caption-text">More</span></p>
+<p class="caption"><span class="caption-text">Reference</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../../architecture.html">Architecture</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../../../reference.html">Configuration Reference</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../../../files/ood-portal-yml.html">ood_portal.yml</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../files/nginx-stage-yml.html">nginx_stage.yml</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../files/ondemand-d-ymls.html">ondemand.d/*.yml files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../files/submit-yml-erb.html">submit.yml.erb</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../ood-portal-generator.html">ood-portal-generator</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../usage.html">nginx-stage</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="pun.html">nginx_stage pun</a></li>
@@ -150,7 +152,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../release-notes.html">Release Notes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../version-policy.html">OOD Versioning Policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../version-policy.html">Versioning Policy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../glossary.html">Glossary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../issues/overview.html">OnDemand’s Known Issues</a></li>
 </ul>
@@ -283,11 +285,11 @@ request should be proxied to the per-user NGINX server (e.g., <code class="docut
 NGINX process.</p>
 <div class="section" id="default-installation">
 <h3>Default Installation<a class="headerlink" href="#default-installation" title="Permalink to this headline">¶</a></h3>
-<p><a class="reference internal" href="#app-mapping-table"><span class="std std-numref">Table 11</span></a> details the mapping between the requested URL path
+<p><a class="reference internal" href="#app-mapping-table"><span class="std std-numref">Table 10</span></a> details the mapping between the requested URL path
 to the app root directory for in the NGINX app config under a default
 installation.</p>
 <span id="app-mapping-table"></span><table class="docutils align-default" id="id2">
-<caption><span class="caption-number">Table 11 </span><span class="caption-text">Mapping of apps for a default installation</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
+<caption><span class="caption-number">Table 10 </span><span class="caption-text">Mapping of apps for a default installation</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col style="width: 33%" />
 <col style="width: 33%" />
@@ -338,7 +340,7 @@ installation.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2017-2023, Ohio Supercomputer Center
+        &copy; Copyright 2017-2024, Ohio Supercomputer Center
 
     </p>
   </div> 
@@ -362,6 +364,8 @@ installation.</p>
       <dt>Versions</dt>
       
         <dd><a href="https://OSC.github.io/ood-documentation/latest/reference/commands/nginx-stage/commands/app.html">latest</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-3.0/reference/commands/nginx-stage/commands/app.html">3.0</a></dd>
       
         <dd><a href="https://OSC.github.io/ood-documentation/release-2.0/reference/commands/nginx-stage/commands/app.html">2.0</a></dd>
       
