@@ -1024,13 +1024,15 @@ files through Open OnDemand.</p>
 <code class="sig-name descname">globus_endpoints (Array&lt;Object&gt;, null)</code></dt>
 <dd><p>Add a Globus button to the file browser. The button opens the current directory
 in the Globus transfer web app.</p>
-<p>In the example with multiple endpoints, suppose you use the file browser to look at your file system.
-If you were to select the <code class="docutils literal notranslate"><span class="pre">/home</span></code> path to see the contents and then click the Globus button, you would
-see the endpoint associated with <code class="docutils literal notranslate"><span class="pre">path:</span> <span class="pre">&quot;/home&quot;</span></code> in the Globus interface.</p>
-<p>If you then go back to the OOD file browser and select the <code class="docutils literal notranslate"><span class="pre">/project</span></code> path and then click the Globus button,
-you would now see the endpoint associated with the <code class="docutils literal notranslate"><span class="pre">path:</span> <span class="pre">&quot;/project&quot;</span></code> endpoint in the Globus interface.</p>
-<p>The gist here is you <em>select the path on the filesystem in the file browser app first</em> then
-click the Globus button to show the corresponding endpoint in the Globus interface in a newly opened tab.</p>
+<p>In the example with multiple endpoints, suppose you use the local file browser to look at your local file system.
+If you were to navigate to your local <code class="docutils literal notranslate"><span class="pre">/home</span></code> and then click the Globus button, you would
+see a new tab open with the endpoint associated to that local path in the Globus interface.</p>
+<p>If you then go back to the localfile browser and navigate to <code class="docutils literal notranslate"><span class="pre">/project</span></code> and then click the Globus button,
+you would now see the endpoint associated with that local <code class="docutils literal notranslate"><span class="pre">/project</span></code> directory open in the Globus interface
+in a new tab.</p>
+<p>The gist here is you <em>navigate to the desired directory using the local filebrowser</em> then
+click the Globus button to show the corresponding endpoint in the Globus interface
+which opens in a new tab.</p>
 <p>Note that <code class="docutils literal notranslate"><span class="pre">endpoint_path</span></code> is the path that Globus will initialize to
 and is very likely to be <code class="docutils literal notranslate"><span class="pre">/</span></code> regardless of the actual storage path.</p>
 <dl>
