@@ -904,6 +904,18 @@ If the quota is defined as a ``user`` quota, then it applies to only disk
 resources used by the user alone. This is the default type of quota object and
 is given in the following format:
 
+.. code:: json
+
+   {
+     "type": "user",
+     "block_limit": 5000000, 
+     "file_limit": 1000000, 
+     "path": "/path/to/volume2", 
+     "total_block_usage": 400000, 
+     "total_file_usage": 1000, 
+     "user": "user1"
+   }
+
 
 .. warning:: A block must be equal to 1 KiB for proper conversions.
 
@@ -1205,8 +1217,8 @@ The default ``ondemand`` theme can also be configured using the following config
      frontend:
        issuer: "MyCenter OnDemand"
        extra:
-         navLogo: "/path/to/custom/nav-logo.png"
-         loginLogo: "/path/to/custom/logo.png"
+         navLogo: "/public/nav-logo.png"
+         loginLogo: "/public/logo.png"
          loginTitle: "Log in with your Center username and password"
          loginButtonText: "Log in with your Center account"
          usernamePlaceholder: "center-username"
@@ -1300,7 +1312,7 @@ Accessing Remote File Systems
 
 Since 2.1 you can use ``rclone`` to interact with remote file systems.  Since
 every command in Open OnDemand is issued *as the user*, the user themselves
-are required to setup their ``rclone`` remomtes.
+are required to setup their ``rclone`` remotes.
 
 You can refer to the `OSC's rclone documentation`_ on how to configure rclone
 remotes.
