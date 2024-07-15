@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Authentication Overview &mdash; Open OnDemand 3.1.0 documentation</title>
+  <title>Overview &mdash; Open OnDemand 3.1.0 documentation</title>
   
 
   
@@ -102,9 +102,33 @@
             
             
               <p class="caption"><span class="caption-text">Getting Started</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../requirements.html">Requirements</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../installation.html">Installation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../installation/install-software.html">1. Install Software</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../authentication.html">2. Authentication</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Overview</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="overview/configure-authentication.html">1. Configure Apache Authentication</a></li>
+<li class="toctree-l4"><a class="reference internal" href="overview/map-user.html">2. Setup User Mapping</a></li>
+<li class="toctree-l4"><a class="reference internal" href="overview/configure-logout.html">3. Configure Logout</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="oidc.html">OpenID Connect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dex.html">OpenID Connect with Dex</a></li>
+<li class="toctree-l3"><a class="reference internal" href="shibboleth.html">Shibboleth</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cas.html">CAS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial-oidc-keycloak-rhel7.html">OpenID Connect with KeyCloak on RHEL7</a></li>
+<li class="toctree-l3"><a class="reference internal" href="duo-2fa-with-keycloak.html">Two Factor Auth using Duo with Keycloak</a></li>
+<li class="toctree-l3"><a class="reference internal" href="adfs-with-auth-mellon.html">SAML Authentication with Active Directory Federated Services (ADFS) and mod_auth_mellon</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nsf-access.html">NSF ACCESS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="insecure.html">Other Insecure Options</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/add-ssl.html">3. Secure Apache httpd</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/modify-system-security.html">4. Add SELinux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#building-from-source">Building From Source</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../installation/add-cluster-config.html">Cluster Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../how-tos/app-development/interactive/setup.html">Setup Interactive Apps</a></li>
 </ul>
@@ -123,26 +147,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorials-dashboard-apps.html">Developing The OOD Dashboard</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Reference</span></p>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="../architecture.html">Architecture</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../reference.html">Configuration Reference</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../security.html">Security</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="../security.html#introduction">Introduction</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="../security/vulnerability-management.html">Vulnerability Management</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Authentication Overview</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="overview/configure-authentication.html">1. Configure Apache Authentication</a></li>
-<li class="toctree-l4"><a class="reference internal" href="overview/map-user.html">2. Setup User Mapping</a></li>
-<li class="toctree-l4"><a class="reference internal" href="overview/configure-logout.html">3. Configure Logout</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="../how-tos/monitoring/logging.html">Logging</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../customizations.html">Customizations</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../security.html#security-features">Security Features</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../security.html#conclusion">Conclusion</a></li>
-</ul>
-</li>
 <li class="toctree-l1"><a class="reference internal" href="../release-notes.html">Release Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../version-policy.html">Versioning Policy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
@@ -195,7 +202,7 @@
         
           <li><a href="../authentication.html"><span class="section-number">2. </span>Authentication</a> &raquo;</li>
         
-      <li>Authentication Overview</li>
+      <li>Overview</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -216,8 +223,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="authentication-overview">
-<span id="id1"></span><h1>Authentication Overview<a class="headerlink" href="#authentication-overview" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="overview">
+<span id="authentication-overview"></span><h1>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h1>
 <p>Configuring Open OnDemand to work with an Apache authentication module can be
 broken down into three procedures:</p>
 <ol class="arabic simple">
