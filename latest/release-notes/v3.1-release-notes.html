@@ -326,7 +326,7 @@ use a path in the <code class="docutils literal notranslate"><span class="pre">D
 <ol class="arabic">
 <li><p>Update OnDemand release RPM</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0">RedHat/CentOS 7</button><button aria-controls="panel-0-0-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-1" name="0-1" role="tab" tabindex="-1">RedHat/Rocky Linux/AlmaLinux 8</button><button aria-controls="panel-0-0-2" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-2" name="0-2" role="tab" tabindex="-1">RedHat/Rocky Linux/AlmaLinux 9</button><button aria-controls="panel-0-0-3" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-3" name="0-3" role="tab" tabindex="-1">Ubuntu 20.04</button><button aria-controls="panel-0-0-4" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-4" name="0-4" role="tab" tabindex="-1">Ubuntu 22.04</button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo yum install -y https://yum.osc.edu/ondemand/3.1/ondemand-release-web-3.1-1.el7.noarch.rpm
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0">RedHat/CentOS 7</button><button aria-controls="panel-0-0-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-1" name="0-1" role="tab" tabindex="-1">RedHat/Rocky Linux/AlmaLinux 8</button><button aria-controls="panel-0-0-2" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-2" name="0-2" role="tab" tabindex="-1">RedHat/Rocky Linux/AlmaLinux 9</button><button aria-controls="panel-0-0-3" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-3" name="0-3" role="tab" tabindex="-1">Ubuntu 20.04</button><button aria-controls="panel-0-0-4" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-4" name="0-4" role="tab" tabindex="-1">Ubuntu 22.04</button><button aria-controls="panel-0-0-5" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-5" name="0-5" role="tab" tabindex="-1">Ubuntu 24.04</button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo yum install -y https://yum.osc.edu/ondemand/3.1/ondemand-release-web-3.1-1.el7.noarch.rpm
 </pre></div>
 </div>
 </div><div aria-labelledby="tab-0-0-1" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-1" name="0-1" role="tabpanel" tabindex="0"><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo yum install -y https://yum.osc.edu/ondemand/3.1/ondemand-release-web-3.1-1.el8.noarch.rpm
@@ -342,6 +342,11 @@ sudo apt update
 </div>
 </div><div aria-labelledby="tab-0-0-4" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-4" name="0-4" role="tabpanel" tabindex="0"><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>wget -O /tmp/ondemand-release-web_3.1.0-jammy_all.deb https://apt.osc.edu/ondemand/3.1/ondemand-release-web_3.1.0-jammy_all.deb
 sudo apt install /tmp/ondemand-release-web_3.1.0-jammy_all.deb
+sudo apt update
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-0-0-5" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-5" name="0-5" role="tabpanel" tabindex="0"><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>wget -O /tmp/ondemand-release-web_3.1.2-noble_all.deb https://apt.osc.edu/ondemand/3.1/ondemand-release-web_3.1.2-noble_all.deb
+sudo apt install /tmp/ondemand-release-web_3.1.2-noble_all.deb
 sudo apt update
 </pre></div>
 </div>
@@ -471,6 +476,8 @@ and <a class="reference internal" href="../reference/files/ood-portal-yml.html#c
 <p>The shell app has been updated so that shell sessions can last longer.
 The app is better at keeping the connection alive, meaning users
 will maintain shell sessions for longer.</p>
+<p>This, however, is disabled by default since <cite>3.1.9</cite>. You can see more
+details in <a class="reference internal" href="../customizations.html#enable-shell-ping-pong"><span class="std std-ref">Enable and configure Shell Ping Pong</span></a>.</p>
 </div>
 <div class="section" id="aarch64-arm64-and-ppc64le-packages">
 <h3>aarch64/arm64 and ppc64le packages<a class="headerlink" href="#aarch64-arm64-and-ppc64le-packages" title="Permalink to this headline">¶</a></h3>
