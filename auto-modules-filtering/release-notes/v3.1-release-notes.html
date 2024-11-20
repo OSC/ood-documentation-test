@@ -41,7 +41,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="v3.0 Release Notes" href="v3.0-release-notes.html" />
-    <link rel="prev" title="Release Notes" href="../release-notes.html" />
+    <link rel="prev" title="v4.0 Release Notes" href="v4.0-release-notes.html" />
  
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-34776817-3"></script>
 <script>
@@ -127,7 +127,9 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../architecture.html">Architecture</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../reference.html">Configuration Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security.html">Security</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../release-notes.html">Release Notes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="v4.0-release-notes.html">v4.0 Release Notes</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">v3.1 Release Notes</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#administrative-changes">Administrative changes</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#new-features">New Features</a></li>
@@ -170,7 +172,6 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../version-policy.html">Versioning Policy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../issues/overview.html">OnDemand’s Known Issues</a></li>
 </ul>
 
             
@@ -270,6 +271,15 @@
 <h2>Details of administrative changes<a class="headerlink" href="#details-of-administrative-changes" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="breaking-changes">
 <h3>Breaking Changes<a class="headerlink" href="#breaking-changes" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="advanced-httpd-support">
+<h4>Advanced httpd support<a class="headerlink" href="#advanced-httpd-support" title="Permalink to this headline">¶</a></h4>
+<p>In an effort to support higher versions of <code class="docutils literal notranslate"><span class="pre">apache</span> <span class="pre">httpd</span></code> an
+update was made in <code class="docutils literal notranslate"><span class="pre">3.1.9</span></code> that broke some older versions of <code class="docutils literal notranslate"><span class="pre">apache</span> <span class="pre">httpd</span></code>.</p>
+<p>RHEL compatible systems specifically need the highest version available
+to work correctly with OnDemand 3.1.9 or higher. At the time of writing
+the required version of <code class="docutils literal notranslate"><span class="pre">apache</span> <span class="pre">httpd</span></code> is <code class="docutils literal notranslate"><span class="pre">2.4.37-65</span></code> for EL8 and
+<code class="docutils literal notranslate"><span class="pre">2.4.57-11</span></code> for EL9.</p>
+</div>
 <div class="section" id="user-settings-file-change">
 <h4>User Settings File Change<a class="headerlink" href="#user-settings-file-change" title="Permalink to this headline">¶</a></h4>
 <p>We had to change the location of the <a class="reference internal" href="../reference/files/ondemand-d-ymls.html#user-settings-file"><span class="std std-ref">user settings file</span></a>
@@ -326,7 +336,7 @@ use a path in the <code class="docutils literal notranslate"><span class="pre">D
 <ol class="arabic">
 <li><p>Update OnDemand release RPM</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0">RedHat/CentOS 7</button><button aria-controls="panel-0-0-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-1" name="0-1" role="tab" tabindex="-1">RedHat/Rocky Linux/AlmaLinux 8</button><button aria-controls="panel-0-0-2" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-2" name="0-2" role="tab" tabindex="-1">RedHat/Rocky Linux/AlmaLinux 9</button><button aria-controls="panel-0-0-3" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-3" name="0-3" role="tab" tabindex="-1">Ubuntu 20.04</button><button aria-controls="panel-0-0-4" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-4" name="0-4" role="tab" tabindex="-1">Ubuntu 22.04</button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo yum install -y https://yum.osc.edu/ondemand/3.1/ondemand-release-web-3.1-1.el7.noarch.rpm
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0">RedHat/CentOS 7</button><button aria-controls="panel-0-0-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-1" name="0-1" role="tab" tabindex="-1">RedHat/Rocky Linux/AlmaLinux 8</button><button aria-controls="panel-0-0-2" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-2" name="0-2" role="tab" tabindex="-1">RedHat/Rocky Linux/AlmaLinux 9</button><button aria-controls="panel-0-0-3" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-3" name="0-3" role="tab" tabindex="-1">Ubuntu 20.04</button><button aria-controls="panel-0-0-4" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-4" name="0-4" role="tab" tabindex="-1">Ubuntu 22.04</button><button aria-controls="panel-0-0-5" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-5" name="0-5" role="tab" tabindex="-1">Ubuntu 24.04</button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo yum install -y https://yum.osc.edu/ondemand/3.1/ondemand-release-web-3.1-1.el7.noarch.rpm
 </pre></div>
 </div>
 </div><div aria-labelledby="tab-0-0-1" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-1" name="0-1" role="tabpanel" tabindex="0"><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo yum install -y https://yum.osc.edu/ondemand/3.1/ondemand-release-web-3.1-1.el8.noarch.rpm
@@ -342,6 +352,11 @@ sudo apt update
 </div>
 </div><div aria-labelledby="tab-0-0-4" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-4" name="0-4" role="tabpanel" tabindex="0"><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>wget -O /tmp/ondemand-release-web_3.1.0-jammy_all.deb https://apt.osc.edu/ondemand/3.1/ondemand-release-web_3.1.0-jammy_all.deb
 sudo apt install /tmp/ondemand-release-web_3.1.0-jammy_all.deb
+sudo apt update
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-0-0-5" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-5" name="0-5" role="tabpanel" tabindex="0"><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>wget -O /tmp/ondemand-release-web_3.1.2-noble_all.deb https://apt.osc.edu/ondemand/3.1/ondemand-release-web_3.1.2-noble_all.deb
+sudo apt install /tmp/ondemand-release-web_3.1.2-noble_all.deb
 sudo apt update
 </pre></div>
 </div>
@@ -440,7 +455,7 @@ for how to configure this.</p>
 <div class="section" id="disabling-uploads-and-downloads">
 <h3>Disabling uploads and downloads<a class="headerlink" href="#disabling-uploads-and-downloads" title="Permalink to this headline">¶</a></h3>
 <p>Sites can now disable uploads and downloads through the file
-browser.  See the configuration for <a class="reference internal" href="../reference/files/ondemand-d-ymls.html#downlad-enabled"><span class="std std-ref">disabling downloads</span></a>
+browser.  See the configuration for <a class="reference internal" href="../reference/files/ondemand-d-ymls.html#download-enabled"><span class="std std-ref">disabling downloads</span></a>
 and <a class="reference internal" href="../reference/files/ondemand-d-ymls.html#upload-enabled"><span class="std std-ref">disabling uploads</span></a> for how to configure this.</p>
 </div>
 <div class="section" id="custom-javascript-files">
@@ -471,6 +486,8 @@ and <a class="reference internal" href="../reference/files/ood-portal-yml.html#c
 <p>The shell app has been updated so that shell sessions can last longer.
 The app is better at keeping the connection alive, meaning users
 will maintain shell sessions for longer.</p>
+<p>This, however, is disabled by default since <cite>3.1.9</cite>. You can see more
+details in <a class="reference internal" href="../customizations.html#enable-shell-ping-pong"><span class="std std-ref">Enable and configure Shell Ping Pong</span></a>.</p>
 </div>
 <div class="section" id="aarch64-arm64-and-ppc64le-packages">
 <h3>aarch64/arm64 and ppc64le packages<a class="headerlink" href="#aarch64-arm64-and-ppc64le-packages" title="Permalink to this headline">¶</a></h3>
@@ -502,7 +519,7 @@ See <a class="reference internal" href="../installation/install-software.html#in
         <a href="v3.0-release-notes.html" class="btn btn-neutral float-right" title="v3.0 Release Notes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../release-notes.html" class="btn btn-neutral float-left" title="Release Notes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="v4.0-release-notes.html" class="btn btn-neutral float-left" title="v4.0 Release Notes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

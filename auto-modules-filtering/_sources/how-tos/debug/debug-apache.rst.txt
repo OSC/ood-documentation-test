@@ -23,13 +23,6 @@ Restart services
 
    .. tabs::
 
-      .. tab:: RHEL/CentOS 7
-
-        .. code-block:: sh
-
-          sudo systemctl try-restart httpd24-httpd
-
-
       .. tab:: RHEL/Rocky 8 & 9
 
          .. code-block:: sh
@@ -61,12 +54,6 @@ Or you're using the wrong hostname in your browser.
 
    .. tabs::
 
-      .. tab:: RHEL/CentOS 7
-
-        .. code-block:: sh
-
-          sudo /opt/rh/httpd24/root/sbin/httpd -S
-
       .. tab:: RHEL/Rocky 8 & 9
 
          .. code-block:: sh
@@ -77,7 +64,7 @@ Or you're using the wrong hostname in your browser.
 
          .. code-block:: sh
 
-          sudo /sbin/apache2 -S
+          . /etc/apache2/envvars; sudo -E /sbin/apache2 -S
 
 Performance Tuning
 ------------------

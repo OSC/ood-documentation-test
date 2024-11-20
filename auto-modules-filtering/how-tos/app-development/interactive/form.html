@@ -122,6 +122,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#attributes">Attributes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#examples">Examples</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#configuring-which-cluster-to-submit-to">Configuring which cluster to submit to</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#global-batch-connect-form-items">Global Batch Connect Form Items</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="form-widgets.html">Form Widgets</a></li>
@@ -149,10 +150,10 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../architecture.html">Architecture</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../reference.html">Configuration Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../security.html">Security</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../release-notes.html">Release Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../version-policy.html">Versioning Policy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../glossary.html">Glossary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../issues/overview.html">OnDemand’s Known Issues</a></li>
 </ul>
 
             
@@ -265,6 +266,16 @@ right menu: <em>Develop</em> → <em>My Sandbox Apps (Development)</em>. Finally
 My App</em> from the list of sandbox apps.</p>
 <p>You should now see the HTML form used to gather the user-defined attributes for
 building and launching the <code class="docutils literal notranslate"><span class="pre">my_app</span></code> Interactive App session.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Since 4.0 HTML IDs of the form items are always lowercase. The examples above
+show lowercase configurations of <code class="docutils literal notranslate"><span class="pre">account</span></code>.  Specifying <code class="docutils literal notranslate"><span class="pre">Account</span></code>,
+or <code class="docutils literal notranslate"><span class="pre">ACCOUNT</span></code> or any variation of uppercase and lowercase will result in
+the same behhavior as specifying <code class="docutils literal notranslate"><span class="pre">account</span></code> (all lower case).</p>
+<p>If you write your own <code class="docutils literal notranslate"><span class="pre">form.js</span></code> take care to note that HTML IDs of these
+form items will <strong>always</strong> be lowercase regardless of how they’re defined in
+the YAML file.</p>
+</div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>You can include dynamically generated content in the form by renaming the
@@ -320,7 +331,7 @@ various custom attributes</p>
 
 </div>
 <div class="section" id="attributes">
-<h2>Attributes<a class="headerlink" href="#attributes" title="Permalink to this headline">¶</a></h2>
+<span id="bc-form-attributes"></span><h2>Attributes<a class="headerlink" href="#attributes" title="Permalink to this headline">¶</a></h2>
 <p>Attributes are <em>variables</em> whose values can be set either by the user from
 within an HTML form or hard-coded to a specific value in the form
 configuration. These attributes and their corresponding values are then made
@@ -416,17 +427,12 @@ version.</p>
 </div>
 <p>To filter versions that show up in the drop-down list, you can use a Ruby regex (<a class="reference external" href="https://rubular.com/">https://rubular.com/</a>)
 (without the wrapping <cite>//</cite>) or a string:</p>
-<p>Regex:
-.. code-block:: yaml</p>
-<blockquote>
-<div><dl class="simple">
-<dt>attributes:</dt><dd><dl class="simple">
-<dt>auto_modules_matlab:</dt><dd><p>filter: (intel|gnu)d*</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</div></blockquote>
+<p>Regex:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">attributes</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">auto_modules_matlab</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">filter</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">(intel|gnu)\d*</span><span class="w"></span>
+</pre></div>
+</div>
 <p>String:</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">attributes</span><span class="p">:</span><span class="w"></span>
 <span class="w">  </span><span class="nt">auto_modules_matlab</span><span class="p">:</span><span class="w"></span>
@@ -964,6 +970,39 @@ different text than the default.</p>
 <p>The last option is to <a class="reference internal" href="submit.html#configuring-cluster-in-submit-yml"><span class="std std-ref">configure the cluster in the submit file</span></a>.
 When using this option, there’s no need to add any cluster configuration to the
 form.yml.</p>
+</div>
+<div class="section" id="global-batch-connect-form-items">
+<span id="global-bc-form-items"></span><h2>Global Batch Connect Form Items<a class="headerlink" href="#global-batch-connect-form-items" title="Permalink to this headline">¶</a></h2>
+<p>Since version 4.0, you can define form items once in an <code class="docutils literal notranslate"><span class="pre">ondemand.d</span></code> file
+that can be used in all batch connect applications.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Global batch connect items need to have the prefix <code class="docutils literal notranslate"><span class="pre">global_</span></code> otherwise
+OnDemand won’t recognize it as a global configuration.</p>
+</div>
+<p>Defining a global batch connect form item is just like specifying <a class="reference internal" href="#bc-form-attributes"><span class="std std-ref">Attributes</span></a>
+above. Only the location is in an <code class="docutils literal notranslate"><span class="pre">ondemand.d</span></code> file in <code class="docutils literal notranslate"><span class="pre">/etc/ood/config/ondemand.d</span></code>
+under the <code class="docutils literal notranslate"><span class="pre">global_bc_form_items</span></code> key.</p>
+<p>Here’s an example of defining a select widget with options called <code class="docutils literal notranslate"><span class="pre">global_queues</span></code>.
+Note the appropriate previx of <code class="docutils literal notranslate"><span class="pre">global</span></code>.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># /etc/ood/config/ondemand.d/global_bc_items.yml</span><span class="w"></span>
+
+<span class="nt">global_bc_form_items</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">global_queues</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">widget</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">select</span><span class="w"></span>
+<span class="w">    </span><span class="nt">options</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="s">&#39;any&#39;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&#39;any&#39;</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="s">&#39;gpu&#39;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&#39;gpu&#39;</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="s">&#39;special&#39;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&#39;special&#39;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">data-option-for-cluster-not-special</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="nv">false</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Then to use this form item, one simply needs to specify it in the <code class="docutils literal notranslate"><span class="pre">form</span></code> section
+of the file and it will display the select widget defined above.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># form.yml</span><span class="w"></span>
+<span class="nt">form</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">global_queues</span><span class="w"></span>
+</pre></div>
+</div>
 </div>
 </div>
 

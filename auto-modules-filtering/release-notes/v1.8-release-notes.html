@@ -126,7 +126,9 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../architecture.html">Architecture</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../reference.html">Configuration Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security.html">Security</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../release-notes.html">Release Notes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="v4.0-release-notes.html">v4.0 Release Notes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="v3.1-release-notes.html">v3.1 Release Notes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="v3.0-release-notes.html">v3.0 Release Notes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="v2.0-release-notes.html">v2.0 Release Notes</a></li>
@@ -169,7 +171,6 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../version-policy.html">Versioning Policy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../issues/overview.html">OnDemand’s Known Issues</a></li>
 </ul>
 
             
@@ -433,7 +434,7 @@ providing documentation links for an app.q
 <div class="section" id="support-for-svg-dashboard-logos">
 <h3>Support for SVG dashboard logos<a class="headerlink" href="#support-for-svg-dashboard-logos" title="Permalink to this headline">¶</a></h3>
 <p>Logos can now be SVG images and controlled through the <code class="docutils literal notranslate"><span class="pre">OOD_DASHBOARD_LOGO_HEIGHT</span></code>
-configuration to resize them. <a class="reference internal" href="../customizations.html#id2"><span class="std std-ref">See documentation on branding for form information.</span></a></p>
+configuration to resize them. <a class="reference internal" href="../customizations.html#id3"><span class="std std-ref">See documentation on branding for form information.</span></a></p>
 </div>
 <div class="section" id="support-for-new-native-vnc-views">
 <h3>Support for new Native VNC views<a class="headerlink" href="#support-for-new-native-vnc-views" title="Permalink to this headline">¶</a></h3>
@@ -458,7 +459,7 @@ nginx configuration so that sites can set the upload max to settings larger than
 <div class="section" id="added-sinatra-ruby-gems-into-ondemand-gems-for-other-apps-to-use">
 <h3>Added Sinatra Ruby Gems into ondemand-gems for other apps to use<a class="headerlink" href="#added-sinatra-ruby-gems-into-ondemand-gems-for-other-apps-to-use" title="Permalink to this headline">¶</a></h3>
 <p>Related Ruby gems for the micro-webframework “Sinatra” were added to the Dashboard Gemfile to ensure they are included in the <code class="docutils literal notranslate"><span class="pre">ondemand-gems</span></code> RPM.
-Simple applications like the Passenger status app featured in the <a class="reference internal" href="../tutorials/tutorials-passenger-apps/ps-to-quota.html#app-development-tutorials-passenger-apps-ps-to-quota"><span class="std std-ref">Passenger app development tutorial</span></a> can now be run without needing to install gem dependencies into the application directory. The following gems were added for this purpose:</p>
+Simple applications like the Passenger status app featured in the <a class="reference internal" href="../tutorials/tutorials-passenger-apps/ruby-starter-app.html#app-development-tutorials-passenger-apps-starter-ruby-app"><span class="std std-ref">Ruby Starter application</span></a> can now be run without needing to install gem dependencies into the application directory. The following gems were added for this purpose:</p>
 <div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="n">gem</span> <span class="s2">&quot;sinatra&quot;</span><span class="p">,</span> <span class="nb">require</span><span class="p">:</span> <span class="kp">false</span>
 <span class="n">gem</span> <span class="s2">&quot;sinatra-contrib&quot;</span><span class="p">,</span> <span class="nb">require</span><span class="p">:</span> <span class="kp">false</span>
 <span class="n">gem</span> <span class="s2">&quot;erubi&quot;</span><span class="p">,</span> <span class="nb">require</span><span class="p">:</span> <span class="kp">false</span>

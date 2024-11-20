@@ -109,20 +109,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../app-development/interactive/setup.html">Setup Interactive Apps</a></li>
 </ul>
 <p class="caption"><span class="caption-text">How-Tos</span></p>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="../../customizations.html">Customizations</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../debug.html">Debugging and Monitoring</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../debug/debug-apache.html">Apache httpd tips</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../debug/debug-interactive-apps.html">Debugging Interactive Apps</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Logging</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#system-logs">System Logs</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#session-data">Session Data</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="prometheus.html">Prometheus Monitoring</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../analytics/google-analytics.html">Adding Google Analytics</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../debug.html">Debugging and Monitoring</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../enable-desktops.html">Enable Interactive Desktop</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../app-development.html">App Development</a></li>
 </ul>
@@ -134,13 +123,29 @@
 <li class="toctree-l1"><a class="reference internal" href="../../tutorials/tutorials-dashboard-apps.html">Developing The OOD Dashboard</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Reference</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../architecture.html">Architecture</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../reference.html">Configuration Reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../security.html">Security</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../security.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../security.html#considerations">Considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../security.html#conclusion">Conclusion</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../security.html#relevant-references">Relevant References</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../security/vulnerability-management.html">Vulnerability Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../authentication/overview.html">Overview</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Logging</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#system-logs">System Logs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#session-data">Session Data</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../customizations.html">Customizations</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../../release-notes.html">Release Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../version-policy.html">Versioning Policy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../issues/overview.html">OnDemand’s Known Issues</a></li>
 </ul>
 
             
@@ -238,7 +243,7 @@ when initially installing and configuring Open OnDemand.</p>
 </ul>
 <p><code class="file docutils literal notranslate"><span class="pre">/var/log/httpd/&lt;hostname&gt;_access.log</span></code></p>
 <ul class="simple">
-<li><p>Where OnDemand will log succsseful logins.</p></li>
+<li><p>Where OnDemand will log successful logins.</p></li>
 </ul>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -248,7 +253,7 @@ when initially installing and configuring Open OnDemand.</p>
 <p>The NGINX logs are the output of the user <a class="reference internal" href="../../glossary.html#glossary"><span class="std std-ref">PUN</span></a>. These logs will capture things relevant
 to a <em>particular user</em> such as:</p>
 <ul class="simple">
-<li><p>Debuggin issues related to job submissions for a user. For example, commands being issued to the scheduler
+<li><p>Debugging issues related to job submissions for a user. For example, commands being issued to the scheduler
 (<code class="docutils literal notranslate"><span class="pre">sbatch</span></code>, <code class="docutils literal notranslate"><span class="pre">qsub</span></code>, etc) can be seen here by searching for <code class="docutils literal notranslate"><span class="pre">execve</span></code>.</p></li>
 <li><p>Issues related to PUNs crashing and/or pages not rendering correctly.</p></li>
 </ul>
@@ -270,7 +275,7 @@ information they may need there as well for connections and errors.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The files will be <em>owned by the user</em> and so admins will need to ensure they are either
-able to substitue user or escalate to root in order to see these files.</p>
+able to substitute user or escalate to root in order to see these files.</p>
 </div>
 <p>In general the session data or job submission files for apps across the dashboard, such as the Job Composer,
 Batch Connect, or Frame-renderer, all start from the root of:</p>
