@@ -1,0 +1,114 @@
+.. _v4.0-release-notes:
+
+v4.0 Release Notes
+==================
+
+Administrative changes
+----------------------
+
+- `Breaking Changes`_
+
+New Features
+------------
+
+- `Global Batch Connect items`_
+- `noVNC quality and compression defaults`_
+
+Thanks!
+-------
+
+We'd like to thank a bunch of folks' for contributing to this release.
+As we only know the github username, that's what's being referenced here.
+
+
+
+Details of administrative changes
+---------------------------------
+
+Breaking Changes
+................
+
+Autoloading during initialization has been removed.
+***************************************************
+
+.. include:: autoload.inc
+
+NavConfig has been removed.
+***************************
+
+.. include:: navconfig.inc
+
+whitelist & blacklist configs have been removed.
+************************************************
+
+.. include:: allowlist.inc
+
+Announcements are dismissable by default.
+*****************************************
+
+In 4.0 :ref:`configure_announcements` now have the ability to be ``dismissable``.
+Meaning users can press ``OK`` on the announment and it will no longer appear
+on the pages.
+
+In prior versions of Open OnDemand there was no way to dismiss or get rid of announcements.
+Now in version 4.0, not only is there a way to dismiss announcements, announcements
+themselves are ``dismissable`` by default.
+
+The documentation for :ref:`configure_announcements` has been updated with this new feature.
+
+Batch connect form ids are now lowercase.
+*****************************************
+
+To resolve some bugs with :ref:`dynamic-bc-apps`, batch connect form
+items will now force lowercase HTML IDs.  This may break some javascript
+at centers expecting the HTML id of the form item to be a mix of uppercase
+and lowercase.
+
+This is an example of defining a form item with uppercase keys like ``My_Cool_Form_Item``.
+
+.. code-block:: yaml
+
+  ---
+  form:
+    My_Cool_Form_Item
+
+In this example ``My_Cool_Form_Item`` has uppercase characters, however the HTML
+id of the form item will be lowercase as shown below.
+
+.. code-block:: html
+
+  id="batch_connect_session_context_my_cool_form_item"
+
+Dependency updates
+..................
+
+
+
+SELinux changes
+...............
+
+
+Upgrade directions
+..................
+
+
+
+Details of new features
+-----------------------
+
+Global Batch Connect items
+..........................
+
+In 4.0 you can now define batch connect form items
+in ondemand.d files to be used in any batch connect
+application.
+
+See :ref:`global_bc_form_items` for more details.
+
+noVNC quality and compression defaults
+......................................
+
+Sites can now set the default compression and quality values
+for noVNC batch connect applications through the two ``ondemand.d``
+properties :ref:`novnc_default_compression <novnc_default_compression>`
+and :ref:`novnc_default_quality <novnc_default_quality>`.
