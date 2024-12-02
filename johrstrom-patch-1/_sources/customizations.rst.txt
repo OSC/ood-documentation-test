@@ -7,6 +7,37 @@ Customizations
   Check out the :ref:`pun-environment` for an overview of how environment variables can be
   added.
 
+.. _disabling_applications:
+
+Disabling applications
+----------------------
+
+OnDemand is comprised of a few components. Each of which you can disable or limit
+access by simply changing the file permissions of the application.
+
+All the applications OnDemand installs are located in `/var/www/ood/apps/sys`.
+So, for example, if you wished to disable the file browser you would simply
+change it's directory to 700 so it's unreadable by regular users.
+
+When this directory is unreadable by regular users, the functionality
+it provides will be disabled.
+
+.. code-block:: sh
+
+  sudo chmod 700 /var/www/ood/apps/sys/files
+
+Alternatively, if you wished to limit access you can do so through group
+permissions. For example, if you wanted to limit access to the file browser
+to only members in the Unix group ``staff``, you would simply apply the
+applicable file permission such that anonymous users cannot access the
+directory while members of the ``staff`` Unix group can.
+
+.. code-block:: sh
+
+  sudo chmod 750 /var/www/ood/apps/sys/files
+  sudo chown root:staff /var/www/ood/apps/sys/files
+
+
 Announcements
 -------------
 
@@ -49,7 +80,7 @@ Because the announcement is rendered via ERB you can do some interesting things,
       msg: |
         <% if Time.now < Time.new(2018, 9, 24, 12, 0, 0) %>
         A **Ruby Partial Downtime** for 4 hours on Monday, September 24 from 8:00am to 12:00pm
-        will prevent SSH login to Ruby nodes and and Ruby VDI sessions.
+        will prevent SSH login to Ruby nodes and Ruby VDI sessions.
         <% end %>
 
 .. note:: Warnings about the announcement file being missing may be present in users' nginx logs. Despite the warning the Dashboard will still function normally without those files being present.
@@ -74,7 +105,7 @@ To display a MOTD file on the Dashboard ensure that the environment variables ``
     The ``_erb`` formats support ERB rendering to generate more dynamic messages.
 
 .. warning::
-  Some MOTD formats like ``rss``, ``markdown`` and ``markdown_erb`` can contain malicous
+  Some MOTD formats like ``rss``, ``markdown`` and ``markdown_erb`` can contain malicious
   HTML content. For your safety, by default, the Open OnDemand system will not render
   HTML.  We provide :ref:`a configuration to enable HTML rendering in MOTD <motd_render_html>`
   should you need to render HTML.
@@ -277,10 +308,57 @@ Start by creating the file
 - Additionally project scratch directories have a 'title' attribute and will
   with in the dropdown with both the title and the path.
 
-On each request, the Dashboard will check for the existence of the directories
-in ``OodFilesApp.candidate_favorite_paths`` array and whichever directories
-exist and the user has access to will appear as links in the Files menu under
-the Home Directory link.
+The following example adds all directories within the specified base directories to the favorite paths. This approach is ideal when there is no specific directory naming logic to follow. It also appropriately handles Access Control Lists (ACLs). If a directory does not exist, no error is raised, making this configuration easily exportable to different clusters.
+
+
+.. code-block:: ruby
+
+    # /etc/ood/config/apps/dashboard/initializers/ood.rb
+
+    Rails.application.config.after_initialize do
+      OodFilesApp.candidate_favorite_paths.tap do |paths|
+
+        # Hash of base paths to check for additional directories with titles
+        # location => Title
+        base_paths = {
+          '/home/share/' => 'Shared home',
+          '/srv/scratch/shares/' => 'Shared scratch',
+          '/srv/scratch/groups/' => 'Group scratch',
+          '/srv/fast/users/' => 'Fast user'
+          # Add more paths and titles here if needed
+        }
+
+        base_paths.each do |base_path, title|
+          # Check if the base path exists and is a directory, to avoid error
+          next unless Dir.exist?(base_path)
+
+          # Get all entries in the current base path
+          Dir.entries(base_path).each do |entry|
+            # Construct the full path for the current entry
+            full_path = File.join(base_path, entry)
+
+            # Skip if it's not a directory or if it's a special entry like '.' or '..'
+            next unless File.directory?(full_path) && !['.', '..'].include?(entry)
+
+            # Check if the directory is readable and executable
+            if File.readable?(full_path) && File.executable?(full_path)
+              # Access the value of the current base_path using the `title` variable
+              paths << FavoritePath.new(full_path, title: "#{title}: #{File.basename(full_path)}")
+            end
+          end
+        end
+      end
+    end
+
+    # The variable ``base_paths`` is an hash (``dirname`` => ``Title``) of all directories you want to parse. For the directory ``OSC_test`` in ``/srv/scratch/groups/``; the favorite path will be displayed as following 
+
+    | Group scratch: OSC_test | /srv/scratch/groups/OSC_test |
+
+    On each request, the Dashboard will check for the existence of the directories
+    in ``OodFilesApp.candidate_favorite_paths`` array and whichever directories
+    exist and the user has access to will appear as links in the Files menu under
+    the Home Directory link.
+
 
 .. figure:: /images/files_menu_shortcuts_osc.png
    :align: center
@@ -299,6 +377,20 @@ app.
 
 .. include:: customizations/main-navigation.inc
 .. include:: customizations/interactive-apps-menu.inc
+
+
+Disable uploads or downloads
+----------------------------
+
+By default, Open OnDemand will allow users to upload and download files.
+Both can be disabled through configuration.
+
+Use :ref:`download_enabled for disabling downloads <download_enabled>`
+and :ref:`upload_enabled for disabling uploads <upload_enabled>`.
+
+.. tip::
+  Use File Access Controls (FACLs) on the ondemand.d files to enable
+  or disable uploads or downloads based on group permissions.
 
 .. _set-upload-limits:
 
@@ -347,6 +439,8 @@ Note that this will limit the download size for all users of the Open OnDemand i
    and in units of bytes. The default value of 10737420000 bytes is ~10.7 GB or ~10.0 Gib.
 
    Values like ``1000M`` or ``20G`` will not be accepted and may cause errors.
+
+.. _set-file-allowlist:
 
 Block or Allow Directory Access
 -------------------------------
@@ -425,6 +519,48 @@ access into any compute node in our three clusters.
 
   # /etc/ood/config/apps/shell/env
   OOD_SSHHOST_ALLOWLIST="r[0-1][0-9][0-9][0-9].ten.osc.edu:o[0-1][0-9][0-9][0-9].ten.osc.edu:p[0-1][0-9][0-9][0-9].ten.osc.edu"
+
+.. _enable-shell-ping-pong:
+
+Enable and configure Shell Ping Pong
+------------------------------------
+
+Version 3.1 added the ability for the shell application to send and receive ping pong
+messages to keep the connection alive, and thus the terminal session alive.
+
+The drawback to this is that these persistant connections can actually outlive your
+authentication timeout settings. Meaning users can have active shell sessions for much
+longer than your authentication systems would normally allow.  This is because the
+connection was made while you were authenticated and it persists after your session
+has expired.
+
+So, to keep a conservative security posture, Open OnDemand disables ping pongs by
+default letting apache timeout these connections more freely.
+
+In addition to enabling or disabling ping pongs, there are other settings you may wish
+to change.
+
+All of these configurations are environment variables are to be placed in
+``/etc/ood/config/apps/shell/env``.
+
+Setting ``OOD_SHELL_PING_PONG`` to anything will enable ping pongs. Removing it or
+commenting it out will disable ping pongs (it's disabled by default).
+
+``OOD_SHELL_INACTIVE_TIMEOUT_MS`` controls how long a connection can be inactive
+for (in milliseconds) before being closed. It defaults to 300000 milliseconds (5 minutes).
+
+``OOD_SHELL_MAX_DURATION_MS`` controls how long a connection can exist regardless
+of activity (in milliseconds). After this duration, the connection will be closed
+regardless of activity. It's default is 3600000 milliseconds (1 hour).
+
+.. code:: shell
+
+  # /etc/ood/config/apps/shell/env
+
+  OOD_SHELL_INACTIVE_TIMEOUT_MS=300000
+  OOD_SHELL_MAX_DURATION_MS=3600000
+  # OOD_SHELL_PING_PONG=false
+
 
 Set OOD SSH Port
 -----------------
@@ -661,7 +797,7 @@ Full examples are below:
     # pin any app with an exact match on the metadata field_of_science of biology
     - field_of_science: 'biology'
 
-    # pin any app with an glob match *bio* on the metadata field_of_science
+    # pin any app with a glob match *bio* on the metadata field_of_science
     - field_of_science: '*bio*'
 
 
@@ -713,7 +849,7 @@ Custom layouts in the dashboard
 -------------------------------
 
 Administrators can now customize what widgets appear on the dashboard and how they're
-layed out on the page.
+laid out on the page.
 
 In it's simplest form this feature allows for a rearrangement of existing widgets. As
 of 2.1 the existing widgets are:
@@ -1079,7 +1215,7 @@ Grafana support
 
 It's possible to display Grafana graphs within the ActiveJobs app when a user expands a given job.
 
-Grafana must be configured to support embedded panels and at this time it is also required to have a anonymous organization.  Below are configuration options are needed to support displaying Grafana panels in ActiveJobs. Adjust `org_name` to match whatever organization you wish to be anonymous.
+Grafana must be configured to support embedded panels and at this time it is also required to have an anonymous organization.  Below are configuration options are needed to support displaying Grafana panels in ActiveJobs. Adjust `org_name` to match whatever organization you wish to be anonymous.
 
 .. warning::
 
@@ -1342,4 +1478,4 @@ For completed sessions, the system will only show the delete button.
 .. include:: customizations/support-ticket.inc
 
 .. _OSC's rclone documentation: https://www.osc.edu/resources/getting_started/howto/howto_use_rclone_to_upload_data
-.. _2.0 documentation for controling the navbar: https://osc.github.io/ood-documentation/release-2.0/customization.html#control-which-apps-appear-in-the-dashboard-navbar
+.. _2.0 documentation for controlling the navbar: https://osc.github.io/ood-documentation/release-2.0/customization.html#control-which-apps-appear-in-the-dashboard-navbar

@@ -32,6 +32,17 @@ Details of administrative changes
 Breaking Changes
 ................
 
+Advanced httpd support
+**********************
+
+In an effort to support higher versions of ``apache httpd`` an
+update was made in ``3.1.9`` that broke some older versions of ``apache httpd``.
+
+RHEL compatible systems specifically need the highest version available
+to work correctly with OnDemand 3.1.9 or higher. At the time of writing
+the required version of ``apache httpd`` is ``2.4.37-65`` for EL8 and
+``2.4.57-11`` for EL9.
+
 User Settings File Change
 *************************
 
@@ -124,6 +135,14 @@ Upgrade directions
 
             wget -O /tmp/ondemand-release-web_3.1.0-jammy_all.deb https://apt.osc.edu/ondemand/3.1/ondemand-release-web_3.1.0-jammy_all.deb
             sudo apt install /tmp/ondemand-release-web_3.1.0-jammy_all.deb
+            sudo apt update
+
+      .. tab:: Ubuntu 24.04
+
+         .. code-block:: sh
+
+            wget -O /tmp/ondemand-release-web_3.1.2-noble_all.deb https://apt.osc.edu/ondemand/3.1/ondemand-release-web_3.1.2-noble_all.deb
+            sudo apt install /tmp/ondemand-release-web_3.1.2-noble_all.deb
             sudo apt update
 
 #. Enable dependencies
@@ -255,7 +274,7 @@ Disabling uploads and downloads
 ...............................
 
 Sites can now disable uploads and downloads through the file
-browser.  See the configuration for :ref:`disabling downloads <downlad_enabled>`
+browser.  See the configuration for :ref:`disabling downloads <download_enabled>`
 and :ref:`disabling uploads <upload_enabled>` for how to configure this.
 
 Custom Javascript files
@@ -293,6 +312,9 @@ Improved shell connections
 The shell app has been updated so that shell sessions can last longer.
 The app is better at keeping the connection alive, meaning users
 will maintain shell sessions for longer.
+
+This, however, is disabled by default since `3.1.9`. You can see more
+details in :ref:`enable-shell-ping-pong`.
 
 aarch64/arm64 and ppc64le packages
 ..................................
