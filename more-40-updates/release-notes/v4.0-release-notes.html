@@ -443,6 +443,10 @@ feature.</p>
 <p>User mapping scripts can now return a UID instead of a username.
 This is particularly useful for centers that have multiple domains where
 username collisions may occur.</p>
+<p>For example if the two users <code class="docutils literal notranslate"><span class="pre">annie.oakley&#64;osc.edu</span></code> and <code class="docutils literal notranslate"><span class="pre">annie.oakley&#64;caltech.edu</span></code>
+both <em>incorrectly</em> map to the user <code class="docutils literal notranslate"><span class="pre">annie.oakley</span></code>, you will now be able to return
+the unique number that is their UID (User Identifier) and therefore have
+no collisions.</p>
 </section>
 <section id="interactive-apps-can-have-a-text-header">
 <h3><a class="toc-backref" href="#id23" role="doc-backlink">Interactive Apps Can Have a Text Header.</a><a class="headerlink" href="#interactive-apps-can-have-a-text-header" title="Link to this heading"></a></h3>
