@@ -87,6 +87,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#add-and-edit-app-js">Add and edit app.js</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#boot-the-application">Boot the application</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#publish-app">Publish App</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#node-wrapper">Node Wrapper</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="python-starter-app.html">Starter Python Application</a></li>
@@ -145,7 +146,7 @@ npm<span class="w"> </span>init
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p><code class="docutils literal notranslate"><span class="pre">npm</span> <span class="pre">init</span></code> will initialize the <code class="docutils literal notranslate"><span class="pre">main</span></code> script as <code class="docutils literal notranslate"><span class="pre">index.js</span></code>.  For OnDemand to recognzie
+<p><code class="docutils literal notranslate"><span class="pre">npm</span> <span class="pre">init</span></code> will initialize the <code class="docutils literal notranslate"><span class="pre">main</span></code> script as <code class="docutils literal notranslate"><span class="pre">index.js</span></code>.  For OnDemand to recognize
 this application, the <code class="docutils literal notranslate"><span class="pre">main</span></code> attribute in <code class="docutils literal notranslate"><span class="pre">package.json</span></code> should be <code class="docutils literal notranslate"><span class="pre">app.js</span></code> not
 <code class="docutils literal notranslate"><span class="pre">index.js</span></code>.</p>
 </div>
@@ -172,7 +173,7 @@ After creating this file, we’ve provided this starter content for you add
 to the file.</p>
 <p>This <code class="docutils literal notranslate"><span class="pre">app.js</span></code> imports the <a class="reference external" href="https://expressjs.com/">Express</a> framework and sets up the <code class="docutils literal notranslate"><span class="pre">router</span></code>
 to route requests to the functions that can serve that request. This starter
-file only has one route to the root url <code class="docutils literal notranslate"><span class="pre">/</span></code> and returns a simple <code class="docutils literal notranslate"><span class="pre">Hello</span> <span class="pre">World</span></code>
+file only has one route to the root URL <code class="docutils literal notranslate"><span class="pre">/</span></code> and returns a simple <code class="docutils literal notranslate"><span class="pre">Hello</span> <span class="pre">World</span></code>
 string.</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// app.js</span>
 
@@ -260,6 +261,23 @@ git<span class="w"> </span>clone<span class="w"> </span>/users/PZS0562/efranz/on
 killing all websocket connections, which means resetting your active web-based OnDemand Shell sessions.</p>
 </div>
 </section>
+<section id="node-wrapper">
+<span id="nodejs-starter-app-wrapper"></span><h2>Node Wrapper<a class="headerlink" href="#node-wrapper" title="Link to this heading"></a></h2>
+<p>Applications can provide a <code class="docutils literal notranslate"><span class="pre">bin/node</span></code> file within their project
+to use a different version of NodeJs. Here’s an example of such a file.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Ensure this file is executable permissions, otherwise it will not work.</p>
+</div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="c1"># OnDemand uses NodeJs 20, but this application uses 22.</span>
+
+module<span class="w"> </span>load<span class="w"> </span>nodejs/22
+<span class="nb">exec</span><span class="w"> </span>/bin/env<span class="w"> </span>node<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$@</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+</section>
 </section>
 
 
@@ -273,7 +291,7 @@ killing all websocket connections, which means resetting your active web-based O
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2017-2024, Ohio Supercomputer Center.</p>
+    <p>&#169; Copyright 2017-2025, Ohio Supercomputer Center.</p>
   </div>
 
    
