@@ -150,14 +150,14 @@
 </ul>
 <section id="install-via-rpm">
 <h2>Install via RPM<a class="headerlink" href="#install-via-rpm" title="Link to this heading"></a></h2>
-<p>For yum/dnf based systems the <a class="reference external" href="https://github.com/OSC/ondemand_exporter">ondemand_exporter</a> can be installed via RPM.</p>
+<p>For <code class="docutils literal notranslate"><span class="pre">yum</span></code> or <code class="docutils literal notranslate"><span class="pre">dnf</span></code> based systems the <a class="reference external" href="https://github.com/OSC/ondemand_exporter">ondemand_exporter</a> can be installed via RPM.</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>ondemand_exporter
 </pre></div>
 </div>
 <p>The RPM will install the following files that should work out of the box:</p>
 <ul class="simple">
-<li><p><strong>RHEL/Rocky/AlmaLinux 8 &amp; 9 only</strong>: /etc/httpd/conf.d/ondemand_exporter.conf</p></li>
-<li><p>/etc/sudoers.d/ondemand_exporter</p></li>
+<li><p><strong>RHEL/Rocky/AlmaLinux 8 &amp; 9 only</strong>: <code class="docutils literal notranslate"><span class="pre">/etc/httpd/conf.d/ondemand_exporter.conf</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/etc/sudoers.d/ondemand_exporter</span></code></p></li>
 </ul>
 <p>Ensure that the new Apache configuration is loaded by restarting Apache</p>
 <div class="sphinx-tabs docutils container">
@@ -243,7 +243,7 @@ sudo<span class="w"> </span>systemctl<span class="w"> </span>daemon-reload
 </section>
 <section id="id2">
 <h2>Process Exporter<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
-<p>If you’re site is using the <a class="reference external" href="https://github.com/ncabatoff/process-exporter">Process Exporter</a> with Prometheus the following is an example configuration that can be used to collect metrics similar to the <a class="reference external" href="https://github.com/OSC/ondemand_exporter">ondemand_exporter</a> about running processes for OnDemand.</p>
+<p>If you're site is using the <a class="reference external" href="https://github.com/ncabatoff/process-exporter">Process Exporter</a> with Prometheus the following is an example configuration that can be used to collect metrics similar to the <a class="reference external" href="https://github.com/OSC/ondemand_exporter">ondemand_exporter</a> about running processes for OnDemand.</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">process_names</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ood-pun</span>
 <span class="w">  </span><span class="nt">comm</span><span class="p">:</span>

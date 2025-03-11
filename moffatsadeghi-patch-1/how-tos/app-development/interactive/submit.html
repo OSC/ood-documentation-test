@@ -76,19 +76,19 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../../app-development.html">App Development</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../enabling-development-mode.html">Enabling App Development</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../interactive.html">Interactive Apps</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="manifest.html">Manifest yml files</a></li>
-<li class="toctree-l3"><a class="reference internal" href="form.html">User Form (form.yml.erb)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="manifest.html">Manifest YAML files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="form.html">User Form (<code class="docutils literal notranslate"><span class="pre">form.yml.erb</span></code>)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="form-widgets.html">Form Widgets</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dynamic-form-widgets.html">Dynamic Form Widgets</a></li>
 <li class="toctree-l3"><a class="reference internal" href="template.html">Render Template</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Job Submission (submit.yml.erb)</a><ul>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Job Submission (<code class="docutils literal notranslate"><span class="pre">submit.yml.erb</span></code>)</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#configuration">Configuration</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#examples">Examples</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#setting-batch-connect-options-globally">Setting Batch Connect Options Globally</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="view.html">Connection View</a></li>
-<li class="toctree-l3"><a class="reference internal" href="sub-apps.html">Sub-Apps and Reconfiguring existing apps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sub-apps.html">Sub-Apps and Re-configuring existing apps</a></li>
 <li class="toctree-l3"><a class="reference internal" href="conn-params.html">Connection Parameters <code class="docutils literal notranslate"><span class="pre">conn_params</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="additional-info.html">Adding Additional Information to the session cards</a></li>
 <li class="toctree-l3"><a class="reference internal" href="saved-settings.html">Saving interactive application settings</a></li>
@@ -132,7 +132,7 @@
       <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../../app-development.html">App Development</a></li>
           <li class="breadcrumb-item"><a href="../interactive.html">Interactive Apps</a></li>
-      <li class="breadcrumb-item active">Job Submission (submit.yml.erb)</li>
+      <li class="breadcrumb-item active">Job Submission (<code class="docutils literal notranslate"><span class="pre">submit.yml.erb</span></code>)</li>
       <li class="wy-breadcrumbs-aside">
               <a href="https://github.com/OSC/ood-documentation/blob/develop/source/how-tos/app-development/interactive/submit.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
@@ -143,14 +143,14 @@
            <div itemprop="articleBody">
              
   <section id="job-submission-submit-yml-erb">
-<span id="app-development-interactive-submit"></span><h1>Job Submission (submit.yml.erb)<a class="headerlink" href="#job-submission-submit-yml-erb" title="Link to this heading"></a></h1>
+<span id="app-development-interactive-submit"></span><h1>Job Submission (<code class="docutils literal notranslate"><span class="pre">submit.yml.erb</span></code>)<a class="headerlink" href="#job-submission-submit-yml-erb" title="Link to this heading"></a></h1>
 <p>The configuration file <code class="docutils literal notranslate"><span class="pre">submit.yml.erb</span></code> controls the content of the batch
 script as well as the submission arguments used when submitting the batch job.
 It is located in the root of the application directory.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>This page is an introduction to the <code class="docutils literal notranslate"><span class="pre">submit.yml.erb</span></code>, it’s contents
-and it’s use.</p>
+<p>This page is an introduction to the <code class="docutils literal notranslate"><span class="pre">submit.yml.erb</span></code>, it's contents
+and it's use.</p>
 <p>Reference documentation holds <a class="reference internal" href="../../../reference/files/submit-yml-erb.html#submit-yml-erb"><span class="std std-ref">all configuration items for submit.yml.erb</span></a>.</p>
 </div>
 <p>Assuming we already have a sandbox Interactive App deployed under:</p>
@@ -193,7 +193,7 @@ Reference documentation holds <a class="reference internal" href="../../../refer
 script. Reference documentation holds
 <a class="reference internal" href="../../../reference/files/submit-yml-erb.html#submit-yml-erb"><span class="std std-ref">all configuration items for submit.yml.erb</span></a>.</p>
 <dl>
-<dt>Example</dt><dd><p>Set the job’s charged account and queue</p>
+<dt>Example</dt><dd><p>Set the job's charged account and queue</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># ${HOME}/ondemand/dev/my_app/submit.yml.erb</span>
 <span class="nn">---</span>
 <span class="nt">script</span><span class="p">:</span>
@@ -212,7 +212,7 @@ script. Reference documentation holds
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>Use this field when you need to choose the cluster in
-a more dynamic way than <a class="reference internal" href="form.html#configuring-cluster"><span class="std std-ref">what’s provided in the form.</span></a>
+a more dynamic way than <a class="reference internal" href="form.html#configuring-cluster"><span class="std std-ref">what's provided in the form.</span></a>
 Or when you want to choose the cluster for the user given some
 choices like the example below.</p>
 </div>
@@ -248,7 +248,7 @@ ensure that the job has been bootstrapped appropriately to
 start GUI applications.</p>
 <p>The options available are <code class="docutils literal notranslate"><span class="pre">basic</span></code>, <code class="docutils literal notranslate"><span class="pre">vnc</span></code> or <code class="docutils literal notranslate"><span class="pre">vnc_container</span></code>.
 <code class="docutils literal notranslate"><span class="pre">vnc_container</span></code> is basically just like <code class="docutils literal notranslate"><span class="pre">vnc</span></code> only in that it
-boostraps the VNC programs inside a container instead of on the
+bootstraps the VNC programs inside a container instead of on the
 host machine.</p>
 <dl class="describe">
 <dt class="sig sig-object">
@@ -285,7 +285,7 @@ configuration options which can be found under the code documentation for
 <section id="configure-script">
 <h3>Configure Script<a class="headerlink" href="#configure-script" title="Link to this heading"></a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">script</span></code> configuration option defines the batch job submission parameters
-(e.g., number of nodes, wall time, queue, …). The list of all possible
+(e.g., number of nodes, wall time, queue, ...). The list of all possible
 options can be found under the code documentation for <a class="reference internal" href="../../../reference/files/submit-yml/script.html#submit-script-options"><span class="std std-ref">Batch Connect Script Options</span></a>.</p>
 <p>It is recommended to refrain from using the <code class="docutils literal notranslate"><span class="pre">native</span></code> option to best keep your
 Interactive App as portable as possible. Although we understand this may not be
@@ -313,10 +313,10 @@ resource manager as:</p>
 <p class="admonition-title">Warning</p>
 <p>Care must be taken when using the <code class="docutils literal notranslate"><span class="pre">native</span></code> option as this is resource
 manager specific. For all supported resource managers (e.g., Slurm, LSF,
-PBSPro, …) other than Torque, the <code class="docutils literal notranslate"><span class="pre">native</span></code> option is specified as an
-array of command line arguments that are fed to the resource manager’s batch
+PBSPro, ...) other than Torque, the <code class="docutils literal notranslate"><span class="pre">native</span></code> option is specified as an
+array of command line arguments that are fed to the resource manager's batch
 submission tool (e.g., <strong class="command">sbatch</strong>, <strong class="command">qsub</strong>, <strong class="command">bsub</strong>,
-…)</p>
+...)</p>
 <p>So for Slurm, the following configuration will submit a job to 5 nodes with
 feature <code class="docutils literal notranslate"><span class="pre">c12</span></code>:</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># ${HOME}/ondemand/dev/my_app/submit.yml.erb</span>
@@ -331,9 +331,9 @@ feature <code class="docutils literal notranslate"><span class="pre">c12</span><
 <section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Link to this heading"></a></h2>
 <p>The simplest example consists of submitting a batch script built from the basic
-web server template using all the default options for the cluster’s batch job
+web server template using all the default options for the cluster's batch job
 submission tool (e.g., <strong class="command">sbatch</strong>, <strong class="command">qsub</strong>, <strong class="command">bsub</strong>,
-…).</p>
+...).</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># ${HOME}/ondemand/dev/my_app/submit.yml.erb</span>
 <span class="nn">---</span>
 <span class="nt">batch_connect</span><span class="p">:</span>
@@ -439,7 +439,7 @@ not need to specify <code class="docutils literal notranslate"><span class="pre"
 <p>All of these configuration items can also be applied globally to the entire cluster
 in the cluster definition files under <code class="docutils literal notranslate"><span class="pre">/etc/ood/config/clusters.d/</span></code>. If set globally,
 the option is applied to all applications in that cluster.</p>
-<p>Here’s an example of how to set the <code class="docutils literal notranslate"><span class="pre">header</span></code> configuration for both vnc and basic
+<p>Here's an example of how to set the <code class="docutils literal notranslate"><span class="pre">header</span></code> configuration for both <code class="docutils literal notranslate"><span class="pre">vnc</span></code> and <code class="docutils literal notranslate"><span class="pre">basic</span></code>
 templates.</p>
 <blockquote>
 <div><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">v2</span><span class="p">:</span>
