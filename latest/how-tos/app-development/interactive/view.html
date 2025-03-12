@@ -24,7 +24,7 @@
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Sub-Apps and Reconfiguring existing apps" href="sub-apps.html" />
+    <link rel="next" title="Sub-Apps and Re-configuring existing apps" href="sub-apps.html" />
     <link rel="prev" title="Job Submission (submit.yml.erb)" href="submit.html" />
  
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-34776817-3"></script>
@@ -76,12 +76,12 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../../app-development.html">App Development</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../enabling-development-mode.html">Enabling App Development</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../interactive.html">Interactive Apps</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="manifest.html">Manifest yml files</a></li>
-<li class="toctree-l3"><a class="reference internal" href="form.html">User Form (form.yml.erb)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="manifest.html">Manifest YAML files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="form.html">User Form (<code class="docutils literal notranslate"><span class="pre">form.yml.erb</span></code>)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="form-widgets.html">Form Widgets</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dynamic-form-widgets.html">Dynamic Form Widgets</a></li>
 <li class="toctree-l3"><a class="reference internal" href="template.html">Render Template</a></li>
-<li class="toctree-l3"><a class="reference internal" href="submit.html">Job Submission (submit.yml.erb)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="submit.html">Job Submission (<code class="docutils literal notranslate"><span class="pre">submit.yml.erb</span></code>)</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Connection View</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#session-information">Session Information</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#reverse-proxy">Reverse Proxy</a></li>
@@ -90,7 +90,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#adding-native-vnc-instructions-to-the-panel">Adding Native VNC instructions to the panel</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="sub-apps.html">Sub-Apps and Reconfiguring existing apps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sub-apps.html">Sub-Apps and Re-configuring existing apps</a></li>
 <li class="toctree-l3"><a class="reference internal" href="conn-params.html">Connection Parameters <code class="docutils literal notranslate"><span class="pre">conn_params</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="additional-info.html">Adding Additional Information to the session cards</a></li>
 <li class="toctree-l3"><a class="reference internal" href="saved-settings.html">Saving interactive application settings</a></li>
@@ -168,7 +168,7 @@ three ways to connect to interactive apps detailed below:</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">.erb</span></code> file extension will cause the HTML file to be processed using the
 <a class="reference external" href="https://en.wikipedia.org/wiki/ERuby">eRuby (Embedded Ruby)</a> templating system. This allows you to embed Ruby code
 into the HTML file for flow control, variable substitution, and more.</p>
-<p>This connection view will be retained for a week in ‘My Interactive Sessions’
+<p>This connection view will be retained for a week in 'My Interactive Sessions'
 for debugging purposes. The link to Session ID opens a files app directly to
 the output of the batch connect app.</p>
 <div class="admonition danger">
@@ -277,7 +277,7 @@ can do:</p>
 <span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
 </pre></div>
 </div>
-<p>All stylization is handled through the HTML <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class">class global attribute</a> using
+<p>All styles are handled through the HTML <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class">class global attribute</a> using
 predefined Bootstrap and Font Awesome classes.</p>
 </section>
 <section id="examples">
@@ -287,7 +287,7 @@ the backend running web server using the Open OnDemand reverse proxy:</p>
 <div class="highlight-html+erb notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;/node/</span><span class="cp">&lt;%=</span><span class="w"> </span><span class="n">host</span><span class="w"> </span><span class="cp">%&gt;</span><span class="s">/</span><span class="cp">&lt;%=</span><span class="w"> </span><span class="n">port</span><span class="w"> </span><span class="cp">%&gt;</span><span class="s">/&quot;</span><span class="p">&gt;</span>Click me!<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
 </pre></div>
 </div>
-<p>where <code class="docutils literal notranslate"><span class="pre">host</span></code> and <code class="docutils literal notranslate"><span class="pre">port</span></code> are rendered using the interactive session’s
+<p>where <code class="docutils literal notranslate"><span class="pre">host</span></code> and <code class="docutils literal notranslate"><span class="pre">port</span></code> are rendered using the interactive session's
 connection information.</p>
 <div class="admonition danger">
 <p class="admonition-title">Danger</p>
@@ -302,7 +302,7 @@ connects the user to the backend web server but also logs them in with the
 generated session password. This may be possible depending on the web server
 you use.</p>
 <p>For the case of a <a class="reference external" href="http://jupyter.readthedocs.io/en/latest/">Jupyter Notebook server</a> we can create a button that
-submits a form with the <code class="docutils literal notranslate"><span class="pre">password</span></code> included in it to the Jupyter server’s
+submits a form with the <code class="docutils literal notranslate"><span class="pre">password</span></code> included in it to the Jupyter server's
 login page.</p>
 <div class="highlight-html+erb notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">form</span> <span class="na">action</span><span class="o">=</span><span class="s">&quot;/node/</span><span class="cp">&lt;%=</span><span class="w"> </span><span class="n">host</span><span class="w"> </span><span class="cp">%&gt;</span><span class="s">/</span><span class="cp">&lt;%=</span><span class="w"> </span><span class="n">port</span><span class="w"> </span><span class="cp">%&gt;</span><span class="s">/login&quot;</span> <span class="na">method</span><span class="o">=</span><span class="s">&quot;post&quot;</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;hidden&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;password&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;</span><span class="cp">&lt;%=</span><span class="w"> </span><span class="n">password</span><span class="w"> </span><span class="cp">%&gt;</span><span class="s">&quot;</span><span class="p">&gt;</span>
@@ -313,7 +313,7 @@ login page.</p>
 </pre></div>
 </div>
 <p>In this example, the password is stored in a hidden input field that the user
-doesn’t see and it gets communicated to the Jupyter server in the <code class="docutils literal notranslate"><span class="pre">POST</span></code>
+does not see and it gets communicated to the Jupyter server in the <code class="docutils literal notranslate"><span class="pre">POST</span></code>
 request.</p>
 </section>
 </section>
@@ -322,7 +322,7 @@ request.</p>
 <p>Your site may wish to provide users with instructions on how to connect to
 interactive jobs with native VNC tools instead of connecting through the browser.
 To enable this feature configure the dashboard with <code class="docutils literal notranslate"><span class="pre">ENABLE_NATIVE_VNC=true</span></code> in
-the dashboard’s environment file <code class="docutils literal notranslate"><span class="pre">/etc/ood/config/apps/dashboard/env</span></code>.</p>
+the dashboard's environment file <code class="docutils literal notranslate"><span class="pre">/etc/ood/config/apps/dashboard/env</span></code>.</p>
 <p>Enabling this will provide generic instructions for the user to create an ssh tunnel
 <em>a host</em>. If you wish to specify the host users should tunnel to (a well known login
 host for example) use the <code class="docutils literal notranslate"><span class="pre">OOD_NATIVE_VNC_LOGIN_HOST</span></code> configuration in the same
@@ -335,15 +335,15 @@ directory to override the default instructions for a given platform.</p>
 variables and objects you may need to create helpful instructions. You can also
 <a class="reference external" href="https://github.com/OSC/ondemand/tree/master/apps/dashboard/app/views/batch_connect/sessions/connections">refer to the original files for help in creating new panels</a>.</p>
 <dl class="simple">
-<dt>Configuration.native_vnc_login_host</dt><dd><p>The OOD_NATIVE_VNC_LOGIN_HOST configuration if given.</p>
+<dt><code class="docutils literal notranslate"><span class="pre">Configuration.native_vnc_login_host</span></code></dt><dd><p>The OOD_NATIVE_VNC_LOGIN_HOST configuration if given.</p>
 </dd>
-<dt>connect.host</dt><dd><p>The compute node host the interactive job is on</p>
+<dt><code class="docutils literal notranslate"><span class="pre">connect.host</span></code></dt><dd><p>The compute node host the interactive job is on</p>
 </dd>
-<dt>connect.port</dt><dd><p>The compute node port the interactive job has opened</p>
+<dt><code class="docutils literal notranslate"><span class="pre">connect.port</span></code></dt><dd><p>The compute node port the interactive job has opened</p>
 </dd>
-<dt>connect.password</dt><dd><p>The VNC password for the interactive job</p>
+<dt><code class="docutils literal notranslate"><span class="pre">connect.password</span></code></dt><dd><p>The VNC password for the interactive job</p>
 </dd>
-<dt>ENV[“USER”]</dt><dd><p>The USER environment variable</p>
+<dt><code class="docutils literal notranslate"><span class="pre">ENV[&quot;USER&quot;]</span></code></dt><dd><p>The USER environment variable</p>
 </dd>
 </dl>
 </section>
@@ -354,7 +354,7 @@ variables and objects you may need to create helpful instructions. You can also
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="submit.html" class="btn btn-neutral float-left" title="Job Submission (submit.yml.erb)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="sub-apps.html" class="btn btn-neutral float-right" title="Sub-Apps and Reconfiguring existing apps" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="sub-apps.html" class="btn btn-neutral float-right" title="Sub-Apps and Re-configuring existing apps" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
