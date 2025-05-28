@@ -754,7 +754,7 @@ modules to that specific cluster.</p>
 <p>This directory should have <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">spider-json</span></code> output <strong>for each cluster</strong>
 as indicated by the command below. Open OnDemand will read these files and
 potentially show them in a from for a cluster called <strong>my_cluster</strong>.</p>
-<p><code class="docutils literal notranslate"><span class="pre">$LMOD_DIR/spider</span> <span class="pre">-o</span> <span class="pre">spider-json</span> <span class="pre">$MODULEPATH</span> <span class="pre">&gt;</span> <span class="pre">/some/directory/my_cluster.json</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">tmp=&quot;$(mktemp)&quot;;</span> <span class="pre">&quot;$LMOD_DIR/spider&quot;</span> <span class="pre">-o</span> <span class="pre">spider-json</span> <span class="pre">&quot;$MODULEPATH&quot;</span> <span class="pre">&gt;</span> <span class="pre">&quot;$tmp&quot;;</span> <span class="pre">mv</span> <span class="pre">&quot;$tmp&quot;</span> <span class="pre">/some/directory/my_cluster.json</span></code></p>
 <dl>
 <dt>Default</dt><dd><p>Null. No directory given.</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">module_file_dir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span>
@@ -1142,6 +1142,24 @@ they can choose to save those settings to easily reuse later.</p>
 </dl>
 </dd></dl>
 
+<dl class="describe">
+<dt class="sig sig-object">
+<span class="sig-name descname"><span class="pre">global_bc_form_items</span> <span class="pre">(Hash&lt;String,</span> <span class="pre">Object&gt;,</span> <span class="pre">{})</span></span></dt>
+<dd><p>Define batch connect form items globally to be used in any
+batch connect application.</p>
+<dl>
+<dt>Default</dt><dd><p>Nothing provided.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">global_bc_form_items</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<p>Example</p>
+<blockquote>
+<div><p>See <a class="reference internal" href="../../how-tos/app-development/interactive/form.html#global-bc-form-items"><span class="std std-ref">Global Batch Connect Form Items</span></a> for more details.</p>
+</div></blockquote>
+</dd></dl>
+
 </section>
 </section>
 
@@ -1169,7 +1187,7 @@ they can choose to save those settings to easily reuse later.</p>
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
   <span class="rst-current-version" data-toggle="rst-current-version">
     <span class="fa fa-book"> Documentation Versions</span>
-    v: 
+    v: 4.0.0
     <span class="fa fa-caret-down"></span>
   </span>
   <div class="rst-other-versions">
