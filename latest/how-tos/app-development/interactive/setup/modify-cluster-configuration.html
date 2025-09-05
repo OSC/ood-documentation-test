@@ -114,7 +114,7 @@
           <li class="breadcrumb-item"><a href="../setup.html">Setup Interactive Apps</a></li>
       <li class="breadcrumb-item active"><span class="section-number">2. </span>Modify Cluster Configuration</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/OSC/ood-documentation/blob/develop/source/how-tos/app-development/interactive/setup/modify-cluster-configuration.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/OSC/ood-documentation/blob/latest/source/how-tos/app-development/interactive/setup/modify-cluster-configuration.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -148,7 +148,8 @@ on <a class="reference internal" href="../../../../installation/add-cluster-conf
 </span><span class="hll"><span class="w">    </span><span class="nt">vnc</span><span class="p">:</span>
 </span><span class="hll"><span class="w">      </span><span class="nt">script_wrapper</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
 </span><span class="hll"><span class="w">        </span><span class="no">module purge</span>
-</span><span class="hll"><span class="w">        </span><span class="no">export PATH=&quot;/usr/local/turbovnc/bin:$PATH&quot;</span>
+</span><span class="hll"><span class="w">        </span><span class="no"># Add the TurboVNC installation directory to the PATH (note: this may be different on your system)</span>
+</span><span class="hll"><span class="w">        </span><span class="no">export PATH=&quot;/opt/TurboVNC/bin:$PATH&quot;</span>
 </span><span class="hll"><span class="w">        </span><span class="no">export WEBSOCKIFY_CMD=&quot;/usr/local/websockify/run&quot;</span>
 </span><span class="hll"><span class="w">        </span><span class="no">%s</span>
 </span></pre></div>
