@@ -93,15 +93,7 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">v4.1 Release Notes</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#acknowledgments">Acknowledgments</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#dependencies">Dependencies</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#enhancements">Enhancements</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#download-as-zip-button">Download as zip button</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#app-caching">App Caching</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#data-help-directives">Data Help Directives</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#hide-by-default-for-form-items">Hide By Default for Form Items</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#bc-num-nodes-predefined-form-attribute"><code class="docutils literal notranslate"><span class="pre">bc_num_nodes</span></code> Predefined Form Attribute</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#additional-support-for-clusters-with-dashes-and-underscores">Additional Support for Clusters with Dashes and Underscores</a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="#enhancements">Enhancements</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="v4.0-release-notes.html">v4.0 Release Notes</a></li>
@@ -155,16 +147,7 @@
 <ul class="simple">
 <li><p><a class="reference internal" href="#acknowledgments" id="id1">Acknowledgments</a></p></li>
 <li><p><a class="reference internal" href="#dependencies" id="id2">Dependencies</a></p></li>
-<li><p><a class="reference internal" href="#enhancements" id="id3">Enhancements</a></p>
-<ul>
-<li><p><a class="reference internal" href="#download-as-zip-button" id="id4">Download as zip button</a></p></li>
-<li><p><a class="reference internal" href="#app-caching" id="id5">App Caching</a></p></li>
-<li><p><a class="reference internal" href="#data-help-directives" id="id6">Data Help Directives</a></p></li>
-<li><p><a class="reference internal" href="#hide-by-default-for-form-items" id="id7">Hide By Default for Form Items</a></p></li>
-<li><p><a class="reference internal" href="#bc-num-nodes-predefined-form-attribute" id="id8"><code class="docutils literal notranslate"><span class="pre">bc_num_nodes</span></code> Predefined Form Attribute</a></p></li>
-<li><p><a class="reference internal" href="#additional-support-for-clusters-with-dashes-and-underscores" id="id9">Additional Support for Clusters with Dashes and Underscores</a></p></li>
-</ul>
-</li>
+<li><p><a class="reference internal" href="#enhancements" id="id3">Enhancements</a></p></li>
 </ul>
 </nav>
 <section id="acknowledgments">
@@ -172,46 +155,12 @@
 </section>
 <section id="dependencies">
 <h2><a class="toc-backref" href="#id2" role="doc-backlink">Dependencies</a><a class="headerlink" href="#dependencies" title="Link to this heading"></a></h2>
-<p>We now support and offer RPMs for RHEL10</p>
-<p>We no longer support Ubuntu 20.04 or Ruby 2.7</p>
+<p>Open OnDemand version 4.1 offers RPMs for RHEL10.</p>
+<p>Open OnDemand version 4.0 is that last to support Ubuntu 20.04 or Ruby 2.7,
+and versions 4.1 and beyond will not.</p>
 </section>
 <section id="enhancements">
 <h2><a class="toc-backref" href="#id3" role="doc-backlink">Enhancements</a><a class="headerlink" href="#enhancements" title="Link to this heading"></a></h2>
-<section id="download-as-zip-button">
-<h3><a class="toc-backref" href="#id4" role="doc-backlink">Download as zip button</a><a class="headerlink" href="#download-as-zip-button" title="Link to this heading"></a></h3>
-<p>A button has been added to completed interactive session cards to allow users
-to download the session's files as a zip file, making it easier to gather and
-include session details in support requests.</p>
-</section>
-<section id="app-caching">
-<h3><a class="toc-backref" href="#id5" role="doc-backlink">App Caching</a><a class="headerlink" href="#app-caching" title="Link to this heading"></a></h3>
-<p>App details are now cached to reduce load times on app menus. This cache can
-be reset by clicking the &quot;Restart web server&quot; button in the navbar's help menu,
-which should be done whenever app manifests are updated.</p>
-</section>
-<section id="data-help-directives">
-<h3><a class="toc-backref" href="#id6" role="doc-backlink">Data Help Directives</a><a class="headerlink" href="#data-help-directives" title="Link to this heading"></a></h3>
-<p>The new data-help directive has been added to <a class="reference internal" href="../how-tos/app-development/interactive/dynamic-form-widgets.html#dynamic-bc-apps"><span class="std std-ref">Dynamic Form Widgets</span></a>, allowing
-you to change the help text on any form widget using options of a select.</p>
-</section>
-<section id="hide-by-default-for-form-items">
-<h3><a class="toc-backref" href="#id7" role="doc-backlink">Hide By Default for Form Items</a><a class="headerlink" href="#hide-by-default-for-form-items" title="Link to this heading"></a></h3>
-<p>Form items now accept the <code class="docutils literal notranslate"><span class="pre">hide_by_default:</span> <span class="pre">true</span></code> attribute, which will hide the item
-on page load, revealing it when an option with <code class="docutils literal notranslate"><span class="pre">data-hide-widget:</span> <span class="pre">false</span></code> is selected.
-Note that a single form item cannot have both <code class="docutils literal notranslate"><span class="pre">data-hide-item:</span> <span class="pre">true</span></code> and <code class="docutils literal notranslate"><span class="pre">data-hide-item:</span> <span class="pre">false</span></code>
-acting upon it. Rather you should pick the most common behavior (hidden or shown), use
-that as the default, and toggle it as needed. See more in <a class="reference internal" href="../how-tos/app-development/interactive/dynamic-form-widgets.html#dynamic-bc-apps"><span class="std std-ref">Dynamic Form Widgets</span></a> and <a class="reference internal" href="../how-tos/app-development/interactive/form.html#app-development-interactive-form"><span class="std std-ref">User Form (form.yml.erb)</span></a></p>
-</section>
-<section id="bc-num-nodes-predefined-form-attribute">
-<h3><a class="toc-backref" href="#id8" role="doc-backlink"><code class="docutils literal notranslate"><span class="pre">bc_num_nodes</span></code> Predefined Form Attribute</a><a class="headerlink" href="#bc-num-nodes-predefined-form-attribute" title="Link to this heading"></a></h3>
-<p>In order to clear up confusion around <code class="docutils literal notranslate"><span class="pre">bc_num_slots</span></code>, which selects either nodes or cores
-dependent on the scheduler, a new smart attribute <code class="docutils literal notranslate"><span class="pre">bc_num_nodes</span></code> has been added which will
-consistently choose nodes on all schedulers. See more in <a class="reference internal" href="../how-tos/app-development/interactive/form.html#app-development-interactive-form-predefined-attributes"><span class="std std-ref">Predefined Attributes</span></a>.</p>
-</section>
-<section id="additional-support-for-clusters-with-dashes-and-underscores">
-<h3><a class="toc-backref" href="#id9" role="doc-backlink">Additional Support for Clusters with Dashes and Underscores</a><a class="headerlink" href="#additional-support-for-clusters-with-dashes-and-underscores" title="Link to this heading"></a></h3>
-<p>Dynamic form directives now support clusters with dashes or underscores in their names.</p>
-</section>
 </section>
 </section>
 
