@@ -149,29 +149,29 @@ permission management approach.</p>
 </section>
 <section id="shared-project-root">
 <span id="project-manager-shared-project-root"></span><h2>Shared Project Root<a class="headerlink" href="#shared-project-root" title="Link to this heading"></a></h2>
-<p>The project manager provides the <code class="docutils literal notranslate"><span class="pre">OOD_SHARED_PROJECT_ROOT</span></code> environment variable to
+<p>The project manager provides the <code class="docutils literal notranslate"><span class="pre">OOD_SHARED_PROJECT_PATH</span></code> environment variable to
 help potential collaborators discover potential projects to import. While this is
 not necessary for collaboration, it is a recommended step to make it easier to locate.
-The <code class="docutils literal notranslate"><span class="pre">OOD_SHARED_PROJECT_ROOT</span></code> is a list of base locations for shared projects, allowing
+The <code class="docutils literal notranslate"><span class="pre">OOD_SHARED_PROJECT_PATH</span></code> is a list of base locations for shared projects, allowing
 you to add as many locations as you need for different types of users and projects.
 The Project Manager will only allow users to import projects from locations that they
 have access to, so there is no danger in adding paths that are not accessible to certain
 users.</p>
 <p>Because many centers use group-based permission schemes, the Project Manager expects that
-each directory in <code class="docutils literal notranslate"><span class="pre">OOD_SHARED_PROJECT_ROOT</span></code> has a set of subdirectories with finer permissions,
+each directory in <code class="docutils literal notranslate"><span class="pre">OOD_SHARED_PROJECT_PATH</span></code> has a set of subdirectories with finer permissions,
 and will only look for projects in these subdirectories.</p>
 <p>For example, a center may have a shared project folder <code class="docutils literal notranslate"><span class="pre">/fs/shared/projects</span></code>, and a series of subdirectories
 <code class="docutils literal notranslate"><span class="pre">/fs/shared/projects/developers</span></code>, <code class="docutils literal notranslate"><span class="pre">/fs/shared/projects/staff</span></code>, <code class="docutils literal notranslate"><span class="pre">/fs/shared/projects/students</span></code>.</p>
-<p>In this example, they would set <code class="docutils literal notranslate"><span class="pre">OOD_SHARED_PROJECT_ROOT=/fs/shared/projects</span></code>, allowing developers
+<p>In this example, they would set <code class="docutils literal notranslate"><span class="pre">OOD_SHARED_PROJECT_PATH=/fs/shared/projects</span></code>, allowing developers
 to create collaborative projects like <code class="docutils literal notranslate"><span class="pre">/fs/shared/projects/developers/project1</span></code>, which are then
 easily accessible to others in the <code class="docutils literal notranslate"><span class="pre">developers</span></code> group (likewise for <code class="docutils literal notranslate"><span class="pre">staff</span></code> and <code class="docutils literal notranslate"><span class="pre">students</span></code>).</p>
 <p>While the Project Manager automates the permissions settings on project-specific folders, these can
 never exceed the permissions of the <code class="docutils literal notranslate"><span class="pre">SHARED_PROJECT_ROOT</span></code> or any group-level subdirectory, so it
 is important to ensure that your directory structure meets these minimum requirements.</p>
 <ol class="arabic simple">
-<li><p>Any directory in <code class="docutils literal notranslate"><span class="pre">OOD_SHARED_PROJECT_ROOT</span></code> and above must have at minimum <code class="docutils literal notranslate"><span class="pre">r-x</span></code> permissions
+<li><p>Any directory in <code class="docutils literal notranslate"><span class="pre">OOD_SHARED_PROJECT_PATH</span></code> and above must have at minimum <code class="docutils literal notranslate"><span class="pre">r-x</span></code> permissions
 for all potential collaborators.</p></li>
-<li><p>Any group directory directly below <code class="docutils literal notranslate"><span class="pre">OOD_SHARED_PROJECT_ROOT</span></code> should have <code class="docutils literal notranslate"><span class="pre">rwx</span></code> permissions
+<li><p>Any group directory directly below <code class="docutils literal notranslate"><span class="pre">OOD_SHARED_PROJECT_PATH</span></code> should have <code class="docutils literal notranslate"><span class="pre">rwx</span></code> permissions
 for the group</p></li>
 </ol>
 </section>
