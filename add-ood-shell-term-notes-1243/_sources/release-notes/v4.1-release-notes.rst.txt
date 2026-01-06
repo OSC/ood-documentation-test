@@ -1,0 +1,109 @@
+v4.1 Release Notes
+==================
+
+.. contents:: Table of Contents
+  :depth: 3
+  :local:
+
+
+Acknowledgments
+---------------
+* List of first time contributors
+* Call out specific folks that made a big difference to this release!
+
+Breaking Changes and Deprecations
+---------------------------------
+* The important stuff!
+
+Packaging, SELinux, Dependencies
+--------------------------------
+* Dependency lists
+* Operating system stuff
+
+Authentication and Security
+---------------------------
+* What the sysadmins care about :)
+
+Platform Configuration, Operations, and Observability
+-----------------------------------------------------
+* NGINX
+* Passenger
+* Shell?
+* Environment variables
+* Portal stuff
+
+Shell Terminal is Now Configurable
+..................................
+
+The new ``OOD_SHELL_TERM`` environment variable allows the default ``TERM=xterm-16color`` 
+to be overridden. This variable can be set to any other terminal type whose escape codes are 
+fully supported by the underlying `hterm library <https://chromium.googlesource.com/apps/libapps/+/HEAD/hterm/docs/ControlSequences.md>`__.
+Some other common supported options include ``xterm``, ``xterm-256color``, and ``xterm-direct``.
+This environment variable can only be set from ``/etc/ood/config/apps/shell/env``.
+
+Accessibility and Usability
+---------------------------
+* Any UX or UI stuff
+* Accessibility improvements
+
+New Canadian Internationalization Files
+.......................................
+
+Open OnDemand v4.1 will be the first to include Canadian internationalization 
+files for both English and French, thanks to Rahim Khoja of the University of 
+Alberta. This adds to pre-existing internationalization files for American 
+English, Chinese, and Japanese. It is easy to :ref:`customize or generate your 
+own localization files <customization_localization>`, and we greatly appreciate 
+community contributions for languages we do not include by default. In addition 
+to making it easier for others in your country or region to use Open OnDemand, 
+contributed localization files will also be automatically updated with new releases.
+
+Interactive Jobs and Applications
+---------------------------------
+* Batch Connect
+* Interactive sessions
+* Job cards, session information, submission things
+
+Forms, Widgets, and User Input
+------------------------------
+* Dynamic forms
+* Widgets
+* Smart attributes
+* Form YAML stuff
+
+New data-help Directive
+.......................
+
+Version 4.1 adds the ``data-help`` directive, allowing you to dynamically change
+the help text below form items when certain select options are chosen. For example, 
+you may have a ``node_type`` select widget, where type ``basic`` has older GPUs than 
+``advanced``. The ``data-help`` directive can change the help text on the ``num_gpus`` 
+option for users who select ``advanced`` so that they can take that info into account
+when deciding how many GPUs to select. For full documentation, see :ref:`dynamic-bc-apps-data-help`.
+
+
+Files, Projects, and Data Management
+------------------------------------
+* Files App
+* Project Manager
+* File Editor
+* File Browser?
+
+File Editor Has a Maximum Size
+..............................
+
+As of v4.1 the file editor will not open files above a configurable maximum size. The default is 12MB,
+but this can be changed by setting the ``OOD_FILE_EDITOR_MAX_SIZE`` environment variable, or setting 
+``file_editor_max_size`` in your :ref:`ondemand-d-ymls`. Note that size configurations always accept an integer
+number of (binary) bytes, so the 12MB default would be represented as ``12582912``.
+
+
+Help, Support and Institutional Integration
+-------------------------------------------
+* SerivceNow, ticketing things
+
+Upgrade Instructions
+---------------------
+* We should review this list and improve upon it or ensure the info is up to date with the proper OS list
+
+
