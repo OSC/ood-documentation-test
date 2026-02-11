@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>nginx_stage app &mdash; Open OnDemand 4.0.0 documentation</title>
+  <title>nginx_stage app &mdash; Open OnDemand 4.1.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/css/custom.css?v=c48163e2" />
@@ -18,7 +18,7 @@
   
         <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../../../_static/documentation_options.js?v=3304f9e4"></script>
+        <script src="../../../../_static/documentation_options.js?v=42d1b3bd"></script>
         <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../../_static/js/theme.js"></script>
@@ -51,7 +51,7 @@
               <img src="../../../../_static/logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                4.0
+                4.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
@@ -63,6 +63,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../faqs.html">FAQ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../requirements.html">Requirements</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../installation/add-cluster-config.html">Cluster Configuration</a></li>
@@ -74,13 +75,16 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../how-tos/debug.html">Debugging and Monitoring</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../enable-desktops.html">Enable Interactive Desktop</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../how-tos/app-development.html">App Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../how-tos/project-management/project-manager.html">Project Manager</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../../install-ihpc-apps.html">Install Other Interactive Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../install-passenger-apps.html">Install Passenger Apps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/tutorials-interactive-apps.html">Tutorials: Interactive Apps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/tutorials-passenger-apps.html">Tutorials: Passenger Apps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/tutorials-dashboard-apps.html">Developing The OOD Dashboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/tutorials-project-manager.html">Tutorials: Project Manager</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Reference</span></p>
 <ul class="current">
@@ -203,11 +207,11 @@ request should be proxied to the per-user NGINX server (e.g., <code class="docut
 NGINX process.</p>
 <section id="default-installation">
 <h3>Default Installation<a class="headerlink" href="#default-installation" title="Link to this heading"></a></h3>
-<p><a class="reference internal" href="#app-mapping-table"><span class="std std-numref">Table 8</span></a> details the mapping between the requested URL path
+<p><a class="reference internal" href="#app-mapping-table"><span class="std std-numref">Table 9</span></a> details the mapping between the requested URL path
 to the app root directory for in the NGINX app configuration under a default
 installation.</p>
 <span id="app-mapping-table"></span><table class="docutils align-default" id="id2">
-<caption><span class="caption-number">Table 8 </span><span class="caption-text">Mapping of apps for a default installation</span><a class="headerlink" href="#id2" title="Link to this table"></a></caption>
+<caption><span class="caption-number">Table 9 </span><span class="caption-text">Mapping of apps for a default installation</span><a class="headerlink" href="#id2" title="Link to this table"></a></caption>
 <thead>
 <tr class="row-odd"><th class="head"><p>App type</p></th>
 <th class="head"><p>URL path</p></th>
@@ -244,7 +248,7 @@ installation.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2017-2025, Ohio Supercomputer Center.</p>
+    <p>&#169; Copyright 2017-2026, Ohio Supercomputer Center.</p>
   </div>
 
    
@@ -257,7 +261,7 @@ installation.</p>
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
   <span class="rst-current-version" data-toggle="rst-current-version">
     <span class="fa fa-book"> Documentation Versions</span>
-    v: 4.0.0
+    v: 4.1.0
     <span class="fa fa-caret-down"></span>
   </span>
   <div class="rst-other-versions">
