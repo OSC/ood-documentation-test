@@ -186,7 +186,15 @@
 <h2><a class="toc-backref" href="#id5" role="doc-backlink">Ubuntu and Debian repository signing change</a><a class="headerlink" href="#ubuntu-and-debian-repository-signing-change" title="Link to this heading"></a></h2>
 <p>Debian and Ubuntu repositories are now signed using a SHA512 key rather than the previous SHA1 key.</p>
 <p>Using the OnDemand release packages will result in the correct key being used.</p>
-<p>They key is located at <a class="reference external" href="https://apt.osc.edu/ondemand/DEB-GPG-KEY-ondemand-SHA512">https://apt.osc.edu/ondemand/DEB-GPG-KEY-ondemand-SHA512</a></p>
+<p>If not using OnDemand's release packages,
+the <a class="reference external" href="https://apt.osc.edu/ondemand/DEB-GPG-KEY-ondemand-SHA512">DEB-GPG-KEY-ondemand-SHA512</a>
+should be downloaded and used by the OnDemand repository's <strong>signed-by</strong>.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://apt.osc.edu/ondemand/DEB-GPG-KEY-ondemand-SHA512<span class="w"> </span><span class="p">|</span><span class="w"> </span>gpg<span class="w"> </span>--dearmor<span class="w"> </span>-o<span class="w"> </span>/etc/apt/keyrings/ondemand-web.gpg
+
+<span class="nb">source</span><span class="w"> </span>/etc/os-release
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;deb [signed-by=/etc/apt/keyrings/ondemand-web.gpg] https://apt.osc.edu/ondemand/4.2/web/apt </span><span class="nv">$VERSION_CODENAME</span><span class="s2"> main&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>/etc/apt/sources.list.d/ondemand-web.list
+</pre></div>
+</div>
 </section>
 <section id="upgrade-instructions">
 <h2><a class="toc-backref" href="#id6" role="doc-backlink">Upgrade Instructions</a><a class="headerlink" href="#upgrade-instructions" title="Link to this heading"></a></h2>
