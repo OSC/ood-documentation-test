@@ -1,0 +1,202 @@
+v4.2 Release Notes
+==================
+
+.. contents:: Table of Contents
+  :depth: 3
+  :local:
+
+
+Acknowledgments
+---------------
+
+Accessibility Recommendations
+-----------------------------
+
+A VPAT has been created for version 4.2 and outlines the compliance of Open OnDemand with the AA WCAG standard.
+Changes in version 4.2 ensure that immutable aspects of OnDemand are accessible by default, but do not account for
+customizations configured on individual instances. An individual instance should be reviewed separately for compliance,
+but we recommend specifically checking the following configurations that are directly related to WCAG guidelines.
+
+- Ensure ``show_all_apps_link`` is set to true to satisfy `2.4.5 Multiple Ways <http://www.w3.org/TR/WCAG20/#navigation-mechanisms-mult-loc>`_
+   - This page acts as a searchable site map to all the enabled apps on your system. In addition to enabling the link in the navbar, it may be helpful to call attention and link to it in your :ref:`homepage welcome message <change_welcome_html>`. 
+   - The ``show_all_apps_link`` configuration can be set through the environment variable ``SHOW_ALL_APPS_LINK`` or in your :ref:`ondemand-d-ymls`.
+
+.. warning::
+   The default value for ``show_all_apps_link`` is ``false`` in version 4.2.1. This default will be updated to ``true`` 
+   in subsequent patches, but means that **this configuration must be set** to meet AA compliance.
+
+
+Operating System Support
+------------------------
+
+- Open OnDemand version 4.2 adds support for Debian 13.
+- Open OnDemand version 4.2 drops support for Ubuntu 22.04.
+
+Dependency Updates
+------------------
+
+This release updates the following dependencies:
+
+- Passenger 6.1.2
+- NGINX 1.28.0
+- ondemand-dex 2.45.1
+
+Ubuntu and Debian repository signing change
+-------------------------------------------
+
+Debian and Ubuntu repositories are now signed using a SHA512 key rather than the previous SHA1 key.
+
+Using the OnDemand release packages will result in the correct key being used.
+
+If not using OnDemand's release packages,
+the `DEB-GPG-KEY-ondemand-SHA512 <https://apt.osc.edu/ondemand/DEB-GPG-KEY-ondemand-SHA512>`_
+should be downloaded and used by the OnDemand repository's **signed-by**.
+
+.. code-block:: sh
+
+   curl -fsSL https://apt.osc.edu/ondemand/DEB-GPG-KEY-ondemand-SHA512 | gpg --dearmor -o /etc/apt/keyrings/ondemand-web.gpg
+
+   source /etc/os-release
+   echo "deb [signed-by=/etc/apt/keyrings/ondemand-web.gpg] https://apt.osc.edu/ondemand/4.2/web/apt $VERSION_CODENAME main" > /etc/apt/sources.list.d/ondemand-web.list
+
+Behavior Changes
+----------------
+
+Active Jobs Extended Details Panel Opens to the Side
+....................................................
+
+In order to make the Active Jobs table accessible to screen readers, the mechanism 
+for viewing the extended details of a job has been changed. Instead of opening the
+panel inside the table, it now opens either above or beside, allowing table
+navigation to proceed normally.
+
+Upgrade Instructions
+--------------------
+
+.. warning::
+
+   Update the **development** and/or **test** instances of OnDemand installed at your center **before** you modify the **production** instance.
+
+.. warning::
+
+  We have tested the upgrade from version 4.1.4 to version 4.2.0 at OSC's Open OnDemand instance.
+
+#. Update Open OnDemand repository.
+
+   .. tabs::
+
+      .. tab:: RedHat/Rocky Linux/AlmaLinux 8
+
+         .. code-block:: sh
+
+            sudo yum install -y https://yum.osc.edu/ondemand/4.2/ondemand-release-web-4.2-1.el8.noarch.rpm
+
+      .. tab:: RedHat/Rocky Linux/AlmaLinux 9
+
+         .. code-block:: sh
+
+            sudo yum install -y https://yum.osc.edu/ondemand/4.2/ondemand-release-web-4.2-1.el9.noarch.rpm
+
+      .. tab:: RedHat/Rocky Linux/AlmaLinux 10
+
+         .. code-block:: sh
+
+            sudo yum install -y https://yum.osc.edu/ondemand/4.2/ondemand-release-web-4.2-1.el9.noarch.rpm
+
+      .. tab:: Ubuntu 24.04
+
+         .. code-block:: sh
+
+            wget -O /tmp/ondemand-release-web_4.2.0-noble_all.deb https://apt.osc.edu/ondemand/4.2/ondemand-release-web_4.2.0-noble_all.deb
+            sudo apt install /tmp/ondemand-release-web_4.2.0-noble_all.deb
+            sudo apt update
+
+      .. tab:: Debian 12
+
+         .. code-block:: sh
+
+            wget -O /tmp/ondemand-release-web_4.2.0-bookworm_all.deb https://apt.osc.edu/ondemand/4.2/ondemand-release-web_4.2.0-bookworm_all.deb
+            sudo apt install /tmp/ondemand-release-web_4.2.0-bookworm_all.deb
+            sudo apt update
+
+      .. tab:: Amazon Linux 2023
+
+         .. code-block:: sh
+
+            sudo dnf install -y https://yum.osc.edu/ondemand/4.2/ondemand-release-web-4.2-1.amzn2023.noarch.rpm
+
+#. Update Open OnDemand.
+
+   .. tabs::
+
+      .. tab:: yum/dnf
+
+         .. code-block:: sh
+
+            sudo yum clean all
+            sudo yum update ondemand
+
+      .. tab:: apt
+
+         .. code-block:: sh
+
+            sudo apt-get --only-upgrade install ondemand
+
+#. (**Dex users only**) Update the ``ondemand-dex`` package.
+
+   .. tabs::
+
+      .. tab:: yum/dnf
+
+         .. code-block:: sh
+
+            sudo yum update ondemand-dex
+
+
+      .. tab:: apt
+
+         .. code-block:: sh
+
+            sudo apt-get --only-upgrade install ondemand-dex
+
+#. Update Apache configuration and restart Apache.
+
+   .. code-block:: sh
+
+      sudo /opt/ood/ood-portal-generator/sbin/update_ood_portal
+
+   .. tabs::
+
+      .. tab:: RedHat/Rocky Linux/AlmaLinux 8 & 9 & 10
+
+         .. code-block:: sh
+
+            sudo systemctl try-restart httpd
+
+      .. tab:: Ubuntu 24.04 & Debian 12
+
+         .. code-block:: sh
+
+            sudo systemctl try-restart apache2
+
+      .. tab:: Amazon Linux 2023
+
+         .. code-block:: sh
+
+            sudo systemctl try-restart httpd
+
+#. (**Dex users only**) Restart the ``ondemand-dex`` service.
+
+   .. code-block:: sh
+
+      sudo systemctl try-restart ondemand-dex.service
+
+#. (**SELinux users only**) Update SELinux policies.
+
+   See :ref:`ood_selinux_updates`.
+
+#. Force all PUNs to restart.
+
+   .. code-block:: sh
+
+      sudo /opt/ood/nginx_stage/sbin/nginx_stage nginx_clean -f
