@@ -615,10 +615,11 @@ their jobs to know when they start running.</p>
 </section>
 <section id="desktop-safe-clean-path">
 <h3><a class="toc-backref" href="#id63" role="doc-backlink">Desktop safe clean PATH</a><a class="headerlink" href="#desktop-safe-clean-path" title="Link to this heading"></a></h3>
-<p>Previous versions of Open OnDemand have had issues with the <code class="docutils literal notranslate"><span class="pre">bc_desktop</span></code> application where users who
-specify <code class="docutils literal notranslate"><span class="pre">PATH</span></code> in their <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code> (generally through <code class="docutils literal notranslate"><span class="pre">conda</span></code> environments) launching desktops.
-Indeed, previous versions of Open OnDemand have even attempted to fix this. Now, in 4.1, we believe this
-specific issue is resolved because the desktops will strip anything from the users <code class="docutils literal notranslate"><span class="pre">HOME</span></code> from the
+<p>Previous versions of Open OnDemand have had issues with the <code class="docutils literal notranslate"><span class="pre">bc_desktop</span></code> application when users
+specify <code class="docutils literal notranslate"><span class="pre">PATH</span></code> in their <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code> (generally through <code class="docutils literal notranslate"><span class="pre">conda</span></code> environments).
+Indeed, previous versions of Open OnDemand have even attempted to fix this by hard coding a basic <code class="docutils literal notranslate"><span class="pre">PATH</span></code>,
+though this had issues of it's own if binaries were outside of a basic <code class="docutils literal notranslate"><span class="pre">PATH</span></code>. Now, in 4.1, we believe
+this specific issue is resolved because the desktops will strip anything from the users <code class="docutils literal notranslate"><span class="pre">HOME</span></code> from the
 <code class="docutils literal notranslate"><span class="pre">PATH</span></code> environment variable when starting the desktops.</p>
 </section>
 </section>
@@ -904,6 +905,8 @@ sudo<span class="w"> </span>yum<span class="w"> </span>update<span class="w"> </
         <dd><a href="https://OSC.github.io/ood-documentation/latest/release-notes/v4.1-release-notes.html">latest</a></dd>
       
         <dd><a href="https://OSC.github.io/ood-documentation/release-4.0/release-notes/v4.1-release-notes.html">4.0</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-3.1/release-notes/v4.1-release-notes.html">3.1</a></dd>
       
         <dd><a href="https://OSC.github.io/ood-documentation/release-3.0/release-notes/v4.1-release-notes.html">3.0</a></dd>
       
