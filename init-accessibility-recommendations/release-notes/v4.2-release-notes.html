@@ -174,7 +174,7 @@
 </section>
 <section id="accessibility-recommendations">
 <h2><a class="toc-backref" href="#id2" role="doc-backlink">Accessibility Recommendations</a><a class="headerlink" href="#accessibility-recommendations" title="Link to this heading"></a></h2>
-<p>A VPAT has been created for version 4.2 and outlines the compliance of Open OnDemand with the AA WCAG standard.
+<p>A VPAT has been created for version 4.2 and outlines the compliance of Open OnDemand with the WCAG AA standard.
 Changes in version 4.2 ensure that immutable aspects of OnDemand are accessible by default, but do not account for
 customizations configured on individual instances. An individual instance should be reviewed separately for compliance,
 but we recommend specifically checking the following configurations that are directly related to WCAG guidelines.</p>
@@ -182,22 +182,18 @@ but we recommend specifically checking the following configurations that are dir
 <li><dl class="simple">
 <dt>Ensure <code class="docutils literal notranslate"><span class="pre">show_all_apps_link</span></code> is set to true to satisfy <a class="reference external" href="http://www.w3.org/TR/WCAG20/#navigation-mechanisms-mult-loc">2.4.5 Multiple Ways</a></dt><dd><ul>
 <li><p>This page acts as a searchable site map to all the enabled apps on your system. In addition to enabling the link in the navbar, it may be helpful to call attention and link to it in your <a class="reference internal" href="../customizations.html#change-welcome-html"><span class="std std-ref">homepage welcome message</span></a>.</p></li>
+<li><p>The default value has been changed from false to true in v4.2. Ensure that your custom configuration does not override this default.</p></li>
 <li><p>The <code class="docutils literal notranslate"><span class="pre">show_all_apps_link</span></code> configuration can be set through the environment variable <code class="docutils literal notranslate"><span class="pre">SHOW_ALL_APPS_LINK</span></code> or in your <a class="reference internal" href="../reference/files/ondemand-d-ymls.html#ondemand-d-ymls"><span class="std std-ref">ondemand.d/*.yml files</span></a>.</p></li>
 </ul>
 </dd>
 </dl>
 </li>
 </ul>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>The default value for <code class="docutils literal notranslate"><span class="pre">show_all_apps_link</span></code> is <code class="docutils literal notranslate"><span class="pre">false</span></code> in version 4.2.1. This default will be updated to <code class="docutils literal notranslate"><span class="pre">true</span></code>
-in subsequent patches, but means that <strong>this configuration must be set</strong> to meet AA compliance.</p>
-</div>
 </section>
 <section id="operating-system-support">
 <h2><a class="toc-backref" href="#id3" role="doc-backlink">Operating System Support</a><a class="headerlink" href="#operating-system-support" title="Link to this heading"></a></h2>
 <ul class="simple">
-<li><p>Open OnDemand version 4.2 adds support for Debian 13.</p></li>
+<li><p>Open OnDemand version 4.2 adds support for Debian 13 and Ubuntu 26.04.</p></li>
 <li><p>Open OnDemand version 4.2 drops support for Ubuntu 22.04.</p></li>
 </ul>
 </section>
@@ -359,6 +355,8 @@ sudo<span class="w"> </span>yum<span class="w"> </span>update<span class="w"> </
         <dd><a href="https://OSC.github.io/ood-documentation/latest/release-notes/v4.2-release-notes.html">latest</a></dd>
       
         <dd><a href="https://OSC.github.io/ood-documentation/release-4.0/release-notes/v4.2-release-notes.html">4.0</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-3.1/release-notes/v4.2-release-notes.html">3.1</a></dd>
       
         <dd><a href="https://OSC.github.io/ood-documentation/release-3.0/release-notes/v4.2-release-notes.html">3.0</a></dd>
       
