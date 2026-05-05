@@ -325,6 +325,46 @@ Configure General Options
 
           security_strict_transport: false
 
+.. _ood-portal-generator-strip-proxy-headers:
+
+.. describe:: strip_proxy_headers (Array)
+
+  Since 4.1 the Open OnDemand portal will strip these sensitive HTTP headers when proxying
+  requests to interactive applications for enhanced security.
+
+    Default
+      Strip many authentication related headers.
+
+      .. code-block:: yaml
+
+        strip_proxy_headers: ["Authorization", "OIDC_CLAIM_sub", "OIDC_CLAIM_preferred_username", "OIDC_CLAIM_given_name", "OIDC_CLAIM_zoneinfo", "OIDC_CLAIM_locale", "OIDC_CLAIM_email", "OIDC_CLAIM_email_verified", "OIDC_CLAIM_iss", "OIDC_CLAIM_nonce", "OIDC_CLAIM_aud", "OIDC_CLAIM_acr", "OIDC_CLAIM_azp", "OIDC_CLAIM_auth_time", "OIDC_CLAIM_exp", "OIDC_CLAIM_iat", "OIDC_CLAIM_jti", "OIDC_access_token", "OIDC_access_token_expires"]
+
+    Example
+      Strip no authentication related headers. 
+
+      .. code-block:: yaml
+
+        strip_proxy_headers: []
+
+.. describe:: strip_proxy_cookies (Array)
+
+  Since 4.1 the Open OnDemand portal will strip these sensitive HTTP cookies when proxying
+  requests to interactive applications for enhanced security.
+
+    Default
+      Strip ``mod_auth_openidc_session`` cookies.
+
+      .. code-block:: yaml
+
+        strip_proxy_cookies: ["mod_auth_openidc_session_\\d+", "mod_auth_openidc_session"]
+
+    Example
+      Do not strip any cookies.
+
+      .. code-block:: yaml
+
+        strip_proxy_cookies: []
+
 .. describe:: lua_root (String)
 
      the root directory where the Lua handler code resides
@@ -402,6 +442,13 @@ Configure General Options
 
       > string.match('ktrout@example.edu', '^([^@]+)@example.edu$')
       ktrout
+
+   In addition to lua patterns, you can append ``:lower`` to the pattern to
+   automatically lowercase the matched string. An example configuration may be
+   something like ``.*:lower`` to match anything then lowercase it or
+   ``^([^@]+)@example.edu$:lower`` to match the email address with the domain
+   ``example.edu`` then lowercase it.
+
 
    Default
       Match any characters 0 or more times.
@@ -781,6 +828,72 @@ assets and links supplied by the web server are relative and not absolute.
 
           rnode_uri: "/rnode"
 
+.. _ood-portal-generator-configuration-secure-proxy:
+
+.. describe:: secure_node_uri (String, null)
+
+  Introduced in 4.1. Similar to ``node_uri`` above, only in that
+  it will proxy to origin servers using the https protocol instead
+  of plain text http.
+
+  Default
+    This feature is disabled by default.
+
+    .. code-block:: yaml
+
+      secure_node_uri: null
+
+  Example
+    Enable this feature.
+
+    .. code-block:: yaml
+
+      secure_node_uri: "/secure-node"
+
+.. describe:: secure_rnode_uri (String, null)
+
+
+  Introduced in 4.1. Similar to ``rnode_uri`` above, only in that it will
+  proxy to origin  servers using the https protocol instead of plain text http.
+
+  Default
+    This feature is disabled by default.
+
+    .. code-block:: yaml
+
+      secure_rnode_uri: null
+
+  Example
+    Enable this feature.
+
+    .. code-block:: yaml
+
+      secure_rnode_uri: "/secure-rnode"
+
+.. describe:: ssl_proxy (Array, [])
+
+  When enabling SSL/TLS origins above, centers may need to provide
+  apache SSL directives to successfully communicate with the origin
+  servers. Centers can use this configuration to provide such directives.
+
+  Default
+    Do not supply any ``SSLProxy`` directives.
+
+    .. code-block:: yaml
+
+      ssl_proxy: []
+
+  Example
+    Do not check the origin server's certificate CN field or name when
+    proxying to origins over https.
+
+    .. code-block:: yaml
+
+      ssl_proxy:
+        - 'SSLProxyCheckPeerCN Off'
+        - 'SSLProxyCheckPeerName Off'
+
+
 Configure per-user NGINX
 ------------------------
 
@@ -946,6 +1059,24 @@ on mod_auth_openidc_.
 
           oidc_uri: "/oidc"
 
+.. describe:: oidc_redirect_uri (String, null)
+
+     Sub-URI used by mod_auth_openidc_ to populate OIDCRedirectURI
+
+     Default
+       This defaults to: 
+
+       .. code-block:: yaml
+
+          oidc_redirect_uri: /oidc
+
+     Example
+       Enable it on a recommended URI:
+
+       .. code-block:: yaml
+
+          oidc_redirect_uri: "https://rproxy-example-uri.com/oidc"
+
 .. describe:: oidc_discover_uri (String, null)
 
      the URI a user is redirected to if they are not authenticated by
@@ -986,6 +1117,8 @@ on mod_auth_openidc_.
           oidc_discover_root: "/var/www/ood/discover"
 
 .. _mod_auth_openidc: https://github.com/zmartzone/mod_auth_openidc
+
+.. _ood-portal-generator-user-registration:
 
 Configure User Registration
 ---------------------------
@@ -1037,6 +1170,62 @@ to ``null`` will disable this feature.
        .. code-block:: yaml
 
           register_root: "/var/www/ood/register"
+
+.. describe:: register_path (String, register_root)
+
+  Added in 4.1. The file-system path that the ``register_uri`` can map to.
+
+  Default
+    Same value as ``register_root`` if it's been set.
+
+    .. code-block:: yaml
+
+      register_path: '< the same value as register_root >'
+
+  Example
+    Enable it to ``/var/www/ood_register``.
+
+    .. code-block:: yaml
+
+      register_root: "/var/www/ood_register"
+
+.. describe:: register_method (String, 'Alias')
+
+  Added in 4.1. The apache method to which ``register_uri`` will map to ``register_path``.
+
+  Default
+    Use the apache directive ``Alias`` to map ``register_uri`` to ``register_path``.
+
+    .. code-block:: yaml
+
+      register_method: 'Alias'
+
+  Example
+    Use the apache directive ``ScriptAlias`` to map ``register_uri`` to ``register_path``.
+
+    .. code-block:: yaml
+
+      register_root: 'ScriptAlias'
+
+.. describe:: register_method_options (Array, null)
+
+  Added in 4.1. Additional apache directives you may need to supply to register users.
+
+  Default
+    None provided.
+
+    .. code-block:: yaml
+
+      register_method_options: null
+
+  Example
+    Provide a ``WSGIDaemonProcess`` directive with some arguments to help register users.
+
+    .. code-block:: yaml
+
+      register_method_options:
+        - 'WSGIDaemonProcess register user=www-data group=www-data threads=5 home=/var/www/flask-apps/register'
+
 
 .. describe:: oidc_provider_metadata_url (String, null)
 

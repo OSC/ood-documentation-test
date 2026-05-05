@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Basic Batch Connect Options &mdash; Open OnDemand 4.0.0 documentation</title>
+  <title>Basic Batch Connect Options &mdash; Open OnDemand 4.1.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=c48163e2" />
@@ -18,7 +18,7 @@
   
         <script src="../../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../../_static/documentation_options.js?v=3304f9e4"></script>
+        <script src="../../../_static/documentation_options.js?v=42d1b3bd"></script>
         <script src="../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
@@ -51,7 +51,7 @@
               <img src="../../../_static/logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                4.0
+                4.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -75,6 +75,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../how-tos/debug.html">Debugging and Monitoring</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../enable-desktops.html">Enable Interactive Desktop</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../how-tos/app-development.html">App Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../how-tos/project-management/project-manager.html">Project Manager</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
@@ -83,6 +84,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../tutorials/tutorials-interactive-apps.html">Tutorials: Interactive Apps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../tutorials/tutorials-passenger-apps.html">Tutorials: Passenger Apps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../tutorials/tutorials-dashboard-apps.html">Developing The OOD Dashboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/tutorials-project-manager.html">Tutorials: Project Manager</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Reference</span></p>
 <ul class="current">
@@ -396,12 +398,12 @@ the timeout command if there is a timeout given.</p>
 <dd><p>timeout (in seconds) of the main script</p>
 <dl>
 <dt>Default</dt><dd><p>no timeout applied to the main script file</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">script_file</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">timeout</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
 </pre></div>
 </div>
 </dd>
 <dt>Example</dt><dd><p>all scripts timeout after 3600 seconds (1 hour)</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">script_file</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;3600&quot;</span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">timeout</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;3600&quot;</span>
 </pre></div>
 </div>
 </dd>
@@ -553,7 +555,7 @@ for batch connect apps and users shouldn't need to set it.</p>
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
   <span class="rst-current-version" data-toggle="rst-current-version">
     <span class="fa fa-book"> Documentation Versions</span>
-    v: 4.0.0
+    v: 4.1.0
     <span class="fa fa-caret-down"></span>
   </span>
   <div class="rst-other-versions">
@@ -561,6 +563,10 @@ for batch connect apps and users shouldn't need to set it.</p>
       <dt>Versions</dt>
       
         <dd><a href="https://OSC.github.io/ood-documentation/latest/reference/files/submit-yml/basic-bc-options.html">latest</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-4.0/reference/files/submit-yml/basic-bc-options.html">4.0</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-3.1/reference/files/submit-yml/basic-bc-options.html">3.1</a></dd>
       
         <dd><a href="https://OSC.github.io/ood-documentation/release-3.0/reference/files/submit-yml/basic-bc-options.html">3.0</a></dd>
       
