@@ -2,10 +2,6 @@
   background-color: #C8102E;
 }
 
-.wy-side-nav-search > div.version {
-  color: rgba(255, 255, 255, 0.5);
-}
-
 .wy-side-nav-search > a:hover {
   background: rgba(255, 255, 255, 0.2);
 }
@@ -62,7 +58,12 @@ footer p {
   color: #ffffff !important;
   text-decoration: underline;
 }
+
 .admonition a.reference {
+  color: #2071a5 !important;
+}
+
+.admonition.note a.reference {
   color: #000305 !important;
   text-decoration: underline;
 }
@@ -70,6 +71,10 @@ footer p {
 /* Sidebar nav */
 .wy-nav-side .wy-menu-vertical a {
   color: #ffffff;
+}
+
+.wy-side-nav-search > div.version {
+  color: rgba(255, 255, 255, 0.85);
 }
 
 .wy-nav-side .wy-menu-vertical li a code,
