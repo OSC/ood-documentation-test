@@ -9,8 +9,60 @@ v4.2 Release Notes
 Acknowledgments
 ---------------
 
+Thank you to all of the community members who contributed code, documentation, suggestions, 
+bug reports, and other assistance across the project! We would like to recognize the following 
+individuals for their contributions to the Open OnDemand version 4.2 release.
+ 
+**mrobbert** contributed the cluster_info API for the PBSPro job adapter in ``ood_core``, and ensured
+KDE desktops can correctly use ``startplasma-x11`` when available.
+ 
+**james-s-willis** fixed quota bar display, preventing bars from extending over 100%, and fixed the
+``file_quotas`` widget on custom pages.
+
+**andrejcermak** contributed adding an OpenStack helper and refactoring coder logs functionality 
+in ``ood_core``, as well as caching improvements for ``BatchConnect::App.from_token`` in ``ondemand``.
+ 
+**harshit-soora** contributed the ``OOD_WORKFLOW_SYNC_KEY`` feature, enabling synchronized launchers
+within a workflow, as well as updates to the Project Manager tutorial and documentation.
+ 
+**robinkar** fixed parsing of canceled ``sacct`` job states in ``ood_core`` and improved escaping of
+option values for CSS selectors.
+ 
+**karcaw** contributed ``mod_ood_proxy`` HSTS header support.
+
+**finchnSNPs** and **folkwest** reported accessibility gaps in the job status table, files app, and the
+Project Manager, which contribute to the community feedback that helps improve Open OnDemand.
+
+We'd also like to extend a big thank you to those listed below for contributing to Open OnDemand for the
+first time in this release. These contributions span the ``ondemand``, ``ood_core``, and
+``ood-documentation`` GitHub repositories and include **9** first-time contributors.
+ 
+* ``james-s-willis`` made their first contribution in `#5097 <https://github.com/OSC/ondemand/pull/5097>`_
+* ``mrobbert`` made their first contribution in `#5156 <https://github.com/OSC/ondemand/pull/5156>`_
+* ``clooty217`` made their first contribution in `#5246 <https://github.com/OSC/ondemand/pull/5246>`_
+* ``bstepanovski`` made their first contribution in `#5294 <https://github.com/OSC/ondemand/pull/5294>`_
+* ``andrejcermak`` made their first contribution in `#5299 <https://github.com/OSC/ondemand/pull/5299>`_
+* ``mrobbert`` made their first contribution in `ood_core#930 <https://github.com/OSC/ood_core/pull/930>`_
+* ``asubah`` made their first contribution in `ood-documentation#1332 <https://github.com/OSC/ood-documentation/pull/1332>`_
+* ``mcglow2`` made their first contribution in `ood-documentation#1315 <https://github.com/OSC/ood-documentation/pull/1315>`_
+* ``harshit-soora`` made their first contribution in `ood-documentation#1329 <https://github.com/OSC/ood-documentation/pull/1329>`_
+* ``iqlinuxadmin`` made their first contribution in `ood-documentation#1323 <https://github.com/OSC/ood-documentation/pull/1323>`_
+
+Authentication and Security
+---------------------------
+
+Software Bill of Materials
+..........................
+
+Open OnDemand version 4.2 includes a Software Bill of Materials (SBOM) outlining the
+operating system-level software dependencies for Open OnDemand. For more information, 
+please see the INSERT REPO LINK HERE FROM Travis.
+
 Accessibility
 -------------
+
+Overview
+........
 
 Open OnDemand v4.2 includes many accessibility improvements across the dashboard and core applications. These include:
 
@@ -23,15 +75,12 @@ Open OnDemand v4.2 includes many accessibility improvements across the dashboard
 
 A VPAT has been created for version 4.2 which outlines the compliance of Open OnDemand with the WCAG AA standard.
 Changes in version 4.2 ensure that immutable aspects of OnDemand are accessible by default, but do not account for
-customizations configured on individual instances. An individual instance should be reviewed separately for compliance,
-but we recommend specifically checking the following configurations that are directly related to WCAG guidelines.
+customizations configured on individual instances. 
 
- - Ensure ``show_all_apps_link`` is set to true to satisfy `2.4.5 Multiple Ways <http://www.w3.org/TR/WCAG20/#navigation-mechanisms-mult-loc>`_
-   
-   - This page acts as a searchable site map to all the enabled apps on your system. In addition to enabling the link in the navbar, it may be helpful to call attention and link to it in your :ref:`homepage welcome message <change_welcome_html>`.
-   - The default value has been changed from false to true in v4.2. Ensure that your custom configuration does not override this default.
-   - The ``show_all_apps_link`` configuration can be set through the environment variable ``SHOW_ALL_APPS_LINK`` or in your :ref:`ondemand-d-ymls`.
+Additional Accessibility Configurations
+.......................................
 
+.. include:: ../accessibility_settings.inc
 
 Operating System Support
 ------------------------
@@ -111,6 +160,12 @@ project directory tables will no longer serve 'Edit' links to files. This preven
 and copying the file contents, effectively downloading the file. With this change, disabling downloads will prevent
 users from exporting the contents of any files, while still being able to execute certain files in predefined contexts,
 like batch connect apps or :ref:`templated projects <project_templates>`.
+
+Links open in current tab
+.........................
+
+All default links will now open in the current tab. This changes the default behavior of previous versions
+that opened some links in a new tab.
 
 Upgrade Instructions
 --------------------
