@@ -290,24 +290,25 @@ Configuration Properties with profile support
 
         dashboard_title: "My Institution"
 
+.. _show_all_apps_link:
 .. describe:: show_all_apps_link (Bool, false)
 
   Whether to show the ``All Apps`` link in the navbar.
   This links to the Dashboard page showing all system installed applications.
 
   Default
-    ``false``, the ``All Apps`` link will not be shown in the navbar.
-
-    .. code-block:: yaml
-
-      show_all_apps_link: false
-
-  Example
-    Include the ``All Apps`` link in the navbar.
+    ``true``, the ``All Apps`` link will be shown in the navbar.
 
     .. code-block:: yaml
 
       show_all_apps_link: true
+
+  Example
+    Do not show the ``All Apps`` link in the navbar.
+
+    .. code-block:: yaml
+
+      show_all_apps_link: false
 
 .. describe:: nav_bar (Array<Object>, [])
 
@@ -464,6 +465,31 @@ Configuration Properties with profile support
     .. code-block:: yaml
 
       nav_categories: ['Apps', 'Files', 'Jobs']
+
+.. _files_select_target:
+.. describe:: files_select_target (Object, null)
+
+  Default
+
+    This feature is disabled by default.
+
+    .. code-block:: yaml
+
+      files_select_target: null
+  
+  Example
+
+    Enable this feature to allow users to send file data payloads to ``/pun/sys/passenger_app``
+    with the title, label, icon and expiration (in seconds).
+
+    .. code-block:: yaml
+
+      files_select_target:
+        endpoint: '/pun/sys/passenger_app'
+        label: 'Send to App'
+        icon: 'fas://paper-plane'
+        title: 'Send selected files to the external application'
+        expiration: 10
 
 .. _configuration_properties:
 
@@ -1052,3 +1078,25 @@ Configuration Properties
   Example
 
     See :ref:`global_bc_form_items` for more details.
+
+.. describe:: widget_partials_enabled (Boolean, false)
+
+  Enable serving partial widgets. With this feature enabled,
+  JavaScript can request partial widgets through ``/widgets/<widget_name>``.
+
+  Added in 4.0.
+
+  Default
+    This feature is disabled by default.
+
+    .. code-block:: yaml
+
+      widget_partials_enabled: false
+
+  Example
+
+    Enable this feature.
+
+    .. code-block:: yaml
+
+      widget_partials_enabled: true
