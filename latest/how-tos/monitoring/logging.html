@@ -4,10 +4,10 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Logging &mdash; Open OnDemand 4.1.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+  <title>Logging &mdash; Open OnDemand 4.2.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=c48163e2" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=6f7bdab3" />
       <link rel="stylesheet" type="text/css" href="../../_static/tabs.css?v=a5c4661c" />
 
   
@@ -18,7 +18,7 @@
   
         <script src="../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../_static/documentation_options.js?v=42d1b3bd"></script>
+        <script src="../../_static/documentation_options.js?v=d0ae6d56"></script>
         <script src="../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
@@ -51,14 +51,24 @@
               <img src="../../_static/logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                4.1
-              </div>
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
+                4.2
+              </div><div id="searchbox" role="search">
+  <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get" id="rtd-search-form" class="wy-form">
+      <input
+        type="text"
+        id="search-input"
+        name="q"
+        aria-label="Search docs"
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
+        spellcheck="false"
+        placeholder="Search docs"
+      />
+      <input type="submit" value="Go" class="sr-only" />
+    </form>
+  </div>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
@@ -76,7 +86,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../debug/debug-apache.html">Apache httpd tips</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../debug/debug-interactive-apps.html">Debugging Interactive Apps</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Logging</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#system-logs">System Logs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#system-logs">System Logs</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#nginx-logs">NGINX Logs</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#session-data">Session Data</a></li>
 </ul>
 </li>
@@ -100,6 +113,7 @@
 <p class="caption" role="heading"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../accessibility.html">Accessibility</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../reference.html">Configuration Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../security.html">Security</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../release-notes.html">Release Notes</a></li>
@@ -167,7 +181,8 @@ when initially installing and configuring Open OnDemand.</p>
 <p class="admonition-title">Warning</p>
 <p>There are no entries for failed logins.</p>
 </div>
-<p><strong>NGINX Logs</strong></p>
+<section id="nginx-logs">
+<span id="id2"></span><h3>NGINX Logs<a class="headerlink" href="#nginx-logs" title="Link to this heading"></a></h3>
 <p>The NGINX logs are the output of the user <a class="reference internal" href="../../glossary.html#glossary"><span class="std std-ref">PUN</span></a>. These logs will capture things relevant
 to a <em>particular user</em> such as:</p>
 <ul class="simple">
@@ -179,9 +194,12 @@ to a <em>particular user</em> such as:</p>
 <p><code class="file docutils literal notranslate"><span class="pre">/var/log/ondemand-nginx/&lt;user&gt;</span></code></p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>These logs by default have <code class="docutils literal notranslate"><span class="pre">root:root</span></code> ownership. It may be beneficial
-to <code class="docutils literal notranslate"><span class="pre">chown</span></code> an appropriate staff group on these files for troubleshooting down the road.</p>
+<p>These logs by default have <code class="docutils literal notranslate"><span class="pre">ondemand-nginx:ondemand-nginx</span></code> ownership. It may be beneficial
+to provide a FACL for an appropriate staff group to have access to these files for troubleshooting.
+The command to do so is <code class="docutils literal notranslate"><span class="pre">setfacl</span> <span class="pre">-m</span> <span class="pre">g:groupname:rx</span> <span class="pre">/var/log/ondemand-nginx</span></code> where <code class="docutils literal notranslate"><span class="pre">groupname</span></code>
+needs to be replaced with the actual group.</p>
 </div>
+</section>
 </section>
 <section id="session-data">
 <h2>Session Data<a class="headerlink" href="#session-data" title="Link to this heading"></a></h2>
@@ -248,7 +266,7 @@ connections or launches.</p>
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
   <span class="rst-current-version" data-toggle="rst-current-version">
     <span class="fa fa-book"> Documentation Versions</span>
-    v: 4.1.0
+    v: 4.2.0
     <span class="fa fa-caret-down"></span>
   </span>
   <div class="rst-other-versions">
@@ -256,6 +274,8 @@ connections or launches.</p>
       <dt>Versions</dt>
       
         <dd><a href="https://OSC.github.io/ood-documentation/latest/how-tos/monitoring/logging.html">latest</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-4.1/how-tos/monitoring/logging.html">4.1</a></dd>
       
         <dd><a href="https://OSC.github.io/ood-documentation/release-4.0/how-tos/monitoring/logging.html">4.0</a></dd>
       
