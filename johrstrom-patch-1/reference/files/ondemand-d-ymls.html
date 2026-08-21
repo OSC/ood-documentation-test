@@ -4,10 +4,10 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ondemand.d/*.yml files &mdash; Open OnDemand 4.1.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+  <title>ondemand.d/*.yml files &mdash; Open OnDemand 4.2.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=c48163e2" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=6f7bdab3" />
       <link rel="stylesheet" type="text/css" href="../../_static/tabs.css?v=a5c4661c" />
 
   
@@ -18,7 +18,7 @@
   
         <script src="../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../_static/documentation_options.js?v=42d1b3bd"></script>
+        <script src="../../_static/documentation_options.js?v=d0ae6d56"></script>
         <script src="../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
@@ -51,14 +51,24 @@
               <img src="../../_static/logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                4.1
-              </div>
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
+                4.2
+              </div><div id="searchbox" role="search">
+  <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get" id="rtd-search-form" class="wy-form">
+      <input
+        type="text"
+        id="search-input"
+        name="q"
+        aria-label="Search docs"
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
+        spellcheck="false"
+        placeholder="Search docs"
+      />
+      <input type="submit" value="Go" class="sr-only" />
+    </form>
+  </div>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
@@ -89,6 +99,7 @@
 <p class="caption" role="heading"><span class="caption-text">Reference</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../accessibility.html">Accessibility</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../reference.html">Configuration Reference</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="ood-portal-yml.html"><code class="docutils literal notranslate"><span class="pre">ood_portal.yml</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="nginx-stage-yml.html"><code class="docutils literal notranslate"><span class="pre">nginx_stage.yml</span></code></a></li>
@@ -423,19 +434,19 @@ this property will be used as the HTML image title.</p>
 </dl>
 </dd></dl>
 
-<dl class="describe">
+<dl class="describe" id="show-all-apps-link">
 <dt class="sig sig-object">
-<span class="sig-name descname"><span class="pre">show_all_apps_link</span> <span class="pre">(Bool,</span> <span class="pre">false)</span></span></dt>
+<span class="sig-name descname"><span class="pre">show_all_apps_link</span> <span class="pre">(Bool,</span> <span class="pre">true)</span></span></dt>
 <dd><p>Whether to show the <code class="docutils literal notranslate"><span class="pre">All</span> <span class="pre">Apps</span></code> link in the navbar.
 This links to the Dashboard page showing all system installed applications.</p>
 <dl>
-<dt>Default</dt><dd><p><code class="docutils literal notranslate"><span class="pre">false</span></code>, the <code class="docutils literal notranslate"><span class="pre">All</span> <span class="pre">Apps</span></code> link will not be shown in the navbar.</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">show_all_apps_link</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<dt>Default</dt><dd><p><code class="docutils literal notranslate"><span class="pre">true</span></code>, the <code class="docutils literal notranslate"><span class="pre">All</span> <span class="pre">Apps</span></code> link will be shown in the navbar.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">show_all_apps_link</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </pre></div>
 </div>
 </dd>
-<dt>Example</dt><dd><p>Include the <code class="docutils literal notranslate"><span class="pre">All</span> <span class="pre">Apps</span></code> link in the navbar.</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">show_all_apps_link</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<dt>Example</dt><dd><p>Do not show the <code class="docutils literal notranslate"><span class="pre">All</span> <span class="pre">Apps</span></code> link in the navbar.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">show_all_apps_link</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
 </pre></div>
 </div>
 </dd>
@@ -605,6 +616,31 @@ on the navigation bar.</p>
 </div>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="describe" id="files-select-target">
+<dt class="sig sig-object">
+<span class="sig-name descname"><span class="pre">files_select_target</span> <span class="pre">(Object,</span> <span class="pre">null)</span></span></dt>
+<dd><p>Default</p>
+<blockquote>
+<div><p>This feature is disabled by default.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">files_select_target</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>Example</p>
+<blockquote>
+<div><p>Enable this feature to allow users to send file data payloads to <code class="docutils literal notranslate"><span class="pre">/pun/sys/passenger_app</span></code>
+with the title, label, icon and expiration (in seconds).</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">files_select_target</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">endpoint</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;/pun/sys/passenger_app&#39;</span>
+<span class="w">  </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Send</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">App&#39;</span>
+<span class="w">  </span><span class="nt">icon</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;fas://paper-plane&#39;</span>
+<span class="w">  </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Send</span><span class="nv"> </span><span class="s">selected</span><span class="nv"> </span><span class="s">files</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">external</span><span class="nv"> </span><span class="s">application&#39;</span>
+<span class="w">  </span><span class="nt">expiration</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span>
+</pre></div>
+</div>
+</div></blockquote>
 </dd></dl>
 
 </section>
@@ -1164,6 +1200,28 @@ batch connect application.</p>
 </div></blockquote>
 </dd></dl>
 
+<dl class="describe">
+<dt class="sig sig-object">
+<span class="sig-name descname"><span class="pre">widget_partials_enabled</span> <span class="pre">(Boolean,</span> <span class="pre">false)</span></span></dt>
+<dd><p>Enable serving partial widgets. With this feature enabled,
+JavaScript can request partial widgets through <code class="docutils literal notranslate"><span class="pre">/widgets/&lt;widget_name&gt;</span></code>.</p>
+<p>Added in 4.0.</p>
+<dl>
+<dt>Default</dt><dd><p>This feature is disabled by default.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">widget_partials_enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<p>Example</p>
+<blockquote>
+<div><p>Enable this feature.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">widget_partials_enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</pre></div>
+</div>
+</div></blockquote>
+</dd></dl>
+
 </section>
 </section>
 
@@ -1191,7 +1249,7 @@ batch connect application.</p>
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
   <span class="rst-current-version" data-toggle="rst-current-version">
     <span class="fa fa-book"> Documentation Versions</span>
-    v: 4.1.0
+    v: 4.2.0
     <span class="fa fa-caret-down"></span>
   </span>
   <div class="rst-other-versions">
@@ -1199,6 +1257,12 @@ batch connect application.</p>
       <dt>Versions</dt>
       
         <dd><a href="https://OSC.github.io/ood-documentation/latest/reference/files/ondemand-d-ymls.html">latest</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-4.1/reference/files/ondemand-d-ymls.html">4.1</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-4.0/reference/files/ondemand-d-ymls.html">4.0</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-3.1/reference/files/ondemand-d-ymls.html">3.1</a></dd>
       
         <dd><a href="https://OSC.github.io/ood-documentation/release-3.0/reference/files/ondemand-d-ymls.html">3.0</a></dd>
       

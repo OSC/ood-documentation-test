@@ -4,10 +4,10 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>4. Customize Attributes &mdash; Open OnDemand 4.1.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+  <title>4. Customize Attributes &mdash; Open OnDemand 4.2.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=c48163e2" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=6f7bdab3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=a5c4661c" />
 
   
@@ -18,7 +18,7 @@
   
         <script src="../../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../../_static/documentation_options.js?v=42d1b3bd"></script>
+        <script src="../../../_static/documentation_options.js?v=d0ae6d56"></script>
         <script src="../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
@@ -51,14 +51,24 @@
               <img src="../../../_static/logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                4.1
-              </div>
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
+                4.2
+              </div><div id="searchbox" role="search">
+  <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get" id="rtd-search-form" class="wy-form">
+      <input
+        type="text"
+        id="search-input"
+        name="q"
+        aria-label="Search docs"
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
+        spellcheck="false"
+        placeholder="Search docs"
+      />
+      <input type="submit" value="Go" class="sr-only" />
+    </form>
+  </div>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
@@ -105,6 +115,7 @@
 <p class="caption" role="heading"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../accessibility.html">Accessibility</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../reference.html">Configuration Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../security.html">Security</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../release-notes.html">Release Notes</a></li>
@@ -166,11 +177,11 @@
 <div><p>If you are not using Lmod, then in the function <code class="docutils literal notranslate"><span class="pre">setup_env</span></code> replace the value for <code class="docutils literal notranslate"><span class="pre">RSTUDIO_SERVER_IMAGE</span></code> with the absolute path to the Singularity image, and <code class="docutils literal notranslate"><span class="pre">SINGULARITY_BINDPATH</span></code> with all the directories that contain dependencies for RStudio server and R. Discovering those paths may benefit from using <code class="docutils literal notranslate"><span class="pre">ptrace</span></code> or <code class="docutils literal notranslate"><span class="pre">lsof</span></code>. Finally ensure that <code class="docutils literal notranslate"><span class="pre">R</span></code> and <code class="docutils literal notranslate"><span class="pre">rserver</span></code> are in the <code class="docutils literal notranslate"><span class="pre">PATH</span></code>.</p>
 <p>If you are using Lmod then create a module like the following:</p>
 <div class="highlight-lua notranslate"><div class="highlight"><pre><span></span><span class="c1">-- $path/to/lmodfiles/rstudio_container/v0.0.1.lua</span>
-<span class="n">help</span><span class="p">(</span><span class="s">[[ rstudio - loads rstudio with singularity environment for ondemand apps ]]</span><span class="p">)</span>
-<span class="n">whatis</span><span class="p">(</span><span class="s2">&quot;loads rstudio with singularity environment for ondemand&quot;</span><span class="p">)</span>
-<span class="hll"><span class="n">setenv</span><span class="p">(</span><span class="s2">&quot;RSTUDIO_SERVER_IMAGE&quot;</span><span class="p">,</span><span class="s2">&quot;/usr/local/project/ondemand/singularity/rstudio/rstudio_launcher_centos7.simg&quot;</span><span class="p">)</span>
-</span><span class="hll"><span class="n">setenv</span><span class="p">(</span><span class="s2">&quot;SINGULARITY_BINDPATH&quot;</span><span class="p">,</span><span class="s2">&quot;/etc,/media,/mnt,/opt,/srv,/usr,/var&quot;</span><span class="p">)</span>
-</span><span class="hll"><span class="n">append_path</span><span class="p">(</span><span class="s2">&quot;PATH&quot;</span><span class="p">,</span> <span class="s2">&quot;/usr/lib/rstudio-server/bin&quot;</span><span class="p">)</span>
+<span class="nf">help</span><span class="p">([[</span><span class="w"> </span><span class="nv">rstudio</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nv">loads</span><span class="w"> </span><span class="nv">rstudio</span><span class="w"> </span><span class="nv">with</span><span class="w"> </span><span class="nv">singularity</span><span class="w"> </span><span class="nv">environment</span><span class="w"> </span><span class="kr">for</span><span class="w"> </span><span class="nv">ondemand</span><span class="w"> </span><span class="nv">apps</span><span class="w"> </span><span class="p">]])</span>
+<span class="nf">whatis</span><span class="p">(</span><span class="s2">&quot;loads rstudio with singularity environment for ondemand&quot;</span><span class="p">)</span>
+<span class="hll"><span class="nf">setenv</span><span class="p">(</span><span class="s2">&quot;RSTUDIO_SERVER_IMAGE&quot;</span><span class="p">,</span><span class="s2">&quot;/usr/local/project/ondemand/singularity/rstudio/rstudio_launcher_centos7.simg&quot;</span><span class="p">)</span>
+</span><span class="hll"><span class="nf">setenv</span><span class="p">(</span><span class="s2">&quot;SINGULARITY_BINDPATH&quot;</span><span class="p">,</span><span class="s2">&quot;/etc,/media,/mnt,/opt,/srv,/usr,/var&quot;</span><span class="p">)</span>
+</span><span class="hll"><span class="nf">append_path</span><span class="p">(</span><span class="s2">&quot;PATH&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;/usr/lib/rstudio-server/bin&quot;</span><span class="p">)</span>
 </span></pre></div>
 </div>
 <p>Then replace the exports in the function <code class="docutils literal notranslate"><span class="pre">setup_env</span></code> with the appropriate <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">use</span> <span class="pre">$module_path</span></code> and <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span> <span class="pre">rstudio_container/v0.0.1</span></code>.</p>
@@ -235,7 +246,7 @@ setup_env
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
   <span class="rst-current-version" data-toggle="rst-current-version">
     <span class="fa fa-book"> Documentation Versions</span>
-    v: 4.1.0
+    v: 4.2.0
     <span class="fa fa-caret-down"></span>
   </span>
   <div class="rst-other-versions">
@@ -243,6 +254,12 @@ setup_env
       <dt>Versions</dt>
       
         <dd><a href="https://OSC.github.io/ood-documentation/latest/tutorials/tutorials-interactive-apps/add-rstudio/customize-attributes.html">latest</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-4.1/tutorials/tutorials-interactive-apps/add-rstudio/customize-attributes.html">4.1</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-4.0/tutorials/tutorials-interactive-apps/add-rstudio/customize-attributes.html">4.0</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-3.1/tutorials/tutorials-interactive-apps/add-rstudio/customize-attributes.html">3.1</a></dd>
       
         <dd><a href="https://OSC.github.io/ood-documentation/release-3.0/tutorials/tutorials-interactive-apps/add-rstudio/customize-attributes.html">3.0</a></dd>
       
