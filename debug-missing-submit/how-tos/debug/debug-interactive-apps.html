@@ -172,19 +172,23 @@ variables in the <code class="docutils literal notranslate"><span class="pre">su
 This being the case, you may be debugging an issue where a particular value that should
 be there is missing or zero. Casting a <code class="docutils literal notranslate"><span class="pre">nil</span></code> to a string returns an empty string and
 casting <code class="docutils literal notranslate"><span class="pre">nil</span></code> to an integer returns zero.</p>
+<p>For example you may see an error like this if you're trying to use a variable
+to supply <code class="docutils literal notranslate"><span class="pre">--ntasks-per-node</span></code> to Slurm's <code class="docutils literal notranslate"><span class="pre">sbatch</span></code> command.</p>
+<figure class="align-default">
+<img alt="An interactive application's failure stating sbatch: error: Invalid numeric value &quot;&quot; for --ntasks-per-node." src="../../_images/batch_connect_missing_item_error.png" />
+</figure>
 <p>In debugging a situation like this, it may be helpful to raise an error displaying
 all the variables that are available.</p>
-<div class="highlight-erb notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;%-</span>
+<div class="highlight-erb notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;%#</span><span class="c"> submit.yml.erb </span><span class="cp">%&gt;</span>
+<span class="cp">&lt;%-</span>
 <span class="w">  </span><span class="c1"># ... ruby code ...</span>
 
 <span class="w">  </span><span class="k">raise</span><span class="p">(</span><span class="no">StandardError</span><span class="p">,</span><span class="w"> </span><span class="n">to_h</span><span class="o">.</span><span class="n">inspect</span><span class="p">)</span>
 <span class="cp">-%&gt;</span>
 </pre></div>
 </div>
-<p>You're likely to see that the variable in question is in fact missing.
-If it is missing, then it is not an actual option in your <code class="docutils literal notranslate"><span class="pre">form.yml.erb</span></code>
-and thus never passed from the user to this file. It may be misspelled or
-missing from the <code class="docutils literal notranslate"><span class="pre">form</span></code> section of the <code class="docutils literal notranslate"><span class="pre">form.yml.erb</span></code> file altogether.</p>
+<p>It is most likely that the variable in question is in fact missing
+or misspelled in either the <code class="docutils literal notranslate"><span class="pre">form.yml</span></code> or <code class="docutils literal notranslate"><span class="pre">submit.yml</span></code> files.</p>
 </section>
 </section>
 
