@@ -4,10 +4,10 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>3. Customize Attributes &mdash; Open OnDemand 3.1.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+  <title>3. Customize Attributes &mdash; Open OnDemand 4.2.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=c48163e2" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=6f7bdab3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=a5c4661c" />
 
   
@@ -18,7 +18,7 @@
   
         <script src="../../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../../_static/documentation_options.js?v=dd1205ac"></script>
+        <script src="../../../_static/documentation_options.js?v=d0ae6d56"></script>
         <script src="../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
@@ -51,18 +51,29 @@
               <img src="../../../_static/logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                3.1
-              </div>
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
+                4.2
+              </div><div id="searchbox" role="search">
+  <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get" id="rtd-search-form" class="wy-form">
+      <input
+        type="text"
+        id="search-input"
+        name="q"
+        aria-label="Search docs"
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
+        spellcheck="false"
+        placeholder="Search docs"
+      />
+      <input type="submit" value="Go" class="sr-only" />
+    </form>
+  </div>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../faqs.html">FAQ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../requirements.html">Requirements</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../installation/add-cluster-config.html">Cluster Configuration</a></li>
@@ -74,10 +85,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../how-tos/debug.html">Debugging and Monitoring</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../enable-desktops.html">Enable Interactive Desktop</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../how-tos/app-development.html">App Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../how-tos/project-management/project-manager.html">Project Manager</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../install-ihpc-apps.html">Install Other Interactive Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../install-passenger-apps.html">Install Passenger Apps</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../tutorials-interactive-apps.html">Tutorials: Interactive Apps</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../add-jupyter.html">Add a Jupyter App</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../add-rstudio.html">Add an RStudio App</a></li>
@@ -87,9 +100,8 @@
 <li class="toctree-l3 current"><a class="current reference internal" href="#">3. Customize Attributes</a></li>
 <li class="toctree-l3"><a class="reference internal" href="edit-script-sh.html">4. Edit Launch Script</a></li>
 <li class="toctree-l3"><a class="reference internal" href="edit-submit-yml.html">5. Modify Submit Parameters</a></li>
-<li class="toctree-l3"><a class="reference internal" href="edit-form-js.html">6. Edit Form.js</a></li>
-<li class="toctree-l3"><a class="reference internal" href="deploy.html">7. Deploy MATLAB App</a></li>
-<li class="toctree-l3"><a class="reference internal" href="known-issues.html">8. Known Issues</a></li>
+<li class="toctree-l3"><a class="reference internal" href="deploy.html">6. Deploy MATLAB App</a></li>
+<li class="toctree-l3"><a class="reference internal" href="known-issues.html">7. Known Issues</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../k8s-jupyter.html">Add a Jupyter App on a Kubernetes Cluster</a></li>
@@ -100,10 +112,12 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../tutorials-passenger-apps.html">Tutorials: Passenger Apps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../tutorials-dashboard-apps.html">Developing The OOD Dashboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials-project-manager.html">Tutorials: Project Manager</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../accessibility.html">Accessibility</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../reference.html">Configuration Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../security.html">Security</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../release-notes.html">Release Notes</a></li>
@@ -129,7 +143,7 @@
           <li class="breadcrumb-item"><a href="../add-matlab.html">Add a MATLAB App</a></li>
       <li class="breadcrumb-item active"><span class="section-number">3. </span>Customize Attributes</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/OSC/ood-documentation/blob/develop/source/tutorials/tutorials-interactive-apps/add-matlab/edit-form-yml.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/OSC/ood-documentation/blob/latest/source/tutorials/tutorials-interactive-apps/add-matlab/edit-form-yml.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -240,7 +254,7 @@ the ones that are required, and some that may be universally useful.</p>
 <div><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nn">---</span>
 <span class="nt">cluster</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;owens&quot;</span>
 <span class="nt">form</span><span class="p">:</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">version</span><span class="w">               </span><span class="c1"># &lt;-- OSC supports multiple versions of MATLAB via LMod</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">version</span><span class="w">               </span><span class="c1"># &lt;-- OSC supports multiple versions of MATLAB via Lmod</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bc_account</span><span class="w">            </span><span class="c1"># &lt;-- the charge account</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bc_num_hours</span><span class="w">          </span><span class="c1"># &lt;-- the number of user requested hours that the job run</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bc_num_slots</span><span class="w">          </span><span class="c1"># &lt;-- the number of nodes</span>
@@ -254,7 +268,7 @@ the ones that are required, and some that may be universally useful.</p>
 </li>
 <li><p>Set attribute values for each form element</p>
 <blockquote>
-<div><p><code class="docutils literal notranslate"><span class="pre">num_cores</span></code> has a max and min set that are specific to OSC’s Owens cluster; set these values to whatever makes sense for your site.</p>
+<div><p><code class="docutils literal notranslate"><span class="pre">num_cores</span></code> has a max and min set that are specific to OSC's Owens cluster; set these values to whatever makes sense for your site.</p>
 <blockquote>
 <div><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nn">---</span>
 <span class="nt">attributes</span><span class="p">:</span>
@@ -273,7 +287,7 @@ the ones that are required, and some that may be universally useful.</p>
 </div>
 </div></blockquote>
 </div></blockquote>
-<p><code class="docutils literal notranslate"><span class="pre">bc_num_slots</span></code> is hardcoded to 1 and is not user editable because OSC does not support MPI work from the Batch Connect app. The value for <code class="docutils literal notranslate"><span class="pre">bc_vnc_resolution</span></code> should be copied verbatim. <code class="docutils literal notranslate"><span class="pre">bc_account</span></code> is the charge account for the batch work.</p>
+<p><code class="docutils literal notranslate"><span class="pre">bc_num_slots</span></code> is hard-coded to 1 and is not user editable because OSC does not support MPI work from the Batch Connect app. The value for <code class="docutils literal notranslate"><span class="pre">bc_vnc_resolution</span></code> should be copied verbatim. <code class="docutils literal notranslate"><span class="pre">bc_account</span></code> is the charge account for the batch work.</p>
 <blockquote>
 <div><blockquote>
 <div><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nn">---</span>
@@ -287,7 +301,7 @@ the ones that are required, and some that may be universally useful.</p>
 </pre></div>
 </div>
 </div></blockquote>
-<p><code class="docutils literal notranslate"><span class="pre">node_type</span></code> allows users to select which hardware they want to run their work on. In the <code class="docutils literal notranslate"><span class="pre">options</span></code> mapping the first value is displayed to the user, the second value is made available to any <a class="reference external" href="https://en.wikipedia.org/wiki/ERuby">ERB</a> files in <code class="docutils literal notranslate"><span class="pre">~/ondemand/dev/bc_my_center_matlab/template/*</span></code> and <code class="docutils literal notranslate"><span class="pre">~/ondemand/dev/bc_my_center_matlab/submit.yml.erb</span></code>. <code class="docutils literal notranslate"><span class="pre">version</span></code> allows the user to select what version of MATLAB they want to run, and the second value corresponds to OSC’s module names.</p>
+<p><code class="docutils literal notranslate"><span class="pre">node_type</span></code> allows users to select which hardware they want to run their work on. In the <code class="docutils literal notranslate"><span class="pre">options</span></code> mapping the first value is displayed to the user, the second value is made available to any <a class="reference external" href="https://en.wikipedia.org/wiki/ERuby">ERB</a> files in <code class="docutils literal notranslate"><span class="pre">~/ondemand/dev/bc_my_center_matlab/template/*</span></code> and <code class="docutils literal notranslate"><span class="pre">~/ondemand/dev/bc_my_center_matlab/submit.yml.erb</span></code>. <code class="docutils literal notranslate"><span class="pre">version</span></code> allows the user to select what version of MATLAB they want to run, and the second value corresponds to OSC's module names.</p>
 <blockquote>
 <div><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nn">---</span>
 <span class="nt">attributes</span><span class="p">:</span>
@@ -343,7 +357,7 @@ the ones that are required, and some that may be universally useful.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2017-2024, Ohio Supercomputer Center.</p>
+    <p>&#169; Copyright 2017-2026, Ohio Supercomputer Center.</p>
   </div>
 
    
@@ -356,7 +370,7 @@ the ones that are required, and some that may be universally useful.</p>
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
   <span class="rst-current-version" data-toggle="rst-current-version">
     <span class="fa fa-book"> Documentation Versions</span>
-    v: 
+    v: 4.2.0
     <span class="fa fa-caret-down"></span>
   </span>
   <div class="rst-other-versions">
@@ -364,6 +378,12 @@ the ones that are required, and some that may be universally useful.</p>
       <dt>Versions</dt>
       
         <dd><a href="https://OSC.github.io/ood-documentation/latest/tutorials/tutorials-interactive-apps/add-matlab/edit-form-yml.html">latest</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-4.1/tutorials/tutorials-interactive-apps/add-matlab/edit-form-yml.html">4.1</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-4.0/tutorials/tutorials-interactive-apps/add-matlab/edit-form-yml.html">4.0</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-3.1/tutorials/tutorials-interactive-apps/add-matlab/edit-form-yml.html">3.1</a></dd>
       
         <dd><a href="https://OSC.github.io/ood-documentation/release-3.0/tutorials/tutorials-interactive-apps/add-matlab/edit-form-yml.html">3.0</a></dd>
       

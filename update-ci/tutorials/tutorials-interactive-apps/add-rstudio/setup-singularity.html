@@ -4,10 +4,10 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>3. Setup Singularity &mdash; Open OnDemand 3.1.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+  <title>3. Setup Singularity &mdash; Open OnDemand 4.2.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=c48163e2" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=6f7bdab3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=a5c4661c" />
 
   
@@ -18,7 +18,7 @@
   
         <script src="../../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../../_static/documentation_options.js?v=dd1205ac"></script>
+        <script src="../../../_static/documentation_options.js?v=d0ae6d56"></script>
         <script src="../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
@@ -51,18 +51,29 @@
               <img src="../../../_static/logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                3.1
-              </div>
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
+                4.2
+              </div><div id="searchbox" role="search">
+  <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get" id="rtd-search-form" class="wy-form">
+      <input
+        type="text"
+        id="search-input"
+        name="q"
+        aria-label="Search docs"
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
+        spellcheck="false"
+        placeholder="Search docs"
+      />
+      <input type="submit" value="Go" class="sr-only" />
+    </form>
+  </div>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../faqs.html">FAQ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../requirements.html">Requirements</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../installation/add-cluster-config.html">Cluster Configuration</a></li>
@@ -74,10 +85,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../how-tos/debug.html">Debugging and Monitoring</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../enable-desktops.html">Enable Interactive Desktop</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../how-tos/app-development.html">App Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../how-tos/project-management/project-manager.html">Project Manager</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../install-ihpc-apps.html">Install Other Interactive Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../install-passenger-apps.html">Install Passenger Apps</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../tutorials-interactive-apps.html">Tutorials: Interactive Apps</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../add-jupyter.html">Add a Jupyter App</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../add-rstudio.html">Add an RStudio App</a><ul class="current">
@@ -101,10 +114,12 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../tutorials-passenger-apps.html">Tutorials: Passenger Apps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../tutorials-dashboard-apps.html">Developing The OOD Dashboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials-project-manager.html">Tutorials: Project Manager</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../accessibility.html">Accessibility</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../reference.html">Configuration Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../security.html">Security</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../release-notes.html">Release Notes</a></li>
@@ -130,7 +145,7 @@
           <li class="breadcrumb-item"><a href="../add-rstudio.html">Add an RStudio App</a></li>
       <li class="breadcrumb-item active"><span class="section-number">3. </span>Setup Singularity</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/OSC/ood-documentation/blob/develop/source/tutorials/tutorials-interactive-apps/add-rstudio/setup-singularity.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/OSC/ood-documentation/blob/latest/source/tutorials/tutorials-interactive-apps/add-rstudio/setup-singularity.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -142,7 +157,7 @@
 <span id="app-development-tutorials-rstudio-setup-singularity"></span><h1><span class="section-number">3. </span>Setup Singularity<a class="headerlink" href="#setup-singularity" title="Link to this heading"></a></h1>
 <section id="download-the-singularity-image">
 <h2>Download The Singularity Image<a class="headerlink" href="#download-the-singularity-image" title="Link to this heading"></a></h2>
-<p>The Singularity image may be downloaded from Singularity Hub by users without sudoer rights by running the following:</p>
+<p>The Singularity image may be downloaded from Singularity Hub by users without sudo rights by running the following:</p>
 <blockquote>
 <div><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>singularity<span class="w"> </span>pull<span class="w"> </span>--name<span class="w"> </span>rserver-launcher-centos7.simg<span class="w"> </span>shub://OSC/centos7-launcher
 </pre></div>
@@ -158,9 +173,9 @@
 </section>
 <section id="alternatively-build-the-singularity-image">
 <h2>Alternatively, Build The Singularity Image<a class="headerlink" href="#alternatively-build-the-singularity-image" title="Link to this heading"></a></h2>
-<p>Running a build is trivial but does require sudoer access to the build host.</p>
-<p>Where <code class="docutils literal notranslate"><span class="pre">Singularity</span></code> is the file that defines the image. The image is just the base CentOS 7 packages plus a run script. This simplicity is because the actual executables and libraries must be bound and mounted into the container/guest at runtime from the host. By bind-mounting executables and libaries from the host system we are able to swap RStudio versions at launch time without having to update the Singuarlity image.</p>
-<p>Likewise the runscript defined in the image uses the host <code class="docutils literal notranslate"><span class="pre">$PATH</span></code> which is propagated into the guest’s environment as <code class="docutils literal notranslate"><span class="pre">$USER_PATH</span></code>.</p>
+<p>Running a build is trivial but does require sudo access to the build host.</p>
+<p>Where <code class="docutils literal notranslate"><span class="pre">Singularity</span></code> is the file that defines the image. The image is just the base CentOS 7 packages plus a run script. This simplicity is because the actual executables and libraries must be bound and mounted into the container/guest at runtime from the host. By bind-mounting executables and libraries from the host system we are able to swap RStudio versions at launch time without having to update the Singularity image.</p>
+<p>Likewise the <code class="docutils literal notranslate"><span class="pre">runscript</span></code> defined in the image uses the host <code class="docutils literal notranslate"><span class="pre">$PATH</span></code> which is propagated into the guest's environment as <code class="docutils literal notranslate"><span class="pre">$USER_PATH</span></code>.</p>
 <p>An example Singularity file for running RStudio:</p>
 <blockquote>
 <div><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ensure that the guest is the same OS type as the compute hosts that it will run on</span>
@@ -206,7 +221,7 @@ This<span class="w"> </span>will<span class="w"> </span>run<span class="w"> </sp
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2017-2024, Ohio Supercomputer Center.</p>
+    <p>&#169; Copyright 2017-2026, Ohio Supercomputer Center.</p>
   </div>
 
    
@@ -219,7 +234,7 @@ This<span class="w"> </span>will<span class="w"> </span>run<span class="w"> </sp
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
   <span class="rst-current-version" data-toggle="rst-current-version">
     <span class="fa fa-book"> Documentation Versions</span>
-    v: 
+    v: 4.2.0
     <span class="fa fa-caret-down"></span>
   </span>
   <div class="rst-other-versions">
@@ -227,6 +242,12 @@ This<span class="w"> </span>will<span class="w"> </span>run<span class="w"> </sp
       <dt>Versions</dt>
       
         <dd><a href="https://OSC.github.io/ood-documentation/latest/tutorials/tutorials-interactive-apps/add-rstudio/setup-singularity.html">latest</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-4.1/tutorials/tutorials-interactive-apps/add-rstudio/setup-singularity.html">4.1</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-4.0/tutorials/tutorials-interactive-apps/add-rstudio/setup-singularity.html">4.0</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-3.1/tutorials/tutorials-interactive-apps/add-rstudio/setup-singularity.html">3.1</a></dd>
       
         <dd><a href="https://OSC.github.io/ood-documentation/release-3.0/tutorials/tutorials-interactive-apps/add-rstudio/setup-singularity.html">3.0</a></dd>
       

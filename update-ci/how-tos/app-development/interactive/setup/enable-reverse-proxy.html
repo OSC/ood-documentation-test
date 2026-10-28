@@ -4,10 +4,10 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>3. Enable Reverse Proxy &mdash; Open OnDemand 3.1.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=fa44fd50" />
+  <title>3. Enable Reverse Proxy &mdash; Open OnDemand 4.2.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
-      <link rel="stylesheet" type="text/css" href="../../../../_static/css/custom.css?v=c48163e2" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/custom.css?v=6f7bdab3" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/tabs.css?v=a5c4661c" />
 
   
@@ -18,7 +18,7 @@
   
         <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../../../_static/documentation_options.js?v=dd1205ac"></script>
+        <script src="../../../../_static/documentation_options.js?v=d0ae6d56"></script>
         <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../../_static/js/theme.js"></script>
@@ -51,18 +51,29 @@
               <img src="../../../../_static/logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                3.1
-              </div>
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
+                4.2
+              </div><div id="searchbox" role="search">
+  <div class="searchformwrapper">
+    <form class="search" action="../../../../search.html" method="get" id="rtd-search-form" class="wy-form">
+      <input
+        type="text"
+        id="search-input"
+        name="q"
+        aria-label="Search docs"
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
+        spellcheck="false"
+        placeholder="Search docs"
+      />
+      <input type="submit" value="Go" class="sr-only" />
+    </form>
+  </div>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../faqs.html">FAQ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../requirements.html">Requirements</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../installation/add-cluster-config.html">Cluster Configuration</a></li>
@@ -84,17 +95,21 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../debug.html">Debugging and Monitoring</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../enable-desktops.html">Enable Interactive Desktop</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../app-development.html">App Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../project-management/project-manager.html">Project Manager</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../../install-ihpc-apps.html">Install Other Interactive Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../install-passenger-apps.html">Install Passenger Apps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/tutorials-interactive-apps.html">Tutorials: Interactive Apps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/tutorials-passenger-apps.html">Tutorials: Passenger Apps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/tutorials-dashboard-apps.html">Developing The OOD Dashboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/tutorials-project-manager.html">Tutorials: Project Manager</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../../architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../accessibility.html">Accessibility</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../reference.html">Configuration Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../security.html">Security</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../release-notes.html">Release Notes</a></li>
@@ -119,7 +134,7 @@
           <li class="breadcrumb-item"><a href="../setup.html">Setup Interactive Apps</a></li>
       <li class="breadcrumb-item active"><span class="section-number">3. </span>Enable Reverse Proxy</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/OSC/ood-documentation/blob/develop/source/how-tos/app-development/interactive/setup/enable-reverse-proxy.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/OSC/ood-documentation/blob/latest/source/how-tos/app-development/interactive/setup/enable-reverse-proxy.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -150,7 +165,7 @@ return a string that matches the above regular expression</p>
 <p class="admonition-title">Note</p>
 <p>If the <strong class="command">hostname</strong> command gives you a value that cannot be used
 to connect to the compute node from the OnDemand host, then you can
-override it in the cluster config with a <strong class="command">bash</strong> command that will
+override it in the cluster configuration with a <strong class="command">bash</strong> command that will
 work, e.g.:</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># /etc/ood/config/clusters.d/cluster1.yml</span>
 <span class="nn">---</span>
@@ -171,11 +186,12 @@ work, e.g.:</p>
 </span><span class="w">    </span><span class="nt">vnc</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">script_wrapper</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
 <span class="w">        </span><span class="no">module purge</span>
-<span class="w">        </span><span class="no">export PATH=&quot;/usr/local/turbovnc/bin:$PATH&quot;</span>
+<span class="w">        </span><span class="no"># Add the TurboVNC installation directory to the PATH (note: this may be different on your system)</span>
+<span class="w">        </span><span class="no">export PATH=&quot;/opt/TurboVNC/bin:$PATH&quot;</span>
 <span class="w">        </span><span class="no">export WEBSOCKIFY_CMD=&quot;/usr/local/websockify/run&quot;</span>
-<span class="w">        </span><span class="no">%s</span>
-<span class="hll"><span class="w">      </span><span class="nt">set_host</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;host=$(hostname</span><span class="nv"> </span><span class="s">-A</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">awk</span><span class="nv"> </span><span class="s">&#39;{print</span><span class="nv"> </span><span class="s">$1}&#39;)&quot;</span>
-</span></pre></div>
+<span class="hll"><span class="w">        </span><span class="no">%s</span>
+</span><span class="w">      </span><span class="nt">set_host</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;host=$(hostname</span><span class="nv"> </span><span class="s">-A</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">awk</span><span class="nv"> </span><span class="s">&#39;{print</span><span class="nv"> </span><span class="s">$1}&#39;)&quot;</span>
+</pre></div>
 </div>
 </div>
 </li>
@@ -197,12 +213,12 @@ located at <code class="file docutils literal notranslate"><span class="pre">/et
 <a class="reference internal" href="../../../../reference/files/ood-portal-yml.html#ood-portal-generator-configuration-configure-reverse-proxy"><span class="std std-ref">Configure Reverse Proxy</span></a>.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>What if my site foregos the FQDN in the host names for compute nodes, and
+<p>What if my site foregoes the FQDN in the host names for compute nodes, and
 we have compute names that give their hosts as:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">ab001</span></code> … <code class="docutils literal notranslate"><span class="pre">ab100</span></code> (for the AB cluster)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">pn001</span></code> … <code class="docutils literal notranslate"><span class="pre">pn500</span></code> (for the PN cluster)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">xy001</span></code> … <code class="docutils literal notranslate"><span class="pre">xy125</span></code> (for the XY cluster)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ab001</span></code> ... <code class="docutils literal notranslate"><span class="pre">ab100</span></code> (for the AB cluster)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pn001</span></code> ... <code class="docutils literal notranslate"><span class="pre">pn500</span></code> (for the PN cluster)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">xy001</span></code> ... <code class="docutils literal notranslate"><span class="pre">xy125</span></code> (for the XY cluster)</p></li>
 </ul>
 <p>You could then use the following regular expression in your configuration
 file:</p>
@@ -275,7 +291,7 @@ request:</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>As we don’t have the simple server return anything to the browser, you
+<p>As we don't have the simple server return anything to the browser, you
 can ignore any errors or warnings you see in your browser.</p>
 </div>
 </li>
@@ -294,7 +310,7 @@ can ignore any errors or warnings you see in your browser.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2017-2024, Ohio Supercomputer Center.</p>
+    <p>&#169; Copyright 2017-2026, Ohio Supercomputer Center.</p>
   </div>
 
    
@@ -307,7 +323,7 @@ can ignore any errors or warnings you see in your browser.</p>
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
   <span class="rst-current-version" data-toggle="rst-current-version">
     <span class="fa fa-book"> Documentation Versions</span>
-    v: 
+    v: 4.2.0
     <span class="fa fa-caret-down"></span>
   </span>
   <div class="rst-other-versions">
@@ -315,6 +331,12 @@ can ignore any errors or warnings you see in your browser.</p>
       <dt>Versions</dt>
       
         <dd><a href="https://OSC.github.io/ood-documentation/latest/how-tos/app-development/interactive/setup/enable-reverse-proxy.html">latest</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-4.1/how-tos/app-development/interactive/setup/enable-reverse-proxy.html">4.1</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-4.0/how-tos/app-development/interactive/setup/enable-reverse-proxy.html">4.0</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-3.1/how-tos/app-development/interactive/setup/enable-reverse-proxy.html">3.1</a></dd>
       
         <dd><a href="https://OSC.github.io/ood-documentation/release-3.0/how-tos/app-development/interactive/setup/enable-reverse-proxy.html">3.0</a></dd>
       

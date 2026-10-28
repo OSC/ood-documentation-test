@@ -4,10 +4,10 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>App Sharing &mdash; Open OnDemand 3.1.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+  <title>App Sharing &mdash; Open OnDemand 4.2.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=c48163e2" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=6f7bdab3" />
       <link rel="stylesheet" type="text/css" href="../../_static/tabs.css?v=a5c4661c" />
 
   
@@ -18,13 +18,13 @@
   
         <script src="../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../_static/documentation_options.js?v=dd1205ac"></script>
+        <script src="../../_static/documentation_options.js?v=d0ae6d56"></script>
         <script src="../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Install Other Interactive Apps" href="../../install-ihpc-apps.html" />
+    <link rel="next" title="Project Manager" href="../project-management/project-manager.html" />
     <link rel="prev" title="Advanced Interactive Application Configurations" href="interactive/advanced.html" />
  
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-34776817-3"></script>
@@ -51,18 +51,29 @@
               <img src="../../_static/logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                3.1
-              </div>
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
+                4.2
+              </div><div id="searchbox" role="search">
+  <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get" id="rtd-search-form" class="wy-form">
+      <input
+        type="text"
+        id="search-input"
+        name="q"
+        aria-label="Search docs"
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
+        spellcheck="false"
+        placeholder="Search docs"
+      />
+      <input type="submit" value="Go" class="sr-only" />
+    </form>
+  </div>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../faqs.html">FAQ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../requirements.html">Requirements</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../installation/add-cluster-config.html">Cluster Configuration</a></li>
@@ -93,17 +104,21 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../project-management/project-manager.html">Project Manager</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../install-ihpc-apps.html">Install Other Interactive Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install-passenger-apps.html">Install Passenger Apps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../tutorials/tutorials-interactive-apps.html">Tutorials: Interactive Apps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../tutorials/tutorials-passenger-apps.html">Tutorials: Passenger Apps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../tutorials/tutorials-dashboard-apps.html">Developing The OOD Dashboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/tutorials-project-manager.html">Tutorials: Project Manager</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../accessibility.html">Accessibility</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../reference.html">Configuration Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../security.html">Security</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../release-notes.html">Release Notes</a></li>
@@ -128,7 +143,7 @@
           <li class="breadcrumb-item"><a href="../app-development.html">App Development</a></li>
       <li class="breadcrumb-item active">App Sharing</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/OSC/ood-documentation/blob/develop/source/how-tos/app-development/app-sharing.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/OSC/ood-documentation/blob/latest/source/how-tos/app-development/app-sharing.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -155,7 +170,7 @@ PATH the bin directory of another user.</p></li>
 </section>
 <section id="system-installed-apps">
 <span id="app-sharing-system-installed-apps"></span><h2>System Installed Apps<a class="headerlink" href="#system-installed-apps" title="Link to this heading"></a></h2>
-<p>Admins may install apps to the system by copying the application directory to <code class="docutils literal notranslate"><span class="pre">/var/www/ood/apps/sys</span></code>. Default directory permissions (<code class="docutils literal notranslate"><span class="pre">755</span></code>) will allow all users with access to OnDemand to see and run that app. Apps may have their access restricted by changing the permissions on individual application directories. For example if a site does not wish to show licensed software to un-licensed users they might do the following:</p>
+<p>Admins may install apps to the system by copying the application directory to <code class="docutils literal notranslate"><span class="pre">/var/www/ood/apps/sys</span></code>. Default directory permissions (<code class="docutils literal notranslate"><span class="pre">755</span></code>) will allow all users with access to OnDemand to see and run that app. Apps may have their access restricted by changing the permissions on individual application directories. For example if a site does not wish to show licensed software to unlicensed users they might do the following:</p>
 <blockquote>
 <div><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># Given:</span>
 <span class="c1"># - an app named $NEW_APP</span>
@@ -223,7 +238,7 @@ drwxr-xr-x.<span class="w">  </span><span class="m">7</span><span class="w"> </s
 </section>
 <section id="code-sharing">
 <h2>Code Sharing<a class="headerlink" href="#code-sharing" title="Link to this heading"></a></h2>
-<p>Code sharing is when an application’s source code is shared between two or more users who run it as a personal development application. Models for this sharing can include using a web-based file repository such as Github, emailing Zip’d app directories, or a group readable directory symlinked to each user’s <code class="docutils literal notranslate"><span class="pre">~/ondemand/dev/</span></code> directory.</p>
+<p>Code sharing is when an application's source code is shared between two or more users who run it as a personal development application. Models for this sharing can include using a web-based file repository such as Github, emailing zipped app directories, or a group readable directory symlinked to each user's <code class="docutils literal notranslate"><span class="pre">~/ondemand/dev/</span></code> directory.</p>
 <p>For an example of the later consider:</p>
 <blockquote>
 <div><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># As user mrodgers</span>
@@ -245,14 +260,14 @@ owens-login01:johrstrom<span class="w"> </span>johrstrom$<span class="w"> </span
 </section>
 <section id="peer-to-peer-executable-sharing">
 <h2>Peer to Peer Executable Sharing<a class="headerlink" href="#peer-to-peer-executable-sharing" title="Link to this heading"></a></h2>
-<p>By setting a few environment variables it is possible to enable a more polished peer to peer app sharing experience. There are two reasons why this mode is not always enabled: the first is that app permissions are the only thing that prevents all a site’s OnDemand users from seeing a shared app, so it is important to get the permissions correct, and only to deploy apps that are production ready. The other reason to be careful with app sharing is that requires greater trust placed in app developers.</p>
+<p>By setting a few environment variables it is possible to enable a more polished peer to peer app sharing experience. There are two reasons why this mode is not always enabled: the first is that app permissions are the only thing that prevents all a site's OnDemand users from seeing a shared app, so it is important to get the permissions correct, and only to deploy apps that are production ready. The other reason to be careful with app sharing is that requires greater trust placed in app developers.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Executable sharing means the app and all its code runs as the user
-executing it, like everything else in OnDemand. User’s might not
+executing it, like everything else in OnDemand. User's might not
 realize this. We currently do not provide an opt in screen warning
-users that this app “will have permission to do everything on their
-behalf and act as them”. As a result, you should fully trust whoever
+users that this app &quot;will have permission to do everything on their
+behalf and act as them&quot;. As a result, you should fully trust whoever
 you enable to do share apps using executable sharing.</p>
 </div>
 <section id="enabling-the-app-sharing-dashboard">
@@ -264,7 +279,7 @@ you enable to do share apps using executable sharing.</p>
 for finding an app.</p></li>
 <li><p>Set <code class="docutils literal notranslate"><span class="pre">OOD_APP_CATALOG_URL=https://link.to.online/app/catalog</span></code> to link
 externally to an advertised listing of apps available.</p></li>
-<li><p>Pin usr apps to the dashboard and group them by category.</p></li>
+<li><p>Pin user (<code class="docutils literal notranslate"><span class="pre">usr</span></code>) apps to the dashboard and group them by category.</p></li>
 </ol>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># /etc/ood/config/ondemand.d/ondemand.yml</span>
 <span class="nt">pinned_apps</span><span class="p">:</span>
@@ -294,17 +309,17 @@ and text.</p>
 <h3>Controlling Who Can Share and Access Apps<a class="headerlink" href="#controlling-who-can-share-and-access-apps" title="Link to this heading"></a></h3>
 <p>Shared apps are deployed to
 <code class="docutils literal notranslate"><span class="pre">/var/www/ood/apps/usr/$USER/gateway/$APPNAME</span></code>. We recommend <code class="docutils literal notranslate"><span class="pre">gateway</span></code>
-be a symlink to the user’s home directory at <code class="docutils literal notranslate"><span class="pre">$HOME/ondemand/share</span></code> and
+be a symlink to the user's home directory at <code class="docutils literal notranslate"><span class="pre">$HOME/ondemand/share</span></code> and
 by default set <code class="docutils literal notranslate"><span class="pre">750</span></code> permissions on <code class="docutils literal notranslate"><span class="pre">/var/www/ood/apps/usr/$USER</span></code>. This
 approach has these benefits (assuming users named <code class="docutils literal notranslate"><span class="pre">efranz</span></code> and <code class="docutils literal notranslate"><span class="pre">an0047</span></code>:</p>
 <ol class="arabic simple">
 <li><p>The admin as root controls who can share apps by creating root owned
 directories like <code class="docutils literal notranslate"><span class="pre">/var/www/ood/apps/usr/efranz</span></code> and
 <code class="docutils literal notranslate"><span class="pre">/var/www/ood/apps/usr/an0047</span></code>.</p></li>
-<li><p>The admin controls who can access that user’s shared apps by setting
+<li><p>The admin controls who can access that user's shared apps by setting
 permissions on this directory. Thus by setting <code class="docutils literal notranslate"><span class="pre">750</span></code> on
 <code class="docutils literal notranslate"><span class="pre">/var/www/ood/apps/usr/an0047</span></code> this ensures that an0047 can only share
-apps with users in his primary group. At times we have created a supplemental group (shinyusr) and chgrp the share directory to this group so
+apps with users in his primary group. At times we have created a supplemental group (<code class="docutils literal notranslate"><span class="pre">shinyusr</span></code>) and chgrp the share directory to this group so
 that the developer can share apps with every user in this group.</p></li>
 <li><p>The developer who can share apps can modify permissions on the app
 directories themselves i.e.
@@ -323,8 +338,8 @@ ln<span class="w"> </span>-s<span class="w"> </span>~efranz/ondemand/share<span 
 </section>
 <section id="example-of-executable-sharing">
 <h3>Example of Executable Sharing<a class="headerlink" href="#example-of-executable-sharing" title="Link to this heading"></a></h3>
-<p>This is with two users Eric (efranz) and Bob (an0047).</p>
-<p>Eric has a dev app “MATLAB”, and interactive plugin app. Eric can</p>
+<p>This is with two users Eric (<code class="docutils literal notranslate"><span class="pre">efranz</span></code>) and Bob (<code class="docutils literal notranslate"><span class="pre">an0047</span></code>).</p>
+<p>Eric has a development app &quot;MATLAB&quot;, and interactive plugin app. Eric can</p>
 <ol class="arabic simple">
 <li><p>Launch MATLAB</p></li>
 <li><p>View and Edit the code</p></li>
@@ -332,15 +347,15 @@ ln<span class="w"> </span>-s<span class="w"> </span>~efranz/ondemand/share<span 
 <figure class="align-center">
 <img alt="../../_images/app-sharing-1.png" src="../../_images/app-sharing-1.png" />
 </figure>
-<p>Bob (an0047) cannot see this app because it is isolated in Eric’s “Sandbox”
+<p>Bob (an0047) cannot see this app because it is isolated in Eric's &quot;Sandbox&quot;
 i.e. <code class="docutils literal notranslate"><span class="pre">~efranz/ondemand/dev/matlab</span></code>:</p>
 <figure class="align-center">
 <img alt="../../_images/app-sharing-2.png" src="../../_images/app-sharing-2.png" />
 </figure>
-<p>If Eric shares the git repo path or URL with Bob, Bob can clone this into his
-home directory if he is enabled as a developer. This is called “Source Code Sharing”.</p>
-<p>Eric can share this app with Bob by selecting “My Shared Apps” and cloning the MATLAB
-repo to deploy <code class="docutils literal notranslate"><span class="pre">~efranz/ondemand/share/matlab</span></code></p>
+<p>If Eric shares the git repository path or URL with Bob, Bob can clone this into his
+home directory if he is enabled as a developer. This is called &quot;Source Code Sharing&quot;.</p>
+<p>Eric can share this app with Bob by selecting &quot;My Shared Apps&quot; and cloning the MATLAB
+repository to deploy <code class="docutils literal notranslate"><span class="pre">~efranz/ondemand/share/matlab</span></code></p>
 <figure class="align-center">
 <img alt="../../_images/app-sharing-3.png" src="../../_images/app-sharing-3.png" />
 </figure>
@@ -350,7 +365,7 @@ repo to deploy <code class="docutils literal notranslate"><span class="pre">~efr
 <figure class="align-center">
 <img alt="../../_images/app-sharing-5.png" src="../../_images/app-sharing-5.png" />
 </figure>
-<p>Now when Bob accesses the OnDemand home page he sees Eric’s MATLAB app and can
+<p>Now when Bob accesses the OnDemand home page he sees Eric's MATLAB app and can
 launch it:</p>
 <figure class="align-center">
 <img alt="../../_images/app-sharing-6.png" src="../../_images/app-sharing-6.png" />
@@ -364,13 +379,13 @@ launch it:</p>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="interactive/advanced.html" class="btn btn-neutral float-left" title="Advanced Interactive Application Configurations" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../../install-ihpc-apps.html" class="btn btn-neutral float-right" title="Install Other Interactive Apps" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../project-management/project-manager.html" class="btn btn-neutral float-right" title="Project Manager" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2017-2024, Ohio Supercomputer Center.</p>
+    <p>&#169; Copyright 2017-2026, Ohio Supercomputer Center.</p>
   </div>
 
    
@@ -383,7 +398,7 @@ launch it:</p>
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
   <span class="rst-current-version" data-toggle="rst-current-version">
     <span class="fa fa-book"> Documentation Versions</span>
-    v: 
+    v: 4.2.0
     <span class="fa fa-caret-down"></span>
   </span>
   <div class="rst-other-versions">
@@ -391,6 +406,12 @@ launch it:</p>
       <dt>Versions</dt>
       
         <dd><a href="https://OSC.github.io/ood-documentation/latest/how-tos/app-development/app-sharing.html">latest</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-4.1/how-tos/app-development/app-sharing.html">4.1</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-4.0/how-tos/app-development/app-sharing.html">4.0</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-3.1/how-tos/app-development/app-sharing.html">3.1</a></dd>
       
         <dd><a href="https://OSC.github.io/ood-documentation/release-3.0/how-tos/app-development/app-sharing.html">3.0</a></dd>
       

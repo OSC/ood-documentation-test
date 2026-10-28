@@ -4,10 +4,10 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Open OnDemand &mdash; Open OnDemand 3.1.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+  <title>Open OnDemand &mdash; Open OnDemand 4.2.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
-      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=c48163e2" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=6f7bdab3" />
       <link rel="stylesheet" type="text/css" href="_static/tabs.css?v=a5c4661c" />
 
   
@@ -18,13 +18,13 @@
   
         <script src="_static/jquery.js?v=5d32c60e"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="_static/documentation_options.js?v=dd1205ac"></script>
+        <script src="_static/documentation_options.js?v=d0ae6d56"></script>
         <script src="_static/doctools.js?v=9a2dae69"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Requirements" href="requirements.html" />
+    <link rel="next" title="FAQ" href="faqs.html" />
  
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-34776817-3"></script>
 <script>
@@ -50,18 +50,29 @@
               <img src="_static/logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                3.1
-              </div>
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
+                4.2
+              </div><div id="searchbox" role="search">
+  <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get" id="rtd-search-form" class="wy-form">
+      <input
+        type="text"
+        id="search-input"
+        name="q"
+        aria-label="Search docs"
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
+        spellcheck="false"
+        placeholder="Search docs"
+      />
+      <input type="submit" value="Go" class="sr-only" />
+    </form>
+  </div>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="faqs.html">FAQ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="requirements.html">Requirements</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation/add-cluster-config.html">Cluster Configuration</a></li>
@@ -73,17 +84,21 @@
 <li class="toctree-l1"><a class="reference internal" href="how-tos/debug.html">Debugging and Monitoring</a></li>
 <li class="toctree-l1"><a class="reference internal" href="enable-desktops.html">Enable Interactive Desktop</a></li>
 <li class="toctree-l1"><a class="reference internal" href="how-tos/app-development.html">App Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="how-tos/project-management/project-manager.html">Project Manager</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="install-ihpc-apps.html">Install Other Interactive Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install-passenger-apps.html">Install Passenger Apps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorials/tutorials-interactive-apps.html">Tutorials: Interactive Apps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorials/tutorials-passenger-apps.html">Tutorials: Passenger Apps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorials/tutorials-dashboard-apps.html">Developing The OOD Dashboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/tutorials-project-manager.html">Tutorials: Project Manager</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="accessibility.html">Accessibility</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reference.html">Configuration Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="security.html">Security</a></li>
 <li class="toctree-l1"><a class="reference internal" href="release-notes.html">Release Notes</a></li>
@@ -107,7 +122,7 @@
       <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">Open OnDemand</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/OSC/ood-documentation/blob/develop/source/index.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/OSC/ood-documentation/blob/latest/source/index.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -122,7 +137,7 @@
 <h2>Community contributions<a class="headerlink" href="#community-contributions" title="Link to this heading"></a></h2>
 <p>Throughout this documentation we will start highlighting community
 contributions to the project, including linking to external useful projects or
-extensions such as <a class="reference external" href="https://github.com/PSC-PublicHealth/pha-nbextensions">PSC’s Jupyter Notebook extension</a> for manipulating the
+extensions such as <a class="reference external" href="https://github.com/PSC-PublicHealth/pha-nbextensions">PSC's Jupyter Notebook extension</a> for manipulating the
 environment post launch.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -142,37 +157,42 @@ also add it to this documentation site.</p>
 feedback, and webinar participation.</p></li>
 <li><p><a class="reference external" href="https://hprc.tamu.edu/">Texas A&amp;M High Performance Research Computing</a> for early adoption and help with the LSF
 adapter, platform feedback.</p></li>
-<li><p><a class="reference external" href="https://it.tufts.edu/it-computing/technology-research/high-performance-computing-tufts-research-cluster">Tufts Technology Services HPC Research Computing</a> for early adoption and help
+<li><p><a class="reference external" href="https://it.tufts.edu/high-performance-computing">Tufts Technology Services Research Computing</a> for early adoption and help
 with Slurm adapter development, platform feedback, and webinar participation.</p></li>
 <li><p><a class="reference external" href="https://idre.ucla.edu/resources/hpc">UCLA Institute for Digital Research and Education</a> for help with the SGE adapter.</p></li>
 <li><p><a class="reference external" href="https://docs.hpc.arizona.edu">University of Arizona HPC</a> for early adoption and help with the
 PBSPro adapter, platform feedback, and webinar participation.</p></li>
 <li><p><a class="reference external" href="http://www.buffalo.edu/ccr.html">University at Buffalo Center for Computational Research</a> for early adoption,
-platform feedback, and collaboration on the next major version of Open
-OnDemand, 2.0.</p></li>
+platform feedback, and collaboration on Open OnDemand 2.0.</p></li>
 <li><p><a class="reference external" href="https://www.chpc.utah.edu/">University of Utah</a> for early adoption and help with the Slurm adapter, platform feedback,
 and webinar participation.</p></li>
 </ul>
 <div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="faqs.html">FAQ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="faqs.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faqs.html#resources">Resources</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="requirements.html">Requirements</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="requirements.html#supported-operating-systems">Supported Operating Systems</a></li>
 <li class="toctree-l2"><a class="reference internal" href="requirements.html#software-requirements">Software Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="requirements.html#software-bill-of-materials">Software Bill of Materials</a></li>
 <li class="toctree-l2"><a class="reference internal" href="requirements.html#hardware-requirements">Hardware Requirements</a></li>
 <li class="toctree-l2"><a class="reference internal" href="requirements.html#browser-requirements">Browser Requirements</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="installation/install-software.html">1. Install Software</a></li>
-<li class="toctree-l2"><a class="reference internal" href="authentication.html">2. Authentication</a></li>
-<li class="toctree-l2"><a class="reference internal" href="installation/add-ssl.html">3. Secure Apache httpd</a></li>
-<li class="toctree-l2"><a class="reference internal" href="installation/modify-system-security.html">4. Add SELinux</a></li>
-<li class="toctree-l2"><a class="reference internal" href="installation.html#building-from-source">Building From Source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="authentication.html">2. OOD Authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="integrated-authentication-solutions.html">3. Authentication Solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation/add-ssl.html">4. Secure Apache httpd</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation/modify-system-security.html">5. Add SELinux</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="installation/add-cluster-config.html">Cluster Configuration</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="installation/cluster-config-schema.html">Cluster Config Schema v2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation/cluster-config-schema.html">Cluster Configuration Schema v2</a></li>
 <li class="toctree-l2"><a class="reference internal" href="installation/resource-manager/torque.html">Torque</a></li>
 <li class="toctree-l2"><a class="reference internal" href="installation/resource-manager/slurm.html">Slurm</a></li>
 <li class="toctree-l2"><a class="reference internal" href="installation/resource-manager/lsf.html">LSF</a></li>
@@ -181,7 +201,10 @@ and webinar participation.</p></li>
 <li class="toctree-l2"><a class="reference internal" href="installation/resource-manager/linuxhost.html">LinuxHost</a></li>
 <li class="toctree-l2"><a class="reference internal" href="installation/resource-manager/ccq.html">Cloudy Cluster</a></li>
 <li class="toctree-l2"><a class="reference internal" href="installation/resource-manager/kubernetes.html">Kubernetes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation/resource-manager/coder.html">Coder</a></li>
 <li class="toctree-l2"><a class="reference internal" href="installation/resource-manager/systemd.html">Systemd</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation/resource-manager/ht-condor.html">HT Condor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation/resource-manager/psi-j.html">PSI/J</a></li>
 <li class="toctree-l2"><a class="reference internal" href="installation/resource-manager/bin-override-example.html">A Working Example of a <code class="docutils literal notranslate"><span class="pre">bin_overrides</span></code> Script</a></li>
 <li class="toctree-l2"><a class="reference internal" href="installation/resource-manager/test.html">Test Configuration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="installation/resource-manager/advanced-configs.html">Advanced Resource Manager Configurations</a></li>
@@ -199,17 +222,18 @@ and webinar participation.</p></li>
 <p class="caption" role="heading"><span class="caption-text">How-Tos</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="customizations.html">Customizations</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="customizations.html#disabling-applications">Disabling applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="customizations.html#enabling-and-disabling-applications">Enabling and Disabling Applications</a></li>
 <li class="toctree-l2"><a class="reference internal" href="customizations.html#announcements">Announcements</a></li>
 <li class="toctree-l2"><a class="reference internal" href="customizations.html#message-of-the-day-motd">Message of the Day (MOTD)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="customizations.html#branding">Branding</a></li>
 <li class="toctree-l2"><a class="reference internal" href="customizations.html#overriding-pages">Overriding Pages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="customizations.html#add-urls-to-help-menu">Add URLs to Help Menu</a></li>
 <li class="toctree-l2"><a class="reference internal" href="customizations.html#add-shortcuts-to-files-menu">Add Shortcuts to Files Menu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="customizations.html#send-file-data-to-another-application">Send File Data to Another Application</a></li>
 <li class="toctree-l2"><a class="reference internal" href="customizations.html#configuration-profiles">Configuration Profiles</a></li>
 <li class="toctree-l2"><a class="reference internal" href="customizations.html#changing-the-navigation-bar">Changing the Navigation bar</a></li>
 <li class="toctree-l2"><a class="reference internal" href="customizations.html#interactive-apps-menu">Interactive Apps Menu</a></li>
-<li class="toctree-l2"><a class="reference internal" href="customizations.html#disable-uploads-or-downloads">Disable uploads or downloads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="customizations.html#disable-uploads-or-downloads">Disable Uploads or Downloads</a></li>
 <li class="toctree-l2"><a class="reference internal" href="customizations.html#set-upload-limits">Set Upload Limits</a></li>
 <li class="toctree-l2"><a class="reference internal" href="customizations.html#set-download-limits">Set Download Limits</a></li>
 <li class="toctree-l2"><a class="reference internal" href="customizations.html#block-or-allow-directory-access">Block or Allow Directory Access</a></li>
@@ -262,12 +286,18 @@ and webinar participation.</p></li>
 <li class="toctree-l2"><a class="reference internal" href="how-tos/app-development/app-sharing.html">App Sharing</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="how-tos/project-management/project-manager.html">Project Manager</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="how-tos/project-management/project-manager.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="how-tos/project-management/project-manager.html#setup">Setup</a></li>
+</ul>
+</li>
 </ul>
 </div>
 <div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="install-ihpc-apps.html">Install Other Interactive Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install-passenger-apps.html">Install Passenger Apps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorials/tutorials-interactive-apps.html">Tutorials: Interactive Apps</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="tutorials/tutorials-interactive-apps/add-jupyter.html">Add a Jupyter App</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tutorials/tutorials-interactive-apps/add-rstudio.html">Add an RStudio App</a></li>
@@ -289,6 +319,14 @@ and webinar participation.</p></li>
 <li class="toctree-l2"><a class="reference internal" href="tutorials/tutorials-dashboard-apps/shell-app.html">Developing the Shell App</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/tutorials-project-manager.html">Tutorials: Project Manager</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/tutorials-project-manager.html#initializing-a-project">Initializing a Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/tutorials-project-manager.html#adding-a-launcher">Adding a Launcher</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/tutorials-project-manager.html#leveraging-launcher-forms">Leveraging Launcher Forms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/tutorials-project-manager.html#using-workflows">Using Workflows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/tutorials-project-manager.html#alternative-synchronization-approaches">Alternative synchronization approaches</a></li>
+</ul>
+</li>
 </ul>
 </div>
 <div class="toctree-wrapper compound">
@@ -302,11 +340,18 @@ and webinar participation.</p></li>
 <li class="toctree-l2"><a class="reference internal" href="architecture.html#other-request-flow-diagrams">Other Request Flow Diagrams</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="accessibility.html">Accessibility</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="accessibility.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="accessibility.html#accessibility-conformance-report">Accessibility Conformance Report</a></li>
+<li class="toctree-l2"><a class="reference internal" href="accessibility.html#additional-configurations-needed">Additional Configurations Needed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="accessibility.html#custom-pages-and-passenger-applications">Custom pages and Passenger applications</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="reference.html">Configuration Reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="reference/files/ood-portal-yml.html">ood_portal.yml</a></li>
-<li class="toctree-l2"><a class="reference internal" href="reference/files/nginx-stage-yml.html">nginx_stage.yml</a></li>
-<li class="toctree-l2"><a class="reference internal" href="reference/files/ondemand-d-ymls.html">ondemand.d/*.yml files</a></li>
-<li class="toctree-l2"><a class="reference internal" href="reference/files/submit-yml-erb.html">submit.yml.erb</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference/files/ood-portal-yml.html"><code class="docutils literal notranslate"><span class="pre">ood_portal.yml</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference/files/nginx-stage-yml.html"><code class="docutils literal notranslate"><span class="pre">nginx_stage.yml</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference/files/ondemand-d-ymls.html"><code class="docutils literal notranslate"><span class="pre">ondemand.d/*.yml</span> <span class="pre">files</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference/files/submit-yml-erb.html"><code class="docutils literal notranslate"><span class="pre">submit.yml.erb</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="reference/commands/ood-portal-generator.html">ood-portal-generator</a></li>
 <li class="toctree-l2"><a class="reference internal" href="reference/commands/nginx-stage/usage.html">nginx-stage</a></li>
 <li class="toctree-l2"><a class="reference internal" href="reference/pun-environment.html">PUN environment</a></li>
@@ -320,6 +365,8 @@ and webinar participation.</p></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="release-notes.html">Release Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="release-notes/v4.2-release-notes.html">v4.2 Release Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release-notes/v4.1-release-notes.html">v4.1 Release Notes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="release-notes/v4.0-release-notes.html">v4.0 Release Notes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="release-notes/v3.1-release-notes.html">v3.1 Release Notes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="release-notes/v3.0-release-notes.html">v3.0 Release Notes</a></li>
@@ -357,13 +404,13 @@ and webinar participation.</p></li>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="requirements.html" class="btn btn-neutral float-right" title="Requirements" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="faqs.html" class="btn btn-neutral float-right" title="FAQ" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2017-2024, Ohio Supercomputer Center.</p>
+    <p>&#169; Copyright 2017-2026, Ohio Supercomputer Center.</p>
   </div>
 
    
@@ -376,7 +423,7 @@ and webinar participation.</p></li>
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
   <span class="rst-current-version" data-toggle="rst-current-version">
     <span class="fa fa-book"> Documentation Versions</span>
-    v: 
+    v: 4.2.0
     <span class="fa fa-caret-down"></span>
   </span>
   <div class="rst-other-versions">
@@ -384,6 +431,12 @@ and webinar participation.</p></li>
       <dt>Versions</dt>
       
         <dd><a href="https://OSC.github.io/ood-documentation/latest/index.html">latest</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-4.1/index.html">4.1</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-4.0/index.html">4.0</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-3.1/index.html">3.1</a></dd>
       
         <dd><a href="https://OSC.github.io/ood-documentation/release-3.0/index.html">3.0</a></dd>
       

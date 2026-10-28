@@ -4,10 +4,10 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Developing The OOD Dashboard &mdash; Open OnDemand 3.1.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+  <title>Developing The OOD Dashboard &mdash; Open OnDemand 4.2.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=c48163e2" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=6f7bdab3" />
       <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=a5c4661c" />
 
   
@@ -18,7 +18,7 @@
   
         <script src="../_static/jquery.js?v=5d32c60e"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../_static/documentation_options.js?v=dd1205ac"></script>
+        <script src="../_static/documentation_options.js?v=d0ae6d56"></script>
         <script src="../_static/doctools.js?v=9a2dae69"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
@@ -51,18 +51,29 @@
               <img src="../_static/logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                3.1
-              </div>
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
+                4.2
+              </div><div id="searchbox" role="search">
+  <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get" id="rtd-search-form" class="wy-form">
+      <input
+        type="text"
+        id="search-input"
+        name="q"
+        aria-label="Search docs"
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
+        spellcheck="false"
+        placeholder="Search docs"
+      />
+      <input type="submit" value="Go" class="sr-only" />
+    </form>
+  </div>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../faqs.html">FAQ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../requirements.html">Requirements</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../installation/add-cluster-config.html">Cluster Configuration</a></li>
@@ -74,10 +85,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../how-tos/debug.html">Debugging and Monitoring</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../enable-desktops.html">Enable Interactive Desktop</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../how-tos/app-development.html">App Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../how-tos/project-management/project-manager.html">Project Manager</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../install-ihpc-apps.html">Install Other Interactive Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install-passenger-apps.html">Install Passenger Apps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorials-interactive-apps.html">Tutorials: Interactive Apps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorials-passenger-apps.html">Tutorials: Passenger Apps</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Developing The OOD Dashboard</a><ul>
@@ -85,10 +98,12 @@
 <li class="toctree-l2"><a class="reference internal" href="tutorials-dashboard-apps/shell-app.html">Developing the Shell App</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials-project-manager.html">Tutorials: Project Manager</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../accessibility.html">Accessibility</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../reference.html">Configuration Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../security.html">Security</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../release-notes.html">Release Notes</a></li>
@@ -112,7 +127,7 @@
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">Developing The OOD Dashboard</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/OSC/ood-documentation/blob/develop/source/tutorials/tutorials-dashboard-apps.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/OSC/ood-documentation/blob/latest/source/tutorials/tutorials-dashboard-apps.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -135,15 +150,15 @@ You can see some of the other apps that make up OOD <a class="reference external
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="tutorials-dashboard-apps/dashboard.html">Developing the Dashboard App</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="tutorials-dashboard-apps/dashboard.html#things-to-know">Things To Know</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorials-dashboard-apps/dashboard.html#create-a-dev-dashboard">Create a Dev Dashboard</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials-dashboard-apps/dashboard.html#create-a-development-dashboard">Create a Development Dashboard</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tutorials-dashboard-apps/dashboard.html#add-env-local-file">Add <code class="docutils literal notranslate"><span class="pre">.env.local</span></code> File</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorials-dashboard-apps/dashboard.html#set-dev-configuration-directory">Set Dev Configuration Directory</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorials-dashboard-apps/dashboard.html#add-dev-configurations">Add Dev Configurations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials-dashboard-apps/dashboard.html#set-development-configuration-directory">Set Development Configuration Directory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials-dashboard-apps/dashboard.html#add-development-configurations">Add Development Configurations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tutorials-dashboard-apps/dashboard.html#develop-ood-in-ood">Develop OOD in OOD</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tutorials-dashboard-apps/shell-app.html">Developing the Shell App</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="tutorials-dashboard-apps/shell-app.html#create-a-dev-shell">Create a Dev Shell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials-dashboard-apps/shell-app.html#create-a-development-shell">Create a Development Shell</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tutorials-dashboard-apps/shell-app.html#develop-the-shell">Develop the Shell</a></li>
 </ul>
 </li>
@@ -162,7 +177,7 @@ You can see some of the other apps that make up OOD <a class="reference external
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2017-2024, Ohio Supercomputer Center.</p>
+    <p>&#169; Copyright 2017-2026, Ohio Supercomputer Center.</p>
   </div>
 
    
@@ -175,7 +190,7 @@ You can see some of the other apps that make up OOD <a class="reference external
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
   <span class="rst-current-version" data-toggle="rst-current-version">
     <span class="fa fa-book"> Documentation Versions</span>
-    v: 
+    v: 4.2.0
     <span class="fa fa-caret-down"></span>
   </span>
   <div class="rst-other-versions">
@@ -183,6 +198,12 @@ You can see some of the other apps that make up OOD <a class="reference external
       <dt>Versions</dt>
       
         <dd><a href="https://OSC.github.io/ood-documentation/latest/tutorials/tutorials-dashboard-apps.html">latest</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-4.1/tutorials/tutorials-dashboard-apps.html">4.1</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-4.0/tutorials/tutorials-dashboard-apps.html">4.0</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-3.1/tutorials/tutorials-dashboard-apps.html">3.1</a></dd>
       
         <dd><a href="https://OSC.github.io/ood-documentation/release-3.0/tutorials/tutorials-dashboard-apps.html">3.0</a></dd>
       

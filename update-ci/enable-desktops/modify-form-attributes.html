@@ -4,10 +4,10 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>3. Modify Form Attributes &mdash; Open OnDemand 3.1.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+  <title>3. Modify Form Attributes &mdash; Open OnDemand 4.2.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=c48163e2" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=6f7bdab3" />
       <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=a5c4661c" />
 
   
@@ -18,7 +18,7 @@
   
         <script src="../_static/jquery.js?v=5d32c60e"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../_static/documentation_options.js?v=dd1205ac"></script>
+        <script src="../_static/documentation_options.js?v=d0ae6d56"></script>
         <script src="../_static/doctools.js?v=9a2dae69"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
@@ -51,18 +51,29 @@
               <img src="../_static/logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                3.1
-              </div>
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
+                4.2
+              </div><div id="searchbox" role="search">
+  <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get" id="rtd-search-form" class="wy-form">
+      <input
+        type="text"
+        id="search-input"
+        name="q"
+        aria-label="Search docs"
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
+        spellcheck="false"
+        placeholder="Search docs"
+      />
+      <input type="submit" value="Go" class="sr-only" />
+    </form>
+  </div>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../faqs.html">FAQ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../requirements.html">Requirements</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../installation/add-cluster-config.html">Cluster Configuration</a></li>
@@ -76,7 +87,7 @@
 <li class="toctree-l2"><a class="reference internal" href="software-requirements.html">1. Software Requirements</a></li>
 <li class="toctree-l2"><a class="reference internal" href="add-cluster.html">2. Add a Cluster</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">3. Modify Form Attributes</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#change-to-xfce-desktop">Change to Xfce Desktop</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#change-to-xfce-desktop">Change to XFCE Desktop</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#remove-form-field">Remove Form Field</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#hard-code-a-form-field">Hard-code a Form Field</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#change-a-label">Change a Label</a></li>
@@ -89,17 +100,21 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../how-tos/app-development.html">App Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../how-tos/project-management/project-manager.html">Project Manager</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../install-ihpc-apps.html">Install Other Interactive Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install-passenger-apps.html">Install Passenger Apps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorials-interactive-apps.html">Tutorials: Interactive Apps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorials-passenger-apps.html">Tutorials: Passenger Apps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorials-dashboard-apps.html">Developing The OOD Dashboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorials-project-manager.html">Tutorials: Project Manager</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../accessibility.html">Accessibility</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../reference.html">Configuration Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../security.html">Security</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../release-notes.html">Release Notes</a></li>
@@ -124,7 +139,7 @@
           <li class="breadcrumb-item"><a href="../enable-desktops.html">Enable Interactive Desktop</a></li>
       <li class="breadcrumb-item active"><span class="section-number">3. </span>Modify Form Attributes</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/OSC/ood-documentation/blob/develop/source/enable-desktops/modify-form-attributes.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/OSC/ood-documentation/blob/latest/source/enable-desktops/modify-form-attributes.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -137,12 +152,12 @@
 <p>In some cases you may want to modify the form presented to the user as well as
 any other configurable options. Some examples:</p>
 <ul class="simple">
-<li><p>Use an Xfce desktop instead of Mate desktop.</p></li>
-<li><p>Remove the “Queue” form field as your scheduler will auto select the correct
+<li><p>Use an XFCE desktop instead of Mate desktop.</p></li>
+<li><p>Remove the &quot;Queue&quot; form field as your scheduler will auto select the correct
 queue.</p></li>
-<li><p>Hard-code the “Number of nodes” to just 1, so that users can’t launch
+<li><p>Hard-code the &quot;Number of nodes&quot; to just 1, so that users can't launch
 desktops with multiple nodes.</p></li>
-<li><p>Change the label for the form field “Account” to “Project”.</p></li>
+<li><p>Change the label for the form field &quot;Account&quot; to &quot;Project&quot;.</p></li>
 <li><p>Add help text to a given form field.</p></li>
 <li><p>Change default value for a form field.</p></li>
 </ul>
@@ -195,11 +210,11 @@ above options.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">form</span></code> configuration option defines all the available attributes as
 well as the order they appear in the form (it is an array).</p>
 <p>Caution must be taken if you decide to override the <code class="docutils literal notranslate"><span class="pre">form</span></code> configuration
-option. As this is an array, you can’t simply prepend or append, you will
+option. As this is an array, you can't simply prepend or append, you will
 need to completely redefine it with your included modifications.</p>
 </div>
 <section id="change-to-xfce-desktop">
-<h2>Change to Xfce Desktop<a class="headerlink" href="#change-to-xfce-desktop" title="Link to this heading"></a></h2>
+<h2>Change to XFCE Desktop<a class="headerlink" href="#change-to-xfce-desktop" title="Link to this heading"></a></h2>
 <p>The default installation has the <code class="docutils literal notranslate"><span class="pre">desktop</span></code> attribute hard-coded to the value
 <code class="docutils literal notranslate"><span class="pre">&quot;mate&quot;</span></code>. If you would like to change this to use <code class="docutils literal notranslate"><span class="pre">&quot;xfce&quot;</span></code> you can make the
 following edits to your custom YAML configuration file:</p>
@@ -211,7 +226,7 @@ following edits to your custom YAML configuration file:</p>
 </span><span class="hll"><span class="w">  </span><span class="nt">desktop</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;xfce&quot;</span>
 </span></pre></div>
 </div>
-<p>And all Desktops will attempt to launch the Xfce desktop.</p>
+<p>And all Desktops will attempt to launch the XFCE desktop.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Whenever you hard-code a form attribute to a value like <code class="docutils literal notranslate"><span class="pre">&quot;xfce&quot;</span></code> in the
@@ -222,7 +237,7 @@ the form because we hard-coded it.</p>
 </section>
 <section id="remove-form-field">
 <h2>Remove Form Field<a class="headerlink" href="#remove-form-field" title="Link to this heading"></a></h2>
-<p>To remove a form field such as “Queue” defined under the attribute <code class="docutils literal notranslate"><span class="pre">bc_queue</span></code>
+<p>To remove a form field such as &quot;Queue&quot; defined under the attribute <code class="docutils literal notranslate"><span class="pre">bc_queue</span></code>
 from the Desktop form you can make the following edits to your custom YAML
 configuration file:</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># /etc/ood/config/apps/bc_desktop/my_cluster.yml</span>
@@ -233,7 +248,7 @@ configuration file:</p>
 </span><span class="hll"><span class="w">  </span><span class="nt">bc_queue</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span>
 </span></pre></div>
 </div>
-<p>After refreshing the form in your browser you should not see the “Queue” field
+<p>After refreshing the form in your browser you should not see the &quot;Queue&quot; field
 anymore.</p>
 <p>Basically we are hard-coding the value of <code class="docutils literal notranslate"><span class="pre">bc_queue</span></code> to be the YAML type
 <code class="docutils literal notranslate"><span class="pre">null</span></code>. And as we discussed in the previous example whenever you hard-code an
@@ -249,8 +264,8 @@ test if they are blank before handling them.</p>
 <section id="hard-code-a-form-field">
 <h2>Hard-code a Form Field<a class="headerlink" href="#hard-code-a-form-field" title="Link to this heading"></a></h2>
 <p>If we want to remove a form field but define its value to something other than
-a blank string, we can set the attribute’s value directly.</p>
-<p>For example, if you don’t want users to submit Desktops with more than 1 node
+a blank string, we can set the attribute's value directly.</p>
+<p>For example, if you don't want users to submit Desktops with more than 1 node
 under the attribute <code class="docutils literal notranslate"><span class="pre">bc_num_slots</span></code>, you can make the following edits to your
 custom YAML configuration file:</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># /etc/ood/config/apps/bc_desktop/my_cluster.yml</span>
@@ -280,8 +295,8 @@ method <code class="docutils literal notranslate"><span class="pre">String#to_i<
 <h2>Change a Label<a class="headerlink" href="#change-a-label" title="Link to this heading"></a></h2>
 <p>You are able to modify the label for a corresponding attribute that appears
 above the input field in the form.</p>
-<p>For example, if you want to change the label for the “Account” form field given
-by the <code class="docutils literal notranslate"><span class="pre">bc_account</span></code> attribute to instead display “Project”. This can be
+<p>For example, if you want to change the label for the &quot;Account&quot; form field given
+by the <code class="docutils literal notranslate"><span class="pre">bc_account</span></code> attribute to instead display &quot;Project&quot;. This can be
 modified with the following edits to your custom YAML configuration file:</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># /etc/ood/config/apps/bc_desktop/my_cluster.yml</span>
 <span class="nn">---</span>
@@ -297,7 +312,7 @@ instead of hard-coding it to a specific value. This means we will only override
 the equivalent option for this attribute (for the above example we are
 overriding the <code class="docutils literal notranslate"><span class="pre">label</span></code> option for the <code class="docutils literal notranslate"><span class="pre">bc_account</span></code> attribute).</p>
 <p>Now when you refresh the form in your browser, you should now see an input
-field with the label “Project”.</p>
+field with the label &quot;Project&quot;.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>If you have any <a class="reference internal" href="custom-job-submission.html#enable-desktops-custom-job-submission"><span class="std std-ref">Custom Job Submission</span></a> configuration
@@ -305,8 +320,8 @@ files that use this attribute, changing the label of the attribute will not
 affect the value received by the user upon form submission.</p>
 <p>But care must be taken that if by changing the label of the attribute you
 also change the <em>meaning</em> of the attribute, then you may have to handle it
-differently. For example, changing a label of “Number of processors” to
-“Number of nodes” will have consequences on how you submit the job.</p>
+differently. For example, changing a label of &quot;Number of processors&quot; to
+&quot;Number of nodes&quot; will have consequences on how you submit the job.</p>
 </div>
 </section>
 <section id="add-help-message-to-field">
@@ -330,7 +345,7 @@ instead of hard-coding it to a specific value. This means we will only override
 the equivalent option for this attribute (for the above example we are
 overriding the <code class="docutils literal notranslate"><span class="pre">help</span></code> option for the <code class="docutils literal notranslate"><span class="pre">bc_account</span></code> attribute).</p>
 <p>Now when you refresh the form in your browser, you should see the help message
-below the “Account” form input field.</p>
+below the &quot;Account&quot; form input field.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Help messages can be written in <a class="reference external" href="https://en.wikipedia.org/wiki/Markdown">Markdown</a> format, but it is best not to get
@@ -341,7 +356,7 @@ carried away in the size of the help message.</p>
 <h2>Change Field Default Value<a class="headerlink" href="#change-field-default-value" title="Link to this heading"></a></h2>
 <p>You are able to modify the default value of a form field for a given attribute,
 which should not be confused with hard-coding a value for an attribute.</p>
-<p>For example, if you would like the form field “Number of hours” given by
+<p>For example, if you would like the form field &quot;Number of hours&quot; given by
 <code class="docutils literal notranslate"><span class="pre">bc_num_hours</span></code> to be <code class="docutils literal notranslate"><span class="pre">8</span></code> hours by default, but still allow the user to
 change it then you can make the following edits in your custom YAML
 configuration file:</p>
@@ -359,7 +374,7 @@ instead of hard-coding it to a number. This means we want to override the
 equivalent option for this attribute (for the above example we are overriding
 the <code class="docutils literal notranslate"><span class="pre">value</span></code> option for the <code class="docutils literal notranslate"><span class="pre">bc_num_hours</span></code> attribute).</p>
 <p>Now when you refresh the desktop form in your browser, you should see a default
-value of <code class="docutils literal notranslate"><span class="pre">8</span></code> in the “Number of hours” form field.</p>
+value of <code class="docutils literal notranslate"><span class="pre">8</span></code> in the &quot;Number of hours&quot; form field.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>There is a possibility you may see a number other than <code class="docutils literal notranslate"><span class="pre">8</span></code> in the above
@@ -372,9 +387,9 @@ the form with your previous values.</p>
 <section id="minimal-linuxhost-form">
 <h2>Minimal LinuxHost Form<a class="headerlink" href="#minimal-linuxhost-form" title="Link to this heading"></a></h2>
 <p>Because the <a class="reference internal" href="../installation/resource-manager/linuxhost.html#resource-manager-linuxhost"><span class="std std-ref">LinuxHost</span></a> is not like a traditional scheduler,
-there are very few form items you’ll need to add or have your users choose from.</p>
+there are very few form items you'll need to add or have your users choose from.</p>
 <p>This is a minimal configuration to launch an XFCE desktop environment on a cluster
-we call owens_login.  You’ll notice a lot of entries are null because they don’t
+we call <code class="docutils literal notranslate"><span class="pre">owens_login</span></code>.  You'll notice a lot of entries are null because they don't
 really have any meaning in the LinuxHost Adapter.</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># /etc/ood/config/apps/bc_desktop/owens_login_desktop.yml</span>
 <span class="nn">---</span>
@@ -404,7 +419,7 @@ really have any meaning in the LinuxHost Adapter.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2017-2024, Ohio Supercomputer Center.</p>
+    <p>&#169; Copyright 2017-2026, Ohio Supercomputer Center.</p>
   </div>
 
    
@@ -417,7 +432,7 @@ really have any meaning in the LinuxHost Adapter.</p>
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
   <span class="rst-current-version" data-toggle="rst-current-version">
     <span class="fa fa-book"> Documentation Versions</span>
-    v: 
+    v: 4.2.0
     <span class="fa fa-caret-down"></span>
   </span>
   <div class="rst-other-versions">
@@ -425,6 +440,12 @@ really have any meaning in the LinuxHost Adapter.</p>
       <dt>Versions</dt>
       
         <dd><a href="https://OSC.github.io/ood-documentation/latest/enable-desktops/modify-form-attributes.html">latest</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-4.1/enable-desktops/modify-form-attributes.html">4.1</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-4.0/enable-desktops/modify-form-attributes.html">4.0</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-3.1/enable-desktops/modify-form-attributes.html">3.1</a></dd>
       
         <dd><a href="https://OSC.github.io/ood-documentation/release-3.0/enable-desktops/modify-form-attributes.html">3.0</a></dd>
       

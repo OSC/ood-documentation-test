@@ -4,10 +4,10 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Adding Additional Information to the session cards &mdash; Open OnDemand 3.1.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+  <title>Adding Additional Information to the session cards &mdash; Open OnDemand 4.2.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=c48163e2" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=6f7bdab3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=a5c4661c" />
 
   
@@ -18,7 +18,7 @@
   
         <script src="../../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../../_static/documentation_options.js?v=dd1205ac"></script>
+        <script src="../../../_static/documentation_options.js?v=d0ae6d56"></script>
         <script src="../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
@@ -51,18 +51,29 @@
               <img src="../../../_static/logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                3.1
-              </div>
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
+                4.2
+              </div><div id="searchbox" role="search">
+  <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get" id="rtd-search-form" class="wy-form">
+      <input
+        type="text"
+        id="search-input"
+        name="q"
+        aria-label="Search docs"
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
+        spellcheck="false"
+        placeholder="Search docs"
+      />
+      <input type="submit" value="Go" class="sr-only" />
+    </form>
+  </div>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../faqs.html">FAQ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../requirements.html">Requirements</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../installation/add-cluster-config.html">Cluster Configuration</a></li>
@@ -76,18 +87,18 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../../app-development.html">App Development</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../enabling-development-mode.html">Enabling App Development</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../interactive.html">Interactive Apps</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="manifest.html">Manifest yml files</a></li>
-<li class="toctree-l3"><a class="reference internal" href="form.html">User Form (form.yml.erb)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="manifest.html">Manifest YAML files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="form.html">User Form (<code class="docutils literal notranslate"><span class="pre">form.yml.erb</span></code>)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="form-widgets.html">Form Widgets</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dynamic-form-widgets.html">Dynamic Form Widgets</a></li>
 <li class="toctree-l3"><a class="reference internal" href="template.html">Render Template</a></li>
-<li class="toctree-l3"><a class="reference internal" href="submit.html">Job Submission (submit.yml.erb)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="submit.html">Job Submission (<code class="docutils literal notranslate"><span class="pre">submit.yml.erb</span></code>)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="view.html">Connection View</a></li>
-<li class="toctree-l3"><a class="reference internal" href="sub-apps.html">Sub-Apps and Reconfiguring existing apps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sub-apps.html">Sub-Apps and Re-configuring existing apps</a></li>
 <li class="toctree-l3"><a class="reference internal" href="conn-params.html">Connection Parameters <code class="docutils literal notranslate"><span class="pre">conn_params</span></code></a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Adding Additional Information to the session cards</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#info-md-html-erb">info.{md,html}.erb</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#completed-md-html-erb">completed.{md,html}.erb</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#info-md-html-erb"><code class="docutils literal notranslate"><span class="pre">info.{md,html}.erb</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#completed-md-html-erb"><code class="docutils literal notranslate"><span class="pre">completed.{md,html}.erb</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="saved-settings.html">Saving interactive application settings</a></li>
@@ -97,17 +108,21 @@
 <li class="toctree-l2"><a class="reference internal" href="../app-sharing.html">App Sharing</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../../project-management/project-manager.html">Project Manager</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../install-ihpc-apps.html">Install Other Interactive Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../install-passenger-apps.html">Install Passenger Apps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../tutorials/tutorials-interactive-apps.html">Tutorials: Interactive Apps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../tutorials/tutorials-passenger-apps.html">Tutorials: Passenger Apps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../tutorials/tutorials-dashboard-apps.html">Developing The OOD Dashboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/tutorials-project-manager.html">Tutorials: Project Manager</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../accessibility.html">Accessibility</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../reference.html">Configuration Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../security.html">Security</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../release-notes.html">Release Notes</a></li>
@@ -133,7 +148,7 @@
           <li class="breadcrumb-item"><a href="../interactive.html">Interactive Apps</a></li>
       <li class="breadcrumb-item active">Adding Additional Information to the session cards</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/OSC/ood-documentation/blob/develop/source/how-tos/app-development/interactive/additional-info.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/OSC/ood-documentation/blob/latest/source/how-tos/app-development/interactive/additional-info.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -144,12 +159,12 @@
   <section id="adding-additional-information-to-the-session-cards">
 <span id="app-development-interactive-additional-info"></span><h1>Adding Additional Information to the session cards<a class="headerlink" href="#adding-additional-information-to-the-session-cards" title="Link to this heading"></a></h1>
 <section id="info-md-html-erb">
-<span id="bc-info-html-md-erb"></span><h2>info.{md,html}.erb<a class="headerlink" href="#info-md-html-erb" title="Link to this heading"></a></h2>
-<p>It’s possible for you to add additional information to this session’s card.</p>
+<span id="bc-info-html-md-erb"></span><h2><code class="docutils literal notranslate"><span class="pre">info.{md,html}.erb</span></code><a class="headerlink" href="#info-md-html-erb" title="Link to this heading"></a></h2>
+<p>It's possible for you to add additional information to this session's card.</p>
 <p>You can do so by creating a Markdown file <code class="docutils literal notranslate"><span class="pre">info.md.erb</span></code> or an html file
 <code class="docutils literal notranslate"><span class="pre">info.html.erb</span></code> in the applications folder.  Markdown files get generated
 into html with # turning into an &lt;h1&gt; and ## turning into an &lt;h2&gt; and so on.</p>
-<p>Again, they’re <a class="reference external" href="https://en.wikipedia.org/wiki/ERuby">eRuby (Embedded Ruby)</a> files so you can add some dynamic behavior
+<p>Again, they're <a class="reference external" href="https://en.wikipedia.org/wiki/ERuby">eRuby (Embedded Ruby)</a> files so you can add some dynamic behavior
 to them. Along with any library you may choose to use you can also access these
 variables directly.</p>
 <dl class="simple">
@@ -164,13 +179,13 @@ variables directly.</p>
 </dl>
 </section>
 <section id="completed-md-html-erb">
-<span id="bc-completed-html-md-erb"></span><h2>completed.{md,html}.erb<a class="headerlink" href="#completed-md-html-erb" title="Link to this heading"></a></h2>
-<p><a class="reference internal" href="#bc-info-html-md-erb"><span class="std std-ref">info.{md,html}.erb</span></a> above will display on the session’s card
+<span id="bc-completed-html-md-erb"></span><h2><code class="docutils literal notranslate"><span class="pre">completed.{md,html}.erb</span></code><a class="headerlink" href="#completed-md-html-erb" title="Link to this heading"></a></h2>
+<p><a class="reference internal" href="#bc-info-html-md-erb"><span class="std std-ref">info.{md,html}.erb</span></a> above will display on the session's card
 regardless of the state of the job - it will always be displayed.</p>
 <p><code class="docutils literal notranslate"><span class="pre">completed.{md,html}.erb</span></code> on the other hand, will only display
 once the job has reached the <code class="docutils literal notranslate"><span class="pre">completed</span></code> state.</p>
-<p>You may want to add this to the session’s card to display information
-to the user when the job is completed. Again, as it’s <a class="reference external" href="https://en.wikipedia.org/wiki/ERuby">eRuby (Embedded Ruby)</a>
+<p>You may want to add this to the session's card to display information
+to the user when the job is completed. Again, as it's <a class="reference external" href="https://en.wikipedia.org/wiki/ERuby">eRuby (Embedded Ruby)</a>
 files so you can add some dynamic behavior to them.</p>
 </section>
 </section>
@@ -186,7 +201,7 @@ files so you can add some dynamic behavior to them.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2017-2024, Ohio Supercomputer Center.</p>
+    <p>&#169; Copyright 2017-2026, Ohio Supercomputer Center.</p>
   </div>
 
    
@@ -199,7 +214,7 @@ files so you can add some dynamic behavior to them.</p>
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
   <span class="rst-current-version" data-toggle="rst-current-version">
     <span class="fa fa-book"> Documentation Versions</span>
-    v: 
+    v: 4.2.0
     <span class="fa fa-caret-down"></span>
   </span>
   <div class="rst-other-versions">
@@ -207,6 +222,12 @@ files so you can add some dynamic behavior to them.</p>
       <dt>Versions</dt>
       
         <dd><a href="https://OSC.github.io/ood-documentation/latest/how-tos/app-development/interactive/additional-info.html">latest</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-4.1/how-tos/app-development/interactive/additional-info.html">4.1</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-4.0/how-tos/app-development/interactive/additional-info.html">4.0</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-3.1/how-tos/app-development/interactive/additional-info.html">3.1</a></dd>
       
         <dd><a href="https://OSC.github.io/ood-documentation/release-3.0/how-tos/app-development/interactive/additional-info.html">3.0</a></dd>
       

@@ -4,10 +4,10 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Form Widgets &mdash; Open OnDemand 3.1.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+  <title>Form Widgets &mdash; Open OnDemand 4.2.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=c48163e2" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=6f7bdab3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=a5c4661c" />
 
   
@@ -18,7 +18,7 @@
   
         <script src="../../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../../_static/documentation_options.js?v=dd1205ac"></script>
+        <script src="../../../_static/documentation_options.js?v=d0ae6d56"></script>
         <script src="../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
@@ -51,18 +51,29 @@
               <img src="../../../_static/logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                3.1
-              </div>
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
+                4.2
+              </div><div id="searchbox" role="search">
+  <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get" id="rtd-search-form" class="wy-form">
+      <input
+        type="text"
+        id="search-input"
+        name="q"
+        aria-label="Search docs"
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
+        spellcheck="false"
+        placeholder="Search docs"
+      />
+      <input type="submit" value="Go" class="sr-only" />
+    </form>
+  </div>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../faqs.html">FAQ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../requirements.html">Requirements</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../installation/add-cluster-config.html">Cluster Configuration</a></li>
@@ -76,14 +87,14 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../../app-development.html">App Development</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../enabling-development-mode.html">Enabling App Development</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../interactive.html">Interactive Apps</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="manifest.html">Manifest yml files</a></li>
-<li class="toctree-l3"><a class="reference internal" href="form.html">User Form (form.yml.erb)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="manifest.html">Manifest YAML files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="form.html">User Form (<code class="docutils literal notranslate"><span class="pre">form.yml.erb</span></code>)</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Form Widgets</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dynamic-form-widgets.html">Dynamic Form Widgets</a></li>
 <li class="toctree-l3"><a class="reference internal" href="template.html">Render Template</a></li>
-<li class="toctree-l3"><a class="reference internal" href="submit.html">Job Submission (submit.yml.erb)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="submit.html">Job Submission (<code class="docutils literal notranslate"><span class="pre">submit.yml.erb</span></code>)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="view.html">Connection View</a></li>
-<li class="toctree-l3"><a class="reference internal" href="sub-apps.html">Sub-Apps and Reconfiguring existing apps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sub-apps.html">Sub-Apps and Re-configuring existing apps</a></li>
 <li class="toctree-l3"><a class="reference internal" href="conn-params.html">Connection Parameters <code class="docutils literal notranslate"><span class="pre">conn_params</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="additional-info.html">Adding Additional Information to the session cards</a></li>
 <li class="toctree-l3"><a class="reference internal" href="saved-settings.html">Saving interactive application settings</a></li>
@@ -93,17 +104,21 @@
 <li class="toctree-l2"><a class="reference internal" href="../app-sharing.html">App Sharing</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../../project-management/project-manager.html">Project Manager</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../install-ihpc-apps.html">Install Other Interactive Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../install-passenger-apps.html">Install Passenger Apps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../tutorials/tutorials-interactive-apps.html">Tutorials: Interactive Apps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../tutorials/tutorials-passenger-apps.html">Tutorials: Passenger Apps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../tutorials/tutorials-dashboard-apps.html">Developing The OOD Dashboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/tutorials-project-manager.html">Tutorials: Project Manager</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../accessibility.html">Accessibility</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../reference.html">Configuration Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../security.html">Security</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../release-notes.html">Release Notes</a></li>
@@ -129,7 +144,7 @@
           <li class="breadcrumb-item"><a href="../interactive.html">Interactive Apps</a></li>
       <li class="breadcrumb-item active">Form Widgets</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/OSC/ood-documentation/blob/develop/source/how-tos/app-development/interactive/form-widgets.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/OSC/ood-documentation/blob/latest/source/how-tos/app-development/interactive/form-widgets.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -291,14 +306,18 @@ directly an HTML input type. It builds a <code class="docutils literal notransla
 type, but also provides a button that will provide a modal that
 allows users to navigate through directories to select a path.</p>
 <p>This is useful in forms where a path must be selected and you
-want to allow your users to choose an arbirary path.</p>
+want to allow your users to choose an arbitrary path.</p>
+<p>In order to add, remove, or edit the Path Selector, navigate to
+its <code class="docutils literal notranslate"><span class="pre">form.yml</span></code> file to make any appropriate changes.</p>
 <p><code class="docutils literal notranslate"><span class="pre">directory</span></code> is the initial directory the path selector will open
-to when the users opens the modal. This defaults to the users’ HOME.</p>
+to when the users opens the modal. This defaults to the users' HOME.</p>
 <p><code class="docutils literal notranslate"><span class="pre">show_hidden</span></code> is a boolean flag to show hidden files or not. This
 defaults to false - it will not show hidden files.</p>
 <p><code class="docutils literal notranslate"><span class="pre">show_files</span></code> is a boolean flag to show files or not. This defaults
 to true - it will show files.</p>
-<p><code class="docutils literal notranslate"><span class="pre">favorites</span></code> allows you to override the <a class="reference internal" href="../../../customizations.html#add-shortcuts-to-files-menu"><span class="std std-ref">favorite paths you’ve added
+<p><code class="docutils literal notranslate"><span class="pre">popup_title</span></code> is the title displayed in the modal. Default is
+&quot;Select Your Working Directory&quot;.</p>
+<p><code class="docutils literal notranslate"><span class="pre">favorites</span></code> allows you to override the <a class="reference internal" href="../../../customizations.html#add-shortcuts-to-files-menu"><span class="std std-ref">favorite paths you've added
 in files menu</span></a>.  Provide an array of new favorites
 or set to <code class="docutils literal notranslate"><span class="pre">false</span></code> to disable showing favorites altogether.</p>
 <blockquote>
@@ -307,6 +326,7 @@ or set to <code class="docutils literal notranslate"><span class="pre">false</sp
 <span class="w">  </span><span class="nt">directory</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/fs/ess/project&quot;</span>
 <span class="w">  </span><span class="nt">show_hidden</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">show_files</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">  </span><span class="nt">popup_title</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Select</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">Folder&quot;</span>
 <span class="w">  </span><span class="nt">favorites</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/fs/ess</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/fs/scratch</span>
@@ -330,7 +350,7 @@ or set to <code class="docutils literal notranslate"><span class="pre">false</sp
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2017-2024, Ohio Supercomputer Center.</p>
+    <p>&#169; Copyright 2017-2026, Ohio Supercomputer Center.</p>
   </div>
 
    
@@ -343,7 +363,7 @@ or set to <code class="docutils literal notranslate"><span class="pre">false</sp
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
   <span class="rst-current-version" data-toggle="rst-current-version">
     <span class="fa fa-book"> Documentation Versions</span>
-    v: 
+    v: 4.2.0
     <span class="fa fa-caret-down"></span>
   </span>
   <div class="rst-other-versions">
@@ -351,6 +371,12 @@ or set to <code class="docutils literal notranslate"><span class="pre">false</sp
       <dt>Versions</dt>
       
         <dd><a href="https://OSC.github.io/ood-documentation/latest/how-tos/app-development/interactive/form-widgets.html">latest</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-4.1/how-tos/app-development/interactive/form-widgets.html">4.1</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-4.0/how-tos/app-development/interactive/form-widgets.html">4.0</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-3.1/how-tos/app-development/interactive/form-widgets.html">3.1</a></dd>
       
         <dd><a href="https://OSC.github.io/ood-documentation/release-3.0/how-tos/app-development/interactive/form-widgets.html">3.0</a></dd>
       

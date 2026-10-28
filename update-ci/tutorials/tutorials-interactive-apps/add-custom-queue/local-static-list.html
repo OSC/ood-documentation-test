@@ -4,10 +4,10 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Use a Local Static List &mdash; Open OnDemand 3.1.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+  <title>Use a Local Static List &mdash; Open OnDemand 4.2.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=c48163e2" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=6f7bdab3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=a5c4661c" />
 
   
@@ -18,7 +18,7 @@
   
         <script src="../../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../../_static/documentation_options.js?v=dd1205ac"></script>
+        <script src="../../../_static/documentation_options.js?v=d0ae6d56"></script>
         <script src="../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
@@ -51,18 +51,29 @@
               <img src="../../../_static/logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                3.1
-              </div>
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
+                4.2
+              </div><div id="searchbox" role="search">
+  <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get" id="rtd-search-form" class="wy-form">
+      <input
+        type="text"
+        id="search-input"
+        name="q"
+        aria-label="Search docs"
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
+        spellcheck="false"
+        placeholder="Search docs"
+      />
+      <input type="submit" value="Go" class="sr-only" />
+    </form>
+  </div>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../faqs.html">FAQ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../requirements.html">Requirements</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../installation/add-cluster-config.html">Cluster Configuration</a></li>
@@ -74,10 +85,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../how-tos/debug.html">Debugging and Monitoring</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../enable-desktops.html">Enable Interactive Desktop</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../how-tos/app-development.html">App Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../how-tos/project-management/project-manager.html">Project Manager</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../install-ihpc-apps.html">Install Other Interactive Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../install-passenger-apps.html">Install Passenger Apps</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../tutorials-interactive-apps.html">Tutorials: Interactive Apps</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../add-jupyter.html">Add a Jupyter App</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../add-rstudio.html">Add an RStudio App</a></li>
@@ -98,10 +111,12 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../tutorials-passenger-apps.html">Tutorials: Passenger Apps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../tutorials-dashboard-apps.html">Developing The OOD Dashboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials-project-manager.html">Tutorials: Project Manager</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../accessibility.html">Accessibility</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../reference.html">Configuration Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../security.html">Security</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../release-notes.html">Release Notes</a></li>
@@ -127,7 +142,7 @@
           <li class="breadcrumb-item"><a href="../add-custom-queue.html">Add Custom Queues/Partitions</a></li>
       <li class="breadcrumb-item active">Use a Local Static List</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/OSC/ood-documentation/blob/develop/source/tutorials/tutorials-interactive-apps/add-custom-queue/local-static-list.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/OSC/ood-documentation/blob/latest/source/tutorials/tutorials-interactive-apps/add-custom-queue/local-static-list.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -181,8 +196,8 @@ Interactive App by removing the following line from this file:</p>
 </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bc_num_hours</span>
 </pre></div>
 </div>
-<p>Now when we refresh the web page for our sandbox Jupyter App we won’t see
-the “Queue” form element anymore.</p>
+<p>Now when we refresh the web page for our sandbox Jupyter App we won't see
+the &quot;Queue&quot; form element anymore.</p>
 </li>
 <li><p>We now add in our custom drop-down attribute with a defined list of
 queues/partitions:</p>
@@ -210,7 +225,7 @@ queues/partitions:</p>
 </pre></div>
 </div>
 <p>Now when we refresh the web page for our sandbox Jupyter App we will see a
-“Queue” form element with a drop-down that lists “queue1” and “queue2”.
+&quot;Queue&quot; form element with a drop-down that lists &quot;queue1&quot; and &quot;queue2&quot;.
 Underneath this will be our custom help message defined above.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -225,9 +240,9 @@ text and the second string in the pair is the option value.</p>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="s">&quot;Toyota&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;toyota&quot;</span><span class="w"> </span><span class="p p-Indicator">]</span>
 </pre></div>
 </div>
-<p>The user will see a list of options: “Volvo”, “Ford”, and “Toyota” to
+<p>The user will see a list of options: &quot;Volvo&quot;, &quot;Ford&quot;, and &quot;Toyota&quot; to
 choose from in the HTML form, but the backend will process a value of
-either “volvo”, “ford”, or “toyota” depending on what the user chose.</p>
+either <code class="docutils literal notranslate"><span class="pre">volvo</span></code>, <code class="docutils literal notranslate"><span class="pre">ford</span></code>, or <code class="docutils literal notranslate"><span class="pre">toyota</span></code> depending on what the user chose.</p>
 </div>
 </li>
 </ol>
@@ -236,7 +251,7 @@ either “volvo”, “ford”, or “toyota” depending on what the user chose
 <span id="app-development-tutorials-interactive-apps-add-custom-queue-local-static-list-handle-custom-attribute"></span><h2>Handle Custom Attribute in Job Submission<a class="headerlink" href="#handle-custom-attribute-in-job-submission" title="Link to this heading"></a></h2>
 <p>Now that we have our custom form attribute called <code class="docutils literal notranslate"><span class="pre">custom_queue</span></code>, we need to
 tell our app how to handle it when submitting the job. As of right now our app
-has no idea what to do with this value when the user clicks “Launch” after
+has no idea what to do with this value when the user clicks &quot;Launch&quot; after
 filling out the form.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -254,7 +269,7 @@ Interactive App:</p>
 </pre></div>
 </div>
 </li>
-<li><p>We now create a <code class="docutils literal notranslate"><span class="pre">script:</span></code> section if it doesn’t already exist and handle
+<li><p>We now create a <code class="docutils literal notranslate"><span class="pre">script:</span></code> section if it doesn't already exist and handle
 the value of the <code class="docutils literal notranslate"><span class="pre">custom_queue</span></code> attribute submitted by the user:</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># ~/ondemand/dev/jupyter/submit.yml.erb</span>
 <span class="nn">---</span>
@@ -265,7 +280,7 @@ the value of the <code class="docutils literal notranslate"><span class="pre">cu
 </span></pre></div>
 </div>
 <p>Where we take advantage of the generic <a class="reference external" href="http://www.rubydoc.info/gems/ood_core/OodCore/Job/Script#queue_name-instance_method">OodCore::Job::Script#queue_name</a> method to supply a queue/partition that is resource manager
-(e.g., Slurm, Torque, …) agnostic.</p>
+(e.g., Slurm, Torque, ...) agnostic.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>For the queue/partition we do not need to use the <code class="docutils literal notranslate"><span class="pre">native:</span></code> field which
@@ -290,7 +305,7 @@ under the <a class="reference external" href="http://www.rubydoc.info/gems/ood_c
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2017-2024, Ohio Supercomputer Center.</p>
+    <p>&#169; Copyright 2017-2026, Ohio Supercomputer Center.</p>
   </div>
 
    
@@ -303,7 +318,7 @@ under the <a class="reference external" href="http://www.rubydoc.info/gems/ood_c
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
   <span class="rst-current-version" data-toggle="rst-current-version">
     <span class="fa fa-book"> Documentation Versions</span>
-    v: 
+    v: 4.2.0
     <span class="fa fa-caret-down"></span>
   </span>
   <div class="rst-other-versions">
@@ -311,6 +326,12 @@ under the <a class="reference external" href="http://www.rubydoc.info/gems/ood_c
       <dt>Versions</dt>
       
         <dd><a href="https://OSC.github.io/ood-documentation/latest/tutorials/tutorials-interactive-apps/add-custom-queue/local-static-list.html">latest</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-4.1/tutorials/tutorials-interactive-apps/add-custom-queue/local-static-list.html">4.1</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-4.0/tutorials/tutorials-interactive-apps/add-custom-queue/local-static-list.html">4.0</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-3.1/tutorials/tutorials-interactive-apps/add-custom-queue/local-static-list.html">3.1</a></dd>
       
         <dd><a href="https://OSC.github.io/ood-documentation/release-3.0/tutorials/tutorials-interactive-apps/add-custom-queue/local-static-list.html">3.0</a></dd>
       

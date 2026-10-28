@@ -4,10 +4,10 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Enabling App Development &mdash; Open OnDemand 3.1.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+  <title>Enabling App Development &mdash; Open OnDemand 4.2.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=c48163e2" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=6f7bdab3" />
       <link rel="stylesheet" type="text/css" href="../../_static/tabs.css?v=a5c4661c" />
 
   
@@ -18,7 +18,7 @@
   
         <script src="../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../_static/documentation_options.js?v=dd1205ac"></script>
+        <script src="../../_static/documentation_options.js?v=d0ae6d56"></script>
         <script src="../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
@@ -51,18 +51,29 @@
               <img src="../../_static/logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                3.1
-              </div>
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
+                4.2
+              </div><div id="searchbox" role="search">
+  <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get" id="rtd-search-form" class="wy-form">
+      <input
+        type="text"
+        id="search-input"
+        name="q"
+        aria-label="Search docs"
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
+        spellcheck="false"
+        placeholder="Search docs"
+      />
+      <input type="submit" value="Go" class="sr-only" />
+    </form>
+  </div>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../faqs.html">FAQ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../requirements.html">Requirements</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../installation/add-cluster-config.html">Cluster Configuration</a></li>
@@ -86,17 +97,21 @@
 <li class="toctree-l2"><a class="reference internal" href="app-sharing.html">App Sharing</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../project-management/project-manager.html">Project Manager</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../install-ihpc-apps.html">Install Other Interactive Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install-passenger-apps.html">Install Passenger Apps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../tutorials/tutorials-interactive-apps.html">Tutorials: Interactive Apps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../tutorials/tutorials-passenger-apps.html">Tutorials: Passenger Apps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../tutorials/tutorials-dashboard-apps.html">Developing The OOD Dashboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/tutorials-project-manager.html">Tutorials: Project Manager</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../accessibility.html">Accessibility</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../reference.html">Configuration Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../security.html">Security</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../release-notes.html">Release Notes</a></li>
@@ -121,7 +136,7 @@
           <li class="breadcrumb-item"><a href="../app-development.html">App Development</a></li>
       <li class="breadcrumb-item active">Enabling App Development</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/OSC/ood-documentation/blob/develop/source/how-tos/app-development/enabling-development-mode.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/OSC/ood-documentation/blob/latest/source/how-tos/app-development/enabling-development-mode.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -133,39 +148,39 @@
 <span id="enabling-development-mode"></span><h1>Enabling App Development<a class="headerlink" href="#enabling-app-development" title="Link to this heading"></a></h1>
 <section id="enable-in-ondemand-v1-6">
 <h2>Enable in OnDemand v1.6+:<a class="headerlink" href="#enable-in-ondemand-v1-6" title="Link to this heading"></a></h2>
-<p>Here are example steps to enable a user “efranz”, assuming efranz’s home directory is at <code class="docutils literal notranslate"><span class="pre">/home/efranz</span></code>:</p>
+<p>Here are example steps to enable a user <code class="docutils literal notranslate"><span class="pre">efranz</span></code>, assuming <code class="docutils literal notranslate"><span class="pre">efranz</span></code>'s home directory is at <code class="docutils literal notranslate"><span class="pre">/home/efranz</span></code>:</p>
 <ol class="arabic">
-<li><p>Create a symlink so OnDemand finds efranz’s apps:</p>
+<li><p>Create a symlink so OnDemand finds <code class="docutils literal notranslate"><span class="pre">efranz</span></code>'s apps:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/var/www/ood/apps/dev/efranz
 <span class="nb">cd</span><span class="w"> </span>/var/www/ood/apps/dev/efranz
 sudo<span class="w"> </span>ln<span class="w"> </span>-s<span class="w"> </span>/home/efranz/ondemand/dev<span class="w"> </span>gateway
 </pre></div>
 </div>
 </li>
-<li><p>Have efranz access the Dashboard, and efranz will see the Develop dropdown</p></li>
+<li><p>Have <code class="docutils literal notranslate"><span class="pre">efranz</span></code> access the Dashboard, and they will see the Develop drop-down.</p></li>
 </ol>
 </section>
 <section id="enable-in-ondemand-v1-4-v1-5">
 <h2>Enable in OnDemand v1.4 &amp; v1.5:<a class="headerlink" href="#enable-in-ondemand-v1-4-v1-5" title="Link to this heading"></a></h2>
-<p>Here are example steps to enable a user “efranz”, assuming efranz’s home directory is at <code class="docutils literal notranslate"><span class="pre">/home/efranz</span></code>:</p>
+<p>Here are example steps to enable a user <code class="docutils literal notranslate"><span class="pre">efranz</span></code>, assuming <code class="docutils literal notranslate"><span class="pre">efranz</span></code>'s home directory is at <code class="docutils literal notranslate"><span class="pre">/home/efranz</span></code>:</p>
 <ol class="arabic">
-<li><p>Create a symlink so OnDemand finds efranz’s apps:</p>
+<li><p>Create a symlink so OnDemand finds <code class="docutils literal notranslate"><span class="pre">efranz</span></code>'s apps:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/var/www/ood/apps/dev/efranz
 <span class="nb">cd</span><span class="w"> </span>/var/www/ood/apps/dev/efranz
 sudo<span class="w"> </span>ln<span class="w"> </span>-s<span class="w"> </span>/home/efranz/ondemand/dev<span class="w"> </span>gateway
 </pre></div>
 </div>
 </li>
-<li><p>Create dev directory <code class="docutils literal notranslate"><span class="pre">/home/efranz/ondemand/dev</span></code> where efranz’s dev apps will go (or ask efranz to do that)</p></li>
-<li><p>Have efranz access the Dashboard, and efranz will see the Develop dropdown</p></li>
+<li><p>Create <code class="docutils literal notranslate"><span class="pre">dev</span></code> directory <code class="docutils literal notranslate"><span class="pre">/home/efranz/ondemand/dev</span></code> where <code class="docutils literal notranslate"><span class="pre">efranz</span></code>'s development apps will go (or ask <code class="docutils literal notranslate"><span class="pre">efranz</span></code> to do that).</p></li>
+<li><p>Have <code class="docutils literal notranslate"><span class="pre">efranz</span></code> access the Dashboard, and they will see the Develop drop-down.</p></li>
 </ol>
 </section>
 <section id="enable-in-ondemand-v1-3">
 <h2>Enable in OnDemand v1.3:<a class="headerlink" href="#enable-in-ondemand-v1-3" title="Link to this heading"></a></h2>
-<p>Here are example steps to enable a user “efranz”, assuming efranz’s home directory is at <code class="docutils literal notranslate"><span class="pre">/home/efranz</span></code>:</p>
+<p>Here are example steps to enable a user <code class="docutils literal notranslate"><span class="pre">efranz</span></code>, assuming <code class="docutils literal notranslate"><span class="pre">efranz</span></code>'s home directory is at <code class="docutils literal notranslate"><span class="pre">/home/efranz</span></code>:</p>
 <ol class="arabic simple">
-<li><p>Create dev directory <code class="docutils literal notranslate"><span class="pre">/home/efranz/ondemand/dev</span></code> where efranz’s dev apps will go (or ask efranz to do that)</p></li>
-<li><p>Have efranz access the Dashboard, and efranz will see the Develop dropdown. (if this doesn’t happen, )</p></li>
+<li><p>Create <code class="docutils literal notranslate"><span class="pre">dev</span></code> directory <code class="docutils literal notranslate"><span class="pre">/home/efranz/ondemand/dev</span></code> where <code class="docutils literal notranslate"><span class="pre">efranz</span></code>'s development apps will go (or ask <code class="docutils literal notranslate"><span class="pre">efranz</span></code> to do that).</p></li>
+<li><p>Have <code class="docutils literal notranslate"><span class="pre">efranz</span></code> access the Dashboard, and they will see the Develop drop-down. (if this does not happen)</p></li>
 </ol>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -175,11 +190,11 @@ sudo<span class="w"> </span>ln<span class="w"> </span>-s<span class="w"> </span>
 <section id="specify-dedicated-host-for-development-optional">
 <h2>Specify dedicated host for development (optional)<a class="headerlink" href="#specify-dedicated-host-for-development-optional" title="Link to this heading"></a></h2>
 <p>The default host for the shell app is typically a login node. If this node does not contain a similar environment as the host OnDemand is installed on, including access to Software Collection (SCL) packages, it may be useful to provide developers a dedicated development host they can SSH to. This could even be the OnDemand host itself. If you configure the OnDemand dashboard to know about the dedicated development host, the dashboard will present links to open the shell app to this host.</p>
-<p>To specify a dedicated development host so OnDemand, set <code class="docutils literal notranslate"><span class="pre">OOD_DEV_SSH_HOST</span></code> environment variable for the dashboard in the file <code class="docutils literal notranslate"><span class="pre">/etc/ood/config/apps/dashboard/env</span></code>. For example at OSC one of our OnDemand installs uses ondemand-test.osc.edu for the development host so we have this line: <a class="reference external" href="https://github.com/OSC/osc-ood-config/blob/bde54e4c5a9fd756f74ac981f8c607320e9a0bf0/ondemand.osc.edu/apps/dashboard/env#L20">OOD_DEV_SSH_HOST=”ondemand-test.osc.edu”</a></p>
+<p>To specify a dedicated development host so OnDemand, set <code class="docutils literal notranslate"><span class="pre">OOD_DEV_SSH_HOST</span></code> environment variable for the dashboard in the file <code class="docutils literal notranslate"><span class="pre">/etc/ood/config/apps/dashboard/env</span></code>. For example at OSC one of our OnDemand installs uses <code class="docutils literal notranslate"><span class="pre">ondemand-test.osc.edu</span></code> for the development host so we have this line: <a class="reference external" href="https://github.com/OSC/osc-ood-config/blob/bde54e4c5a9fd756f74ac981f8c607320e9a0bf0/ondemand.osc.edu/apps/dashboard/env#L20">OOD_DEV_SSH_HOST=&quot;ondemand-test.osc.edu&quot;</a></p>
 </section>
 <section id="make-everyone-a-developer-by-default-optional">
 <h2>Make everyone a developer by default (optional)<a class="headerlink" href="#make-everyone-a-developer-by-default-optional" title="Link to this heading"></a></h2>
-<p>To revert to the way developer enabling worked in OnDemand 1.3, change the nginx_stage app_root configuration for dev apps by modifying /etc/ood/config/nginx_stage.yml and replacing</p>
+<p>To revert to the way developer enabling worked in OnDemand 1.3, change the <code class="docutils literal notranslate"><span class="pre">nginx_stage</span></code> app_root configuration for development apps by modifying <code class="docutils literal notranslate"><span class="pre">/etc/ood/config/nginx_stage.yml</span></code> and replacing</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">app_root</span><span class="p">:</span>
 <span class="hll"><span class="w">  </span><span class="nt">dev</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;/var/www/ood/apps/dev/%{owner}/gateway/%{name}&#39;</span>
 </span><span class="w">  </span><span class="nt">usr</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;/var/www/ood/apps/usr/%{owner}/gateway/%{name}&#39;</span>
@@ -193,12 +208,12 @@ sudo<span class="w"> </span>ln<span class="w"> </span>-s<span class="w"> </span>
 <span class="w">  </span><span class="nt">sys</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;/var/www/ood/apps/sys/%{name}&#39;</span>
 </pre></div>
 </div>
-<p>Then users can just create the directory <code class="docutils literal notranslate"><span class="pre">~/ondemand/dev</span></code> and the Develop dropdown will appear.</p>
+<p>Then users can just create the directory <code class="docutils literal notranslate"><span class="pre">~/ondemand/dev</span></code> and the Develop drop-down will appear.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>If you do this, it is recommended that you treat the node that OnDemand is running on as a login node, as you are effectively giving those users shell access by letting them run arbitrary code on the OnDemand node (of course the UID of the processes are still their regular unprivileged user UID).</p>
 </div>
-<p>If you do this, you still might want to restrict who sees the Develop dropdown in the Dashboard. To do that you can explicitly show or hide the dropdown in the Dashboard by setting <code class="docutils literal notranslate"><span class="pre">Configuration.app_development_enabled</span></code> to true based on one or more Ruby statements in the initializer <code class="docutils literal notranslate"><span class="pre">/etc/ood/config/apps/dashboard/initializers/ood.rb</span></code>. Code in the initializer runs as the user. This code also has access to the <a class="reference external" href="http://www.rubydoc.info/github/OSC/ood_support">ood_support library</a> in which we provide some helper classes to work with User’s and Groups. For example:</p>
+<p>If you do this, you still might want to restrict who sees the Develop drop-down in the Dashboard. To do that you can explicitly show or hide the drop-down in the Dashboard by setting <code class="docutils literal notranslate"><span class="pre">Configuration.app_development_enabled</span></code> to true based on one or more Ruby statements in the initializer <code class="docutils literal notranslate"><span class="pre">/etc/ood/config/apps/dashboard/initializers/ood.rb</span></code>. Code in the initializer runs as the user. This code also has access to the <a class="reference external" href="http://www.rubydoc.info/github/OSC/ood_support">ood_support library</a> in which we provide some helper classes to work with Users and Groups. For example:</p>
 <blockquote>
 <div><div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="no">Rails</span><span class="o">.</span><span class="n">application</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">after_initialize</span><span class="w"> </span><span class="k">do</span>
 <span class="w">  </span><span class="no">Configuration</span><span class="o">.</span><span class="n">app_development_enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">OodSupport</span><span class="o">::</span><span class="no">Process</span><span class="o">.</span><span class="n">groups</span><span class="o">.</span><span class="n">include?</span><span class="p">(</span>
@@ -237,7 +252,7 @@ file:</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2017-2024, Ohio Supercomputer Center.</p>
+    <p>&#169; Copyright 2017-2026, Ohio Supercomputer Center.</p>
   </div>
 
    
@@ -250,7 +265,7 @@ file:</p>
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
   <span class="rst-current-version" data-toggle="rst-current-version">
     <span class="fa fa-book"> Documentation Versions</span>
-    v: 
+    v: 4.2.0
     <span class="fa fa-caret-down"></span>
   </span>
   <div class="rst-other-versions">
@@ -258,6 +273,12 @@ file:</p>
       <dt>Versions</dt>
       
         <dd><a href="https://OSC.github.io/ood-documentation/latest/how-tos/app-development/enabling-development-mode.html">latest</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-4.1/how-tos/app-development/enabling-development-mode.html">4.1</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-4.0/how-tos/app-development/enabling-development-mode.html">4.0</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-3.1/how-tos/app-development/enabling-development-mode.html">3.1</a></dd>
       
         <dd><a href="https://OSC.github.io/ood-documentation/release-3.0/how-tos/app-development/enabling-development-mode.html">3.0</a></dd>
       

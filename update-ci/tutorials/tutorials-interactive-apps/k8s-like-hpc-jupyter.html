@@ -4,10 +4,10 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Add a Jupyter App on a Kubernetes Cluster that behaves like HPC compute &mdash; Open OnDemand 3.1.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+  <title>Add a Jupyter App on a Kubernetes Cluster that behaves like HPC compute &mdash; Open OnDemand 4.2.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=c48163e2" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=6f7bdab3" />
       <link rel="stylesheet" type="text/css" href="../../_static/tabs.css?v=a5c4661c" />
 
   
@@ -18,7 +18,7 @@
   
         <script src="../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../_static/documentation_options.js?v=dd1205ac"></script>
+        <script src="../../_static/documentation_options.js?v=d0ae6d56"></script>
         <script src="../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
@@ -51,18 +51,29 @@
               <img src="../../_static/logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                3.1
-              </div>
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
+                4.2
+              </div><div id="searchbox" role="search">
+  <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get" id="rtd-search-form" class="wy-form">
+      <input
+        type="text"
+        id="search-input"
+        name="q"
+        aria-label="Search docs"
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
+        spellcheck="false"
+        placeholder="Search docs"
+      />
+      <input type="submit" value="Go" class="sr-only" />
+    </form>
+  </div>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../faqs.html">FAQ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../requirements.html">Requirements</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../installation/add-cluster-config.html">Cluster Configuration</a></li>
@@ -74,10 +85,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../../how-tos/debug.html">Debugging and Monitoring</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../enable-desktops.html">Enable Interactive Desktop</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../how-tos/app-development.html">App Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../how-tos/project-management/project-manager.html">Project Manager</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../install-ihpc-apps.html">Install Other Interactive Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install-passenger-apps.html">Install Passenger Apps</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../tutorials-interactive-apps.html">Tutorials: Interactive Apps</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="add-jupyter.html">Add a Jupyter App</a></li>
 <li class="toctree-l2"><a class="reference internal" href="add-rstudio.html">Add an RStudio App</a></li>
@@ -88,7 +101,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#switch-between-slurm-and-kubernetes">Switch between SLURM and Kubernetes</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#container-spec">container spec</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#mounts">mounts</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#submit-yml-in-full">submit yml in full</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#submit-yml-in-full"><code class="docutils literal notranslate"><span class="pre">submit.yml</span></code> in full</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="add-custom-queue.html">Add Custom Queues/Partitions</a></li>
@@ -97,10 +110,12 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials-passenger-apps.html">Tutorials: Passenger Apps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials-dashboard-apps.html">Developing The OOD Dashboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials-project-manager.html">Tutorials: Project Manager</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../accessibility.html">Accessibility</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../reference.html">Configuration Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../security.html">Security</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../release-notes.html">Release Notes</a></li>
@@ -125,7 +140,7 @@
           <li class="breadcrumb-item"><a href="../tutorials-interactive-apps.html">Tutorials: Interactive Apps</a></li>
       <li class="breadcrumb-item active">Add a Jupyter App on a Kubernetes Cluster that behaves like HPC compute</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/OSC/ood-documentation/blob/develop/source/tutorials/tutorials-interactive-apps/k8s-like-hpc-jupyter.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/OSC/ood-documentation/blob/latest/source/tutorials/tutorials-interactive-apps/k8s-like-hpc-jupyter.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -136,15 +151,15 @@
   <section id="add-a-jupyter-app-on-a-kubernetes-cluster-that-behaves-like-hpc-compute">
 <span id="app-development-tutorials-interactive-apps-k8s-like-hpc-jupyter"></span><h1>Add a Jupyter App on a Kubernetes Cluster that behaves like HPC compute<a class="headerlink" href="#add-a-jupyter-app-on-a-kubernetes-cluster-that-behaves-like-hpc-compute" title="Link to this heading"></a></h1>
 <p>This tutorial will walk you through creating an interactive Jupyter app that
-your users will use to launch a <a class="reference external" href="http://jupyter.readthedocs.io/en/latest/">Jupyter Notebook Server</a> in a kubernetes cluster.
+your users will use to launch a <a class="reference external" href="http://jupyter.readthedocs.io/en/latest/">Jupyter Notebook Server</a> in a Kubernetes cluster.
 The container will behave much like a HPC compute node. This has the benefit that
 a single app can serve both traditional HPC as well as Kubernetes.</p>
 <p>It assumes you have a working understanding of app development already. The purpose of
-this document is to describe how to write apps specifically for a kubernetes cluster,
+this document is to describe how to write apps specifically for a Kubernetes cluster,
 so it skips a lot of important details about app development that may be found in
 other tutorials like <a class="reference internal" href="add-jupyter.html#app-development-tutorials-interactive-apps-add-jupyter"><span class="std std-ref">Add a Jupyter App</span></a>.</p>
-<p>We’re going to be looking at the <a class="reference external" href="https://github.com/OSC/bc_osc_jupyter">bc osc jupyter</a> app which is OSC’s production Jupyter app. You can fork, clone
-and modify for your site.  This page also holds the <a class="reference internal" href="#submit-yml-in-full">submit yml in full</a> for reference.</p>
+<p>We're going to be looking at the <a class="reference external" href="https://github.com/OSC/bc_osc_jupyter">bc osc jupyter</a> app which is OSC's production Jupyter app. You can fork, clone
+and modify for your site.  This page also holds the <a class="reference internal" href="#submit-yml-in-full">submit.yml in full</a> for reference.</p>
 <p>Refer to <a class="reference internal" href="k8s-jupyter.html#app-development-tutorials-interactive-apps-k8s-jupyter"><span class="std std-ref">the interactive K8s Jupyter app</span></a> for
 additional details on items defined in <code class="docutils literal notranslate"><span class="pre">submit.yml.erb</span></code> as well as a more traditional container approach.</p>
 <section id="the-container">
@@ -153,7 +168,7 @@ additional details on items defined in <code class="docutils literal notranslate
 the OS packages present on the HPC environment.  The OS of the container itself would also
 need to compatible with packages installed on HPC environment so if you run RHEL 8 on HPC
 you would also need to run RHEL 8 inside the container.</p>
-<p>Things like Lmod and HPC applications will need to be run inside the Pod’s container just like
+<p>Things like Lmod and HPC applications will need to be run inside the Pod's container just like
 if a job was spawned in a traditional HPC resource manager.</p>
 </section>
 <section id="switch-between-slurm-and-kubernetes">
@@ -181,14 +196,14 @@ script:
 </section>
 <section id="container-spec">
 <h2>container spec<a class="headerlink" href="#container-spec" title="Link to this heading"></a></h2>
-<p>Let’s look at this section first of the Kubernetes block.  Here you must specify the <code class="docutils literal notranslate"><span class="pre">name</span></code>, <code class="docutils literal notranslate"><span class="pre">image</span></code>
+<p>Let's look at this section first of the Kubernetes block.  Here you must specify the <code class="docutils literal notranslate"><span class="pre">name</span></code>, <code class="docutils literal notranslate"><span class="pre">image</span></code>
 and <code class="docutils literal notranslate"><span class="pre">command</span></code>.  The name determines the Pod Id (the job name in HPC parlance).</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">image</span></code> should be the HPC container image and <code class="docutils literal notranslate"><span class="pre">command</span></code> will be the job script that has been adapted to
-work with both SLURM and Kubernetes.  The <code class="docutils literal notranslate"><span class="pre">command</span></code> will be run from the user’s home directory and will cover mount
+work with both SLURM and Kubernetes.  The <code class="docutils literal notranslate"><span class="pre">command</span></code> will be run from the user's home directory and will cover mount
 requirements in <a class="reference internal" href="#kubernetes-mount-requirements"><span class="std std-ref">mount requirements</span></a>.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>These examples use images from the Ohio SuperComputer Center’s private registry. They will
+<p>These examples use images from the Ohio SuperComputer Center's private registry. They will
 not work at your site as this registry requires authentication.</p>
 </div>
 <p>One important aspect of the <code class="docutils literal notranslate"><span class="pre">command</span></code> is that the job script executed is built using the standard <code class="docutils literal notranslate"><span class="pre">before.sh</span></code>, <code class="docutils literal notranslate"><span class="pre">script.sh</span></code> and <code class="docutils literal notranslate"><span class="pre">after.sh</span></code> that one would normally use to build the job script for interactive apps running
@@ -283,7 +298,7 @@ the container is the same as the path inside the container:</p>
 </div>
 </section>
 <section id="submit-yml-in-full">
-<h2>submit yml in full<a class="headerlink" href="#submit-yml-in-full" title="Link to this heading"></a></h2>
+<h2><code class="docutils literal notranslate"><span class="pre">submit.yml</span></code> in full<a class="headerlink" href="#submit-yml-in-full" title="Link to this heading"></a></h2>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># submit.yml.erb</span>
 <span class="l l-Scalar l-Scalar-Plain">&lt;%-</span>
 <span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">cores = num_cores.to_i</span>
@@ -442,7 +457,7 @@ the container is the same as the path inside the container:</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2017-2024, Ohio Supercomputer Center.</p>
+    <p>&#169; Copyright 2017-2026, Ohio Supercomputer Center.</p>
   </div>
 
    
@@ -455,7 +470,7 @@ the container is the same as the path inside the container:</p>
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
   <span class="rst-current-version" data-toggle="rst-current-version">
     <span class="fa fa-book"> Documentation Versions</span>
-    v: 
+    v: 4.2.0
     <span class="fa fa-caret-down"></span>
   </span>
   <div class="rst-other-versions">
@@ -463,6 +478,12 @@ the container is the same as the path inside the container:</p>
       <dt>Versions</dt>
       
         <dd><a href="https://OSC.github.io/ood-documentation/latest/tutorials/tutorials-interactive-apps/k8s-like-hpc-jupyter.html">latest</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-4.1/tutorials/tutorials-interactive-apps/k8s-like-hpc-jupyter.html">4.1</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-4.0/tutorials/tutorials-interactive-apps/k8s-like-hpc-jupyter.html">4.0</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-3.1/tutorials/tutorials-interactive-apps/k8s-like-hpc-jupyter.html">3.1</a></dd>
       
         <dd><a href="https://OSC.github.io/ood-documentation/release-3.0/tutorials/tutorials-interactive-apps/k8s-like-hpc-jupyter.html">3.0</a></dd>
       

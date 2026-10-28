@@ -8,7 +8,7 @@ Open OnDemand uses these packages, among many others.
 - Apache HTTP Server 2.4
 - Ruby 3.3 with :command:`rake`, :command:`bundler`, and development
   libraries
-- Node.js 20
+- NodeJs 22
 
 .. note::
 
@@ -37,7 +37,7 @@ Open OnDemand uses these packages, among many others.
 
          sudo dnf config-manager --set-enabled powertools
          sudo dnf install epel-release
-         sudo dnf module enable ruby:3.3 nodejs:20
+         sudo dnf module enable ruby:3.3 nodejs:22
 
    .. tab:: RockyLinux/Alma Linux 9
 
@@ -45,15 +45,21 @@ Open OnDemand uses these packages, among many others.
 
          sudo dnf config-manager --set-enabled crb
          sudo dnf install epel-release
-         sudo dnf module enable ruby:3.3 nodejs:20
+         sudo dnf module enable ruby:3.3 nodejs:22
 
+   .. tab:: RockyLinux/Alma Linux 10
+
+      .. code-block:: sh
+
+         sudo dnf config-manager --set-enabled crb
+         sudo dnf install epel-release
 
    .. tab:: RHEL 8
 
       .. code-block:: sh
 
          sudo dnf install epel-release
-         sudo dnf module enable ruby:3.3 nodejs:20
+         sudo dnf module enable ruby:3.3 nodejs:22
          sudo subscription-manager repos --enable codeready-builder-for-rhel-8-x86_64-rpms
 
 
@@ -62,8 +68,15 @@ Open OnDemand uses these packages, among many others.
       .. code-block:: sh
 
          sudo dnf install epel-release
-         sudo dnf module enable ruby:3.3 nodejs:20
+         sudo dnf module enable ruby:3.3 nodejs:22
          sudo subscription-manager repos --enable codeready-builder-for-rhel-9-x86_64-rpms
+
+   .. tab:: RHEL 10
+
+      .. code-block:: sh
+
+         sudo dnf install epel-release
+         sudo subscription-manager repos --enable codeready-builder-for-rhel-10-x86_64-rpms
 
 2. Add repository and install
 -----------------------------
@@ -74,6 +87,7 @@ Open OnDemand uses these packages, among many others.
 
          .. code-block:: sh
 
+            sudo rpm --import https://yum.osc.edu/ondemand/RPM-GPG-KEY-ondemand
             sudo dnf install https://yum.osc.edu/ondemand/{{ ondemand_version }}/ondemand-release-web-{{ ondemand_version }}-1.el8.noarch.rpm
 
             sudo dnf install ondemand
@@ -82,39 +96,38 @@ Open OnDemand uses these packages, among many others.
 
          .. code-block:: sh
 
+            sudo rpm --import https://yum.osc.edu/ondemand/RPM-GPG-KEY-ondemand-SHA512
             sudo dnf install https://yum.osc.edu/ondemand/{{ ondemand_version }}/ondemand-release-web-{{ ondemand_version }}-1.el9.noarch.rpm
 
             sudo dnf install ondemand
 
-      .. tab:: Ubuntu 20.04
+      .. tab:: RedHat/Rocky Linux/AlmaLinux 10
 
          .. code-block:: sh
 
-            sudo apt install apt-transport-https ca-certificates
-            wget -O /tmp/ondemand-release-web_{{ ondemand_version }}.1-focal_all.deb https://apt.osc.edu/ondemand/{{ ondemand_version }}/ondemand-release-web_{{ ondemand_version }}.1-focal_all.deb
-            sudo apt install /tmp/ondemand-release-web_{{ ondemand_version }}.1-focal_all.deb
-            sudo apt update
+            sudo rpm --import https://yum.osc.edu/ondemand/RPM-GPG-KEY-ondemand-SHA512
+            sudo dnf install https://yum.osc.edu/ondemand/{{ ondemand_version }}/ondemand-release-web-{{ ondemand_version }}-1.el10.noarch.rpm
 
-            sudo apt install ondemand
-
-      .. tab:: Ubuntu 22.04
-
-         .. code-block:: sh
-
-            sudo apt install apt-transport-https ca-certificates
-            wget -O /tmp/ondemand-release-web_{{ ondemand_version }}.1-jammy_all.deb https://apt.osc.edu/ondemand/{{ ondemand_version }}/ondemand-release-web_{{ ondemand_version }}.1-jammy_all.deb
-            sudo apt install /tmp/ondemand-release-web_{{ ondemand_version }}.1-jammy_all.deb
-            sudo apt update
-
-            sudo apt install ondemand
+            sudo dnf install ondemand
 
       .. tab:: Ubuntu 24.04
 
          .. code-block:: sh
 
             sudo apt install apt-transport-https ca-certificates
-            wget -O /tmp/ondemand-release-web_{{ ondemand_version }}.2-noble_all.deb https://apt.osc.edu/ondemand/{{ ondemand_version }}/ondemand-release-web_{{ ondemand_version }}.2-noble_all.deb
-            sudo apt install /tmp/ondemand-release-web_{{ ondemand_version }}.2-noble_all.deb
+            wget -O /tmp/ondemand-release-web_{{ ondemand_version }}.0-noble_all.deb https://apt.osc.edu/ondemand/{{ ondemand_version }}/ondemand-release-web_{{ ondemand_version }}.0-noble_all.deb
+            sudo apt install /tmp/ondemand-release-web_{{ ondemand_version }}.0-noble_all.deb
+            sudo apt update
+
+            sudo apt install ondemand
+
+      .. tab:: Ubuntu 26.04
+
+         .. code-block:: sh
+
+            sudo apt install apt-transport-https ca-certificates
+            wget -O /tmp/ondemand-release-web_{{ ondemand_version }}.0-resolute_all.deb https://apt.osc.edu/ondemand/{{ ondemand_version }}/ondemand-release-web_{{ ondemand_version }}.0-resolute_all.deb
+            sudo apt install /tmp/ondemand-release-web_{{ ondemand_version }}.0-resolute_all.deb
             sudo apt update
 
             sudo apt install ondemand
@@ -124,8 +137,19 @@ Open OnDemand uses these packages, among many others.
          .. code-block:: sh
 
             sudo apt install apt-transport-https ca-certificates
-            wget -O /tmp/ondemand-release-web_{{ ondemand_version }}.1-bookworm_all.deb https://apt.osc.edu/ondemand/{{ ondemand_version }}/ondemand-release-web_{{ ondemand_version }}.1-bookworm_all.deb
-            sudo apt install /tmp/ondemand-release-web_{{ ondemand_version }}.1-bookworm_all.deb
+            wget -O /tmp/ondemand-release-web_{{ ondemand_version }}.0-bookworm_all.deb https://apt.osc.edu/ondemand/{{ ondemand_version }}/ondemand-release-web_{{ ondemand_version }}.0-bookworm_all.deb
+            sudo apt install /tmp/ondemand-release-web_{{ ondemand_version }}.0-bookworm_all.deb
+            sudo apt update
+
+            sudo apt install ondemand
+
+      .. tab:: Debian 13
+
+         .. code-block:: sh
+
+            sudo apt install apt-transport-https ca-certificates
+            wget -O /tmp/ondemand-release-web_{{ ondemand_version }}.0-trixie_all.deb https://apt.osc.edu/ondemand/{{ ondemand_version }}/ondemand-release-web_{{ ondemand_version }}.0-trixie_all.deb
+            sudo apt install /tmp/ondemand-release-web_{{ ondemand_version }}.0-trixie_all.deb
             sudo apt update
 
             sudo apt install ondemand
@@ -134,6 +158,7 @@ Open OnDemand uses these packages, among many others.
 
          .. code-block:: sh
 
+            sudo rpm --import https://yum.osc.edu/ondemand/RPM-GPG-KEY-ondemand-SHA512
             sudo dnf install https://yum.osc.edu/ondemand/{{ ondemand_version }}/ondemand-release-web-{{ ondemand_version }}-1.amzn2023.noarch.rpm
 
             sudo dnf install ondemand
@@ -143,7 +168,7 @@ Open OnDemand uses these packages, among many others.
 
    .. tabs::
 
-      .. tab:: RHEL/Rocky 8 & 9
+      .. tab:: RHEL/Rocky/AlmaLinux
 
          .. code-block:: sh
 
@@ -184,16 +209,15 @@ and likely :ref:`configure a servername <ood-portal-generator-servername>`.
 Building From Source
 --------------------
 
-Building from source is left as an exercise to the reader. 
-     
-It's not particularly difficult to build the code, but installing it with all the various files is. Should you be interested, 
-review the ``Dockerfile`` and packaging specs for what would be involved.
+Detailed instructions for building from source are not provided here.
 
-- https://github.com/OSC/ondemand/blob/master/Dockerfile
+If you're interested in building from source, review the packaging specs and
+rules for more information about what is involved.
+
 - https://github.com/OSC/ondemand/tree/master/packaging
 
 If you'd like a package built for a system that we don't currently support, feel free to open a ticket!
 
-- https://github.com/OSC/ondemand/issues/new
+- https://github.com/OSC/ondemand/issues/new?template=feature-request.md
 
 .. _ohio supercomputer center: https://www.osc.edu/

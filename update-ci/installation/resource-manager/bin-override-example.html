@@ -4,10 +4,10 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>A Working Example of a bin_overrides Script &mdash; Open OnDemand 3.1.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+  <title>A Working Example of a bin_overrides Script &mdash; Open OnDemand 4.2.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=c48163e2" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=6f7bdab3" />
       <link rel="stylesheet" type="text/css" href="../../_static/tabs.css?v=a5c4661c" />
 
   
@@ -18,14 +18,14 @@
   
         <script src="../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../_static/documentation_options.js?v=dd1205ac"></script>
+        <script src="../../_static/documentation_options.js?v=d0ae6d56"></script>
         <script src="../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Test Configuration" href="test.html" />
-    <link rel="prev" title="Systemd" href="systemd.html" />
+    <link rel="prev" title="PSI/J" href="psi-j.html" />
  
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-34776817-3"></script>
 <script>
@@ -51,22 +51,33 @@
               <img src="../../_static/logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                3.1
-              </div>
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
+                4.2
+              </div><div id="searchbox" role="search">
+  <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get" id="rtd-search-form" class="wy-form">
+      <input
+        type="text"
+        id="search-input"
+        name="q"
+        aria-label="Search docs"
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
+        spellcheck="false"
+        placeholder="Search docs"
+      />
+      <input type="submit" value="Go" class="sr-only" />
+    </form>
+  </div>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../faqs.html">FAQ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../requirements.html">Requirements</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../add-cluster-config.html">Cluster Configuration</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../cluster-config-schema.html">Cluster Config Schema v2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cluster-config-schema.html">Cluster Configuration Schema v2</a></li>
 <li class="toctree-l2"><a class="reference internal" href="torque.html">Torque</a></li>
 <li class="toctree-l2"><a class="reference internal" href="slurm.html">Slurm</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lsf.html">LSF</a></li>
@@ -75,7 +86,10 @@
 <li class="toctree-l2"><a class="reference internal" href="linuxhost.html">LinuxHost</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ccq.html">Cloudy Cluster</a></li>
 <li class="toctree-l2"><a class="reference internal" href="kubernetes.html">Kubernetes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="coder.html">Coder</a></li>
 <li class="toctree-l2"><a class="reference internal" href="systemd.html">Systemd</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ht-condor.html">HT Condor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="psi-j.html">PSI/J</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">A Working Example of a <code class="docutils literal notranslate"><span class="pre">bin_overrides</span></code> Script</a></li>
 <li class="toctree-l2"><a class="reference internal" href="test.html">Test Configuration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="advanced-configs.html">Advanced Resource Manager Configurations</a></li>
@@ -89,17 +103,21 @@
 <li class="toctree-l1"><a class="reference internal" href="../../how-tos/debug.html">Debugging and Monitoring</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../enable-desktops.html">Enable Interactive Desktop</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../how-tos/app-development.html">App Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../how-tos/project-management/project-manager.html">Project Manager</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../install-ihpc-apps.html">Install Other Interactive Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install-passenger-apps.html">Install Passenger Apps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../tutorials/tutorials-interactive-apps.html">Tutorials: Interactive Apps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../tutorials/tutorials-passenger-apps.html">Tutorials: Passenger Apps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../tutorials/tutorials-dashboard-apps.html">Developing The OOD Dashboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/tutorials-project-manager.html">Tutorials: Project Manager</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../accessibility.html">Accessibility</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../reference.html">Configuration Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../security.html">Security</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../release-notes.html">Release Notes</a></li>
@@ -124,7 +142,7 @@
           <li class="breadcrumb-item"><a href="../add-cluster-config.html">Cluster Configuration</a></li>
       <li class="breadcrumb-item active">A Working Example of a <code class="docutils literal notranslate"><span class="pre">bin_overrides</span></code> Script</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/OSC/ood-documentation/blob/develop/source/installation/resource-manager/bin-override-example.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/OSC/ood-documentation/blob/latest/source/installation/resource-manager/bin-override-example.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -134,7 +152,7 @@
              
   <section id="a-working-example-of-a-bin-overrides-script">
 <span id="bin-overrides"></span><h1>A Working Example of a <code class="docutils literal notranslate"><span class="pre">bin_overrides</span></code> Script<a class="headerlink" href="#a-working-example-of-a-bin-overrides-script" title="Link to this heading"></a></h1>
-<p><code class="docutils literal notranslate"><span class="pre">sbatch</span></code> is the Slurm scheduler’s submission client. In this example we will show how cluster configuration’s <code class="docutils literal notranslate"><span class="pre">bin_overrides</span></code> may be used to change default behavior.</p>
+<p><code class="docutils literal notranslate"><span class="pre">sbatch</span></code> is the Slurm scheduler's submission client. In this example we will show how cluster configuration's <code class="docutils literal notranslate"><span class="pre">bin_overrides</span></code> may be used to change default behavior.</p>
 <p>This example demonstrates a few uses of wrapping the default scheduler clients:</p>
 <ul class="simple">
 <li><p>Using SSH from the web host to launch <code class="docutils literal notranslate"><span class="pre">sbatch</span></code> on the submit host</p></li>
@@ -147,13 +165,13 @@
 <p>This wrapper when used with the OOD Job Composer will place any <code class="docutils literal notranslate"><span class="pre">stdout</span></code> or <code class="docutils literal notranslate"><span class="pre">stderr</span></code> files in <code class="docutils literal notranslate"><span class="pre">$HOME</span></code> instead of the usual location of <code class="docutils literal notranslate"><span class="pre">$HOME/ondemand/data/sys/myjobs/projects/default/$JOBID</span></code>.</p>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python36</span>
-<span class="kn">from</span> <span class="nn">getpass</span> <span class="kn">import</span> <span class="n">getuser</span>
-<span class="kn">from</span> <span class="nn">select</span> <span class="kn">import</span> <span class="n">select</span>
-<span class="kn">from</span> <span class="nn">sh</span> <span class="kn">import</span> <span class="n">ssh</span><span class="p">,</span> <span class="n">ErrorReturnCode</span>  <span class="c1"># pip3 install sh</span>
-<span class="kn">import</span> <span class="nn">logging</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">re</span>
-<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">getpass</span><span class="w"> </span><span class="kn">import</span> <span class="n">getuser</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">select</span><span class="w"> </span><span class="kn">import</span> <span class="n">select</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sh</span><span class="w"> </span><span class="kn">import</span> <span class="n">ssh</span><span class="p">,</span> <span class="n">ErrorReturnCode</span>  <span class="c1"># pip3 install sh</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
 
 <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">An example of a `bin_overrides` replacing Slurm `sbatch` for use with Open OnDemand.</span>
@@ -187,7 +205,7 @@
 <span class="n">USER</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;USER&#39;</span><span class="p">]</span>
 
 
-<span class="k">def</span> <span class="nf">run_remote_sbatch</span><span class="p">(</span><span class="n">script</span><span class="p">,</span> <span class="o">*</span><span class="n">argv</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">run_remote_sbatch</span><span class="p">(</span><span class="n">script</span><span class="p">,</span> <span class="o">*</span><span class="n">argv</span><span class="p">):</span>
 <span class="w">  </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">  @brief      SSH and submit the job from the submission node</span>
 
@@ -220,7 +238,7 @@
   <span class="k">return</span> <span class="n">output</span>
 
 
-<span class="k">def</span> <span class="nf">filter_argv</span><span class="p">(</span><span class="n">argv</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">filter_argv</span><span class="p">(</span><span class="n">argv</span><span class="p">):</span>
 <span class="w">  </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">  @brief      Filter the argument vector to add or remove arguments</span>
 
@@ -238,7 +256,7 @@
   <span class="k">return</span> <span class="n">argv</span>
 
 
-<span class="k">def</span> <span class="nf">filter_script</span><span class="p">(</span><span class="n">script</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">filter_script</span><span class="p">(</span><span class="n">script</span><span class="p">):</span>
 <span class="w">  </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">  @brief      Alter the script that the user is sending to sbatch</span>
 
@@ -263,7 +281,7 @@
 <span class="s1">  &#39;&#39;&#39;</span>
 
 
-<span class="k">def</span> <span class="nf">load_script</span><span class="p">():</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">load_script</span><span class="p">():</span>
 <span class="w">  </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">  @brief      Loads a script from stdin.</span>
 
@@ -280,7 +298,7 @@
   <span class="k">return</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
 
 
-<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
 <span class="w">  </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">  @brief      SSHs from web node to submit node and executes the remote sbatch.</span>
 <span class="sd">  &quot;&quot;&quot;</span>
@@ -301,14 +319,14 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="systemd.html" class="btn btn-neutral float-left" title="Systemd" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="psi-j.html" class="btn btn-neutral float-left" title="PSI/J" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="test.html" class="btn btn-neutral float-right" title="Test Configuration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2017-2024, Ohio Supercomputer Center.</p>
+    <p>&#169; Copyright 2017-2026, Ohio Supercomputer Center.</p>
   </div>
 
    
@@ -321,7 +339,7 @@
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
   <span class="rst-current-version" data-toggle="rst-current-version">
     <span class="fa fa-book"> Documentation Versions</span>
-    v: 
+    v: 4.2.0
     <span class="fa fa-caret-down"></span>
   </span>
   <div class="rst-other-versions">
@@ -329,6 +347,12 @@
       <dt>Versions</dt>
       
         <dd><a href="https://OSC.github.io/ood-documentation/latest/installation/resource-manager/bin-override-example.html">latest</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-4.1/installation/resource-manager/bin-override-example.html">4.1</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-4.0/installation/resource-manager/bin-override-example.html">4.0</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-3.1/installation/resource-manager/bin-override-example.html">3.1</a></dd>
       
         <dd><a href="https://OSC.github.io/ood-documentation/release-3.0/installation/resource-manager/bin-override-example.html">3.0</a></dd>
       

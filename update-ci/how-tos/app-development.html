@@ -4,10 +4,10 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>App Development &mdash; Open OnDemand 3.1.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+  <title>App Development &mdash; Open OnDemand 4.2.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=c48163e2" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=6f7bdab3" />
       <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=a5c4661c" />
 
   
@@ -18,7 +18,7 @@
   
         <script src="../_static/jquery.js?v=5d32c60e"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../_static/documentation_options.js?v=dd1205ac"></script>
+        <script src="../_static/documentation_options.js?v=d0ae6d56"></script>
         <script src="../_static/doctools.js?v=9a2dae69"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
@@ -51,18 +51,29 @@
               <img src="../_static/logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                3.1
-              </div>
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
+                4.2
+              </div><div id="searchbox" role="search">
+  <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get" id="rtd-search-form" class="wy-form">
+      <input
+        type="text"
+        id="search-input"
+        name="q"
+        aria-label="Search docs"
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
+        spellcheck="false"
+        placeholder="Search docs"
+      />
+      <input type="submit" value="Go" class="sr-only" />
+    </form>
+  </div>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../faqs.html">FAQ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../requirements.html">Requirements</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../installation/add-cluster-config.html">Cluster Configuration</a></li>
@@ -79,17 +90,21 @@
 <li class="toctree-l2"><a class="reference internal" href="app-development/app-sharing.html">App Sharing</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="project-management/project-manager.html">Project Manager</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../install-ihpc-apps.html">Install Other Interactive Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install-passenger-apps.html">Install Passenger Apps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorials-interactive-apps.html">Tutorials: Interactive Apps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorials-passenger-apps.html">Tutorials: Passenger Apps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorials-dashboard-apps.html">Developing The OOD Dashboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorials-project-manager.html">Tutorials: Project Manager</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../accessibility.html">Accessibility</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../reference.html">Configuration Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../security.html">Security</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../release-notes.html">Release Notes</a></li>
@@ -113,7 +128,7 @@
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">App Development</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/OSC/ood-documentation/blob/develop/source/how-tos/app-development.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/OSC/ood-documentation/blob/latest/source/how-tos/app-development.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -124,11 +139,11 @@
   <section id="app-development">
 <span id="id1"></span><h1>App Development<a class="headerlink" href="#app-development" title="Link to this heading"></a></h1>
 <p>OnDemand is made up of the platform (Apache and NGINX), Passenger apps and
-plugins. Passenger apps are rack based Ruby apps, wsgi based Python web apps, or
-Node.js apps that follow a convention for the app’s startup file.</p>
+plugins. Passenger apps are rack based Ruby apps, WSGI based Python web apps, or
+NodeJs apps that follow a convention for the app's startup file.</p>
 <p>The Dashboard app, Shell app, and all other core apps in OnDemand are Passenger
 apps that can be replaced by custom Passenger apps. Or you can create your own.</p>
-<p>OnDemand’s Interactive Apps are plugins that contain configuration files and a job
+<p>OnDemand's Interactive Apps are plugins that contain configuration files and a job
 template for running a VNC Server or Web Server application (such as Jupyter or MATLAB)
 on a compute node.</p>
 <div class="toctree-wrapper compound">
@@ -143,14 +158,14 @@ on a compute node.</p>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="app-development/interactive.html">Interactive Apps</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="app-development/interactive/manifest.html">Manifest yml files</a></li>
-<li class="toctree-l2"><a class="reference internal" href="app-development/interactive/form.html">User Form (form.yml.erb)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="app-development/interactive/manifest.html">Manifest YAML files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="app-development/interactive/form.html">User Form (<code class="docutils literal notranslate"><span class="pre">form.yml.erb</span></code>)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="app-development/interactive/form-widgets.html">Form Widgets</a></li>
 <li class="toctree-l2"><a class="reference internal" href="app-development/interactive/dynamic-form-widgets.html">Dynamic Form Widgets</a></li>
 <li class="toctree-l2"><a class="reference internal" href="app-development/interactive/template.html">Render Template</a></li>
-<li class="toctree-l2"><a class="reference internal" href="app-development/interactive/submit.html">Job Submission (submit.yml.erb)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="app-development/interactive/submit.html">Job Submission (<code class="docutils literal notranslate"><span class="pre">submit.yml.erb</span></code>)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="app-development/interactive/view.html">Connection View</a></li>
-<li class="toctree-l2"><a class="reference internal" href="app-development/interactive/sub-apps.html">Sub-Apps and Reconfiguring existing apps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="app-development/interactive/sub-apps.html">Sub-Apps and Re-configuring existing apps</a></li>
 <li class="toctree-l2"><a class="reference internal" href="app-development/interactive/conn-params.html">Connection Parameters <code class="docutils literal notranslate"><span class="pre">conn_params</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="app-development/interactive/additional-info.html">Adding Additional Information to the session cards</a></li>
 <li class="toctree-l2"><a class="reference internal" href="app-development/interactive/saved-settings.html">Saving interactive application settings</a></li>
@@ -179,7 +194,7 @@ on a compute node.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2017-2024, Ohio Supercomputer Center.</p>
+    <p>&#169; Copyright 2017-2026, Ohio Supercomputer Center.</p>
   </div>
 
    
@@ -192,7 +207,7 @@ on a compute node.</p>
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
   <span class="rst-current-version" data-toggle="rst-current-version">
     <span class="fa fa-book"> Documentation Versions</span>
-    v: 
+    v: 4.2.0
     <span class="fa fa-caret-down"></span>
   </span>
   <div class="rst-other-versions">
@@ -200,6 +215,12 @@ on a compute node.</p>
       <dt>Versions</dt>
       
         <dd><a href="https://OSC.github.io/ood-documentation/latest/how-tos/app-development.html">latest</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-4.1/how-tos/app-development.html">4.1</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-4.0/how-tos/app-development.html">4.0</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-3.1/how-tos/app-development.html">3.1</a></dd>
       
         <dd><a href="https://OSC.github.io/ood-documentation/release-3.0/how-tos/app-development.html">3.0</a></dd>
       

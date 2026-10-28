@@ -4,10 +4,10 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Starter Ruby Application &mdash; Open OnDemand 3.1.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+  <title>Starter Ruby Application &mdash; Open OnDemand 4.2.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=c48163e2" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=6f7bdab3" />
       <link rel="stylesheet" type="text/css" href="../../_static/tabs.css?v=a5c4661c" />
 
   
@@ -18,7 +18,7 @@
   
         <script src="../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../_static/documentation_options.js?v=dd1205ac"></script>
+        <script src="../../_static/documentation_options.js?v=d0ae6d56"></script>
         <script src="../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
@@ -51,18 +51,29 @@
               <img src="../../_static/logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                3.1
-              </div>
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
+                4.2
+              </div><div id="searchbox" role="search">
+  <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get" id="rtd-search-form" class="wy-form">
+      <input
+        type="text"
+        id="search-input"
+        name="q"
+        aria-label="Search docs"
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
+        spellcheck="false"
+        placeholder="Search docs"
+      />
+      <input type="submit" value="Go" class="sr-only" />
+    </form>
+  </div>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../faqs.html">FAQ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../requirements.html">Requirements</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../installation/add-cluster-config.html">Cluster Configuration</a></li>
@@ -74,18 +85,21 @@
 <li class="toctree-l1"><a class="reference internal" href="../../how-tos/debug.html">Debugging and Monitoring</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../enable-desktops.html">Enable Interactive Desktop</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../how-tos/app-development.html">App Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../how-tos/project-management/project-manager.html">Project Manager</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../install-ihpc-apps.html">Install Other Interactive Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install-passenger-apps.html">Install Passenger Apps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials-interactive-apps.html">Tutorials: Interactive Apps</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../tutorials-passenger-apps.html">Tutorials: Passenger Apps</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Starter Ruby Application</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#config-ru-for-sinatra">config.ru for Sinatra</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#config-ru-for-ruby-on-rails">config.ru for Ruby on Rails</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#config-ru-for-sinatra"><code class="docutils literal notranslate"><span class="pre">config.ru</span></code> for Sinatra</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#config-ru-for-ruby-on-rails"><code class="docutils literal notranslate"><span class="pre">config.ru</span></code> for Ruby on Rails</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#install-dependencies">Install dependencies</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#write-the-app-rb-file">Write the app.rb file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#write-the-app-rb-file">Write the <code class="docutils literal notranslate"><span class="pre">app.rb</span></code> file</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#publish-app">Publish App</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ruby-wrapper">Ruby Wrapper</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="nodejs-starter-app.html">Starter NodeJS Application</a></li>
@@ -93,10 +107,12 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials-dashboard-apps.html">Developing The OOD Dashboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials-project-manager.html">Tutorials: Project Manager</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../accessibility.html">Accessibility</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../reference.html">Configuration Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../security.html">Security</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../release-notes.html">Release Notes</a></li>
@@ -121,7 +137,7 @@
           <li class="breadcrumb-item"><a href="../tutorials-passenger-apps.html">Tutorials: Passenger Apps</a></li>
       <li class="breadcrumb-item active">Starter Ruby Application</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/OSC/ood-documentation/blob/develop/source/tutorials/tutorials-passenger-apps/ruby-starter-app.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/OSC/ood-documentation/blob/latest/source/tutorials/tutorials-passenger-apps/ruby-starter-app.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -134,7 +150,7 @@
 <p>This document walks through creating a hello world application in Ruby
 with the <a class="reference external" href="https://sinatrarb.com/">Sinatra</a> web framework.</p>
 <section id="config-ru-for-sinatra">
-<h2>config.ru for Sinatra<a class="headerlink" href="#config-ru-for-sinatra" title="Link to this heading"></a></h2>
+<h2><code class="docutils literal notranslate"><span class="pre">config.ru</span></code> for Sinatra<a class="headerlink" href="#config-ru-for-sinatra" title="Link to this heading"></a></h2>
 <p>The first thing we need for OnDemand to recognize this directory is a <code class="docutils literal notranslate"><span class="pre">config.ru</span></code> file.
 For <a class="reference external" href="https://sinatrarb.com/">Sinatra</a> this is the <code class="docutils literal notranslate"><span class="pre">config.ru</span></code> that you need.</p>
 <div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="c1"># frozen_string_literal: true</span>
@@ -145,7 +161,7 @@ For <a class="reference external" href="https://sinatrarb.com/">Sinatra</a> this
 </div>
 </section>
 <section id="config-ru-for-ruby-on-rails">
-<h2>config.ru for Ruby on Rails<a class="headerlink" href="#config-ru-for-ruby-on-rails" title="Link to this heading"></a></h2>
+<h2><code class="docutils literal notranslate"><span class="pre">config.ru</span></code> for Ruby on Rails<a class="headerlink" href="#config-ru-for-ruby-on-rails" title="Link to this heading"></a></h2>
 <p>This document does not cover <a class="reference external" href="https://rubyonrails.org/">Ruby on Rails</a>, but
 this <code class="docutils literal notranslate"><span class="pre">config.ru</span></code> is given nonetheless for readers interested
 in building Ruby apps based on <a class="reference external" href="https://rubyonrails.org/">Ruby on Rails</a>.</p>
@@ -160,10 +176,10 @@ in building Ruby apps based on <a class="reference external" href="https://rubyo
 </section>
 <section id="install-dependencies">
 <h2>Install dependencies<a class="headerlink" href="#install-dependencies" title="Link to this heading"></a></h2>
-<p>The application won’t boot with just the <code class="docutils literal notranslate"><span class="pre">config.ru</span></code>, though it will try.
+<p>The application won't boot with just the <code class="docutils literal notranslate"><span class="pre">config.ru</span></code>, though it will try.
 What you need now is to install the gems (the ruby dependencies).</p>
-<p>We need a <code class="docutils literal notranslate"><span class="pre">Gemfile</span></code> to tell <code class="docutils literal notranslate"><span class="pre">bundler</span></code> (Ruby’s application for dependencies)
-what gems to install. Here’s that file.</p>
+<p>We need a <code class="docutils literal notranslate"><span class="pre">Gemfile</span></code> to tell <code class="docutils literal notranslate"><span class="pre">bundler</span></code> (Ruby's application for dependencies)
+what gems to install. Here's that file.</p>
 <div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="c1"># frozen_string_literal: true</span>
 
 <span class="n">source</span><span class="w"> </span><span class="s1">&#39;https://rubygems.org&#39;</span>
@@ -179,11 +195,11 @@ bundle<span class="w"> </span>install
 </div>
 </section>
 <section id="write-the-app-rb-file">
-<h2>Write the app.rb file<a class="headerlink" href="#write-the-app-rb-file" title="Link to this heading"></a></h2>
+<h2>Write the <code class="docutils literal notranslate"><span class="pre">app.rb</span></code> file<a class="headerlink" href="#write-the-app-rb-file" title="Link to this heading"></a></h2>
 <p>Still, the app will not boot at this point. The <code class="docutils literal notranslate"><span class="pre">config.ru</span></code> is looking
 to load the <code class="docutils literal notranslate"><span class="pre">app.rb</span></code> file which does not exist yet.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">app.rb</span></code> file that will actually import <a class="reference external" href="https://sinatrarb.com/">Sinatra</a> and implement your routes.
-Here’s the simplest version of this file returning Hello World on the root URL.</p>
+Here's the simplest version of this file returning Hello World on the root URL.</p>
 <div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="nb">require</span><span class="w"> </span><span class="s1">&#39;sinatra/base&#39;</span>
 
 <span class="k">class</span><span class="w"> </span><span class="nc">App</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="no">Sinatra</span><span class="o">::</span><span class="no">Base</span>
@@ -225,7 +241,7 @@ git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </
 </div>
 </div></blockquote>
 </li>
-<li><p>As the admin, <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">copy</span></code> or <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span></code> this repo to production</p>
+<li><p>As the admin, <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">copy</span></code> or <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span></code> this repository to production.</p>
 <blockquote>
 <div><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># as sudo on OnDemand host:</span>
 <span class="nb">cd</span><span class="w"> </span>/var/www/ood/apps/sys
@@ -248,6 +264,23 @@ git<span class="w"> </span>clone<span class="w"> </span>/users/PZS0562/efranz/on
 killing all websocket connections, which means resetting your active web-based OnDemand Shell sessions.</p>
 </div>
 </section>
+<section id="ruby-wrapper">
+<span id="ruby-starter-app-wrapper"></span><h2>Ruby Wrapper<a class="headerlink" href="#ruby-wrapper" title="Link to this heading"></a></h2>
+<p>Applications can provide a <code class="docutils literal notranslate"><span class="pre">bin/ruby</span></code> file within their project
+to use a different version of ruby. Here's an example of such a file.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Ensure this file is executable permissions, otherwise it will not work.</p>
+</div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="c1"># OnDemand uses ruby 3.3, but this application uses 3.0.</span>
+
+module<span class="w"> </span>load<span class="w"> </span>ruby/3.0
+<span class="nb">exec</span><span class="w"> </span>/bin/env<span class="w"> </span>ruby<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$@</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+</section>
 </section>
 
 
@@ -261,7 +294,7 @@ killing all websocket connections, which means resetting your active web-based O
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2017-2024, Ohio Supercomputer Center.</p>
+    <p>&#169; Copyright 2017-2026, Ohio Supercomputer Center.</p>
   </div>
 
    
@@ -274,7 +307,7 @@ killing all websocket connections, which means resetting your active web-based O
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
   <span class="rst-current-version" data-toggle="rst-current-version">
     <span class="fa fa-book"> Documentation Versions</span>
-    v: 
+    v: 4.2.0
     <span class="fa fa-caret-down"></span>
   </span>
   <div class="rst-other-versions">
@@ -282,6 +315,12 @@ killing all websocket connections, which means resetting your active web-based O
       <dt>Versions</dt>
       
         <dd><a href="https://OSC.github.io/ood-documentation/latest/tutorials/tutorials-passenger-apps/ruby-starter-app.html">latest</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-4.1/tutorials/tutorials-passenger-apps/ruby-starter-app.html">4.1</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-4.0/tutorials/tutorials-passenger-apps/ruby-starter-app.html">4.0</a></dd>
+      
+        <dd><a href="https://OSC.github.io/ood-documentation/release-3.1/tutorials/tutorials-passenger-apps/ruby-starter-app.html">3.1</a></dd>
       
         <dd><a href="https://OSC.github.io/ood-documentation/release-3.0/tutorials/tutorials-passenger-apps/ruby-starter-app.html">3.0</a></dd>
       
